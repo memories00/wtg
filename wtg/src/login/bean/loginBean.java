@@ -20,11 +20,10 @@ public class loginBean
 		return  "/login/logintest.jsp";
 	}
 	@RequestMapping("/login.nhn")
-	public String login(String code,String state)
+	public String login(HttpServletRequest request,String code,String state)
 	{
-		//String code=request.getParameter("code");
-		System.out.println(code);
-		System.out.println(state);
+		request.setAttribute("code",code);
+		request.setAttribute("state",state);
 		return  "/login/login.jsp";
 	}
 
