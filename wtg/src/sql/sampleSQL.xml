@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap namespace="test">
+	<typeAlias alias="dto" type="test.member.DTO" />
+	<select id="selectAll" resultClass="String">
+		select id from test
+	</select>
+	
+	<select id="selectOne" resultClass="dto" parameterClass="String">
+		select * from test where id=#id#
+	</select>
+	<select id="checkId" resultClass="String" parameterClass="String">
+		select count(*) from test where id=#id#
+	</select>
+	
+	<select id="loginCheck" resultClass="String" parameterClass="dto">
+		select count(*) from test where id=#id# and pw=#pw#
+	</select>
+	
+	<insert id="insert" parameterClass="dto">
+		insert into test(id,pw,age,reg) values(#id#,#pw#,#age#,sysdate)
+	</insert>
+	
+	<delete id="delete" parameterClass="String">
+			DELETE FROM test where id=#id#
+    </delete>
+    
+    <update id="update" parameterClass="dto">
+    		update test set pw=#pw#,age=#age# where id=#id#
+    </update>
+	
+</sqlMap>
+
