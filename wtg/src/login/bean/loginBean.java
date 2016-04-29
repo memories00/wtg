@@ -16,7 +16,6 @@ public class loginBean
 	@RequestMapping("/main.nhn")
 	public String move()
 	{
-		System.out.println("dd");
 		return  "/login/logintest.jsp";
 	}
 	@RequestMapping("/login.nhn")
@@ -25,6 +24,12 @@ public class loginBean
 		request.setAttribute("code",code);
 		request.setAttribute("state",state);
 		return  "/login/login.jsp";
+	}
+	
+	@RequestMapping("/map.nhn")
+	public String map()
+	{
+		return  "/map/map.jsp";
 	}
 
 }
