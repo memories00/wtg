@@ -3,44 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <a href="https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=tOiSQTJhQmRZ6nUP94wi&client_secret=wET5G5veYP&code=${code }&state=${state}">ddd</a>
-<body onLoad="init()">
+<body onLoad="b()">
 <script type="text/javascript">
-function init() {
-
-	window.location.href="https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=tOiSQTJhQmRZ6nUP94wi&client_secret=wET5G5veYP&code=${code}&state=${state}";
-	
-	loadJSON(function(response) 
-			{
-		alert("1");
-	var actual_JSON = JSON.parse(response);
-
-	});
-
-	}
-
-	function loadJSON(callback)
-	{   
-		var xobj = new XMLHttpRequest();
-		xobj.overrideMimeType("application/json");
-		xobj.open('GET', 'token.json', true);
-		xobj.onreadystatechange = function ()
-	{
-		alert("1-1");
-		alert(xobj.status);         
-	if (xobj.readyState == 4 && xobj.status == "200")
-	{
-		callback(xobj.responseText);
-		alert("2");
-		alert(xobj.responseText);
-		alert("3");
-	}
-
-	};
-	
-	xobj.send(null);  
-
-	} 
-
 
 </script>
 </body>
