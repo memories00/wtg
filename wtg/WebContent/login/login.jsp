@@ -10,55 +10,59 @@ function init() {
 	//window.location.href="https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=tOiSQTJhQmRZ6nUP94wi&client_secret=wET5G5veYP&code=${code}&state=${state}";
 	
 	loadJSON(function(response) 
-			{
-		alert("1-1");
-	var actual_JSON
+	{
+		alert("1-0");
+		var actual_JSON
 	
-	if(window.XMLHttpRequest)
-	{
-		actual_JSON=JSON.parse(xobj.responseText);
-	}
-	else
-	{
-		actual_JSON=eval("("+xobj.responseText+")");
-	}
-
-	});
-
-	}
-
-	function loadJSON(callback)
-	{   
-		var xobj
-		alert("1-1");
 		if(window.XMLHttpRequest)
 		{
-			xobj = new XMLHttpRequest();
-			alert("1-1-1");
+			alert("1-0-0");
+			actual_JSON=JSON.parse(xobj.responseText);
+			alert("1-0-1");
 		}
 		else
 		{
-			xobj = new ActiveXObject("Microsoft.XMLHTTP");
-			alert("1-1-2");
+			alert("1-0-0");
+			actual_JSON=eval("("+xobj.responseText+")");
+			alert("1-0-2");
 		}
+		alert("1-0-3");
+	});
+
+
+}
+function loadJSON(callback)
+{   
+	var xobj
+	alert("1-1");
+	if(window.XMLHttpRequest)
+	{
+		xobj = new XMLHttpRequest();
+		alert("1-1-1");
+	}
+	else
+	{
+		xobj = new ActiveXObject("Microsoft.XMLHTTP");
+		alert("1-1-2");
+	}
 		
-		//xobj.open("GET", "token.xml", true);
-		alert("1-2");
+	//xobj.open("GET", "token.xml", true);
+	alert("1-2");
 		
-		xobj.open("GET", "http://localhost:8000/wtg/login.nhn", true);
-		xobj.send(null); 
-		xobj.onreadystatechange = function ()
-		{
-			alert("1-3");
-			alert(xobj.readyState);
-			/*
-			ready State: ajax 통신의 진행중인 상태를 알려줌.
-			0:초기화 되지 않은 상태(open메소드가 아직 호출되지 않은 상태)
-			1:open 메소드가 호출된 상태(send메소드는 호출되지 않은 상태)
-			2:송신완료, 요청을 시작한 상태(요청은 했지만 데이터가 오지 않은 상태)
-			3:수신중인 상태(데이터가 들어오고있는상태)			
-			4:수신 완료(데이터를 모두 받은 상태)
-			*/
+	xobj.open("GET", "http://localhost:8000/wtg/login.nhn", true);
+	xobj.send(null); 
+	xobj.onreadystatechange = function ()
+	{
+		alert("1-3");
+		alert(xobj.readyState);
+		/*
+		ready State: ajax 통신의 진행중인 상태를 알려줌.
+		0:초기화 되지 않은 상태(open메소드가 아직 호출되지 않은 상태)
+		1:open 메소드가 호출된 상태(send메소드는 호출되지 않은 상태)
+		2:송신완료, 요청을 시작한 상태(요청은 했지만 데이터가 오지 않은 상태)
+		3:수신중인 상태(데이터가 들어오고있는상태)			
+		4:수신 완료(데이터를 모두 받은 상태)
+		*/
 			alert("1-3-1");
 			alert(xobj.status);
 			/*
@@ -84,7 +88,7 @@ function init() {
 			}
 
 		};
-	} 
+} 
 
 
 </script>
