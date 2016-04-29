@@ -38,15 +38,17 @@
                         var oOffset = new nhn.api.map.Size(14, 37);
                         var oIcon = new nhn.api.map.Icon('http://static.naver.com/maps2/icons/pin_spot2.png', oSize, oOffset);
                        
-                        sPoint=new nhn.api.map.LatLng( 37.484201,126.929715  );
-                     
+
                         function a(){
-                        var oMarker1=new  nhn.api.map.Marker(oIcon, {  
-                            title : '신림역'  // 타이틀
-                    })
+                        	 sPoint=new nhn.api.map.LatLng( xpoint.value,ypoint.value  );
+                        	 var pName=xy.value;
+                        var oMarker=new  nhn.api.map.Marker(oIcon,
+                        		{  title : pName    // 타이틀  
+                        	    })
                       oMarker.setPoint(sPoint);
                       oMarker.setVisible(true);
                       oMap.addOverlay(oMarker);
+                      
                         }
                       
                       oMap.attach('mouseenter', function(oCustomEvent) {
@@ -60,7 +62,10 @@
 
                       
                 </script>
-                <input type="button" value="신림" onclick="a">
+                 <input type="text" name="xy">
+                <input type="text" name="xpoint" value="37.484201">
+                <input type="text" name="ypoint" value="126.929715  ">
+                <input type="button" value="신림" onclick="a()">
                 <input type="button" value="역삼">
 </body>
 </html>
