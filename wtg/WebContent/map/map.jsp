@@ -48,7 +48,7 @@
                       oMarker.setPoint(sPoint);
                       oMarker.setVisible(true);
                       oMap.addOverlay(oMarker);
-                      
+                     oMap.setCenter(sPoint);//선택한 좌표로 화면이동
                         }
                       
                       oMap.attach('mouseenter', function(oCustomEvent) {
@@ -62,15 +62,17 @@
 
                       
                 </script>
-                 <input type="text" name="xy">
-                <input type="text" name="xpoint" value="37.484201">
-                <input type="text" name="ypoint" value="126.929715  ">
+                 <input type="text" name="xy" value="우리집">
+                <input type="text" name="xpoint"  value="37.494612">
+                <input type="text" name="ypoint" value="127.063642" >
                 <input type="button" value="입력" onclick="a()">
                 <input type="button" value="기능없음"><br/>
                 대치  37.494612 127.063642  <br/>
                 영등포 37.515504 126.907628  <br/>
                 서울 37.554648 126.972559  <br/>
                 신림 37.484201 126.929715  <br/>
+                
+                <a href ="https://openapi.naver.com/v1/search/local.xml">dd</a> 
                 
 </body>
 </html>
