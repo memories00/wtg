@@ -65,7 +65,12 @@
                  <input type="text" name="xy">
                 <input type="text" name="xpoint" value="37.484201">
                 <input type="text" name="ypoint" value="126.929715  ">
-                <input type="button" value="신림" onclick="a()">
-                <input type="button" value="역삼">
+                <input type="button" value="입력" onclick="a()">
+                <input type="button" value="기능없음"><br/>
+                대치  37.494612 127.063642  <br/>
+                영등포 37.515504 126.907628  <br/>
+                서울 37.554648 126.972559  <br/>
+                신림 37.484201 126.929715  <br/>
+                
 </body>
 </html>
