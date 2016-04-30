@@ -10,12 +10,42 @@
 	<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06fa7b42a2af7b8c46c9ca9a71d40206"></script>
 	<script>
 		var container = document.getElementById('map');
+		alert(container);
 		var options = {
-			center: new daum.maps.LatLng(33.450701, 126.570667),
+			center: new daum.maps.LatLng(37.515504, 126.907628),
 			level: 3
 		};
 
 		var map = new daum.maps.Map(container, options);
+		
+		function a()
+		{
+			var markerPosition  = new daum.maps.LatLng(xpoint.value, ypoint.value); 
+	
+			// 마커를 생성합니다
+			var marker = new daum.maps.Marker({
+			    position: markerPosition
+			});
+			
+			marker.setMap(map);
+			
+			var moveLatLon = new daum.maps.LatLng(xpoint.value, ypoint.value);
+			
+			var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+		    iwPosition = new daum.maps.LatLng(33.450701, 126.570667), //인포윈도우 표시 위치입니다
+		    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+		    iwRemoveable = true; //removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+		// 인포윈도우를 생성하고 지도에 표시합니다
+		var infowindow = new daum.maps.InfoWindow({
+		    map: map, // 인포윈도우가 표시될 지도
+		    position : moveLatLon, 
+		    content : xy.value,
+		    removable : iwRemoveable
+		});
+		}
+
+
 	</script>
 	
 	   <input type="text" name="xy" value="우리집">
