@@ -19,10 +19,10 @@ public class loginBean
 		return  "/login/logintest.jsp";
 	}
 	@RequestMapping("/login.nhn")
-	public String login(HttpServletRequest request,String code,String state)
+	public String login(HttpServletRequest request,String access_token)
 	{
-		request.setAttribute("code",code);
-		request.setAttribute("state",state);
+		request.setAttribute("code",access_token);
+
 		return  "/login/login.jsp";
 	}
 	
