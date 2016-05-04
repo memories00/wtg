@@ -31,5 +31,27 @@ public class loginBean
 	{
 		return  "/map/map.jsp";
 	}
+	@RequestMapping("/transTest.nhn")
+	public String transTest()
+	{
+		return  "/map/transTest.jsp";
+	}
+	
+	@RequestMapping("/total.nhn")
+	public String total()
+	{
+		return  "/map/total.jsp";
+	}
+	
+	@RequestMapping("/test.nhn")
+	public String test()
+	{
+		return  "/map/test.xml";
+	}
+	@RequestMapping("/clickTest.nhn")
+	public String clickTest()
+	{
+		return  "/map/clickTest.jsp";
+	}
 
 }
