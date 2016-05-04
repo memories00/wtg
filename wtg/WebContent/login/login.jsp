@@ -17,6 +17,7 @@
 	$(document).ready(function(){
 		Kakao.init('43d7c500ee93e1ffb8beb38776c7d47a');
 		alert("1");
+		//$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn")
 		function getKakaotalkUserProfile(){
 			alert("2");
 			Kakao.API.request({
@@ -47,27 +48,34 @@
 		
 		function createKakaotalkLogout(){
 			//$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
-				alert("4");
-				Kakao.API.request({
-					url: '/v1/user/logout',
-					success: function(res){
-						alert("·Î±×¾Æ¿ôµÊ");
-					},
-					fail: function(error){
+				
+			alert("4");
+				var logoutBtn=$("<a/>",{"class":"kakao-logout-btn","text":"·Î±×¾Æ¿ô"});
+				logoutBtn.click(function(){
+					Kakao.API.request({
+						url: '/v1/user/logout',
+						success: function(res){
+							alert("·Î±×¾Æ¿ôµÊ");
+						},
+						fail: function(error){
 						console.log(error);
-					}
+						}
+					});
+					
+					createKakaotalkLogin();
+					$("#kakao-profile").text("");
 				});
 		}
 		alert("7");
-		
-		createKakaotalkLogin();
+			createKakaotalkLogin();
 	});
 	alert("8");
 </script>
 </head>
 <body>
-	 <div id="kakao-login-btn"></div>
-	 <div id="kakao-logout-btn"></div>
-	 <div id="kakao-profile"></div>
+	<div id ="kakao-logged-group"></div>
+	<div id="kakao-login-btn"></div>
+	<div id="kakao-logout-btn"></div>
+	<div id="kakao-profile"></div>
 </body>
 </html>
