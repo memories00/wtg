@@ -32,12 +32,6 @@
 		}
 		
 		function createKakaotalkLogin(){
-			//$("#kaako-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
-			/*var loginBtn = $("<a/>",{"class":"kakao-login-btn","text":"·Î±×ÀÎ"});
-			loginBtn.click(function(){
-				Kakao.Auth.login({
-					persisAccessToken: true,
-					persistRefreshToken: true,*/
 				alert("3");
 				Kakao.Auth.createLoginButton({
 					container: '#kakao-login-btn',
@@ -65,6 +59,8 @@
 				});
 		}
 		alert("7");
+		
+		createKakaotalkLogin();
 	});
 	alert("8");
 </script>
