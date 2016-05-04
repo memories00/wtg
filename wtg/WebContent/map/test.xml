@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shortestRoute>
+<RESULT>
+
+<code>INFO-000</code>
+
+<developerMessage/>
+
+<link/>
+
+<message>정상 처리되었습니다.</message>
+
+<status>200</status>
+
+<total>1</total>
+
+</RESULT>
+
+
+<row>
+
+<rowNum>1</rowNum>
+
+<selectedCount>1</selectedCount>
+
+<totalCount>1</totalCount>
+
+<statnFid>1002000230</statnFid>
+
+<statnTid>1002000221</statnTid>
+
+<statnFnm>신림</statnFnm>
+
+<statnTnm>역삼</statnTnm>
+
+<shtStatnId>1002000230,1002000229,1002000228,1002000227,1002000226,1002000225,1002000224,1002000223,1002000222,1002000221,</shtStatnId>
+
+<shtStatnNm>신림 ,봉천 ,서울대입구 ,낙성대 ,사당 ,방배 ,서초 ,교대 ,강남 ,역삼 ,</shtStatnNm>
+
+<shtTransferMsg>16분 걸리고, 0번 환승합니다. (9개역 지나감)</shtTransferMsg>
+
+<shtTravelMsg>16분 걸리고, 0번 환승합니다. (9개역 지나감)</shtTravelMsg>
+
+<shtStatnCnt>9</shtStatnCnt>
+
+<shtTravelTm>16</shtTravelTm>
+
+<shtTransferCnt>0</shtTransferCnt>
+
+<minStatnId>1002000230,1002000229,1002000228,1002000227,1002000226,1002000225,1002000224,1002000223,1002000222,1002000221,</minStatnId>
+
+<minStatnNm>신림 ,봉천 ,서울대입구 ,낙성대 ,사당 ,방배 ,서초 ,교대 ,강남 ,역삼 ,</minStatnNm>
+
+<minTransferMsg>16분 걸리고, 0번 환승합니다. (9개역 지나감)</minTransferMsg>
+
+<minTravelMsg>16분 걸리고, 0번 환승합니다. (9개역 지나감)</minTravelMsg>
+
+<minStatnCnt>9</minStatnCnt>
+
+<minTravelTm>16</minTravelTm>
+
+<minTransferCnt>0</minTransferCnt>
+
+<shtStatnXy>993,1338;1069,1338;1144,1338;1219,1338;1284,1338;1365,1338;1442,1338;1527,1338;1580,1275;1634,1244;</shtStatnXy>
+
+<minStatnXy>993,1338;1069,1338;1144,1338;1219,1338;1284,1338;1365,1338;1442,1338;1527,1338;1580,1275;1634,1244;</minStatnXy>
+
+</row>
+
+</shortestRoute>
