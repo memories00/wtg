@@ -37,7 +37,6 @@ public class loginBean
 	@RequestMapping("/search/search.nhn")
 	public String search(HttpServletRequest request, String keyword)
 	{
-		
 		request.setAttribute("keyword", keyword);
 		return "/search/searchPage.jsp";
 	}
