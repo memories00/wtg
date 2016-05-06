@@ -7,6 +7,8 @@ import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+
 @Controller
 public class loginBean
 {
@@ -19,8 +21,10 @@ public class loginBean
 		return  "/login/logintest.jsp";
 	}
 	@RequestMapping("/login.nhn")
-	public String login(HttpServletRequest request,String token)
+	public String login(HttpServletRequest request, String token)
 	{
+
+		Object memInfo = "";
 		request.setAttribute("token",token);
 		
 		System.out.println("java");

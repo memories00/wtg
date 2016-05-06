@@ -24,29 +24,61 @@
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     alert("script");
+    var accessToken;
+    var tokenType;
+    var refreshToken;
+    var expiresIn;
+    var scope;
     Kakao.init('43d7c500ee93e1ffb8beb38776c7d47a');
     function loginWithKakao() {
       // 로그인 창을 띄웁니다.
-      var token;
-      alert("login");
-      Kakao.Auth.login({
-        success: function(authObj) {
-        	alert("login-success");
-        	getKakaotalkUserProfile();
-			token = JSON.stringify(authObj);
-			alert(token);
-        },
-        fail: function(error) {
-        	console.log(error);
-        }
-      });
-    };
+		alert("login");
+		Kakao.Auth.login({
+			persistAccessToken: true,
+			persistRefreshToken: true,
+			success: function(authObj) {
+				alert("login-success");
+        		getKakaotalkUserProfile();
+        		alert("profile_print");
+        		$.ajax({
+        			type: 'POST',
+        			url: 'http://localhost:8000/wtg/login.nhn',
+        			data: authObj,
+        			success:'',
+        			dataType: 'JSON'
+        			
+        		});
+        	
+				accessToken = authObj.access_token;
+				tokenType = authObj.token_type;
+				refreshToken = authObj.refresh_token;
+				expiresIn = authObj.expires_in;
+				scope = authObj.scope;
+        	
+        		alert(accessToken);
+				alert(tokenType);
+				alert(refreshToken);
+				alert(expiresIn);
+				alert(scope);
+			},
+			fail: function(error) {
+				console.log(error);
+			}
+		});
+	};
     
     function logoutWithKakao() {
     	alert("logout");
 		Kakao.API.request({
 			url: '/v1/user/logout',
 			success: function(res){
+				
+				alert(accessToken);
+				alert(tokenType);
+				alert(refreshToken);
+				alert(expiresIn);
+				alert(scope);
+				
 				alert("logout-success");
 				alert("로그아웃됨");
 				$("#kakao-profile").text("");
@@ -62,6 +94,7 @@
     	Kakao.API.request({
 			url: '/v1/user/me',
 			success: function(res){
+				$("#kakao-profile").append(res.id);
 				$("#kakao-profile").append(res.properties.nickname);
 				$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname}));
 			},
