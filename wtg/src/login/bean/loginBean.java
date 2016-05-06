@@ -36,6 +36,7 @@ public class loginBean
 	public String map()
 	{
 		return  "/map/map.jsp";
+		
 	}
 	
 	@RequestMapping("/search/search.nhn")
