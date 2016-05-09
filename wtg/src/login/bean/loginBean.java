@@ -24,6 +24,9 @@ public class loginBean
 		System.out.println("nickname: " + mem_nickname);
 		System.out.println("pf_image: " + pf_image);
 		
+		
+		
+		
 		return  "/login/logintest.jsp";
 	}
 	@RequestMapping("/login.nhn")
