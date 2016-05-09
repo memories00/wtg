@@ -42,18 +42,4 @@ public class loginBean
 		
 		return  "/login/login.jsp";
 	}
-	
-	@RequestMapping("/map.nhn")
-	public String map()
-	{
-		return  "/map/map.jsp";
-		
-	}
-	
-	@RequestMapping("/search/search.nhn")
-	public String search(HttpServletRequest request, String keyword)
-	{
-		request.setAttribute("keyword", keyword);
-		return "/search/searchPage.jsp";
-	}
 }
