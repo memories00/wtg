@@ -24,11 +24,16 @@
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     alert("script");
+    var obj;
     var accessToken;
     var tokenType;
     var refreshToken;
     var expiresIn;
     var scope;
+    var id;
+	var nickname;
+	var profileImage;
+    
     Kakao.init('43d7c500ee93e1ffb8beb38776c7d47a');
     function loginWithKakao() {
       // 로그인 창을 띄웁니다.
@@ -38,28 +43,16 @@
 			persistRefreshToken: true,
 			success: function(authObj) {
 				alert("login-success");
-        		getKakaotalkUserProfile();
-        		alert("profile_print");
-        		$.ajax({
-        			type: 'POST',
-        			url: 'http://localhost:8000/wtg/login.nhn',
-        			data: authObj,
-        			success:'',
-        			dataType: 'JSON'
-        			
-        		});
-        	
+				
+				getKakaotalkUserProfile();
+				
 				accessToken = authObj.access_token;
 				tokenType = authObj.token_type;
 				refreshToken = authObj.refresh_token;
 				expiresIn = authObj.expires_in;
 				scope = authObj.scope;
-        	
-        		alert(accessToken);
-				alert(tokenType);
-				alert(refreshToken);
-				alert(expiresIn);
-				alert(scope);
+				alert(accessToken);
+				
 			},
 			fail: function(error) {
 				console.log(error);
@@ -74,10 +67,6 @@
 			success: function(res){
 				
 				alert(accessToken);
-				alert(tokenType);
-				alert(refreshToken);
-				alert(expiresIn);
-				alert(scope);
 				
 				alert("logout-success");
 				alert("로그아웃됨");
@@ -94,16 +83,52 @@
     	Kakao.API.request({
 			url: '/v1/user/me',
 			success: function(res){
+				id = res.id;
+				nickname = res.properties.nickname;
+				profileImage = res.properties.profile_image;
+				alert(res.id);
 				$("#kakao-profile").append(res.id);
 				$("#kakao-profile").append(res.properties.nickname);
 				$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname}));
+				
+				alert("post-send");
+				sendPost();
 			},
 			fail: function(error){
 				console.log(error);
 			}
 		});
 	}
+    
+    function sendPost(){
+    	$.ajax({
+			type: "POST",
+			url: "/wtg/login.nhn",
+			data: {
+				ac_token: accessToken,
+				re_token: refreshToken,
+			    mem_id: id,
+				mem_name: nickname,
+				mem_image: profileImage
+			},
+			async: true,
+			success: function(){
+				alert("post-success");
+			},
+			error: function(){
+				alert("post-error");
+			},
+			complete: function(){
+				alert("post-complete");
+				location.href("/wtg/main.nhn");
+			}
+		});
+    }
   //]]>
 </script>
+
+
+
+
 </body>
 </html>
