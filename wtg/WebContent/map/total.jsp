@@ -10,7 +10,7 @@
 <body>
 <!-- 지도를 표시할 div 입니다 -->
 <div id="map" style="width:900px;height:600px;"></div>
-
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06fa7b42a2af7b8c46c9ca9a71d40206&libraries=services"></script>
 <script>
 var allTitle=new Array();
@@ -77,15 +77,7 @@ function b()
 	 map.panTo(center);    //화면이 마커를 선택한쪽으로 이동     
 } 
 
-function goPage() 
-{
-	for(var i=0;i<allTitle.length;i++)
-	{
-	   var stLoc=allTitle[i].indexOf("역");
-	   alert(stLoc);
-	   alert(allTitle[i].substring(0,stLoc));
-	}		
-}
+
 
 daum.maps.event.addListener(map, 'click', function(mouseEvent) 
 {        
@@ -95,11 +87,6 @@ daum.maps.event.addListener(map, 'click', function(mouseEvent)
 	 searchSub(mouseEvent.latLng);		//현재위치에서 가까운 지하철역 검색
     
 });
-
-daum.maps.event.addListener(marker, 'mouseover', function() {
-   alert("dd");
-});
-
 
 function displayMarker(location)
 {
@@ -120,7 +107,7 @@ function searchSub(position)
     var strArr=new Array();
     // 키워드 검색 완료 시 호출되는 콜백함수 입니다
     function placesSearchCB (status, data, pagination) {
-    	alert(status);
+    	//alert(status);
         if (status === daum.maps.services.Status.OK) {
         	//alert("3");	
             for (var i=0; i<data.places.length; i++) {
@@ -177,7 +164,7 @@ function searchSub(position)
                  <input type="text" name="ypoint" value="127.03105819665858" > 
                  <input type="button" value="입력" onclick="a()">   
                  <input type="button" value="원점이동" onclick="b()">
-                 <input type="button" value="지하철구간" onclick="goPage()">  <br/>
+                 <input type="button" value="지하철구간" onclick="callAjax()">  <br/>
                  대치  37.494612 127.063642  <br/> 
                  영등포 37.515504 126.907628  <br/> 
                  서울 37.554648 126.972559  <br/> 
