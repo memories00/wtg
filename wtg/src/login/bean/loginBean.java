@@ -23,6 +23,15 @@ public class loginBean
 	{	
 		return  "/login/logintest.jsp";
 	}
+	
+	@RequestMapping("/logout.nhn")
+	public String logout(HttpSession session)
+	{
+		session.invalidate();
+		
+		return "/login/logout.jsp";
+	}
+	
 	@RequestMapping("/login.nhn")
 	public String login(HttpSession session, LoginDTO dto ,HttpServletRequest request, String ac_token, String re_token, String mem_id, String mem_name, String mem_image)
 	{
@@ -34,8 +43,9 @@ public class loginBean
 			
 			if (count==1)
 			{
-				session.setAttribute("memId", dto.getId());
+				session.setAttribute("memId", mem_id);
 				System.out.println("login");
+				System.out.println(mem_id);
 			}
 			else
 			{
@@ -43,6 +53,7 @@ public class loginBean
 				dto.setId(mem_id);
 				dto.setReg(reg);
 				sqlMap.insert("mem.join", dto);
+				session.setAttribute("memId", mem_id);
 				System.out.println("join");
 			}
 		}

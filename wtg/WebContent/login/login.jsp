@@ -10,14 +10,20 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-
-
+session : ${sessionScope.memId}
+<br />
+<c:choose>
+<c:when test="${sessionScope.memId ne null}">
+	<a id="logout-btn" onclick="window.location='logout.nhn'">
+		<img src="/wtg/img/logoutBtn.jpg" width="100"/>
+	</a>
+</c:when>
+<c:otherwise>
 	<a id="login-btn" href="javascript:loginWithKakao()">
 		<img src="/wtg/img/loginBtn.jpg" width="100"/>
 	</a>
-	<a id="logout-btn" href="javascript:logoutWithKakao()">
-		<img src="/wtg/img/logoutBtn.jpg" width="100"/>
-	</a>
+</c:otherwise>
+</c:choose>
 
 <div id="kakao-profile"></div>
 <script type='text/javascript'>
