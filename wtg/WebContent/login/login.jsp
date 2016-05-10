@@ -1,97 +1,140 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+<title>Login Demo - Kakao JavaScript SDK</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+session : ${sessionScope.memId}
+<br />
+<c:choose>
+<c:when test="${sessionScope.memId ne null}">
+	<a id="logout-btn" onclick="window.location='logout.nhn'">
+		<img src="/wtg/img/logoutBtn.jpg" width="100"/>
+	</a>
+</c:when>
+<c:otherwise>
+	<a id="login-btn" href="javascript:loginWithKakao()">
+		<img src="http://mud-kage.kakao.co.kr/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+	</a>
+</c:otherwise>
+</c:choose>
 
-<a href="https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=tOiSQTJhQmRZ6nUP94wi&client_secret=wET5G5veYP&code=${code }&state=${state}">ddd</a>
-<body onLoad="init()">
-<script type="text/javascript">
-function init() {
-
-	//window.location.href="https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=tOiSQTJhQmRZ6nUP94wi&client_secret=wET5G5veYP&code=${code}&state=${state}";
-	
-	loadJSON(function(response) 
-	{
-		alert("1-0");
-		var actual_JSON
-	
-		if(window.XMLHttpRequest)
-		{
-			alert("1-0-0");
-			actual_JSON=JSON.parse(xobj.responseText);
-			alert("1-0-1");
-		}
-		else
-		{
-			alert("1-0-0");
-			actual_JSON=eval("("+xobj.responseText+")");
-			alert("1-0-2");
-		}
-		alert("1-0-3");
-	});
-
-
-}
-function loadJSON(callback)
-{   
-	var xobj
-	alert("1-1");
-	if(window.XMLHttpRequest)
-	{
-		xobj = new XMLHttpRequest();
-		alert("1-1-1");
-	}
-	else
-	{
-		xobj = new ActiveXObject("Microsoft.XMLHTTP");
-		alert("1-1-2");
-	}
-		
-	//xobj.open("GET", "token.xml", true);
-	alert("1-2");
-		
-	xobj.open("GET", "http://localhost:8000/wtg/login.nhn", true);
-	xobj.send(null); 
-	xobj.onreadystatechange = function ()
-	{
-		alert("1-3");
-		alert(xobj.readyState);
-		/*
-		ready State: ajax 통신의 진행중인 상태를 알려줌.
-		0:초기화 되지 않은 상태(open메소드가 아직 호출되지 않은 상태)
-		1:open 메소드가 호출된 상태(send메소드는 호출되지 않은 상태)
-		2:송신완료, 요청을 시작한 상태(요청은 했지만 데이터가 오지 않은 상태)
-		3:수신중인 상태(데이터가 들어오고있는상태)			
-		4:수신 완료(데이터를 모두 받은 상태)
-		*/
-			alert("1-3-1");
-			alert(xobj.status);
-			/*
-			status: 데이터 수신의 성공여부를 판단해주는 속성
-			0:로컬로 접근 성공
-			200:해당 url로 접근 성공
-			403:접근 거부
-			404:해당 url이 없음
-			500:서버오류
-			*/
-			alert("1-3-2");
-
-			
-			if (xobj.readyState == 4 && xobj.status == "200")
-			{
-				alert("2-1");
-				alert(xobj.responseText);
-				alert("3-1");
-				//xobj.open("GET", "token.xml", true);
-				callback(xobj.responseText);
-
+<div id="kakao-profile"></div>
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    alert("script");
+    var obj;
+    var accessToken;
+    var tokenType;
+    var refreshToken;
+    var expiresIn;
+    var scope;
+    var id;
+	var nickname;
+	var profileImage;
+    
+    Kakao.init('43d7c500ee93e1ffb8beb38776c7d47a');
+    function loginWithKakao() {
+      // 로그인 창을 띄웁니다.
+		alert("login");
+		Kakao.Auth.login({
+			persistAccessToken: true,
+			persistRefreshToken: true,
+			success: function(authObj) {
+				alert("login-success");
 				
+				getKakaotalkUserProfile();
+				
+				accessToken = authObj.access_token;
+				tokenType = authObj.token_type;
+				refreshToken = authObj.refresh_token;
+				expiresIn = authObj.expires_in;
+				scope = authObj.scope;
+				alert(accessToken);
+				
+			},
+			fail: function(error) {
+				console.log(error);
 			}
-
-		};
-} 
-
-
+		});
+	};
+    
+    function logoutWithKakao() {
+    	alert("logout");
+		Kakao.API.request({
+			url: '/v1/user/logout',
+			success: function(res){
+				
+				alert(accessToken);
+				
+				alert("logout-success");
+				alert("로그아웃됨");
+				$("#kakao-profile").text("");
+			},
+			fail: function(error){
+			console.log(error);
+			}
+		});
+	};
+    
+    function getKakaotalkUserProfile(){
+    	alert("profile");
+    	Kakao.API.request({
+			url: '/v1/user/me',
+			success: function(res){
+				id = res.id;
+				nickname = res.properties.nickname;
+				profileImage = res.properties.profile_image;
+				alert(res.id);
+				$("#kakao-profile").append(res.id);
+				$("#kakao-profile").append(res.properties.nickname);
+				$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname}));
+				
+				alert("post-send");
+				sendPost();
+			},
+			fail: function(error){
+				console.log(error);
+			}
+		});
+	}
+    
+    function sendPost(){
+    	$.ajax({
+			type: "POST",
+			url: "/wtg/login.nhn",
+			data: {
+				ac_token: accessToken,
+				re_token: refreshToken,
+			    mem_id: id,
+				mem_name: nickname,
+				mem_image: profileImage
+			},
+			async: true,
+			success: function(){
+				alert("post-success");
+			},
+			error: function(){
+				alert("post-error");
+			},
+			complete: function(){
+				alert("post-complete");
+				location.replace("/wtg/main.nhn");
+			}
+		});
+    }
+  //]]>
 </script>
+
+
+
+
 </body>
-왔따
-test
+</html>

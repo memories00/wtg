@@ -1,5 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<a href="https://nid.naver.com/oauth2.0/authorize?client_id=tOiSQTJhQmRZ6nUP94wi&response_type=code&redirect_uri=http://localhost:8000/wtg/login.nhn&state=abcdefghijkmnopqrst">³×ÀÌ¹ö</a>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
+<head>
+<title>main</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+</head>
+<body>
+session : ${sessionScope.memId}
+<br />
+<c:choose>
+<c:when test="${sessionScope.memId ne null}">
+	<a id="logout-btn" onclick="window.location='logout.nhn'">
+		<img src="/wtg/img/logoutBtn.jpg" width="100"/>
+	</a>
+</c:when>
+<c:otherwise>
+	<a href="http://localhost:8000/wtg/login.nhn">
+		<img src="/wtg/img/loginBtn.jpg" width="100"/>
+	</a>
+</c:otherwise>
+</c:choose>
+</body>
+</html>

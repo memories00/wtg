@@ -22,7 +22,7 @@
 		destroy-method="close"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@khmaster.iptime.org:7000:orcl"
-		p:username="java13" p:password="java13"
+		p:username="nakyeong" p:password="nakyeong"
 	/>
 	
 	<bean id="SqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
