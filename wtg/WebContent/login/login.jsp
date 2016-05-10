@@ -20,7 +20,7 @@ session : ${sessionScope.memId}
 </c:when>
 <c:otherwise>
 	<a id="login-btn" href="javascript:loginWithKakao()">
-		<img src="/wtg/img/loginBtn.jpg" width="100"/>
+		<img src="http://mud-kage.kakao.co.kr/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
 	</a>
 </c:otherwise>
 </c:choose>
@@ -126,7 +126,7 @@ session : ${sessionScope.memId}
 			},
 			complete: function(){
 				alert("post-complete");
-				location.href("/wtg/main.nhn");
+				location.replace("/wtg/main.nhn");
 			}
 		});
     }
