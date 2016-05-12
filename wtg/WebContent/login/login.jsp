@@ -10,14 +10,20 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-
-
-	<a id="login-btn" href="javascript:loginWithKakao()">
-		<img src="/wtg/img/loginBtn.jpg" width="100"/>
-	</a>
-	<a id="logout-btn" href="javascript:logoutWithKakao()">
+session : ${sessionScope.memId}
+<br />
+<c:choose>
+<c:when test="${sessionScope.memId ne null}">
+	<a id="logout-btn" onclick="window.location='logout.nhn'">
 		<img src="/wtg/img/logoutBtn.jpg" width="100"/>
 	</a>
+</c:when>
+<c:otherwise>
+	<a id="login-btn" href="javascript:loginWithKakao()">
+		<img src="http://mud-kage.kakao.co.kr/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+	</a>
+</c:otherwise>
+</c:choose>
 
 <div id="kakao-profile"></div>
 <script type='text/javascript'>
@@ -120,7 +126,7 @@
 			},
 			complete: function(){
 				alert("post-complete");
-				location.href("/wtg/main.nhn");
+				location.replace("/wtg/main.nhn");
 			}
 		});
     }
