@@ -16,8 +16,8 @@ public class MapBean {
 	{
 		request.setAttribute("keyword", keyword);
 		return "/search/searchTest.nhn";
-	}
-	
+	} 
+	 
 	@RequestMapping("/search/searchPage.nhn")
 	public String searchPage(HttpServletRequest request, String keyword)
 	{

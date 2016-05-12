@@ -21,7 +21,7 @@
         </div>
         
         <hr> 
-        
+         
 		<div id="location" style="background-color:red">
 			내가선택한 장소 <br/>
 		</div>	

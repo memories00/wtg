@@ -10,7 +10,7 @@
 	<input type="submit" value="°Ë»ö">
 
 </form>
-
+ 
 
 <form action="insertMap.nhn" method="post" name="insertMap">
 	<input type="text" name="mem_num">
