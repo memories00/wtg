@@ -1,16 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>memAdmin</title>
+<title>main</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style type="text/css">
+.top {font-size:11pt; width:940px; border: 1px solid black; float:center;}
+#top {height:50px; border: 1px solid black; float:center}
+#logo {width:500px; height:50px; border: 1px solid black; float:left; margin-left:10px;}
+#info {text-align:right; width:410px; height:50px; border: 1px solid black; float:right; margin-right:10px;}
+.content {font-size:13pt; width:940px; border: 1px solid black; float:center;}
+#content {width:940px; height:700px; border: 1px solid black; float:center;}
+.bottom {font-size:11pt; text-align:center; width:940px; border: 1px solid black; float:center;}
+#bottom {height:50px; border: 1px solid black; float:center}
+#wrapper {border: 1px solid black; min-width:945px;}
+</style>
 </head>
 <body>
-<c:choose>
+<div id="wrapper">
+<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 탑 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+<div class="top" id="top">
+
+	<div class="top" id="logo">
+	로고로고로고로고로고로고로로고고고고고고로로로로ㅗ로
+	</div>
+	
+	<div class="top" id="info">
+		<c:choose>
 <c:when test="${sessionScope.memId ne '168456368'}">
 	<script>
 		alert("접근권한이 없습니다.");
@@ -20,26 +38,24 @@
 
 
 <c:otherwise>
-	<script type="text/javascript">
-	function userList() {
-    	alert("logout");
-		Kakao.API.request({
-			url: '/v1/user/ids',
-			success: function(res){
-				
-				alert(accessToken);
-				
-				alert("logout-success");
-				alert("로그아웃됨");
-				$("#kakao-profile").text("");
-			},
-			fail: function(error){
-			console.log(error);
-			}
-		});
-	};
-	</script>
 </c:otherwise>
 </c:choose>
+	</div>
+	
+</div>
+<!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 탑 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+
+<div class="content" id="content">
+썸띤썸띤썸띤썸띤썸띤썸띤썸띤썸띤썸띤썸띤썸띤썸띤썸띤썸띤썸띤썸띤
+</div>
+
+<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 바텀 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+<div class="bottom" id="bottom" >
+<a href="http://localhost:8000/wtg/login.nhn">회사소개</a> &nbsp;
+<a href="http://localhost:8000/wtg/login.nhn">고객센터</a> &nbsp;
+<a href="http://localhost:8000/wtg/login.nhn">사이트맵</a>
+</div>
+<!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 바텀 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+</div>
 </body>
 </html>
