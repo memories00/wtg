@@ -1,34 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:useBean id="Api" class="api.lib.Api_Jsp_Client" scope="page"/>
 <html>
 <head>
 <title>main</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/wtg/js/vticker.min.js"></script>
+<script>
+$(document).ready(function(){
+	   $('.roll').vTicker();
+	   $('#pause').click(function(){
+		$this=$(this);
+		if($this.text()=='Pause'){
+			$('.roll').vTicker('pause',true);
+			$this.text('Unpause');
+		}
+		else{
+			$('.roll').vTicker('pause',false);
+			$this.text('Pause');
+			}
+	  });
+	 });
+<%
+	String MyKey="5F5DC3B8-FFFF00AA9";
+	String XmlPath="/DATA/XML/";
+	String initRst=Api.Init(MyKey,XmlPath);
+	
+	if(initRst=="1"){
+		char apiRst=Api.get_today("11010");
+		out.print(apiRst);
+	}
+%>
+</script>
+
+
+
 <style type="text/css">
-body{text-align:center;}
-.top {font-size:11pt; width:940px; border: 1px solid black;}
-#top {height:50px; border: 1px solid black;}
-#logo {width:500px; height:50px; border: 1px solid black; margin-left:10px;}
-#info {text-align:right; width:410px; height:50px; border: 1px solid black; float:right; margin:0 auto;}
-.content {font-size:13pt; width:940px; border: 1px solid black; float:center;}
-#content {width:940px; height:700px; border: 1px solid black; float:center;}
-.bottom {font-size:11pt; text-align:center; width:940px; border: 1px solid black; float:center;}
-#bottom {height:50px; border: 1px solid black; float:center}
-#wrapper {min-width:940px; border: 1px solid black;}
+body{text-align:center}
+.header {font-size:11pt; width:940px; border: 1px solid black;}
+#header {height:50px; border: 1px solid black; margin:auto;}
+#logo {width:500px; height:50px; border: 1px solid black; margin-left:10px; float:left;}
+#info {text-align:right; width:410px; height:50px; border:1px solid black; margin-right:10px; float:right;}
+
+.menu {font-size:11pt; width:940px; border: 1px solid black;}
+#menu {width:940px; height:70px; border:1px solid black; margin:auto;}
+
+.section {font-size:13pt; width:940px; border:1px solid black;}
+
+#section {width:940px; border: 1px solid black; margin:auto;}
+#search {width:940px; height:200px; border: 1px solid black;}
+#content {width:940px; height:300px; border: 1px solid black;}
+#theme {width:940px; height:350px; border: 1px solid black;}
+.box {width:320px; height:300px; border: 1px solid black; margin-left:4px; float:left;}
+
+#theme {font-size:11pt; text-align:center; width:230px; height:300; margin-left:4px; float:left;}
+
+.footer {font-size:11pt; text-align:center; width:940px; border: 1px solid black;}
+#footer {height:100px; border: 1px solid black; margin:auto;}
+#f_link {height:50px; width:940px; border:1px solid black; margin:auto;}
+
+#wrapper {min-width:940px; border: 1px solid black; margin:auto; min-hegint:1500px;}
+
 </style>
 </head>
 <body>
+
 <div id="wrapper">
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é Å¾ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
-<div class="top" id="top">
+<div class="header" id="header">
 
-	<div class="top" id="logo">
+	<div class="header" id="logo">
 	·Î°í·Î°í·Î°í·Î°í·Î°í·Î°í·Î·Î°í°í°í°í°í°í·Î·Î·Î·Î¤Ç·Î
 	</div>
 	
-	<div class="top" id="info">
+	<div class="header" id="info">
 		<c:choose>
 		<c:when test="${sessionScope.memId ne null}">
 			${sessionScope.memId} ´Ô È¯¿µÇÕ´Ï´Ù!  
@@ -43,21 +90,55 @@ body{text-align:center;}
 		</c:otherwise>
 		</c:choose>
 	</div>
-	
 </div>
+
+<div class="menu" id="menu">
+		¸Þ´º
+</div>
+
 <!--¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è Å¾ ¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è-->
 
-<div class="content" id="content">
-½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í½æ¶í
+<div class="section" id="section">
+¼¼¼Ç
+	<div class="section" id="content">
+	ÀÌ¹ÌÁö
+	</div>
+
+<br />
+	<div class="section" id="search">
+	°Ë»ö
+	</div>
+<br />
+	<div class="section" id="theme">
+		<div class="box" >¹Ú½º1</div>
+		<div class="box" >¹Ú½º2</div>
+		<div class="box" >¹Ú½º3</div>
+		<div class="box" >
+			Áö¿ª:${state_ko}
+			<div class="roll">
+			<ul>
+				<li>ÇöÀç¿Âµµ:${temp}<jsp:include page="weather.jsp" flush="false"/></li>
+				<li>ÃÖ°í¿Âµµ:${max_temp}<jsp:include page="weather.jsp" flush="false"/></li>
+				<li>ÃÖÀú¿Âµµ:${min_temp}<jsp:include page="weather.jsp" flush="false"/></li>
+				<li>¹Ì¼¼¸ÕÁö³óµµ:${pm10}</li>
+			</ul>
+			</div>
+		</div>
+	</div>
+<br />
 </div>
 
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é ¹ÙÅÒ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
-<div class="bottom" id="bottom" >
-<a href="http://localhost:8000/wtg/login.nhn">È¸»ç¼Ò°³</a> &nbsp;
-<a href="http://localhost:8000/wtg/login.nhn">°í°´¼¾ÅÍ</a> &nbsp;
-<a href="http://localhost:8000/wtg/login.nhn">»çÀÌÆ®¸Ê</a>
+<div class="footer" id="footer" >
+Ç²ÅÍ
+	<div class="footer" id="f_link">
+	<a href="http://localhost:8000/wtg/login.nhn">È¸»ç¼Ò°³</a> &nbsp;
+	<a href="http://localhost:8000/wtg/login.nhn">°í°´¼¾ÅÍ</a> &nbsp;
+	<a href="http://localhost:8000/wtg/login.nhn">»çÀÌÆ®¸Ê</a>
+	</div>
 </div>
 <!--¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è ¹ÙÅÒ ¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è-->
 </div>
+
 </body>
 </html>
