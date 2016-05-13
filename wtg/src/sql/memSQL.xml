@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap namespace="mem">
+	<select id="selectAll" resultClass="String">
+		SELECT id FROM mem
+	</select>
+	
+	<select id="loginCheck" resultClass="int" parameterClass="String">
+		SELECT COUNT(*) FROM mem WHERE id=#id#
+	</select>
+	
+	<insert id="join" parameterClass="login.bean.LoginDTO">
+		INSERT INTO mem (id,reg) VALUES (#id#,#reg#)
+	</insert>
+	
+	<delete id="delete" parameterClass="login.bean.LoginDTO">
+		DELETE FROM mem WHERE id=#id#
+	</delete>
+	
+</sqlMap>

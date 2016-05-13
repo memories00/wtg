@@ -11,7 +11,7 @@
 <!-- 지도를 표시할 div 입니다 -->
 <div id="map" style="width:900px;height:600px;"></div>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06fa7b42a2af7b8c46c9ca9a71d40206&libraries=services"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=5460ec456d4488e25f7b4c60d6a8b21c&libraries=services"></script>
 <script>
 var allTitle=new Array();
 var j=0;

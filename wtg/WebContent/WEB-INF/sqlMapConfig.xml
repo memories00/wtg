@@ -5,6 +5,7 @@
 	<settings useStatementNamespaces="true" />
 	      
 	<sqlMap resource="/sql/board.xml"/>
+	<sqlMap resource="/sql/memSQL.xml"/>
 	
 </sqlMapConfig>
 

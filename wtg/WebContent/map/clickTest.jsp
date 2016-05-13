@@ -2,12 +2,13 @@
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <div id="map" style="width:1200px;height:550px;"></div> 
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=724958f2e1f7b67c37acebb26e173723&libraries=services"></script> 
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06807e3624c0410b3525f8f75a0a967c&libraries=services"></script> 
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script> 
 	var geocoder = new daum.maps.services.Geocoder();
     var cnt=0;
-    var j=0;
     var allTitle=new Array();
+    var responseData;
     
 	var container = document.getElementById('map'); 
  		var options = { 
@@ -16,7 +17,7 @@
  		};  		  
  		var map = new daum.maps.Map(container, options); 
  		
- 		var imageSrc = 'http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+ 		var imageSrc = 'http://127.0.0.1:8000/wtg/map/sub.png', // 마커이미지의 주소입니다    
  	    imageSize = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
  	    imageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
  	   var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption);
@@ -65,21 +66,68 @@
  		 { 
  			var position=mouseEvent.latLng;
  			var masterMarker;
- 			
+ 			//alert("1");
  			
  			if(cnt==0)//시작점
  			{
+ 				//alert("2");
  				masterMarker=marker;//맨아래에서 한번에 해결하기위해 치환
  				
  				xPoint.value=position.getLat();//맵에서 마우스로 선택한 좌표를 text출력
  	 			yPoint.value=position.getLng();
- 				
+ 	 			//alert("3");
  	 			searchJibun("address",mouseEvent.latLng); 
  	 			
- 	 			var subMaster=searchSub(mouseEvent.latLng);
- 	 			SubMarker.setPosition(subMaster);
- 	 			SubMarker.setMap(map);
-	 	 			
+ 				var arr=new Array();
+ 	 		    var strArr=new Array();
+ 	 		   var markerPosition;
+ 	 		  map.setCenter(mouseEvent.latLng);
+ 	 			var places = new daum.maps.services.Places(map);
+ 	 			// 공공기관 코드 검색
+				//alert("4");
+ 		 			var callback = function(status, result)
+ 		 			{
+ 		 				//alert("5");
+ 		 			    if (status === daum.maps.services.Status.OK)
+ 		 			    {
+ 		 			    	//alert("6");
+ 		 			    	 for (var i=0; i<result.places.length; i++) 
+ 		 			    	 {	 			    		 
+ 		 			    		var a=distanceSum(result.places[i]);     //마커를 출력 		            	
+ 		 		            	arr[i]=a; 	 		            	 
+ 		 		            	var str=a.split('/');
+ 		 		            	strArr[i]=str[0]; 
+ 		 			    	 }
+ 		 			    	  strArr.sort(function(a,b)
+ 		 			    	  {
+ 		 			        	   return a-b;
+ 		 			          });
+ 		 			    	 for(var i=0;i<arr.length;i++)
+ 		 	         		{
+ 		 	         			var b=arr[i];
+ 		 	            		var str=b.split   ('/');
+ 		 	         			
+ 		 	         			if(strArr[0]==str[0])
+ 		 	         				{      		
+ 		 	         					var strLnt=str[1];
+ 		 	         					var strLng=str[2];
+ 		 	         					var strTitle=str[3];
+ 		 	         				
+ 		 	         					allTitle[0]=str[3];
+ 		 	         				
+ 		 	         					 markerPosition  = new daum.maps.LatLng(strLnt, strLng);
+ 		 	         					SubMarker.setPosition(markerPosition);
+ 		 	         	 	 			SubMarker.setMap(map);
+ 	   				
+ 		 	         				}
+ 		 	         		}
+ 		 			    }
+ 		 			};
+ 		 			places.categorySearch('SW8', callback, {
+ 		 			    // Map 객체를 지정하지 않았으므로 좌표객체를 생성하여 넘겨준다.
+ 		 			    location: mouseEvent.latLng
+ 		 			});
+			
  			}		
  			if(cnt==1)
  			{
@@ -89,10 +137,54 @@
  	 			
  	 			searchJibun("address1",mouseEvent.latLng);
  	 			
- 	 			var subMaster=searchSub(mouseEvent.latLng);
- 	 			SubMarker1.setPosition(subMaster);
- 	 			SubMarker1.setMap(map);
- 	 			
+ 	 			var arr=new Array();
+ 	 		    var strArr=new Array();
+ 	 		   var markerPosition;
+ 	 		  map.setCenter(mouseEvent.latLng);
+ 	 			var places = new daum.maps.services.Places(map);
+ 	 			// 공공기관 코드 검색
+				//alert("4");
+ 		 			var callback = function(status, result)
+ 		 			{
+ 		 				//alert("5");
+ 		 			    if (status === daum.maps.services.Status.OK)
+ 		 			    {
+ 		 			    	//alert("6");
+ 		 			    	 for (var i=0; i<result.places.length; i++) 
+ 		 			    	 {	 			    		 
+ 		 			    		var a=distanceSum(result.places[i]);     //마커를 출력 		            	
+ 		 		            	arr[i]=a; 	 		            	 
+ 		 		            	var str=a.split('/');
+ 		 		            	strArr[i]=str[0]; 
+ 		 			    	 }
+ 		 			    	  strArr.sort(function(a,b)
+ 		 			    	  {
+ 		 			        	   return a-b;
+ 		 			          });
+ 		 			    	 for(var i=0;i<arr.length;i++)
+ 		 	         		{
+ 		 	         			var b=arr[i];
+ 		 	            		var str=b.split   ('/');
+ 		 	         			
+ 		 	         			if(strArr[0]==str[0])
+ 		 	         				{      		
+ 		 	         					var strLnt=str[1];
+ 		 	         					var strLng=str[2];
+ 		 	         					var strTitle=str[3];
+ 		 	         				
+ 		 	         					allTitle[1]=str[3];
+ 		 	         				
+ 		 	         					 markerPosition  = new daum.maps.LatLng(strLnt, strLng);
+ 		 	         					SubMarker1.setPosition(markerPosition);
+ 		 	         	 	 			SubMarker1.setMap(map);
+ 		 	         				}
+ 		 	         		}
+ 		 			    }
+ 		 			};
+ 		 			places.categorySearch('SW8', callback, {
+ 		 			    // Map 객체를 지정하지 않았으므로 좌표객체를 생성하여 넘겨준다.
+ 		 			    location: mouseEvent.latLng
+ 		 			});
  			}
  			
  			if(cnt==2)
@@ -103,9 +195,55 @@
  	 			
  	 			searchJibun("address2",mouseEvent.latLng);
  	 			
- 	 			var subMaster=searchSub(mouseEvent.latLng);
- 	 			SubMarker2.setPosition(subMaster);
- 	 			SubMarker2.setMap(map);
+ 	 			var arr=new Array();
+ 	 		    var strArr=new Array();
+ 	 		   var markerPosition;
+ 	 		  map.setCenter(mouseEvent.latLng);
+ 	 			var places = new daum.maps.services.Places(map);
+ 	 			// 공공기관 코드 검색
+				//alert("4");
+ 		 			var callback = function(status, result)
+ 		 			{
+ 		 				//alert("5");
+ 		 			    if (status === daum.maps.services.Status.OK)
+ 		 			    {
+ 		 			    	//alert("6");
+ 		 			    	 for (var i=0; i<result.places.length; i++) 
+ 		 			    	 {	 			    		 
+ 		 			    		var a=distanceSum(result.places[i]);     //마커를 출력 		            	
+ 		 		            	arr[i]=a; 	 		            	 
+ 		 		            	var str=a.split('/');
+ 		 		            	strArr[i]=str[0]; 
+ 		 			    	 }
+ 		 			    	  strArr.sort(function(a,b)
+ 		 			    	  {
+ 		 			        	   return a-b;
+ 		 			          });
+ 		 			    	 for(var i=0;i<arr.length;i++)
+ 		 	         		{
+ 		 	         			var b=arr[i];
+ 		 	            		var str=b.split   ('/');
+ 		 	         			
+ 		 	         			if(strArr[0]==str[0])
+ 		 	         				{      		
+ 		 	         					var strLnt=str[1];
+ 		 	         					var strLng=str[2];
+ 		 	         					var strTitle=str[3];
+ 		 	         				
+ 		 	         					allTitle[2]=str[3];
+ 		 	         				
+ 		 	         					 markerPosition  = new daum.maps.LatLng(strLnt, strLng);
+ 		 	         					SubMarker2.setPosition(markerPosition);
+ 		 	         	 	 			SubMarker2.setMap(map);
+ 	   				
+ 		 	         				}
+ 		 	         		}
+ 		 			    }
+ 		 			};
+ 		 			places.categorySearch('SW8', callback, {
+ 		 			    // Map 객체를 지정하지 않았으므로 좌표객체를 생성하여 넘겨준다.
+ 		 			    location: mouseEvent.latLng
+ 		 			});
 
  			}
  			if(cnt==3)
@@ -116,11 +254,55 @@
  	 			
  	 			searchJibun("address3",mouseEvent.latLng);
  	 			
- 	 			var subMaster=searchSub(mouseEvent.latLng);
- 	 			SubMarker3.setPosition(subMaster);
- 	 			SubMarker3.setMap(map);
- 	 			
-
+ 	 			var arr=new Array();
+ 	 		    var strArr=new Array();
+ 	 		   var markerPosition;
+ 	 		  map.setCenter(mouseEvent.latLng);
+ 	 			var places = new daum.maps.services.Places(map);
+ 	 			// 공공기관 코드 검색
+				//alert("4");
+ 		 			var callback = function(status, result)
+ 		 			{
+ 		 				//alert("5");
+ 		 			    if (status === daum.maps.services.Status.OK)
+ 		 			    {
+ 		 			    	//alert("6");
+ 		 			    	 for (var i=0; i<result.places.length; i++) 
+ 		 			    	 {	 			    		 
+ 		 			    		var a=distanceSum(result.places[i]);     //마커를 출력 		            	
+ 		 		            	arr[i]=a; 	 		            	 
+ 		 		            	var str=a.split('/');
+ 		 		            	strArr[i]=str[0]; 
+ 		 			    	 }
+ 		 			    	  strArr.sort(function(a,b)
+ 		 			    	  {
+ 		 			        	   return a-b;
+ 		 			          });
+ 		 			    	 for(var i=0;i<arr.length;i++)
+ 		 	         		{
+ 		 	         			var b=arr[i];
+ 		 	            		var str=b.split   ('/');
+ 		 	         			
+ 		 	         			if(strArr[0]==str[0])
+ 		 	         				{      		
+ 		 	         					var strLnt=str[1];
+ 		 	         					var strLng=str[2];
+ 		 	         					var strTitle=str[3];
+ 		 	         				
+ 		 	         					allTitle[3]=str[3];
+ 		 	         				
+ 		 	         					 markerPosition  = new daum.maps.LatLng(strLnt, strLng);
+ 		 	         					SubMarker3.setPosition(markerPosition);
+ 		 	         	 	 			SubMarker3.setMap(map);
+ 	   				
+ 		 	         				}
+ 		 	         		}
+ 		 			    }
+ 		 			};
+ 		 			places.categorySearch('SW8', callback, {
+ 		 			    // Map 객체를 지정하지 않았으므로 좌표객체를 생성하여 넘겨준다.
+ 		 			    location: mouseEvent.latLng
+ 		 			});
  			}
  			if(cnt==4)
  			{
@@ -130,9 +312,55 @@
  	 			
  	 			searchJibun("address4",mouseEvent.latLng);
  	 			
- 	 			var subMaster=searchSub(mouseEvent.latLng);
- 	 			SubMarker4.setPosition(subMaster);
- 	 			SubMarker4.setMap(map);
+ 	 			var arr=new Array();
+ 	 		    var strArr=new Array();
+ 	 		   var markerPosition;
+ 	 		  map.setCenter(mouseEvent.latLng);
+ 	 			var places = new daum.maps.services.Places(map);
+ 	 			// 공공기관 코드 검색
+				//alert("4");
+ 		 			var callback = function(status, result)
+ 		 			{
+ 		 				//alert("5");
+ 		 			    if (status === daum.maps.services.Status.OK)
+ 		 			    {
+ 		 			    	//alert("6");
+ 		 			    	 for (var i=0; i<result.places.length; i++) 
+ 		 			    	 {	 			    		 
+ 		 			    		var a=distanceSum(result.places[i]);     //마커를 출력 		            	
+ 		 		            	arr[i]=a; 	 		            	 
+ 		 		            	var str=a.split('/');
+ 		 		            	strArr[i]=str[0]; 
+ 		 			    	 }
+ 		 			    	  strArr.sort(function(a,b)
+ 		 			    	  {
+ 		 			        	   return a-b;
+ 		 			          });
+ 		 			    	 for(var i=0;i<arr.length;i++)
+ 		 	         		{
+ 		 	         			var b=arr[i];
+ 		 	            		var str=b.split   ('/');
+ 		 	         			
+ 		 	         			if(strArr[0]==str[0])
+ 		 	         				{      		
+ 		 	         					var strLnt=str[1];
+ 		 	         					var strLng=str[2];
+ 		 	         					var strTitle=str[3];
+ 		 	         				
+ 		 	         					allTitle[4]=str[3];
+ 		 	         				
+ 		 	         					 markerPosition  = new daum.maps.LatLng(strLnt, strLng);
+ 		 	         					SubMarker4.setPosition(markerPosition);
+ 		 	         	 	 			SubMarker4.setMap(map);
+ 	   				
+ 		 	         				}
+ 		 	         		}
+ 		 			    }
+ 		 			};
+ 		 			places.categorySearch('SW8', callback, {
+ 		 			    // Map 객체를 지정하지 않았으므로 좌표객체를 생성하여 넘겨준다.
+ 		 			    location: mouseEvent.latLng
+ 		 			});
  	 			
 
  			}
@@ -178,71 +406,7 @@
 	 			};
 	 			geocoder.coord2detailaddr(position, callback);			
  		}
- 		
- 		function searchSub(mouseEvent)
- 		{			
- 			//alert(addSub);
- 			//alert("1");
- 			var arr=new Array();
- 		    var strArr=new Array();
- 		   var markerPosition;
- 		  //  alert("1-1");
- 		  map.setCenter(mouseEvent);
- 		  // alert("1-2");
- 			var places = new daum.maps.services.Places(map);
- 			// 공공기관 코드 검색
- 			//alert("2");
- 			
-	 			var callback = function(status, result)
-	 			{
-	 				//alert("3");
-	 			    if (status === daum.maps.services.Status.OK)
-	 			    {
-	 			    	//alert(status);
-	 			    	 for (var i=0; i<result.places.length; i++) 
-	 			    	 {	 			    		 
-	 			    		var a=distanceSum(result.places[i]);     //마커를 출력 		            	
-	 		            	arr[i]=a; 	 		            	 
-	 		            	var str=a.split('/');
-	 		            	strArr[i]=str[0]; 
-	 		            	//alert(arr[i]);
-	 			    	 }
-	 			    	  strArr.sort(function(a,b)
-	 			    	  {
-	 			        	   return a-b;
-	 			          });
-	 			    	 // alert(strArr[0]);
-	 			    	 for(var i=0;i<arr.length;i++)
-	 	         		{
-	 	         			var b=arr[i];
-	 	            		var str=b.split   ('/');
-	 	         			
-	 	         			if(strArr[0]==str[0])
-	 	         				{      		
-	 	         				//alert(str[0]);
-	 	         					var strLnt=str[1];
-	 	         					var strLng=str[2];
-	 	         					var strTitle=str[3];
-	 	         				
-	 	         					allTitle[j++]=str[3];
-	 	         					
-	 	         					//alert(strLnt+strLng+strTitle);
-	 	         					 markerPosition  = new daum.maps.LatLng(strLnt, strLng);
-   				
-	 	         				}
-	 	         		}
-	 			    }
-	 			};
-	 			
-	 			places.categorySearch('SW8', callback, {
-	 			    // Map 객체를 지정하지 않았으므로 좌표객체를 생성하여 넘겨준다.
-	 			    location: mouseEvent
-	 			});
-				alert("dd");
-	 			return markerPosition;
- 		}
- 
- 		
+
  		
  		function distanceSum(place)
  		{
@@ -267,8 +431,66 @@
  			distance=distance+"/"+place.latitude+"/"+place.longitude+"/"+place.title;
  			return distance;
  		}		
+ 		function CheckStation()
+ 		{
+ 			var firstLo;
+ 			var lastLo;
+ 			if(cnt>0&&cnt<5)
+ 				{
+
+	 				var firStr=allTitle[cnt-1];
+	 				var firStr1=firStr.indexOf('역');
+	 				
+	 				var laStr=allTitle[cnt];
+	 				var laStr1=laStr.indexOf('역');
+	 				
+	 				 firstLo=firStr.substring(0,firStr1);
+	 				 lastLo=laStr.substring(0,laStr1);		
+	 				
+	 				var firstStr = escape(encodeURIComponent(firstLo)); 
+	 	 			var lastStr = escape(encodeURIComponent(lastLo)); 
+	 	 			$.ajax({
+	 	 				
+	 	 	            url:"searchStation.nhn?start="+firstStr+"&end="+lastStr,
+	 	 	            success:function(data){
+	 	 	            	responseData=data.replace(/\s/gi, '');
+	 	 	            	findStation(responseData);      	
+	 	 	            }
+	 	 	        })
+ 				}		
+ 		}
+ 		function findStation(data)
+ 		{
+ 			
+ 			var a=data.slice(0,-1);
+ 			
+ 			var b=a.split('/');
+			alert(b);
+ 			//alert(a.length);
+ 			for(var i=0;i<=b.length-1;i++)
+ 			{
+ 				var c=b[i].split('^');
+ 				alert(c);
+ 				var d=c[1].split(',');
+ 				//alert(d[0]+"dd"+d[1]);
+ 				var imageSrc = 'http://127.0.0.1:8000/wtg/map/pass.png', // 마커이미지의 주소입니다    
+ 		 	    imageSize = new daum.maps.Size(64, 69), // 마커이미지의 크기입니다
+ 		 	    imageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+ 		 	   var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption);
+ 				
+ 		 	    var passMkPosition=new daum.maps.LatLng(d[0],d[1]);
+ 				var passMarker= new daum.maps.Marker({ 
+ 		 			position: passMkPosition, //마커의 위치는 입력한곳
+ 		 			image:markerImage
+ 				}); 
+ 				passMarker.setMap(map);
+ 				
+ 			}
+ 			
+ 		}
 
  </script> 
+ <input type="button" value="구간검색" onclick="CheckStation()">
  출발지 선택<br/>
  x좌표<input type="text" name="xPoint" ><br>
  y좌표<input type="text" name="yPoint" ><br>
