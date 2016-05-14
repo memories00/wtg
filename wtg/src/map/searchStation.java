@@ -104,7 +104,7 @@ public class searchStation
 			          Element title = (Element)entry.getElementsByTagName("FR_CODE").item(0);
 			         
 			           result = title.getFirstChild().getNodeValue();
-			          System.out.println("ssnR"+result);
+			          //System.out.println("ssnR"+result);
 			        }
 		      }
 		    }

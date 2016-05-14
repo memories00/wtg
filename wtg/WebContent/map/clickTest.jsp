@@ -460,17 +460,15 @@
  				}		
  		}
  		function findStation(data)
- 		{
- 			
- 			var a=data.slice(0,-1);
- 			
+ 		{			
+ 			var a=data.slice(0,-1);			
  			var b=a.split('/');
-			alert(b);
+			//alert(b);
  			//alert(a.length);
  			for(var i=0;i<=b.length-1;i++)
  			{
  				var c=b[i].split('^');
- 				alert(c);
+ 				//alert(c);
  				var d=c[1].split(',');
  				//alert(d[0]+"dd"+d[1]);
  				var imageSrc = 'http://127.0.0.1:8000/wtg/map/pass.png', // 마커이미지의 주소입니다    
