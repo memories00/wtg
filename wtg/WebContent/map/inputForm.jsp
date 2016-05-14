@@ -8,33 +8,85 @@
 			map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 			.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 			.map_wrap {position:relative;width:100%;height:500px;}
-			#menu_wrap {position:absolute;  top:0;left:0;bottom:0;width:300px;margin:10px 0 30px 80%;padding:5px;overflow-x:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px; }
-			.bg_white {background:#fff;}
+			#menu_wrap {position:absolute;  top:0;left:0;bottom:0;width:310px;margin:10px 0 30px 80%;padding:5px;overflow-x:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px; }
+			.bg_white {background:#fff;}		
 			#menu_wrap hr {display: block; height: 1px;border: 0;  border-top: 2px solid #5F5F5F;margin:3px 0;}
 			#menu_wrap .option{text-align: left;}
 			#menu_wrap .option p {margin:10px 0;}  
 			#menu_wrap .option button {margin-left:5px;} 
+			
+			.category, .category *{margin:0;padding:0;color:#000;}   
+			.category {position:absolute;overflow:hidden;top:10px;left:10px;width:160px;height:53px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;background:rgba(255, 255, 255, 0.7);}
+			.category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
+			.category li{list-style:none;float:left;width:50px;height:55px;padding-top:5px;cursor:pointer;} 
+			.category .ico_comm {display:block;width:50px;height:50px;} 
+			.category .ico_start { background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/red_b.png')}  
+			.category .ico_pass {background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/green_b.png');}   
+			.category .ico_end {background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/blue_b.png');} 
+			
+			
 		</style>
 		<form onsubmit="searchPlaces(); return false;">
 		검색어 : <input type="text" value="이태원 맛집" style="width:150px; height:25px"id="keyword" size="15"> 
                 <button type="submit" style="width:60px;height:25px;">검색하기</button> 
                 
 		<div class="map_wrap">
-    <div id="map" style="width:100%; height:900px;overflow:hidden;"></div>
+		    <div id="map" style="width:100%; height:900px;overflow:hidden;"></div>
+		    	    <div class="category" >
+		        <ul>
+		            <li id="start" onmousedown="clickFlag('start')">
+		                 <span class="ico_comm ico_start"></span>
+		            </li>
+		            <li id="pass" onclick="clickFlag('pass')">
+		                <span class="ico_comm ico_pass"></span>
+		            </li>
+		            <li id="end" onclick="clickFlag('end')">
+		                <span class="ico_comm ico_end"></span>
+		            </li>
+		        </ul>
+		    </div>
     <div id="menu_wrap" class="bg_white" >
         <div class="option">
             <p>
-                
+                <div >
+					  <div style="border: 1px solid rgb(204, 204, 204);">
+					  <span onclick="ShowTabex('0')" style="padding: 0pt 5px; cursor: pointer;width:140px; height:25px;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 검색결과</span>
+					  <span onclick="ShowTabex('1')" style="padding: 0pt 5px; cursor: pointer;width:140px;height:25px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;진행상황</span>
+					  </div>
+					</div>
+					<div style="text-align: left;">
+					  <div id="tab_0" style="width: 100%; display: block;">
+					  
+					  <hr>
+					    <ul id="placesList"></ul>
+					  </div>
+					  <div id="tab_1" style="width: 100%; display: none;">
+					    <hr>
+					    <ul id="playList"></ul>
+					  </div>
+					</div>
             </p>
         </div>
-        <hr>
+
         <ul id="placesList"></ul>
-        <div id="pagination"></div>
+      
     </div>
 </div>
+
   			<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 			<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06807e3624c0410b3525f8f75a0a967c&libraries=services"></script> 
 				<script> 	
+				<!--
+				function ShowTabex(val){
+				  for (i=0; i<2; i++) {
+				    var tb = document.getElementById('tab_' + i);
+				    if (i != val) tb.style.display = "none";
+				    else tb.style.display = "block";
+				  }
+				}
+				//-->
+				
+				
 					var container = document.getElementById('map'); //div id=map자리에 지도를생성
  					var options = { 
  												center: new daum.maps.LatLng(37.515504, 126.907628), 
@@ -118,13 +170,16 @@
  					var itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
  				           '<div class="info" id="'+title+"-"+x+"-"+y+'" onmouseover="openinfo(this)" onmouseout="closeinfo()">' +                                      
  				           '<h5>' + places.title + '</h5>';
- 					           if (places.newAddress) { //도로명주소이면
- 					               itemStr += '<span>' + places.newAddress + '</span>' +
- 					                          '<span class="jibun gray">' +  places.address  + '</span>'; 	
- 					           } else { //지번주소이면
- 					             itemStr += '<span>' +  places.address  + '</span>'; 
- 					           }
- 				       	itemStr += '<span class="tel">' + places.phone  + '</span>' + '</div>'; 
+ 					if (places.newAddress) 
+ 					{ //도로명주소이면     
+ 						itemStr += '<span>' + places.newAddress + '</span>' + '<span class="jibun gray">' +  places.address  + '</span>'; 	
+ 					} 
+ 					else 
+ 					{ //지번주소이면		            
+ 						itemStr += '<span>' +  places.address  + '</span>'; 
+ 					}
+ 					
+ 				    itemStr += '<span class="tel">' + places.phone  + '</span>' + '</div>'; 
  				
  					var button = "<input type='button' value='선택하기' id='"+title+"-"+x+"-"+y+"' onclick='choice(this);'>";
  					
@@ -134,11 +189,22 @@
  				    return el;  
  				    
  				}  
+ 			 	
+ 			   function getPlayItem(title) 
+ 			   {
+ 				  var el = document.createElement('li');		  
+ 				  
+ 				  el.innerHTML=title;
+ 				  el.className='here';
+ 				  
+ 				  return el;
+			   }
 
  			 	//선택하기 클릭시 마커를 지도에 보여줍니다
  			    function choice(bt){
  			    	var a = bt.getAttribute('id');
  			    	var strArray=a.split('-');
+ 			    	fragment = document.createDocumentFragment();
  			    	var markerPosition  = new daum.maps.LatLng(strArray[1], strArray[2]);
  					// 마커 생성
  					marker.setPosition(markerPosition);
@@ -148,6 +214,13 @@
  					map.setLevel(3);
  					//마커를 부드럽게 이동이동
  					map.panTo(markerPosition); 
+ 					
+ 					ShowTabex('1');
+ 					var listEl = document.getElementById('playList');
+ 					playEl=getPlayItem(strArray[0]);
+ 					fragment.appendChild(playEl);
+ 					listEl.appendChild(fragment);
+ 				
  					
  			    } 
  			   
@@ -177,10 +250,18 @@
  			            el.removeChild (el.lastChild);
  			        }
  			    }
- 					
- 					
- 					
- 					
+ 			   function clickFlag(type)
+ 			   {
+ 			   		var flag=type;
+ 			   		alert(flag);
+ 			   }
+ 			   
+ 			  daum.maps.event.addListener(map, 'dragend', function() {
+ 			     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+ 			   alert("시작");
+ 			});
+
+ 			    
  				</script>
 </head>
 	<body>

@@ -15,10 +15,20 @@ public class map
 	@Autowired
 	private SqlMapClientTemplate sqlMap;
 	
+	@RequestMapping("/map.nhn")
+	public String map()
+	{	
+		return  "/map/map.jsp";
+	}
 	@RequestMapping("/inputForm.nhn")
 	public String inputForm()
 	{	
 		return  "/map/inputForm.jsp";
+	}
+	@RequestMapping("/clickTest.nhn")
+	public String clickTest()
+	{	
+		return  "/map/clickTest.jsp";
 	}
 	@RequestMapping("/searchStation.nhn")
 	public String searchStation(HttpServletRequest request,String start,String end)
