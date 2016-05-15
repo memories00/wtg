@@ -84,86 +84,33 @@
 				  }
 				}
 				//-->
-				var img_L = 0;
-				var img_T = 0;
-				var targetObj;
-				
-				function getLeft(o){
-				     return parseInt(o.style.left.replace('px', ''));
-				}
-				function getTop(o){
-				     return parseInt(o.style.top.replace('px', ''));
-				}
-				
-				function moveDrag(e){
-					
-				     var e_obj = window.event? window.event : e;
-				     var dmvx = parseInt(e_obj.clientX + img_L);
-				     var dmvy = parseInt(e_obj.clientY + img_T);
-				     targetObj.style.left = dmvx +"px";
-				     targetObj.style.top = dmvy +"px";
-				     return false;
-				}
-				
-				
-				function startDrag(e,cnt){
-					var x=e.x;
-					var y=e.y;
-					
-					var img=document.createElement("img");
-					if(cnt==0)
-					{
-						marker.setPosition()
-						//img.setAttribute("src","map/red_b.png");
-					}
-					if(cnt==1)
-					{
-						img.setAttribute("src","map/green_b.png");
-					}
-					if(cnt==2)
-					{
-						img.setAttribute("src","map/blue_b.png");
-					}
-					
-					
-					img.style.zIndex=10;
-					var a=document.body.appendChild(img);
-					
-					img.style.position="absolute";
-					img.style.left=(x-15)+"px";
-					img.style.top=(y+30)+"px";
-					
-				     targetObj = a;
-				     var e_obj = window.event? window.event : e;
-				     img_L = getLeft(a) - e_obj.clientX;
-				     img_T = getTop(a) - e_obj.clientY;
-				     
-				     						
-				     document.onmousemove = moveDrag;
-				     document.onmouseup = stopDrag;
-				     if(e_obj.preventDefault)e_obj.preventDefault(); 
-				}
-				
-				function stopDrag()
-				{
-					var loc=window.event;
-					
-				     document.onmousemove = null;
-				     document.onmouseup = null;
-				     
-				}
-				
-				
-				
+			
+
 					var container = document.getElementById('map'); //div id=map자리에 지도를생성
- 					var options = { 
+ 					
+					var options = { 
  												center: new daum.maps.LatLng(37.515504, 126.907628), 
  												level: 7
- 											  };  		  
+ 											  };  		
+					
  					var map = new daum.maps.Map(container, options); 
- 					var marker=new daum.maps.Marker({
- 						position:map.getCenter()
+ 					
+ 					var rvMarker = new daum.maps.Marker({
+ 					    position: map.getCenter(),
+ 					    draggable: true,
+ 					    map: map
  					});
+ 					
+ 					var mousePosition;
+ 		 			daum.maps.event.addListener(map, 'click', function(mouseEvent) {
+ 		 			    alert(mouseEvent.latLng);
+ 		 			});
+ 		 			
+ 		 			 daum.maps.event.addListener(map, 'mouseover', function(mouseEvent) {
+ 		 				
+ 	 				});
+
+ 					
  					
  					var ps = new daum.maps.services.Places();
  					// 키워드 검색을 요청하는 함수입니다
@@ -180,7 +127,7 @@
  					}
  					
  				// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
- 					function placesSearchCB(status, data, pagination) {	
+ 					function placesSearchCB(status, data, pagination){	
  							//daum.maps.services.Status.OK=검색결과 있음.
 
  					     if (status === daum.maps.services.Status.OK) {						
@@ -194,7 +141,8 @@
  					     } 
  					 }
  				
- 				    function displayPlaces(places) {
+ 				    function displayPlaces(places) 
+ 				    {
  				        //이 문서내에서 id값이 placesList인 요소를 가져와 listEl변수에 넣겠다.
  						var listEl = document.getElementById('placesList'),  
  				    		menuEl = document.getElementById('menu_wrap'),
@@ -204,14 +152,14 @@
  				        //이전 검색목록을 지운다.
  						removeAllChildNods(listEl);
 
- 				    	for ( var i=0; i<places.length; i++ ) { 
+ 				    	for ( var i=0; i<places.length; i++ )
+ 				    	{ 
  				    		placePosition = new daum.maps.LatLng(places[i].latitude, places[i].longitude);
  				            itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다		
  				            // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
  				            // LatLngBounds 객체에 좌표를 추가합니다
  				            bounds.extend(placePosition);  
- 							fragment.appendChild(itemEl);
- 							
+ 							fragment.appendChild(itemEl);			
  				       	}
 
  						// 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
@@ -248,8 +196,7 @@
  				    el.innerHTML = itemStr+button;
  				    el.className = 'item';
  				    
- 				    return el;  
- 				    
+ 				    return el;  	    
  				}  
  			 	
  			   function getPlayItem(title) 
@@ -317,18 +264,73 @@
  			   		var flag=type;
  			   		alert(flag);
  			   }
+ 			  var img_L = 0;
+				var img_T = 0;
+				var targetObj;
+				
+				function getLeft(o){
+				     return parseInt(o.style.left.replace('px', ''));
+				}
+				function getTop(o){
+				     return parseInt(o.style.top.replace('px', ''));
+				}
+				
+				function moveDrag(e){
+				     var e_obj = window.event? window.event : e;
+				     var dmvx = parseInt(e_obj.clientX + img_L);
+				     var dmvy = parseInt(e_obj.clientY + img_T);
+				     targetObj.style.left = dmvx +"px";
+				     targetObj.style.top = dmvy +"px";
+				     return false;
+				}
+				
+				
+				function startDrag(e,cnt){
+					var x=e.x;
+					var y=e.y;
+					
+					var img=document.createElement("img");
+					if(cnt==0)
+					{
+						img.setAttribute("src","map/red_b.png");
+					}
+					if(cnt==1)
+					{
+						img.setAttribute("src","map/green_b.png");
+					}
+					if(cnt==2)
+					{
+						img.setAttribute("src","map/blue_b.png");
+					}
+					
+					
+					img.style.zIndex=10;
+					var a=document.body.appendChild(img);
+					
+					img.style.position="absolute";
+					img.style.left=(x-15)+"px";
+					img.style.top=(y+30)+"px";
+					
+				     targetObj = a;
+				     var e_obj = window.event? window.event : e;
+				     img_L = getLeft(a) - e_obj.clientX;
+				     img_T = getTop(a) - e_obj.clientY;
+				     
+				     						
+				     document.onmousemove = moveDrag;
+				     document.onmouseup = stopDrag;
+				     if(e_obj.preventDefault)e_obj.preventDefault(); 
+				}
+				
+				function stopDrag()
+				{
+		
+				     document.onmousemove = null;
+				     document.onmouseup = null;
+				     
+				}
  			   
- 			  daum.maps.event.addListener(startMarker, 'dragstart', function() {
- 				    // 출발 마커의 드래그가 시작될 때 마커 이미지를 변경합니다
- 				   alert("여기");
- 				});
- 			  
- 			 daum.maps.event.addListener(map, 'mouseover', function() {
- 			    alert('marker mouseover!');
- 			});
-
-
- 			    
+ 			   
  				</script>
 </head>
 	<body>
