@@ -16,7 +16,7 @@
 			#menu_wrap .option button {margin-left:5px;} 
 			
 			.category, .category *{margin:0;padding:0;color:#000;}   
-			.category {position:absolute;overflow:hidden;top:10px;left:10px;width:160px;height:53px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;background:rgba(255, 255, 255, 0.7);}
+			.category {position:absolute;overflow:hidden;top:10px;left:10px;width:160px;height:53px;z-index:9;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;background:rgba(255, 255, 255, 0.7);}
 			.category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
 			.category li{list-style:none;float:left;width:50px;height:55px;padding-top:5px;cursor:pointer;} 
 			.category .ico_comm {display:block;width:50px;height:50px;} 
@@ -34,13 +34,13 @@
 		    <div id="map" style="width:100%; height:900px;overflow:hidden;"></div>
 		    	    <div class="category" >
 		        <ul>
-		            <li id="start" onmousedown="clickFlag('start')">
+		            <li id="start" onmousedown="startDrag(event, 0)">
 		                 <span class="ico_comm ico_start"></span>
 		            </li>
-		            <li id="pass" onclick="clickFlag('pass')">
+		            <li id="pass" onmousedown="startDrag(event, 1)">
 		                <span class="ico_comm ico_pass"></span>
 		            </li>
-		            <li id="end" onclick="clickFlag('end')">
+		            <li id="end" onmousedown="startDrag(event, 2)">
 		                <span class="ico_comm ico_end"></span>
 		            </li>
 		        </ul>
@@ -55,8 +55,7 @@
 					  </div>
 					</div>
 					<div style="text-align: left;">
-					  <div id="tab_0" style="width: 100%; display: block;">
-					  
+					  <div id="tab_0" style="width: 100%; display: block;">				  
 					  <hr>
 					    <ul id="placesList"></ul>
 					  </div>
@@ -85,6 +84,75 @@
 				  }
 				}
 				//-->
+				var img_L = 0;
+				var img_T = 0;
+				var targetObj;
+				
+				function getLeft(o){
+				     return parseInt(o.style.left.replace('px', ''));
+				}
+				function getTop(o){
+				     return parseInt(o.style.top.replace('px', ''));
+				}
+				
+				function moveDrag(e){
+					
+				     var e_obj = window.event? window.event : e;
+				     var dmvx = parseInt(e_obj.clientX + img_L);
+				     var dmvy = parseInt(e_obj.clientY + img_T);
+				     targetObj.style.left = dmvx +"px";
+				     targetObj.style.top = dmvy +"px";
+				     return false;
+				}
+				
+				
+				function startDrag(e,cnt){
+					var x=e.x;
+					var y=e.y;
+					
+					var img=document.createElement("img");
+					if(cnt==0)
+					{
+						marker.setPosition()
+						//img.setAttribute("src","map/red_b.png");
+					}
+					if(cnt==1)
+					{
+						img.setAttribute("src","map/green_b.png");
+					}
+					if(cnt==2)
+					{
+						img.setAttribute("src","map/blue_b.png");
+					}
+					
+					
+					img.style.zIndex=10;
+					var a=document.body.appendChild(img);
+					
+					img.style.position="absolute";
+					img.style.left=(x-15)+"px";
+					img.style.top=(y+30)+"px";
+					
+				     targetObj = a;
+				     var e_obj = window.event? window.event : e;
+				     img_L = getLeft(a) - e_obj.clientX;
+				     img_T = getTop(a) - e_obj.clientY;
+				     
+				     						
+				     document.onmousemove = moveDrag;
+				     document.onmouseup = stopDrag;
+				     if(e_obj.preventDefault)e_obj.preventDefault(); 
+				}
+				
+				function stopDrag()
+				{
+					var loc=window.event;
+					
+				     document.onmousemove = null;
+				     document.onmouseup = null;
+				     
+				}
+				
 				
 				
 					var container = document.getElementById('map'); //div id=map자리에 지도를생성
@@ -97,12 +165,6 @@
  						position:map.getCenter()
  					});
  					
- 					daum.maps.event.addListener(map, 'click', function(mouseEvent)//마우스 클릭이벤트 
- 					 		 {  		
- 								marker.setPosition(mouseEvent.latLng);
- 								marker.setMap(map);
- 								marker.get
- 					 		 });
  					var ps = new daum.maps.services.Places();
  					// 키워드 검색을 요청하는 함수입니다
  					function searchPlaces() {												
@@ -256,10 +318,15 @@
  			   		alert(flag);
  			   }
  			   
- 			  daum.maps.event.addListener(map, 'dragend', function() {
- 			     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
- 			   alert("시작");
+ 			  daum.maps.event.addListener(startMarker, 'dragstart', function() {
+ 				    // 출발 마커의 드래그가 시작될 때 마커 이미지를 변경합니다
+ 				   alert("여기");
+ 				});
+ 			  
+ 			 daum.maps.event.addListener(map, 'mouseover', function() {
+ 			    alert('marker mouseover!');
  			});
+
 
  			    
  				</script>
