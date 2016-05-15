@@ -13,6 +13,12 @@ public class adminBean {
 	@Autowired
 	private SqlMapClientTemplate sqlMap;
 	
+	@RequestMapping("/admin.nhn")
+	public String admin(HttpServletRequest request, HttpSession session)
+	{
+		return "/admin/admin.jsp";
+	}
+	
 	@RequestMapping("/memAdmin.nhn")
 	public String memAdmin(HttpServletRequest request, HttpSession session)
 	{

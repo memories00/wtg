@@ -30,7 +30,7 @@ public class loginBean
 	@RequestMapping("/main.nhn")
 	public String move(HttpServletRequest request) throws JDOMException, IOException
 	{	
-		SAXBuilder builder = new SAXBuilder();
+		/*SAXBuilder builder = new SAXBuilder();
 		Document doc=builder.build("C:/DATA/XML/get_today.xml");
 		Element root=doc.getRootElement();
 		List children = root.getChildren();
@@ -60,7 +60,7 @@ public class loginBean
 			
 			else if(tagName.equals("pm10")) // 미세먼지
 			{request.setAttribute("pm10", e.getValue());}
-		}	
+		}	*/
 		
 		return  "/login/logintest.jsp";
 	}

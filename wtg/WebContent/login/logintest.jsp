@@ -23,45 +23,48 @@ $(document).ready(function(){
 			}
 	  });
 	 });
+	 
 <%
-	String MyKey="5F5DC3B8-FFFF00AA9";
-	String XmlPath="/DATA/XML/";
-	String initRst=Api.Init(MyKey,XmlPath);
-	
-	if(initRst=="1"){
-		char apiRst=Api.get_today("11010");
-		out.print(apiRst);
-	}
+	//String MyKey="5F5DC3B8-FFFF00AA9";
+	//String XmlPath="/DATA/XML/";
+	//String initRst=Api.Init(MyKey,XmlPath);
+
+	//if(initRst=="1"){
+	//	char apiRst=Api.get_today("11010");
+	//	out.print(apiRst);
+	//}
 %>
+
+
 </script>
 
 
 
 <style type="text/css">
 body{text-align:center}
-.header {font-size:11pt; width:940px; border: 1px solid black;}
-#header {height:50px; border: 1px solid black; margin:auto;}
-#logo {width:500px; height:50px; border: 1px solid black; margin-left:10px; float:left;}
-#info {text-align:right; width:410px; height:50px; border:1px solid black; margin-right:10px; float:right;}
+.header {font-size:11pt;}
+#header {height:140px;}
+#info {text-align:right; height:35px; background-image:url('/wtg/img/info.png');}
+#logo {width:950px; height:100px; border: 1px solid black; margin:auto;}
 
-.menu {font-size:11pt; width:940px; border: 1px solid black;}
-#menu {width:940px; height:70px; border:1px solid black; margin:auto;}
+.menu {font-size:11pt; width:950px; text-align:center; margin:auto;}
+#menu {width:950px; height:50px; margin-top:5px; background-image:url('/wtg/img/menu.png');}
 
-.section {font-size:13pt; width:940px; border:1px solid black;}
+.section {font-size:13pt; width:950px; margin:auto;}
+#section {width:950px; min-height:800px;}
+#search {width:950px; margin-top:5px;}
+#main_search {width:950px; height:100px;}
+#sub_search {width:950px; height:250px; display:none;}
+#content {width:950px; height:300px; background-image:url('/wtg/img/content.png'); margin-top:5px;}
 
-#section {width:940px; border: 1px solid black; margin:auto;}
-#search {width:940px; height:200px; border: 1px solid black;}
-#content {width:940px; height:300px; border: 1px solid black;}
-#theme {width:940px; height:350px; border: 1px solid black;}
-.box {width:320px; height:300px; border: 1px solid black; margin-left:4px; float:left;}
+.box {width:230px; height:320px; margin-left:6px; float:left; background-image:url('/wtg/img/box.png');}
+#theme {width:950px; height:350px;}
 
-#theme {font-size:11pt; text-align:center; width:230px; height:300; margin-left:4px; float:left;}
+.footer {font-size:11pt;}
+#footer {margin-top:5px; margin-bottom:5px; background-image:url('/wtg/img/footer.png');}
+#f_link {height:60px; width:950px; margin:auto;}
 
-.footer {font-size:11pt; text-align:center; width:940px; border: 1px solid black;}
-#footer {height:100px; border: 1px solid black; margin:auto;}
-#f_link {height:50px; width:940px; border:1px solid black; margin:auto;}
-
-#wrapper {min-width:940px; border: 1px solid black; margin:auto; min-hegint:1500px;}
+#wrapper {min-width:950px; border: 1px solid black; margin:auto;}
 
 </style>
 </head>
@@ -70,12 +73,7 @@ body{text-align:center}
 <div id="wrapper">
 <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 탑 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 <div class="header" id="header">
-
-	<div class="header" id="logo">
-	로고로고로고로고로고로고로로고고고고고고로로로로ㅗ로
-	</div>
-	
-	<div class="header" id="info">
+		<div class="header" id="info">
 		<c:choose>
 		<c:when test="${sessionScope.memId ne null}">
 			${sessionScope.memId} 님 환영합니다!  
@@ -90,25 +88,31 @@ body{text-align:center}
 		</c:otherwise>
 		</c:choose>
 	</div>
+
+	<div class="header" id="logo">
+	로고로고로고로고로고로고로로고고고고고고로로로로ㅗ로
+	</div>
 </div>
 
 <div class="menu" id="menu">
-		메뉴
+	메뉴
 </div>
 
 <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 탑 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 
 <div class="section" id="section">
-세션
 	<div class="section" id="content">
 	이미지
 	</div>
 
-<br />
 	<div class="section" id="search">
-	검색
+		<div class="section" id="main_search">
+		<a>상세 검색</a>
+		</div>
+		<div class="section" id="sub_search">
+		</div>
 	</div>
-<br />
+
 	<div class="section" id="theme">
 		<div class="box" >박스1</div>
 		<div class="box" >박스2</div>
@@ -125,12 +129,10 @@ body{text-align:center}
 			</div>
 		</div>
 	</div>
-<br />
 </div>
 
 <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 바텀 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
-<div class="footer" id="footer" >
-풋터
+<div class="footer" id="footer">
 	<div class="footer" id="f_link">
 	<a href="http://localhost:8000/wtg/login.nhn">회사소개</a> &nbsp;
 	<a href="http://localhost:8000/wtg/login.nhn">고객센터</a> &nbsp;
