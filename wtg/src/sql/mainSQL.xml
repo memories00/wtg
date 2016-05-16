@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap namespace="main">
+
+	<typeAlias alias="slide" type="main.bean.SlideDTO" />
+	
+		<resultMap id="slideRes" class="slide">
+		  	<result property="orgname" column="orgname"/>
+		  	<result property="no" column="no"/>
+		  	<result property="filetime" column="filetime"/>
+		  	<result property="fileaddr" column="fileaddr"/>
+		</resultMap>
+		<resultMap id="cateGory" class="slide">
+		  	<result property="orgname2" column="orgname2"/>
+		  	<result property="no2" column="no2"/>
+		  	<result property="filetime2" column="filetime2"/>
+		  	<result property="fileaddr2" column="fileaddr2"/>
+		</resultMap>
+	
+	<select id="slidecount" resultClass="int">
+		select count(*) from slide
+	</select>
+	<select id="catecount" resultClass="int">
+		select count(*) from cate
+	</select>
+	<select id="fileselect" resultClass="int" parameterClass="slide">
+		select count(*) from slide where orgname=#orgname#
+	</select>
+	<insert id="slideinsert" parameterClass="slide">
+    		insert into slide(
+    			orgname,
+    			no,
+    			filetime,
+    			fileaddr
+    		)
+    		values(
+    			#orgname#,
+    			slide_no_seq.NEXTVAL,
+    			#filetime#,
+    			#fileaddr#
+    		)
+    </insert>
+    <insert id="cateinsert" parameterClass="slide">
+    		insert into cate(
+    			orgname2,
+    			no2,
+    			filetime2,
+    			fileaddr2
+    		)
+    		values(
+    			#orgname2#,
+    			category_no_seq.NEXTVAL,
+    			#filetime2#,
+    			#fileaddr2#
+    		)
+    </insert>
+	<select id="selectAll" resultMap="slideRes">
+		SELECT * FROM SLIDE ORDER BY no DESC
+	</select>
+	<select id="cateselect" resultMap="cateGory">
+		SELECT * FROM CATE ORDER BY no2 DESC
+	</select>
+	<select id="no" resultMap="slideRes">
+		SELECT NO FROM SLIDE ORDER BY NO DESC
+	</select>
+	<select id="sldel" resultClass="slide" parameterClass="String">
+		select * from slide where no=#c#
+	</select>
+	<select id="cadel" resultClass="slide" parameterClass="String">
+		select * from cate where no2=#c#
+	</select>
+	<delete id="slidedelete" parameterClass="String">
+			DELETE FROM SLIDE WHERE no = #c#
+   	</delete>
+   	<delete id="categorydelete" parameterClass="String">
+			DELETE FROM CATE WHERE no2 = #c#
+   	</delete>
+</sqlMap>

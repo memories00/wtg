@@ -7,6 +7,7 @@
 	<sqlMap resource="/sql/board.xml"/>
 	<sqlMap resource="/sql/memSQL.xml"/>
 	<sqlMap resource="/sql/themeSQL.xml"/>
+	<sqlMap resource="/sql/mainSQL.xml"/>
 	
 </sqlMapConfig>
 

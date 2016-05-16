@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><today_weather>
+<result>1</result>
+<region_id>11010</region_id>
+<country_ko><![CDATA[대한민국]]></country_ko>
+<country_en><![CDATA[SouthKorea]]></country_en>
+<state_ko><![CDATA[서울]]></state_ko>
+<state_en><![CDATA[Seoul]]></state_en>
+<city_ko><![CDATA[강남구]]></city_ko>
+<city_en><![CDATA[Gangnam-gu]]></city_en>
+<dong_ko><![CDATA[도곡1동]]></dong_ko>
+<dong_en><![CDATA[Dogok 1(il)-dong]]></dong_en>
+<locale><![CDATA[kma]]></locale>
+<lon>127.040001</lon>
+<lat>37.487999</lat>
+<tz>UTC:+9:0</tz>
+<date>2016051609</date>
+<dst>NA</dst>
+<daynight>NA</daynight>
+<icon>2</icon>
+<temp>14.4</temp>
+<max_temp>23.0</max_temp>
+<min_temp>12.0</min_temp>
+<sens_temp>14.4</sens_temp>
+<wd_ws>27:2.0</wd_ws>
+<humi>65</humi>
+<rainf>2.5</rainf>
+<snowf>NA</snowf>
+<pa>1009.4</pa>
+<badfeel>58</badfeel>
+<pm10>38</pm10>
+<wtext><![CDATA[현재 구름 조금 낀 가운데 약간 쌀쌀한 날씨입니다. 건강 유지를 위해 적당한 운동으로 땀을 흘려보는 것도 좋겠습니다.]]></wtext>
+<wf_today><![CDATA[NA]]></wf_today>
+<wf_tomorrow><![CDATA[NA]]></wf_tomorrow>
+<wf_week><![CDATA[NA]]></wf_week>
+<sunset>19:35</sunset>
+<sunrise>05:22</sunrise>
+<moonset>02:26</moonset>
+<moonrise>14:25</moonrise>
+<violet>7</violet>
+<vs>1800</vs>
+</today_weather>
