@@ -29,7 +29,7 @@ public class map
 	}
 	@RequestMapping("/inputPro.nhn")
 	public String inputPro(MapDto dto){	
-//		sqlMap.insert("mapp.insertMap", dto);
+		sqlMap.insert("maps.insertMap", dto);
 		return  "/inputForm.nhn";
 	}
 	@RequestMapping("/clickTest.nhn")
