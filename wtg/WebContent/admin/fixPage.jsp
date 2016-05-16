@@ -161,7 +161,7 @@ body{text-align:center}
 #search {width:950px; margin-top:5px;}
 #main_search {width:950px; height:100px;}
 #sub_search {width:950px; height:250px; display:none;}
-#content {width:950px; height:300px; background-image:url('/wtg/img/content.png'); margin-top:5px;}
+#content {width:950px; min-height:300px; background-image:url('/wtg/img/content.png'); margin-top:5px;}
 
 .box {width:230px; height:320px; margin-left:6px; float:left; background-image:url('/wtg/img/box.png');}
 #theme {width:950px; height:350px;}
@@ -210,9 +210,18 @@ body{text-align:center}
 <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 탑 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 
 <div class="section" id="section">
+
+<div class="section" id="content">
+로고 이미지 바꾸기
+</div>
 	<div class="section" id="content">
 		<form name="main" method="post"  enctype="multipart/form-data">
-<table width="900">
+<table>
+	<tr>
+		<td>
+		슬라이드 이미지 변경
+		</td>
+	</tr>
 	<tr>
 	  <td>파일경로:
 	    <input type="text" name="fileaddr">
