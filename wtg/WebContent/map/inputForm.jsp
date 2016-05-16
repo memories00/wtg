@@ -8,7 +8,7 @@
 			map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 			.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 			.map_wrap {position:relative;width:100%;height:500px;}
-			#menu_wrap {position:absolute;  top:0;left:0;bottom:0;width:310px;margin:10px 0 30px 80%;padding:5px;overflow-x:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px; }
+			#menu_wrap {position:absolute;  top:0;left:0;bottom:0;width:310px; height:800px;margin:10px 50px 30px 0;padding:5px;overflow-x:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px; }
 			.bg_white {background:#fff;}		
 			#menu_wrap hr {display: block; height: 1px;border: 0;  border-top: 2px solid #5F5F5F;margin:3px 0;}
 			#menu_wrap .option{text-align: left;}
@@ -16,7 +16,7 @@
 			#menu_wrap .option button {margin-left:5px;} 
 			
 			.category, .category *{margin:0;padding:0;color:#000;}   
-			.category {position:absolute;overflow:hidden;top:10px;left:10px;width:160px;height:53px;z-index:9;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;background:rgba(255, 255, 255, 0.7);}
+			.category {position:absolute;overflow:hidden;top:10px;left:320px;width:160px;height:53px;z-index:5;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;background:rgba(255, 255, 255, 0.7);}
 			.category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
 			.category li{list-style:none;float:left;width:50px;height:55px;padding-top:5px;cursor:pointer;} 
 			.category .ico_comm {display:block;width:50px;height:50px;} 
@@ -27,7 +27,7 @@
 			
 		</style>
 		<form onsubmit="searchPlaces(); return false;">
-		검색어 : <input type="text" value="이태원 맛집" style="width:150px; height:25px"id="keyword" size="15"> 
+		검색어 : <input type="text" value="시작위치를 선택하세요" style="width:150px; height:25px"id="keyword" size="15"> 
                 <button type="submit" style="width:60px;height:25px;">검색하기</button> 
                 
 		<div class="map_wrap">
@@ -86,8 +86,7 @@
 				//-->
 			
 
-					var container = document.getElementById('map'); //div id=map자리에 지도를생성
- 					
+					var container = document.getElementById('map'); //div id=map자리에 지도를생성			
 					var options = { 
  												center: new daum.maps.LatLng(37.515504, 126.907628), 
  												level: 7
@@ -95,23 +94,30 @@
 					
  					var map = new daum.maps.Map(container, options); 
  					
- 					var rvMarker = new daum.maps.Marker({
+					var stimageSrc = 'http://127.0.0.1:8000/wtg/map/red_b.png', // 마커이미지의 주소입니다    
+	 		 	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
+	 		 	    stimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+					var StmarkerImage = new daum.maps.MarkerImage(stimageSrc, stimageSize, stimageOption);
+ 					
+ 					var startMarker = new daum.maps.Marker({
+ 					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
  					    position: map.getCenter(),
- 					    draggable: true,
- 					    map: map
+ 					    image:StmarkerImage,
+ 					    draggable: true, // 출발 마커가 드래그 가능하도록 설정합니다
  					});
+ 					startMarker.setMap();
+ 					var edimageSrc = 'http://127.0.0.1:8000/wtg/map/blue_b.png', // 마커이미지의 주소입니다    
+	 		 	    edimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
+	 		 	    edimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+					EdmarkerImage = new daum.maps.MarkerImage(edimageSrc, edimageSize, edimageOption);
  					
- 					var mousePosition;
- 		 			daum.maps.event.addListener(map, 'click', function(mouseEvent) {
- 		 			    alert(mouseEvent.latLng);
- 		 			});
- 		 			
- 		 			 daum.maps.event.addListener(map, 'mouseover', function(mouseEvent) {
- 		 				
- 	 				});
-
- 					
- 					
+ 					var EndMarker = new daum.maps.Marker({
+ 					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
+ 					    position:  map.getCenter(),
+ 					    image:EdmarkerImage,
+ 					    draggable: true, // 출발 마커가 드래그 가능하도록 설정합니다
+ 					});
+ 					EndMarker.setMap();
  					var ps = new daum.maps.services.Places();
  					// 키워드 검색을 요청하는 함수입니다
  					function searchPlaces() {												
@@ -205,30 +211,35 @@
  				  
  				  el.innerHTML=title;
  				  el.className='here';
+ 				  fragment = document.createDocumentFragment();
+				  
+ 				  var listEl = document.getElementById('playList');
+ 				  var playEl=el;
+ 				  fragment.appendChild(playEl);
+ 				  listEl.appendChild(fragment);
  				  
- 				  return el;
 			   }
 
  			 	//선택하기 클릭시 마커를 지도에 보여줍니다
  			    function choice(bt){
+;
  			    	var a = bt.getAttribute('id');
  			    	var strArray=a.split('-');
  			    	fragment = document.createDocumentFragment();
  			    	var markerPosition  = new daum.maps.LatLng(strArray[1], strArray[2]);
+ 			
  					// 마커 생성
- 					marker.setPosition(markerPosition);
+ 					//marker.setPosition(markerPosition);
  					// 마커 지도 위에 표시
- 					marker.setMap(map);
+ 					//marker.setMap(map);
  					//지도레벨 3으로 고정
- 					map.setLevel(3);
+ 					//map.setLevel(3);
  					//마커를 부드럽게 이동이동
- 					map.panTo(markerPosition); 
+ 					//map.panTo(markerPosition); 
  					
  					ShowTabex('1');
- 					var listEl = document.getElementById('playList');
- 					playEl=getPlayItem(strArray[0]);
- 					fragment.appendChild(playEl);
- 					listEl.appendChild(fragment);
+ 		
+ 					getPlayItem(strArray[0]);
  				
  					
  			    } 
@@ -284,27 +295,38 @@
 				     return false;
 				}
 				
-				
+				var count;
 				function startDrag(e,cnt){
+					count=cnt;
 					var x=e.x;
 					var y=e.y;
 					
 					var img=document.createElement("img");
 					if(cnt==0)
 					{
+
 						img.setAttribute("src","map/red_b.png");
+						img.setAttribute("id","imgtest");
 					}
 					if(cnt==1)
 					{
-						img.setAttribute("src","map/green_b.png");
+							img.setAttribute("src","map/green_b.png");
+							img.setAttribute("id","imgtest");
+							
+							var imageSrc = 'http://127.0.0.1:8000/wtg/map/green_b.png', // 마커이미지의 주소입니다    
+			 		 	    imageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
+			 		 	    imageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+							markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption);
 					}
 					if(cnt==2)
 					{
 						img.setAttribute("src","map/blue_b.png");
+						img.setAttribute("id","imgtest");
+						
 					}
 					
 					
-					img.style.zIndex=10;
+					img.style.zIndex=6;
 					var a=document.body.appendChild(img);
 					
 					img.style.position="absolute";
@@ -322,15 +344,42 @@
 				     if(e_obj.preventDefault)e_obj.preventDefault(); 
 				}
 				
-				function stopDrag()
+				function stopDrag(e)
 				{
-		
+				var aa=document.getElementById('imgtest');
+				aa.parentNode.removeChild(aa);
 				     document.onmousemove = null;
-				     document.onmouseup = null;
-				     
+				     if(document.onmouseup !=null)
+				     {
+				    	 var mapProjection = map.getProjection(),
+						 point = new daum.maps.Point(e.x, e.y);
+
+						var position=mapProjection.coordsFromContainerPoint(point); // 화면 좌표에 해당하는 지도 좌표
+						//alert(position);
+						if(count==0)
+						{
+							getPlayItem(position); 
+							startMarker.setPosition(position);
+							startMarker.setMap(map);				
+						}
+						if(count==1)
+						{
+							var passMarker = new daum.maps.Marker({
+		 					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
+		 					    position: position,
+		 					    image:markerImage,
+		 					    draggable: true, // 출발 마커가 드래그 가능하도록 설정합니다
+		 					});
+		 					passMarker.setMap(map);
+					    	 }     
+				     }
+				     if(count==2)
+				     {
+				    	 EndMarker.setPosition(position);
+				    	 EndMarker.setMap(map);
+				     }
 				}
- 			   
- 			   
+ 			    
  				</script>
 </head>
 	<body>
