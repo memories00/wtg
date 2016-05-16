@@ -86,6 +86,7 @@
 				//-->
 			
 
+				 var selectCnt=0;
 					var container = document.getElementById('map'); //div id=map자리에 지도를생성			
 					var options = { 
  												center: new daum.maps.LatLng(37.515504, 126.907628), 
@@ -112,10 +113,10 @@
 					EdmarkerImage = new daum.maps.MarkerImage(edimageSrc, edimageSize, edimageOption);
  					
  					var EndMarker = new daum.maps.Marker({
- 					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
+ 					    map: map, // 종료 마커가 지도 위에 표시되도록 설정합니다
  					    position:  map.getCenter(),
  					    image:EdmarkerImage,
- 					    draggable: true, // 출발 마커가 드래그 가능하도록 설정합니다
+ 					    draggable: true, // 종료 마커가 드래그 가능하도록 설정합니다
  					});
  					EndMarker.setMap();
  					var ps = new daum.maps.services.Places();
@@ -167,7 +168,6 @@
  				            bounds.extend(placePosition);  
  							fragment.appendChild(itemEl);			
  				       	}
-
  						// 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
  						listEl.appendChild(fragment);
  						menuEl.scrollTop = 0;
@@ -193,10 +193,8 @@
  					else 
  					{ //지번주소이면		            
  						itemStr += '<span>' +  places.address  + '</span>'; 
- 					}
- 					
+ 					}				
  				    itemStr += '<span class="tel">' + places.phone  + '</span>' + '</div>'; 
- 				
  					var button = "<input type='button' value='선택하기' id='"+title+"-"+x+"-"+y+"' onclick='choice(this);'>";
  					
  				    el.innerHTML = itemStr+button;
@@ -207,9 +205,11 @@
  			 	
  			   function getPlayItem(title) 
  			   {
- 				  var el = document.createElement('li');		  
+ 				  var el = document.createElement('li');
+ 				  el.setAttribute("id","img"+selectCnt);
+ 				  var dd=el.getAttribute("id");
  				  
- 				  el.innerHTML=title;
+ 				  el.innerHTML=title+'<input type="button" id="'+dd+'"value="삭제" onclick="deleteForm(this)">';
  				  el.className='here';
  				  fragment = document.createDocumentFragment();
 				  
@@ -219,6 +219,18 @@
  				  listEl.appendChild(fragment);
  				  
 			   }
+ 			   
+ 			   function deleteForm(id)
+ 			   {
+ 				   selectCnt--;
+ 				   var b=id.getAttribute('id');
+ 				   var c=document.getElementById(b);
+ 				   c.innerHTML="";
+ 				  var listEl = document.getElementById('playList');
+ 				  listEl.appendChild(c);
+ 				   //alert(b);
+ 			   }
+ 			   
 
  			 	//선택하기 클릭시 마커를 지도에 보여줍니다
  			    function choice(bt){
@@ -228,20 +240,10 @@
  			    	fragment = document.createDocumentFragment();
  			    	var markerPosition  = new daum.maps.LatLng(strArray[1], strArray[2]);
  			
- 					// 마커 생성
- 					//marker.setPosition(markerPosition);
- 					// 마커 지도 위에 표시
- 					//marker.setMap(map);
- 					//지도레벨 3으로 고정
- 					//map.setLevel(3);
- 					//마커를 부드럽게 이동이동
- 					//map.panTo(markerPosition); 
- 					
- 					ShowTabex('1');
- 		
- 					getPlayItem(strArray[0]);
+ 			    	makePassMarker(strArray[0],markerPosition);
  				
- 					
+ 					ShowTabex('1');
+ 			
  			    } 
  			   
  			 	//결과리스트에 마우스오버시에 인포윈도우 표시
@@ -304,7 +306,6 @@
 					var img=document.createElement("img");
 					if(cnt==0)
 					{
-
 						img.setAttribute("src","map/red_b.png");
 						img.setAttribute("id","imgtest");
 					}
@@ -323,9 +324,7 @@
 						img.setAttribute("src","map/blue_b.png");
 						img.setAttribute("id","imgtest");
 						
-					}
-					
-					
+					}	
 					img.style.zIndex=6;
 					var a=document.body.appendChild(img);
 					
@@ -337,8 +336,7 @@
 				     var e_obj = window.event? window.event : e;
 				     img_L = getLeft(a) - e_obj.clientX;
 				     img_T = getTop(a) - e_obj.clientY;
-				     
-				     						
+				     			     						
 				     document.onmousemove = moveDrag;
 				     document.onmouseup = stopDrag;
 				     if(e_obj.preventDefault)e_obj.preventDefault(); 
@@ -358,27 +356,53 @@
 						//alert(position);
 						if(count==0)
 						{
-							getPlayItem(position); 
+							getPlayItem("start"+position); 
 							startMarker.setPosition(position);
 							startMarker.setMap(map);				
 						}
 						if(count==1)
 						{
-							var passMarker = new daum.maps.Marker({
-		 					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
-		 					    position: position,
-		 					    image:markerImage,
-		 					    draggable: true, // 출발 마커가 드래그 가능하도록 설정합니다
-		 					});
-		 					passMarker.setMap(map);
-					    	 }     
+							makePassMarker("click",position);
+					    }     
+
 				     }
 				     if(count==2)
 				     {
+				    	 getPlayItem("End"+position); 
 				    	 EndMarker.setPosition(position);
 				    	 EndMarker.setMap(map);
 				     }
 				}
+				
+				function makePassMarker(name,title)
+				{			
+					if(selectCnt<3)
+					{
+						selectCnt++;
+						getPlayItem(name); 
+						var passMarker = new daum.maps.Marker({
+	 					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
+	 					    position: title,
+	 					    image:markerImage,
+	 					    draggable: true, // 출발 마커가 드래그 가능하도록 설정합니다
+	 					});
+	 					passMarker.setMap(map);
+	 					alert("왜안생겨");
+	 					
+	 					
+					}
+					else
+					{
+						alert("더이상 추가할수 없습니다.")
+					}				
+				}
+				daum.maps.event.addListener(startMarker, 'dragend', function() {
+				     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+				   
+				});
+
+				
+				
  			    
  				</script>
 </head>
