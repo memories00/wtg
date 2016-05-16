@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>main</title>
+<title>form</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -18,7 +18,7 @@ body{text-align:center}
 #menu {width:950px; height:50px; margin-top:5px; background-image:url('/wtg/img/menu.png');}
 
 .section {font-size:13pt; width:950px; margin:auto;}
-#section {width:950px; min-height:800px;}
+#section {width:950px;  min-height:800px;}
 #search {width:950px; margin-top:5px;}
 #main_search {width:950px; height:100px;}
 #sub_search {width:950px; height:250px; display:none;}
@@ -40,19 +40,19 @@ body{text-align:center}
 <div id="wrapper">
 <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 탑 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 <div class="header" id="header">
-	<div class="header" id="info">
+		<div class="header" id="info">
 		<c:choose>
-			<c:when test="${sessionScope.memId ne '168456368'}">
-				<script>
-					alert("접근권한이 없습니다.");
-					location.replace("/wtg/main.nhn");
-				</script>
-			</c:when>
-
-
-			<c:otherwise>
-				${sessionScope.memId} 관리자님
-			</c:otherwise>
+		<c:when test="${sessionScope.memId ne null}">
+			${sessionScope.memId} 님 환영합니다!  
+			<a id="logout-btn" onclick="window.location='logout.nhn'">
+				<img src="/wtg/img/logoutBtn.jpg" width="100"/>
+			</a>
+		</c:when>
+		<c:otherwise>
+			<a href="http://localhost:8000/wtg/login.nhn">
+				<img src="/wtg/img/loginBtn.jpg" width="100"/>
+			</a>
+		</c:otherwise>
 		</c:choose>
 	</div>
 
@@ -69,7 +69,7 @@ body{text-align:center}
 
 <div class="section" id="section">
 	<div class="section" id="content">
-	내용물
+		여기에 내용을 넣어주심 됩니다. 
 	</div>
 </div>
 

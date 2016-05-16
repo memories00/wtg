@@ -11,7 +11,7 @@
 body{text-align:center}
 .header {font-size:11pt;}
 #header {height:140px;}
-#info {text-align:right; height:35px; background-image:url('/wtg/img/info.png');}
+#admin {text-align:right; color:#ffffff; height:35px; background-image:url('/wtg/img/admin.png');}
 #logo {width:950px; height:100px; border: 1px solid black; margin:auto;}
 
 .menu {font-size:11pt; width:950px; text-align:center; margin:auto;}
@@ -40,7 +40,7 @@ body{text-align:center}
 <div id="wrapper">
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é Å¾ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
 <div class="header" id="header">
-	<div class="header" id="info">
+	<div class="header" id="admin">
 		<c:choose>
 			<c:when test="${sessionScope.memId ne '168456368'}">
 				<script>
@@ -52,6 +52,9 @@ body{text-align:center}
 
 			<c:otherwise>
 				${sessionScope.memId} °ü¸®ÀÚ´Ô
+				<a id="logout-btn" onclick="window.location='main.nhn'">
+					<img src="/wtg/img/loginBtn.jpg" width="100"/>
+				</a>
 			</c:otherwise>
 		</c:choose>
 	</div>

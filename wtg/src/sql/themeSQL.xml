@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap namespace="theme">
+  <typeAlias alias="theme" type="theme.ThemeDTO"/>
+  <typeAlias alias="good" type="theme.GoodDTO" />
+  <typeAlias alias="report" type="theme.ReportDTO" />
+  
+  <!-- 리절트 맵 정의 -->
+  <resultMap class="theme" id="t"  >
+    <result property="no" column="no"/>
+    <result property="name" column="name"/>
+    <result property="subject" column="subject"/>
+    <result property="content" column="content"/>
+    <result property="file_orgname" column="file_orgname"/>
+    <result property="file_savname" column="file_savname"/>
+    <result property="readhit" column="readhit"/>
+    <result property="good" column="good"/>
+    <result property="hate" column="hate"/>
+    <result property="regdate" column="regdate"/>
+  </resultMap>
+  <!--  -->
+  <resultMap class="report" id="r">
+    <result property="num" column="num"/>
+    <result property="id" column="id"/>
+    <result property="subject" column="subject"/>
+    <result property="no" column="no"/>
+    <result property="content" column="content"/>
+    <result property="regdate" column="regdate"/>
+    <result property="process" column="process"/>
+  </resultMap>
+  
+  
+  <!-- 쿼리문 정의 -->
+  <!-- select -->
+  <select id="selectAll" resultMap="t" parameterClass="int">
+    select * from theme order by no desc
+  </select>
+  
+  <select id="selectOne" resultMap="t" parameterClass="int">
+    select * from theme where no =#no#
+  </select>
+  
+  <select id="selectLastNo" resultClass="theme" parameterClass="int">
+    select max(no) as no from theme
+  </select>
+  
+  <select id="selectR" resultMap="t" parameterClass="int">
+    select * from theme order by readhit desc
+  </select>
+  
+  <select id="selectG" resultMap="t" parameterClass="int">
+    select * from theme order by good desc
+  </select>
+ 
+  <!-- insert -->
+  <insert id="inserttheme" parameterClass="theme">
+    insert into theme(no,name,subject,content,regdate)
+            values(theme_seq.nextval,#name#,#subject#,#content#,sysdate)
+  </insert>
+  
+  <!-- update -->
+  
+  <update id="updateFile" parameterClass="theme">
+    update theme set file_orgname = #file_orgname#,
+                  file_savname = #file_savname# where no = #no#
+  </update>
+  
+  <update id="updateReadHit" parameterClass="int">
+    update theme set readhit = readhit + 1 where no = #no# 
+  </update>
+  
+  <!-- delete -->
+  
+  <delete id="deletetheme" parameterClass="theme">
+    delete from theme where no=#no#
+  </delete>
+  
+  <!-- 추천,비추천 -->
+  <update id="updateGood" parameterClass="int">
+   	update theme set good = good +1 where no=#no#
+</update>
+<update id="downGood" parameterClass="int">
+   	update theme set good = good -1 where no=#no#
+</update>
+   		 
+  <select id="selectGood" parameterClass="int" resultClass="int">
+    select good from theme where no=#no#
+  </select> 
+  
+  
+   		 
+  <update id="updateHate" parameterClass="int">
+    update theme set hate = hate +1 where no=#no#
+  </update>
+  
+  <update id="downHate" parameterClass="int">
+    update theme set hate = hate -1 where no=#no#
+  </update>
+   		
+  <select id="selectHate" parameterClass="int" resultClass="int">
+    select hate from theme where no=#no#
+  </select>
+  	 
+  <insert id="insertGood" parameterClass="good">
+		
+	insert into good (no,
+						id,
+						gh
+                  )
+         	 values (  #no#,
+         	           #id#,
+         	           'good'
+                  )
+  </insert>
+		
+  <select id="ctGood" parameterClass="good" resultClass="int">
+    select count(1) from good where no=#no# and id=#id# and gh='good'
+  </select>
+  
+  <select id="ctHate" parameterClass="good" resultClass="int">
+    select count(1) from good where no=#no# and id=#id# and gh='hate'
+  </select>
+		
+  <insert id="insertHate" parameterClass="good">
+		
+	insert into good (no,
+						id,
+						gh
+	                 )
+	        	 values (  #no#,
+	        	           #id#,
+	        	           'hate'
+	                 )
+  </insert>
+		
+  <delete id="delGood" parameterClass="good">
+    delete from good where no=#no# and gh='good'
+  </delete> 
+  
+  <delete id="delHate" parameterClass="good">
+    delete from good where no=#no# and gh='hate'
+  </delete>
+  
+  <!-- report -->
+  <insert id="insertReport" parameterClass="report">
+     insert into report(num,
+                        id,
+                        subject,
+                        no,
+                        content,
+                        regdate,
+                        process
+                        )
+                 values(report_seq.nextval,
+                        #id#,
+                        #subject#,
+                        #no#,
+                        #content#,
+                        sysdate,
+                        #process#
+                        )
+  </insert>	
+  
+  <!-- report select -->
+  
+ <select id="selectReport" resultMap="r" parameterClass="int">
+   select *from report order by num desc  
+ </select>
+ 
+ <select id="selectView" resultMap="r" parameterClass="int">
+   select * from report where num=#num#
+ </select>
+ 
+ <update id="proOne" parameterClass="int">
+   update report set process= 1 where num=#num#
+ </update> 
+ 
+  <update id="proTwo" parameterClass="int">
+   update report set process= 2 where num=#num#
+ </update>	
+  
+</sqlMap>
