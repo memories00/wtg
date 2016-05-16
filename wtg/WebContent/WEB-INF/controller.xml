@@ -15,6 +15,7 @@
 	<context:component-scan base-package="login.bean"/>
 	<context:component-scan base-package="admin.bean"/>
 	<context:component-scan base-package="map"/>
+	<context:component-scan base-package="theme"/>
 	
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
 		<property name="configLocation" value="/WEB-INF/sqlMapConfig.xml"/>
