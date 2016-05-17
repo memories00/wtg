@@ -354,7 +354,7 @@
 						 point = new daum.maps.Point(e.x, e.y);
 
 						var position=mapProjection.coordsFromContainerPoint(point); // 화면 좌표에 해당하는 지도 좌표
-						alert(count);
+						//alert(position);
 						if(count==0)
 						{
 							getPlayItem("start"+position); 
