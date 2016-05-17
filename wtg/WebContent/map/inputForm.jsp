@@ -85,7 +85,7 @@
 				}
 				//-->
 
-				 var selectCnt=0;
+				 var selectCnt=1;
 					var container = document.getElementById('map'); //div id=map자리에 지도를생성			
 					var options = { 
  												center: new daum.maps.LatLng(37.515504, 126.907628), 
@@ -94,19 +94,19 @@
 					
  					var map = new daum.maps.Map(container, options); 
  					
-					var stimageSrc = 'http://127.0.0.1:8000/wtg/map/red_b.png', // 마커이미지의 주소입니다    
+ 					
+					var stimageSrc = 'http://127.0.0.1:8000/wtg/map/red_b.png', // 출발마커이미지의 주소입니다    
 	 		 	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
 	 		 	    stimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 					var StmarkerImage = new daum.maps.MarkerImage(stimageSrc, stimageSize, stimageOption);
-					var passMarker;
+					
  					var startMarker = new daum.maps.Marker({
  					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
  					    position: map.getCenter(),
  					    image:StmarkerImage,
  					    draggable: true, // 출발 마커가 드래그 가능하도록 설정합니다
  					});
- 					startMarker.setMap();
- 					var edimageSrc = 'http://127.0.0.1:8000/wtg/map/blue_b.png', // 마커이미지의 주소입니다    
+ 					var edimageSrc = 'http://127.0.0.1:8000/wtg/map/blue_b.png', // 도착지마커이미지의 주소입니다    
 	 		 	    edimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
 	 		 	    edimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 					EdmarkerImage = new daum.maps.MarkerImage(edimageSrc, edimageSize, edimageOption);
@@ -117,6 +117,40 @@
  					    image:EdmarkerImage,
  					    draggable: true, // 종료 마커가 드래그 가능하도록 설정합니다
  					});
+ 					
+ 					var psimageSrc = 'http://127.0.0.1:8000/wtg/map/green_b.png', // 경유지마커이미지의 주소입니다    
+	 		 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
+	 		 	    psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+					psmarkerImage = new daum.maps.MarkerImage(psimageSrc, psimageSize, psimageOption);
+ 					
+	 		 	    
+	 		 	    //경유지 마커(최대3개)를 미리 생성 setMap()
+					var passMarker1= new daum.maps.Marker({
+ 					    map: map, // 종료 마커가 지도 위에 표시되도록 설정합니다
+ 					    position:  map.getCenter(),
+ 					    image:psmarkerImage,
+ 					    draggable: true, // 종료 마커가 드래그 가능하도록 설정합니다
+ 					});
+					
+					var passMarker2= new daum.maps.Marker({
+ 					    map: map, // 종료 마커가 지도 위에 표시되도록 설정합니다
+ 					    position:  map.getCenter(),
+ 					    image:psmarkerImage,
+ 					    draggable: true, // 종료 마커가 드래그 가능하도록 설정합니다
+ 					});
+					
+					var passMarker3= new daum.maps.Marker({
+ 					    map: map, // 종료 마커가 지도 위에 표시되도록 설정합니다
+ 					    position:  map.getCenter(),
+ 					    image:psmarkerImage,
+ 					    draggable: true, // 종료 마커가 드래그 가능하도록 설정합니다
+ 					});
+					
+					
+ 					startMarker.setMap();
+					passMarker1.setMap();
+					passMarker2.setMap();
+					passMarker3.setMap();
  					EndMarker.setMap();
  					
  					
@@ -128,10 +162,30 @@
 					    modifyList(responseId,"startModify"+mrkPosition);
 					});
 			
- 					daum.maps.event.addListener(EndMarker, 'dragend', function() {
- 					     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
- 				alert("여기요");
+ 					daum.maps.event.addListener(passMarker1, 'dragend', function() {
+ 					     // 첫번째 경유지 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+ 						var responseId =passMarker1.getTitle();
+					    var mrkPosition=passMarker1.getPosition();
+					    modifyList(responseId,"pass1Modify"+mrkPosition);
  					});
+ 					daum.maps.event.addListener(passMarker2, 'dragend', function() {
+					     // 두번째 경유지 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+ 						var responseId =passMarker2.getTitle();
+					    var mrkPosition=passMarker2.getPosition();
+					    modifyList(responseId,"pass2Modify"+mrkPosition);
+					});
+ 					daum.maps.event.addListener(passMarker3, 'dragend', function() {
+					     // 세번째 경유지 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+ 						var responseId =passMarker3.getTitle();
+					    var mrkPosition=passMarker3.getPosition();
+					    modifyList(responseId,"pass3Modify"+mrkPosition);
+					});
+ 					daum.maps.event.addListener(EndMarker, 'dragend', function() {
+					     // 도착지마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+					     var responseId =EndMarker.getTitle();
+					    var mrkPosition=EndMarker.getPosition();
+					    modifyList(responseId,"endModify"+mrkPosition);
+					});
  					
  					
  					
@@ -215,47 +269,70 @@
  					
  				    el.innerHTML = itemStr+button;
  				    el.className = 'item';
- 				   ShowTabex('0');
+ 				   ShowTabex('0');//검색탭으로 전환
  				    
  				    return el;  	    
  				}  
  			 	
- 			   function getPlayItem(title) 
+ 			   function getPlayItem(title,position) //진행상황 탭에 요소들을 추가
  			   {
- 				  var el = document.createElement('li');
- 				  el.setAttribute("id","img"+selectCnt);
+ 				  
+ 				  var el = document.createElement('li');//li를 추가
+ 				  
+ 				  if(count==0)//출발 깃발을 선택했다면
+ 				  {
+ 					  var testId=document.getElementById("startMk");
+ 					  if(testId!=null)//출발마커가 맵에 존재한다면
+ 					   {
+ 						 modifyList("startMk",position);//입력된 좌표를 수정
+ 					   }
+ 					  else//마커가 존재하지 않는다면
+ 					  {
+ 						 el.setAttribute("id","startMk");//생성한 마커에 id를 부여
+ 					  }
+ 				  }
+ 				  if(count==1)
+ 				  {
+ 					 el.setAttribute("id","passMk"+selectCnt);//생성한 마커에 id를 부여
+ 				  }
+ 				  if(count==2)
+ 				  {
+ 					 el.setAttribute("id","endMk");//생성한 마커에 id를 부여
+ 				  }
  				  var dd=el.getAttribute("id");
  				  
- 				  el.innerHTML=title+'<input type="button" id="'+dd+'"value="삭제" onclick="deleteForm(this)">';
+ 				  el.innerHTML=title+'<input type="button" id="'+dd+'"value="삭제" onclick="deleteForm(this)">';//리스트에 추가될 inputTag
  				  el.className='here';
  				  fragment = document.createDocumentFragment();
 				  
- 				  var listEl = document.getElementById('playList');
+ 				  var listEl = document.getElementById('playList');//진행상황 리스트를 치환
  				  var playEl=el;
  				  fragment.appendChild(playEl);
- 				  listEl.appendChild(fragment);
+ 				  listEl.appendChild(fragment);//리스트에 추가
  				  
  				  return dd;	  
 			   }
- 			   function deleteForm(id)
+ 			   
+ 			   
+ 			   function deleteForm(id)//리스트에 입력된 정보들을 삭제할때
  			   {
  				   selectCnt--;
- 				   var b=id.getAttribute('id');
+ 				   var b=id.getAttribute('id');//삭제하기 버튼을 눌렀을때 id값을 가져옴 값은 리스트에 추가되어있는 li의 아이디값
  				   var c=document.getElementById(b);
- 				   c.innerHTML="";
+ 				   c.innerHTML="";//li의 값을 공백으로 만들어준다
  				  var listEl = document.getElementById('playList');
- 				  listEl.appendChild(c);
- 				  passMarker.setMap(null);
+ 				  listEl.appendChild(c);//리스트에추가
+ 				  passMarker.setMap();//해당하는 마커를 지운다
  				   //alert(b);
  			   }
  			 	//선택하기 클릭시 마커를 지도에 보여줍니다
- 			    function choice(bt){
+ 			    function choice(bt){//검색리스트에서 선택을 눌렀을경우
  			    	var a = bt.getAttribute('id');
  			    	var strArray=a.split('-');
  			    	fragment = document.createDocumentFragment();
  			    	var markerPosition  = new daum.maps.LatLng(strArray[1], strArray[2]);
  			
- 			    	makePassMarker(strArray[0],markerPosition);
+ 			    	makePassMarker(strArray[0],markerPosition);//경유기 마커들을 추가한다.
  			    } 
  			   
  			 	//결과리스트에 마우스오버시에 인포윈도우 표시
@@ -284,12 +361,8 @@
  			            el.removeChild (el.lastChild);
  			        }
  			    }
- 			   function clickFlag(type)
- 			   {
- 			   		var flag=type;
- 			   		alert(flag);
- 			   }
- 			  var img_L = 0;
+ 			    
+ 			    var img_L = 0;
 				var img_T = 0;
 				var targetObj;
 				
@@ -300,7 +373,7 @@
 				     return parseInt(o.style.top.replace('px', ''));
 				}
 				
-				function moveDrag(e){
+				function moveDrag(e){//깃발카테고리에서 이미지들을 이동할때
 				     var e_obj = window.event? window.event : e;
 				     var dmvx = parseInt(e_obj.clientX + img_L);
 				     var dmvy = parseInt(e_obj.clientY + img_T);
@@ -316,7 +389,7 @@
 					var y=e.y;
 					
 					var img=document.createElement("img");
-					if(cnt==0)
+					if(cnt==0)//선택한 깃발에따리 이미지를 생성해주고 생성한 이미지에 id를 추가
 					{
 						img.setAttribute("src","map/red_b.png");
 						img.setAttribute("id","imgtest");
@@ -325,11 +398,6 @@
 					{
 							img.setAttribute("src","map/green_b.png");
 							img.setAttribute("id","imgtest");
-							
-							var imageSrc = 'http://127.0.0.1:8000/wtg/map/green_b.png', // 마커이미지의 주소입니다    
-			 		 	    imageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
-			 		 	    imageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-							markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOption);
 					}
 					if(cnt==2)
 					{
@@ -354,32 +422,31 @@
 				     if(e_obj.preventDefault)e_obj.preventDefault(); 
 				}
 				
-				function stopDrag(e)
+				function stopDrag(e)//이동한 이미지가 멈췄을때 실행
 				{
-				var aa=document.getElementById('imgtest');
-				aa.parentNode.removeChild(aa);
+				var aa=document.getElementById('imgtest');//화면에 출력되어있는 이미지의 아이디값을 치환
+				aa.parentNode.removeChild(aa);//이미지를 삭제
 				     document.onmousemove = null;
 				     if(document.onmouseup !=null)
 				     {
 				    	 var mapProjection = map.getProjection(),
-						 point = new daum.maps.Point(e.x, e.y);
+						 point = new daum.maps.Point(e.x, e.y);//모니터상의 px을 지도상의 좌표로 변환
 
 						var position=mapProjection.coordsFromContainerPoint(point); // 화면 좌표에 해당하는 지도 좌표
 						//alert(position);
 						if(count==0)
 						{
-							var elementId=getPlayItem("start"+position); 
-							ShowTabex('1');
-							startMarker.setTitle(elementId);
-							startMarker.setPosition(position);
-							startMarker.setMap(map);				
+							var elementId=getPlayItem("start"+position,position); 
+							ShowTabex('1');//진행상황탭으로 변경
+							startMarker.setTitle(elementId);//출발마커에 추가된li의 id값을 타이틀로 설정
+							startMarker.setPosition(position);//출발마커의 위치를 끝난지점으로 이동
+							startMarker.setMap(map);				//출력
 						}
 						if(count==1)
 						{
-							makePassMarker("click",position);
+							makePassMarker("click",position);//경유지 마커 생성으로 이동
+							ShowTabex('1');
 					    }     
-
-				     }
 				     if(count==2)
 				     {
 				    	var elementId= getPlayItem("End"+position);
@@ -389,33 +456,46 @@
 				    	 EndMarker.setMap(map);
 				     }
 				}
+				}
 				
-				function makePassMarker(name,title)
+				
+				function makePassMarker(name,title) //경유지 마커를 생성할때 사용
 				{	
-					//alert(title);
-					//map.setCenter(title);
-					if(selectCnt<3)
+					if(selectCnt>0&&selectCnt<4)//경유지마커의 범위 1~3
 					{
-						//alert(selectCnt);
+						if(selectCnt==1)//첫번째 경유지 마커일경우
+						{
+							//alert(selectCnt);
+							var elementId=getPlayItem("click"+title);
+							passMarker1.setTitle(elementId);//li의 id로 title설정
+							passMarker1.setPosition(title);//이동
+							passMarker1.setMap(map);//출력
+						}
+						if(selectCnt==2)
+						{
+							//alert(selectCnt);
+							var elementId=getPlayItem("click"+title);
+							passMarker2.setTitle(elementId);
+							passMarker2.setPosition(title);
+							passMarker2.setMap(map);
+						}
+						if(selectCnt==3)
+						{
+							//alert(selectCnt);
+							var elementId=getPlayItem("click"+title);
+							passMarker3.setTitle(elementId);
+							passMarker3.setPosition(title);
+							passMarker3.setMap(map);
+						}
 						selectCnt++;
-						var elementId=getPlayItem(name); 
-						passMarker = new daum.maps.Marker({
-	 					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
-	 					    position: title,
-	 					    title:elementId,
-	 					    image:markerImage,
-	 					    draggable: true, // 출발 마커가 드래그 가능하도록 설정합니다
-	 					});
-	 					passMarker.setMap(map);
-	 					ShowTabex('1');
-	 					//alert("왜안생겨");
 					}
 					else
 					{
 						alert("더이상 추가할수 없습니다.")
-					}				
+					}	
+					
 				}	
-				function modifyList(mrkTitle,position)
+				function modifyList(mrkTitle,position)//수정을 할경우
 				{
 					var elementId=document.getElementById(mrkTitle);
 					elementId.innerHTML=position;
