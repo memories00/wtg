@@ -23,14 +23,9 @@ public class map
 		return  "/map/map.jsp";
 	}
 	@RequestMapping("/inputForm.nhn")
-	public String inputForm(MapDto dto){	
+	public String inputForm(){	
 		
 		return  "/map/inputForm.jsp";
-	}
-	@RequestMapping("/inputPro.nhn")
-	public String inputPro(MapDto dto){	
-		sqlMap.insert("maps.insertMap", dto);
-		return  "/inputForm.nhn";
 	}
 	@RequestMapping("/clickTest.nhn")
 	public String clickTest()

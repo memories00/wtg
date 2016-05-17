@@ -27,7 +27,7 @@
 			
 		</style>
 		<form onsubmit="searchPlaces(); return false;">
-		검색어 : <input type="text" value="시작위치를 선택하세요" style="width:150px; height:25px"id="keyword" size="15"> 
+		검색어 : <input type="text" value="시작위치를 선택하세요" style="width:150px; height:25px"id="keyword" name="se" size="15" onfocus="test()"> 
                 <button type="submit" style="width:60px;height:25px;">검색하기</button> 
                 
 		<div class="map_wrap">
@@ -84,7 +84,6 @@
 				  }
 				}
 				//-->
-			
 
 				 var selectCnt=0;
 					var container = document.getElementById('map'); //div id=map자리에 지도를생성			
@@ -119,6 +118,23 @@
  					    draggable: true, // 종료 마커가 드래그 가능하도록 설정합니다
  					});
  					EndMarker.setMap();
+ 					
+ 					
+ 		
+ 					daum.maps.event.addListener(startMarker, 'dragend', function() {
+					     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+					    var responseId =startMarker.getTitle();
+					    var mrkPosition=startMarker.getPosition();
+					    modifyList(responseId,"startModify"+mrkPosition);
+					});
+			
+ 					daum.maps.event.addListener(EndMarker, 'dragend', function() {
+ 					     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+ 				alert("여기요");
+ 					});
+ 					
+ 					
+ 					
  					var ps = new daum.maps.services.Places();
  					// 키워드 검색을 요청하는 함수입니다
  					function searchPlaces() {												
@@ -199,6 +215,7 @@
  					
  				    el.innerHTML = itemStr+button;
  				    el.className = 'item';
+ 				   ShowTabex('0');
  				    
  				    return el;  	    
  				}  
@@ -218,8 +235,8 @@
  				  fragment.appendChild(playEl);
  				  listEl.appendChild(fragment);
  				  
+ 				  return dd;	  
 			   }
- 			   
  			   function deleteForm(id)
  			   {
  				   selectCnt--;
@@ -231,20 +248,14 @@
  				  passMarker.setMap(null);
  				   //alert(b);
  			   }
- 			   
-
  			 	//선택하기 클릭시 마커를 지도에 보여줍니다
  			    function choice(bt){
-;
  			    	var a = bt.getAttribute('id');
  			    	var strArray=a.split('-');
  			    	fragment = document.createDocumentFragment();
  			    	var markerPosition  = new daum.maps.LatLng(strArray[1], strArray[2]);
  			
  			    	makePassMarker(strArray[0],markerPosition);
- 				
- 					ShowTabex('1');
- 			
  			    } 
  			   
  			 	//결과리스트에 마우스오버시에 인포윈도우 표시
@@ -357,7 +368,9 @@
 						//alert(position);
 						if(count==0)
 						{
-							getPlayItem("start"+position); 
+							var elementId=getPlayItem("start"+position); 
+							ShowTabex('1');
+							startMarker.setTitle(elementId);
 							startMarker.setPosition(position);
 							startMarker.setMap(map);				
 						}
@@ -369,42 +382,47 @@
 				     }
 				     if(count==2)
 				     {
-				    	 getPlayItem("End"+position); 
+				    	var elementId= getPlayItem("End"+position);
+				    	ShowTabex('1');
+				    	 EndMarker.setTitle(elementId);
 				    	 EndMarker.setPosition(position);
 				    	 EndMarker.setMap(map);
 				     }
 				}
 				
 				function makePassMarker(name,title)
-				{			
+				{	
+					//alert(title);
+					//map.setCenter(title);
 					if(selectCnt<3)
 					{
+						//alert(selectCnt);
 						selectCnt++;
-						getPlayItem(name); 
+						var elementId=getPlayItem(name); 
 						passMarker = new daum.maps.Marker({
 	 					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
 	 					    position: title,
+	 					    title:elementId,
 	 					    image:markerImage,
 	 					    draggable: true, // 출발 마커가 드래그 가능하도록 설정합니다
 	 					});
 	 					passMarker.setMap(map);
-	 					alert("왜안생겨");
-	 					
-	 					
+	 					ShowTabex('1');
+	 					//alert("왜안생겨");
 					}
 					else
 					{
 						alert("더이상 추가할수 없습니다.")
 					}				
+				}	
+				function modifyList(mrkTitle,position)
+				{
+					var elementId=document.getElementById(mrkTitle);
+					elementId.innerHTML=position;
+					var listEl = document.getElementById('playList');
+					listEl.appendChild(elementId);
 				}
-				daum.maps.event.addListener(startMarker, 'dragend', function() {
-				     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
-				   
-				});
 
-				
-				
- 			    
  				</script>
 </head>
 	<body>
