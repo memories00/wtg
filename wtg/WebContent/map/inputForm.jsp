@@ -99,7 +99,7 @@
 	 		 	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
 	 		 	    stimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 					var StmarkerImage = new daum.maps.MarkerImage(stimageSrc, stimageSize, stimageOption);
- 					
+					var passMarker;
  					var startMarker = new daum.maps.Marker({
  					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
  					    position: map.getCenter(),
@@ -228,6 +228,7 @@
  				   c.innerHTML="";
  				  var listEl = document.getElementById('playList');
  				  listEl.appendChild(c);
+ 				  passMarker.setMap(null);
  				   //alert(b);
  			   }
  			   
@@ -380,7 +381,7 @@
 					{
 						selectCnt++;
 						getPlayItem(name); 
-						var passMarker = new daum.maps.Marker({
+						passMarker = new daum.maps.Marker({
 	 					    map: map, // 출발 마커가 지도 위에 표시되도록 설정합니다
 	 					    position: title,
 	 					    image:markerImage,
