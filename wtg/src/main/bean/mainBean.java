@@ -81,8 +81,6 @@ public class mainBean
 		list2 = sqlMap.queryForList("main.cateselect",null);
 		request.setAttribute("list2", list2);
 		request.setAttribute("list", list);
-		//System.out.println(((SlideDTO)list.get(0)).getOrgname());
-		//System.out.println(((SlideDTO)list.get(0)).getFiletime());
 
 		return "/admin/fixPage.jsp";
 	}
@@ -102,15 +100,11 @@ public class mainBean
 			return "/main/return.jsp";
 		}
 		
-		System.out.println(orgName);
-		
 		long time = System.currentTimeMillis(); 
 		SimpleDateFormat dayTime = new SimpleDateFormat("yyMMddhhmmss");
 		String str = dayTime.format(new Date(time));
-		System.out.println(str);
 		dto.setFiletime(str);
 
-		System.out.println(dto.getFileaddr());
 		sqlMap.insert("main.slideinsert",dto);
 		
 		File copy = new File(path+str+dto.getOrgname());
@@ -130,22 +124,17 @@ public class mainBean
 		dto.setOrgname2(orgName); // dto에 파일네임 set시켜주기
 		
 		String path=request.getServletContext().getRealPath("")+"\\categoryimg\\"; // 파일경로
-		System.out.println(path);
 		
 		if(orgName=="") // 파일 선택
 		{
 			return "/main/return.jsp";
 		}
 		
-		System.out.println(orgName);
-		
 		long time = System.currentTimeMillis(); 
 		SimpleDateFormat dayTime = new SimpleDateFormat("yyMMddhhmmss");
 		String str = dayTime.format(new Date(time));
-		System.out.println(str);
 		dto.setFiletime2(str);
 
-		System.out.println(dto.getFileaddr2());
 		sqlMap.insert("main.cateinsert",dto);
 		
 		File copy = new File(path+str+dto.getOrgname2());
@@ -158,13 +147,11 @@ public class mainBean
 	}
 	@RequestMapping("/slidedelete.nhn")
 	public String slidedelete(HttpServletRequest request,SlideDTO dto){
-		System.out.println(request.getParameterValues("check"));
 		String ch[]=request.getParameterValues("check");
 		String path=request.getServletContext().getRealPath("")+"\\adminImg\\";
 		for(String c:ch)
 		{
 			dto=(SlideDTO) sqlMap.queryForObject("main.sldel",c);//
-			System.out.println("파일시간="+dto.getFiletime()+"파일이름="+dto.getOrgname());
 			File deleteFile = new File(path+dto.getFiletime()+dto.getOrgname());
 			deleteFile.delete();
 			sqlMap.delete("main.slidedelete",c);
@@ -173,7 +160,6 @@ public class mainBean
 	}
 	@RequestMapping("/categorydelete.nhn")
 	public String categorydelete(HttpServletRequest request,SlideDTO dto){
-		System.out.println(request.getParameterValues("check2"));
 		String ch[]=request.getParameterValues("check2");
 		String path=request.getServletContext().getRealPath("")+"\\categoryimg\\";
 		for(String c:ch)

@@ -9,6 +9,8 @@ import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import location.bean.MapDto;
+
 @Controller
 public class map
 {
@@ -21,9 +23,14 @@ public class map
 		return  "/map/map.jsp";
 	}
 	@RequestMapping("/inputForm.nhn")
-	public String inputForm()
-	{	
+	public String inputForm(MapDto dto){	
+		
 		return  "/map/inputForm.jsp";
+	}
+	@RequestMapping("/inputPro.nhn")
+	public String inputPro(MapDto dto){	
+		sqlMap.insert("maps.insertMap", dto);
+		return  "/inputForm.nhn";
 	}
 	@RequestMapping("/clickTest.nhn")
 	public String clickTest()

@@ -53,7 +53,7 @@
   </select>
  
   <!-- insert -->
-  <insert id="inserttheme" parameterClass="theme">
+  <insert id="insertTheme" parameterClass="theme">
     insert into theme(no,name,subject,content,regdate)
             values(theme_seq.nextval,#name#,#subject#,#content#,sysdate)
   </insert>
@@ -71,7 +71,7 @@
   
   <!-- delete -->
   
-  <delete id="deletetheme" parameterClass="theme">
+  <delete id="deleteTheme" parameterClass="theme">
     delete from theme where no=#no#
   </delete>
   

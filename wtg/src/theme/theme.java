@@ -96,9 +96,9 @@ public class theme {
 		String orgName = mf.getOriginalFilename();
 		String path =request.getServletContext().getRealPath("")+"\\save\\";
 	    if(orgName ==""){	
-			sqlMapClientTemplate.insert("theme.inserttheme", dto);		
+			sqlMapClientTemplate.insert("theme.insertTheme", dto);		
 		}else{ 
-			sqlMapClientTemplate.insert("theme.inserttheme", dto);
+			sqlMapClientTemplate.insert("theme.insertTheme", dto);
 			dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectLastNo", null);
 			String file_name = "file_"+dto.getNo();
 			String file_ext = orgName.substring(
@@ -129,7 +129,7 @@ public class theme {
 		
 		File file = new File(path+dto.getFile_savname());
 		file.delete();
-		sqlMapClientTemplate.delete("theme.deletetheme", dto);
+		sqlMapClientTemplate.delete("theme.deleteTheme", dto);
 		request.setAttribute("dto", dto);
 	
 		return "/themeList.nhn";
@@ -151,9 +151,9 @@ public class theme {
 		String orgName = mf.getOriginalFilename();
 		String path =request.getServletContext().getRealPath("")+"\\save\\";
 		if(orgName ==""){	
-			sqlMapClientTemplate.update("theme.updatetheme", dto);		
+			sqlMapClientTemplate.update("theme.updateTheme", dto);		
 		}else{  
-			sqlMapClientTemplate.update("theme.updatetheme", dto);
+			sqlMapClientTemplate.update("theme.updateTheme", dto);
 			String file_name = "file_"+dto.getNo();
 			String file_ext = orgName.substring(
 					         orgName.lastIndexOf('.') + 1,

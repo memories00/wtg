@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap namespace="maps">
+  <typeAlias alias="maps" type="location.bean.MapDto"/>
+  
+  <!-- 리절트 맵 정의 -->
+  <resultMap class="maps" id="m">
+    <result property="mem_num" column="mem_num"/>
+    <result property="start0" column="start0"/>
+    <result property="pass1" column="pass1"/>
+    <result property="pass2" column="pass2"/>
+    <result property="pass3" column="pass3"/>
+    <result property="end4" column="end4"/>
+  </resultMap>
+
+<!-- 쿼리문 정의 -->
+
+
+<insert id="insertMap" parameterClass="maps">
+  insert into map(mem_num,start0,pass1,pass2,pass3,end4)
+           values(map_seq.nextval,#start0#,#pass1#,#pass2#,#pass3#,#end4#)
+</insert>
+</sqlMap>
