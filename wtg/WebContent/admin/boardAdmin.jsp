@@ -8,10 +8,16 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <style type="text/css">
-body{text-align:center}
+body {text-align:center}
+a {text-decoration:none;}
+a:hover {text-decoration:underline;}
+ul#adminMenu {border:1px black dashed;}
+ul#adminMenu li{border:1px red dashed; float:left; list-style:none;}
+ul#adminMenu li:hover ul{display:block;}
+ul#adminMenu li li{border:1px blue dashed; float:left; list-style:none;}
 .header {font-size:11pt;}
 #header {height:140px;}
-#admin {text-align:right; color:#ffffff; height:35px; background-image:url('/wtg/img/admin.png');}
+#info {text-align:right; height:35px; background-image:url('/wtg/img/info.png');}
 #logo {width:950px; height:100px; border: 1px solid black; margin:auto;}
 
 .menu {font-size:11pt; width:950px; text-align:center; margin:auto;}
@@ -40,7 +46,7 @@ body{text-align:center}
 <div id="wrapper">
 <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 탑 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 <div class="header" id="header">
-	<div class="header" id="admin">
+	<div class="header" id="info">
 		<c:choose>
 			<c:when test="${sessionScope.memId ne '168456368'}">
 				<script>
@@ -52,9 +58,6 @@ body{text-align:center}
 
 			<c:otherwise>
 				${sessionScope.memId} 관리자님
-				<a id="logout-btn" onclick="window.location='main.nhn'">
-					<img src="/wtg/img/loginBtn.jpg" width="100"/>
-				</a>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -65,14 +68,43 @@ body{text-align:center}
 </div>
 
 <div class="menu" id="menu">
-	메뉴
+	<ul id="adminMenu">
+		<li>
+			<a href="http://localhost:8000/wtg/memAdmin.nhn">회원 관리</a>
+			<ul>
+				<li><a href="http://localhost:8000/wtg/memAdmin.nhn">회원정보 조회</a></li>
+				<li><a href="http://localhost:8000/wtg/memStatsAdmin.nhn">이용자 통계</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="http://localhost:8000/wtg/pageAdmin.nhn">페이지 관리</a>
+			<ul>
+				<li><a href="http://localhost:8000/wtg/pageAdmin.nhn">페이지 정보 관리</a></li>
+				<li><a href="http://localhost:8000/wtg/pageDesignAdmin.nhn">디자인 관리</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="http://localhost:8000/wtg/boardAdmin.nhn">게시판 관리</a>
+			<ul>
+				<li><a href="http://localhost:8000/wtg/boardAdmin.nhn">게시글 관리</a></li>
+				<li><a href="http://localhost:8000/wtg/boardReportAdmin.nhn">신고글 관리</a></li>
+				<li><a href="http://localhost:8000/wtg/boardReplyAdmin.nhn">덧글 관리</a></li>
+			</ul>
+		</li>
+	</ul>
 </div>
 
 <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 탑 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 
 <div class="section" id="section">
 	<div class="section" id="content">
-	내용물
+		<br />
+		<br />
+		<br />
+		관리자 페이지 입니다.
+		<br />
+		<br />
+		<br />
 	</div>
 </div>
 
