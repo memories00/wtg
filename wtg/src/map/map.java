@@ -27,6 +27,11 @@ public class map
 		
 		return  "/map/inputForm.jsp";
 	}
+	@RequestMapping("/courseInput.nhn")
+	public String courseInput(){	
+		
+		return  "/map/courseInput.jsp";
+	}
 	@RequestMapping("/clickTest.nhn")
 	public String clickTest()
 	{	

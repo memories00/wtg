@@ -430,7 +430,8 @@
  			distance = Math.round(clickLine.getLength());
  			distance=distance+"/"+place.latitude+"/"+place.longitude+"/"+place.title;
  			return distance;
- 		}		
+ 		}	
+ 		
  		function CheckStation()
  		{
  			var firstLo;

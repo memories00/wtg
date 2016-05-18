@@ -27,7 +27,7 @@
 			
 		</style>
 		<form onsubmit="searchPlaces(); return false;">
-		검색어 : <input type="text" value="시작위치를 선택하세요" style="width:150px; height:25px"id="keyword" name="se" size="15" onfocus="test()"> 
+		검색어 : <input type="text" value="경복궁" style="width:150px; height:25px"id="keyword" name="se" size="15" onfocus="test()"> 
                 <button type="submit" style="width:60px;height:25px;">검색하기</button> 
                 
 		<div class="map_wrap">
@@ -62,6 +62,7 @@
 					  <div id="tab_1" style="width: 100%; display: none;">
 					    <hr>
 					    <ul id="playList"></ul>
+					    <input type="button" value="글쓰기">
 					  </div>
 					</div>
             </p>
@@ -496,13 +497,12 @@
 					
 				}	
 				function modifyList(mrkTitle,position)//수정을 할경우
-				{
+				{   
 					var elementId=document.getElementById(mrkTitle);
 					elementId.innerHTML=position;
 					var listEl = document.getElementById('playList');
 					listEl.appendChild(elementId);
 				}
-
  				</script>
 </head>
 	<body>
