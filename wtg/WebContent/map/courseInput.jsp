@@ -50,7 +50,9 @@
 					</ul>
 				도착지:&nbsp; <input type="text" id="endKey" style="width:200px" onkeypress="enterKey(event,this);">
 				<br/>
-				<input type="button" value="경유지추가" onclick="addPass()">
+				<div align="right">
+					<input type="button" value="경유지추가" onclick="addPass()"><input type="button" value="코스확인" onclick="checkCourse()"> 
+				</div>	
 					<hr>
 						<ul id="placesList"></ul>			
 			</div>
@@ -66,18 +68,31 @@
 									  };  			
 			var map = new daum.maps.Map(container, options); 
 			var ps = new daum.maps.services.Places();//검색기능을 사용할때의 선언
+			var cnt=0;//경유지추가시 button의 name 카운트
+			var passMarkerInfo;//경유지마커들을 경유지추가버튼을 누를때생성
+			
 			//////////////출발지의 마커와 이미지를 미리생성//////////////
 			var stimageSrc = 'http://127.0.0.1:8000/wtg/map/red_b.png', // 출발마커이미지의 주소입니다    
 	 		 	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
 	 		 	    stimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 					var startImage = new daum.maps.MarkerImage(stimageSrc, stimageSize, stimageOption);
+	 		 	    
 			var startMarker=new daum.maps.Marker({
 				map:map,
 				position:map.getCenter(),
 				image:startImage,
 				draggable:true
 			});
+			
+			var stnStMarker=new daum.maps.Marker({//시작역의 마커
+				map:map,
+				position:map.getCenter(),
+				draggable:true
+			});
+			
 			startMarker.setMap();
+			stnStMarker.setMap();
+			
 			//////////////////////도착지의 마커와 이미지를 미리생성//////////////////////////
 			var endimageSrc = 'http://127.0.0.1:8000/wtg/map/blue_b.png', // 도착지마커이미지의 주소입니다    
 	 		 	    endimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
@@ -90,16 +105,28 @@
  					    image:endImage,
  					    draggable: true, // 종료 마커가 드래그 가능하도록 설정합니다
  					});
+ 					
+ 					var stnEndMarker = new daum.maps.Marker({//도착역의 마커를 미리생성
+ 					    map: map, // 종료 마커가 지도 위에 표시되도록 설정합니다
+ 					    position:  map.getCenter(),
+ 					    draggable: true, // 종료 마커가 드래그 가능하도록 설정합니다
+ 					});
+ 					
  					endMarker.setMap();
+ 					stnEndMarker.setMap();
  					/////////////////////경유지 마커 이미비/////////////////
  					var psimageSrc = 'http://127.0.0.1:8000/wtg/map/green_b.png', // 경유지마커이미지의 주소입니다    
 			 		 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
 			 		 	    psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 							psmarkerImage = new daum.maps.MarkerImage(psimageSrc, psimageSize, psimageOption);
 			///////////////////////////////////////////////////////
-			///경유지추가를 눌렀을때 동적으로 생성되는 태그들
+			////////지하철역에 사용될 마커를 위한 배열선언//////
 			var cnt=0;//경유지추가시 button의 name 카운트
 			var passMarkerInfo;//경유지마커들을 경유지추가버튼을 누를때생성
+			var stnPassMarker;//경유지마커들을 경유지추가버튼을 누를때생성
+			
+			
+			///경유지추가를 눌렀을때 동적으로 생성되는 태그들
 			
 			function addPass(){
 				var addTag=document.getElementById("passText");
@@ -109,18 +136,30 @@
 				addDiv.innerHTML=str;
 				addTag.appendChild(addDiv);
 				
-				passMarkerInfo=[
+				passMarkerInfo=[//경유지 마커를 생성하기위한 배열
 			    	                    {
-			    	                    	variable:'passMarker'+cnt,  	                    	
+			    	                    	variable:'passMarker'+cnt,  	        //경유지마커의 이름을 Cnt에따라 증가하여 만든다            	
 			    	                    }];
+				
+				stnPassMarker=[
+	    	                    {
+	    	                    	variable:'stnPassMarker'+cnt,  	                    	
+	    	                    }];
 			   	
  		 	    passMarkerInfo[0].variable = new daum.maps.Marker({
 			           map: map, // 마커를 표시할 지도
 			           position:map.getCenter(), // 마커를 표시할 위치
-			           title:passMarkerInfo[0].variable,
 			           image : psmarkerImage // 마커 이미지 
 			    	});
  		 	  passMarkerInfo[0].variable.setMap();
+ 		 	  
+ 		 	stnPassMarker[0].variable = new daum.maps.Marker({
+		           map: map, // 마커를 표시할 지도
+		           position:map.getCenter(), // 마커를 표시할 위치
+		    	});
+ 		 	stnPassMarker[0].variable.setMap();
+ 		 	  
+ 		 	  
 				cnt++;
 			}
 			/////////////input Text에서 ender키입력을 했을경우
@@ -239,10 +278,14 @@
  	 			    		var parseId=btnId.split('-');
  	 			    		var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);
  	 			    		var tagId=document.getElementById('startKey');
+ 	 			    		
  	 			    		fragment = document.createDocumentFragment();
- 	 			    		startMarker.setPosition(markerPosition);
- 	 			    		startMarker.setMap(map);
- 	 			    		tagId.value=parseId[0];	
+ 	 			    		startMarker.setTitle(parseId[0]);
+ 	 			    		startMarker.setPosition(markerPosition);//미리생성한 출발마커의 위치를 이동한다.
+ 	 			    		startMarker.setMap(map);//마커를 출력
+ 	 			    		tagId.value=parseId[0];	//input창에 이름을 출력
+ 	 			    		
+ 	 			    		searchSub(index,markerPosition);
  	 			    		
  	 			    		var listEl = document.getElementById('placesList');
  	 			    		removeAllChildNods(listEl);
@@ -257,9 +300,12 @@
 		 			    	var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);
 		 			    	
 		 			    	fragment = document.createDocumentFragment();
+		 			    	passMarkerInfo[0].variable.setTitle(parseId[0]);
 		 			    	passMarkerInfo[0].variable.setPosition(markerPosition);
 		 			    	passMarkerInfo[0].variable.setMap(map);
 		 			    	tagId.value=parseId[0];	
+		 			    	
+		 			    	searchSub(index,markerPosition);
 		 			    	
 		 			    	var listEl = document.getElementById('placesList');
  	 			    		removeAllChildNods(listEl);
@@ -270,10 +316,14 @@
  	 			    		var parseId=btnId.split('-');
  	 			    		var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);
  	 			    		var tagId=document.getElementById('endKey');
+ 	 			    		
  	 			    		fragment = document.createDocumentFragment();
+ 	 			    		endMarker.setTitle(parseId[0]);
  	 			    		endMarker.setPosition(markerPosition);
  	 			    		endMarker.setMap(map);
  	 			    		tagId.value=parseId[0];	
+ 	 			    		
+ 	 			    		searchSub(index,markerPosition);
  	 			    		
  	 			    		var listEl = document.getElementById('placesList');
  	 			    		removeAllChildNods(listEl);
@@ -292,7 +342,116 @@
  	 			            el.removeChild (el.lastChild);
  	 			        }
  	 			    }
- 				    
+ 			/////////검색에 관한 메서드들끝//////////////////////////////////////////\
+ 			//////////근처의 지하철역을 검색/////////////////////////
+ 			var allTitle=new Array();
+ 			var endInfo;
+ 			function searchSub(index,position)
+			{
+				map.setCenter(position);
+				var ps = new daum.maps.services.Places(map); 
+			    // 카테고리로 지하철 검색합니다
+			    ps.categorySearch('SW8', placesSearchCB, {useMapBounds:true}); 
+			    var arr=new Array();
+			    var strArr=new Array();
+			    // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+			    function placesSearchCB (status, data, pagination) 
+			    {
+			    	//alert(status);
+			        if (status === daum.maps.services.Status.OK) 
+			        {	        	
+			            for (var i=0; i<data.places.length; i++) 
+			            {		            	
+			            	var a=distanceSum(data.places[i]);     //마커를 출력 
+			            	arr[i]=a;
+			            	var str=a.split('/');
+			            	strArr[i]=str[0]; 
+			            } 
+			            strArr.sort(function(a,b){ 	   return a-b; 		   });
+			         	
+			            for(var i=0;i<arr.length;i++)
+			            {
+			         			var b=arr[i];
+			            		var str=b.split('/');
+			         			
+			         			if(strArr[0]==str[0])
+			         			{      					
+			         					var strLnt=str[1];
+			         					var strLng=str[2];
+			         					var strTitle=str[3];
+			         					var markerPosition=new daum.maps.LatLng(strLnt,strLng);
+			         					
+			         					if(index==0)
+			         					{
+			         						allTitle[0]=str[0]+"/"+strTitle+"/"+strLnt+","+strLng;
+			         						stnStMarker.setTitle(strTitle);
+			         						stnStMarker.setPosition(markerPosition);
+			         						stnStMarker.setMap(map);
+			         					}
+			         					if(index==1)
+			         					{
+			         						alert(cnt);
+			         						allTitle[cnt]=str[0]+"/"+strTitle+"/"+strLnt+","+strLng;
+			         						stnPassMarker[0].variable.setTitle(strTitle);
+			         						stnPassMarker[0].variable.setPosition(markerPosition);
+			         						stnPassMarker[0].variable.setMap(map);
+			         					}
+			         					if(index==2)
+			         					{
+			         						endInfo=str[0]+"/"+strTitle+"/"+strLnt+","+strLng;
+			         						stnEndMarker.setTitle(strTitle);
+			         						stnEndMarker.setPosition(markerPosition);
+			         						stnEndMarker.setMap(map);
+			         					}	
+			         			}         		
+			         	}
+			        }
+			    }			
+			}
+
+ 			function distanceSum(place)
+ 			{
+ 			// 마커를 생성하고 지도에 표시합니다
+ 				var distance;
+ 				var dis=new  daum.maps.LatLng(place.latitude, place.longitude);
+ 				
+ 				clickLine = new daum.maps.Polyline({
+ 				 map: map, // 선을 표시할 지도입니다 
+ 				 path: [map.getCenter()], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
+ 				 strokeWeight: 0, // 선의 두께입니다 
+ 				 strokeColor: '#db4040', // 선의 색깔입니다
+ 				 strokeOpacity: 0, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+ 				 strokeStyle: 'solid' // 선의 스타일입니다
+ 				});
+ 				
+ 				var path = clickLine.getPath();	
+ 				// 좌표 배열에 클릭한 위치를 추가합니다
+ 				path.push(dis);
+ 				clickLine.setPath(path);
+ 				distance = Math.round(clickLine.getLength());
+ 				distance=distance+"/"+place.latitude+"/"+place.longitude+"/"+place.title;
+ 				return distance;
+ 			}
+ 			////////////////////지하철검색 메서드끝///////////////////////////
+ 			function checkCourse()
+ 			{	
+ 				var parseInfo=allTitle[0].split('/');//거리/역이름/x,y 로 결합
+ 				var el = document.createElement('li');//li를 추가	 			 
+ 				fragment = document.createDocumentFragment();
+ 				var listEl = document.getElementById('placesList');//진행상황 리스트를 치환					 
+ 					
+ 				var start="출발지: "+startKey.value+"<br/> 근처역: "+parseInfo[1]+"<br/>역까지의 거리: "+parseInfo[0]+"m";	
+ 				el.innerHTML=start;
+ 				fragment.appendChild(el);
+ 				
+				for(var i=1; i<allTitle.length;i++)
+				{
+			
+				}
+
+ 			}
+ 			
+ 			
 	</script>
 
 <body>
