@@ -147,10 +147,16 @@
 </script>
 
 <style type="text/css">
-body{text-align:center}
+body {text-align:center}
+a {text-decoration:none;}
+a:hover {text-decoration:underline;}
+ul#adminMenu {border:1px black dashed;}
+ul#adminMenu li{border:1px red dashed; float:left; list-style:none;}
+ul#adminMenu li:hover ul{display:block;}
+ul#adminMenu li li{border:1px blue dashed; float:left; list-style:none;}
 .header {font-size:11pt;}
 #header {height:140px;}
-#admin {text-align:right; color:#ffffff; height:35px; background-image:url('/wtg/img/admin.png');}
+#info {text-align:right; height:35px; background-image:url('/wtg/img/info.png');}
 #logo {width:950px; height:100px; border: 1px solid black; margin:auto;}
 
 .menu {font-size:11pt; width:950px; text-align:center; margin:auto;}
@@ -161,7 +167,7 @@ body{text-align:center}
 #search {width:950px; margin-top:5px;}
 #main_search {width:950px; height:100px;}
 #sub_search {width:950px; height:250px; display:none;}
-#content {width:950px; min-height:300px; background-image:url('/wtg/img/content.png'); margin-top:5px;}
+#content {width:950px; height:300px; background-image:url('/wtg/img/content.png'); margin-top:5px;}
 
 .box {width:230px; height:320px; margin-left:6px; float:left; background-image:url('/wtg/img/box.png');}
 #theme {width:950px; height:350px;}
@@ -211,9 +217,19 @@ body{text-align:center}
 
 <div class="section" id="section">
 
-<div class="section" id="content">
-로고 이미지 바꾸기
-</div>
+	<div class="section" id="content">
+		로고 이미지 바꾸기
+		<form name="logo" method="post" enctype="multipart/form-data">
+			<div>파일 경로: <input type="text" name="logo_fileAddr" /> </div>
+			<div><input type="file" name="logo_upload" /></div>
+		</form>
+		*로고는 가로 950px 세로 100px의 크기의 이미지를 넣어주세요.
+	</div>
+	
+	<div class="section" id="content">
+	테마 색 바꾸기
+	</div>
+	
 	<div class="section" id="content">
 		<form name="main" method="post"  enctype="multipart/form-data">
 <table>

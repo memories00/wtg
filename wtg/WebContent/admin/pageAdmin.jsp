@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>main</title>
+<title>pageAdmin</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -12,9 +12,11 @@ body {text-align:center}
 a {text-decoration:none;}
 a:hover {text-decoration:underline;}
 ul#adminMenu {border:1px black dashed;}
-ul#adminMenu li{border:1px red dashed; float:left; list-style:none;}
+ul#adminMenu li{border:1px red dashed; float:center; list-style:none;}
 ul#adminMenu li:hover ul{display:block;}
-ul#adminMenu li li{border:1px blue dashed; float:left; list-style:none;}
+ul#adminMenu li li{border:1px blue dashed; float:center; margin-top:3px;}
+ul#adminMenu ul{display:none;}
+
 .header {font-size:11pt;}
 #header {height:140px;}
 #info {text-align:right; height:35px; background-image:url('/wtg/img/info.png');}
@@ -99,11 +101,12 @@ ul#adminMenu li li{border:1px blue dashed; float:left; list-style:none;}
 <div class="section" id="section">
 	<div class="section" id="content">
 		<br />
+		개인정보방침 수정
 		<br />
-		<br />
-		관리자 페이지 입니다.
-		<br />
-		<br />
+		<form action="personal" method="post">
+			<input type="submit" value="저장"/>
+		</form>
+		
 		<br />
 	</div>
 </div>

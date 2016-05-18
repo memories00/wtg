@@ -1,0 +1,24 @@
+@CHARSET "EUC-KR";
+body{text-align:center;}
+#wrapper {border:1px solid black;}
+#site {min-width:320px; max-width:950px; margin:auto; border:1px solid black;}
+
+#header {width:100%; left:0px; border:1px solid black;}
+#info {width:100%; height:50px; border:1px solid black; }
+#logo {left:30%; width:40%; margin:auto; height:100px; border:1px solid black;}
+#menu {width:100%; height:70px; border:1px solid black;}
+
+#contents {width:100%; top:235px; border:1px solid black;}
+#slider {width:100%; height:300px; border:1px solid black;}
+#search {width:90%; height:150px; margin:auto; border:1px solid black;}
+#theme {min-width:320px; min-height:410px; border:1px solid black; margin:auto;}
+#l_btn {margin-left:10px; float:left; width:10px; border:1px solid black;}
+#r_btn {margin-left:5px; margin-right:10px; float:left; width:10px; border:1px solid black;}
+#box1 {float:left; margin-left:5px; width:290px; height:400px; border:1px solid black;}
+#box2 {float:left; margin-left:5px; width:290px; height:400px; border:1px solid black;}
+#weather {width:290px; height:100px; border:1px solid black;}
+#add {width:290px; height:295px; border:1px solid black;}
+
+#footer {width:100%; border:1px solid black;}
+#link {width:100%; height:50px; border:1px solid black;}
+#company {width:100%; height:100px; border:1px solid black;}
