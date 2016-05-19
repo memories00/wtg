@@ -50,8 +50,9 @@ public class map
 		{
 			//System.out.println("inputBefore"+parseStn[i]);
 			String stnNum=station.searchStnNum(parseStn[i]);
-			System.out.println(stnNum);
-			String stnPos=station.searchStnPos(stnNum);
+			//System.out.println(stnNum);
+			String stnPos=station.searchStnPos(
+					stnNum);
 			//System.out.println(stnPos);
 			//System.out.println(parseStn[i]+"^"+stnPos+"/");
 			list.add(parseStn[i]+"^"+stnPos+"/");

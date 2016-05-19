@@ -51,7 +51,7 @@
 				도착지:&nbsp; <input type="text" id="endKey" style="width:200px" onkeypress="enterKey(event,this);">
 				<br/>
 				<div align="right">
-					<input type="button" value="경유지추가" onclick="addPass()"><input type="button" value="코스확인" onclick="checkCourse()"> 
+					<input type="button" value="경유지추가" onclick="addPass()">
 				</div>	
 					<hr>
 						<ul id="placesList"></ul>			
@@ -189,6 +189,14 @@
  						{
  							passCnt=1;
  						}
+ 						if(textId.substring(0,3)=='end')
+ 						{
+ 							passCnt=0;
+ 						}
+ 						if(textId.substring(0,5)=='start')
+ 						{
+ 							passCnt=0;
+ 						}
  					    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
  					    // keywordSearch(keyword, callback, options) (검색키워드,결과를 받을 콜백함수,옵션)
  					    // keyword로 검색하면 placesSearchCB의 함수형태로 결과를 받는다.
@@ -228,14 +236,14 @@
  				            // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
  				            // LatLngBounds 객체에 좌표를 추가합니다
  				           // alert(placePosition);
- 				            bounds.extend(placePosition);  
+ 				            //bounds.extend(placePosition);  
  							fragment.appendChild(itemEl);			
  				       	}
  						// 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
  						listEl.appendChild(fragment);
  						menuEl.scrollTop = 0;
  						// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
- 						map.setBounds(bounds);					
+ 						map.setLevel(6);					
  					    }
  	 			 	// 검색결과 항목을 Element로 반환하는 함수입니다
  	 			    function getListItem(index, places) {
@@ -257,11 +265,11 @@
  	 						itemStr += '<span>' +  places.address  + '</span>'; 
  	 					}				
  	 				    itemStr += '<span class="tel">' + places.phone  + '</span>' + '</div>'; 
- 	 				    if(passCnt==0)
+ 	 				    if(passCnt==0)//출발지,도착지를 선택했을경유
  	 				    {
  	 						var button = "<input type='button' value='출발' id='"+title+"-"+x+"-"+y+"' onclick='choice(0,this);'><input type='button' value='도착' id='"+title+"-"+x+"-"+y+"' onclick='choice(2,this);'>";
  	 				    }
- 	 				    else
+ 	 				    if(passCnt==1)//경유지를 추가했을경우
  	 				    {
  	 				    	var button = "<input type='button' value='경유지' id='"+title+"-"+x+"-"+y+"' onclick='choice(1,this);'>";
  	 				    }
@@ -276,11 +284,11 @@
  	 			    	{
  	 			    		var btnId=bt.getAttribute('id');
  	 			    		var parseId=btnId.split('-');
- 	 			    		var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);
+ 	 			    		var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);//아이디에 합쳐져있는 위치값을가져온다
  	 			    		var tagId=document.getElementById('startKey');
  	 			    		
  	 			    		fragment = document.createDocumentFragment();
- 	 			    		startMarker.setTitle(parseId[0]);
+ 	 			    		startMarker.setTitle(parseId[0]);//마커에 이름을 생성
  	 			    		startMarker.setPosition(markerPosition);//미리생성한 출발마커의 위치를 이동한다.
  	 			    		startMarker.setMap(map);//마커를 출력
  	 			    		tagId.value=parseId[0];	//input창에 이름을 출력
@@ -334,6 +342,7 @@
  	 			    	fragment = document.createDocumentFragment();
  	 			    	var markerPosition  = new daum.maps.LatLng(strArray[1], strArray[2]);
  	 			
+ 	 			    	
  	 			    	makePassMarker(strArray[0],markerPosition);//경유기 마커들을 추가한다.
  	 			    } 
  	 			 	
@@ -346,6 +355,7 @@
  			//////////근처의 지하철역을 검색/////////////////////////
  			var allTitle=new Array();
  			var endInfo;
+ 			var endPosition;
  			function searchSub(index,position)
 			{
 				map.setCenter(position);
@@ -364,6 +374,7 @@
 			            {		            	
 			            	var a=distanceSum(data.places[i]);     //마커를 출력 
 			            	arr[i]=a;
+			           
 			            	var str=a.split('/');
 			            	strArr[i]=str[0]; 
 			            } 
@@ -387,10 +398,13 @@
 			         						stnStMarker.setTitle(strTitle);
 			         						stnStMarker.setPosition(markerPosition);
 			         						stnStMarker.setMap(map);
+			         						if(startKey.value!="" && endKey.value!="")
+			         						{
+			         							checkCourse();
+			         						}
 			         					}
 			         					if(index==1)
 			         					{
-			         						alert(cnt);
 			         						allTitle[cnt]=str[0]+"/"+strTitle+"/"+strLnt+","+strLng;
 			         						stnPassMarker[0].variable.setTitle(strTitle);
 			         						stnPassMarker[0].variable.setPosition(markerPosition);
@@ -398,10 +412,17 @@
 			         					}
 			         					if(index==2)
 			         					{
-			         						endInfo=str[0]+"/"+strTitle+"/"+strLnt+","+strLng;
+			         						
+			         						endInfo="도착지: "+endKey.value+"<br/> 근처역: "+strTitle+"<br/>역까지의 거리: "+str[0]+"m<br/><hr>";
+			         						endPosition=strTitle;
 			         						stnEndMarker.setTitle(strTitle);
 			         						stnEndMarker.setPosition(markerPosition);
 			         						stnEndMarker.setMap(map);
+			         						
+			         						if(startKey.value!=""  && endKey.value!="")
+			         						{
+			         							checkCourse();
+			         						}
 			         					}	
 			         			}         		
 			         	}
@@ -433,6 +454,7 @@
  				return distance;
  			}
  			////////////////////지하철검색 메서드끝///////////////////////////
+ 			/////////////////// 여행경로를 찾는 메서드들//////////////////
  			function checkCourse()
  			{	
  				var parseInfo=allTitle[0].split('/');//거리/역이름/x,y 로 결합
@@ -440,16 +462,25 @@
  				fragment = document.createDocumentFragment();
  				var listEl = document.getElementById('placesList');//진행상황 리스트를 치환					 
  					
- 				var start="출발지: "+startKey.value+"<br/> 근처역: "+parseInfo[1]+"<br/>역까지의 거리: "+parseInfo[0]+"m";	
- 				el.innerHTML=start;
- 				fragment.appendChild(el);
- 				
+ 				var start="출발지: "+startKey.value+"<br/> 근처역: "+parseInfo[1]+"<br/>역까지의 거리: "+parseInfo[0]+"m"+"<br/><hr>";	
+
+ 				var b="";
 				for(var i=1; i<allTitle.length;i++)
 				{
-			
+					var Info=allTitle[i].split('/');
+					var name="passKey"+(i-1);
+					var c=document.getElementById(name);
+					
+					//var a=document.createElement('li');
+					var pass="경유지: "+c.value+"<br/> 근처역: "+Info[1]+"<br/>역까지의 거리: "+Info[0]+"m"+"<br/><hr>";
+					b=b+pass;
 				}
 
+				el.innerHTML=start+b+endInfo;//출발지+경유지+도착지로 결합
+				fragment.appendChild(el);
+				listEl.appendChild(fragment);
  			}
+
  			
  			
 	</script>

@@ -52,7 +52,7 @@ public class searchStation
 			         
 			           result = title.getFirstChild().getNodeValue();
 			           result=result.replaceAll("\\s", "");
-			          System.out.println("i2s"+result);
+			         // System.out.println("i2s"+result);
 			        }
 		      }
 		    }
@@ -68,11 +68,11 @@ public class searchStation
 	{
 		  URL url;
 		  String result="";
-		  System.out.println("ssn"+stnName);
+		 // System.out.println("ssn"+stnName);
 		  try 
 		  {
 			  String name = URLEncoder.encode(stnName,"UTF-8");
-			 System.out.println("ssn"+name); 
+			 //System.out.println("ssn"+name); 
 			  //String last = URLDecoder.decode(end, "UTF-8");
 		    String responseStation = "http://openAPI.seoul.go.kr:8088/4b71584d6f6573633131314552586b5a/xml/SearchInfoBySubwayNameService/1/5/"+name;
 		    url = new URL(responseStation);
@@ -83,7 +83,7 @@ public class searchStation
 		    HttpURLConnection httpConnection = (HttpURLConnection)connection; 
 		    
 		    int responseCode = httpConnection.getResponseCode(); 
-		    System.out.println(responseCode);
+		    //System.out.println(responseCode);
 		    
 		    if (responseCode == HttpURLConnection.HTTP_OK) 
 		    { 
@@ -135,7 +135,7 @@ public class searchStation
 		    HttpURLConnection httpConnection = (HttpURLConnection)connection; 
 		    
 		    int responseCode = httpConnection.getResponseCode(); 
-		    System.out.println(responseCode);
+		    //System.out.println(responseCode);
 		    
 		    if (responseCode == HttpURLConnection.HTTP_OK) 
 		    { 
