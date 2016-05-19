@@ -72,4 +72,10 @@ public class mainBean
 		
 		return  "/main/main.jsp";
 	}
+	
+	@RequestMapping("/main2.nhn")
+	public String main()
+	{
+		return  "/main/main2.jsp";
+	}
 }
