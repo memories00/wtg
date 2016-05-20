@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="/wtg/lib/example.css">
 <link rel="stylesheet" type="text/css" href="/wtg/lib/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/yoonho.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/mainCss.css" />
 <jsp:useBean id="Api" class="api.lib.Api_Jsp_Client" scope="page"/>
 <html>
 <head>
@@ -17,7 +18,7 @@
 <script>
     $(function() {
       $('#slides').slidesjs({
-        width: 940,
+        width: 950,
         height: 300,
         play: {
           active: true,
@@ -77,73 +78,82 @@ $(document).ready(function(){
 
 
 </script>
+<script>
+function test_Search()
+{
+	document.search.action="/wtg/searchaction.nhn"
+	document.search.submit();
+}
+</script>
+<p><script>
+    // html dom 이 다 로딩된 후 실행된다.
+    $(document).ready(function(){
+        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+        $(".menu>a").click(function(){
+            var submenu = $(this).next("ul");
+ 
+            // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+            if( submenu.is(":visible") ){
+                submenu.slideUp();
+            }else{
+                submenu.slideDown();
+            }
+        });
+    });
+</script></p>
 
 
-
-<style type="text/css">
-body{text-align:center}
-.header {font-size:11pt;}
-#header {height:140px;}
-#info {text-align:right; height:35px; background-image:url('/wtg/img/info.png');}
-#logo {width:950px; height:100px; border: 1px solid black; margin:auto;}
-
-.menu {font-size:11pt; width:950px; text-align:center; margin:auto;}
-#menu {width:950px; height:50px; margin-top:5px; background-image:url('/wtg/img/menu.png');}
-
-.section {font-size:13pt; width:950px; margin:auto;}
-#section {width:950px; min-height:800px; border:1px solid black;}
-#search {width:950px; margin-top:5px;}
-#main_search {width:950px; height:100px;}
-#sub_search {width:950px; height:250px; display:none;}
-#content {width:950px; margin-top:5px; border:1px solid black;}
-
-.box {width:230px; height:320px; margin-left:6px; float:left; background-image:url('/wtg/img/box.png');}
-#theme {width:950px; height:350px;}
-.roll {margin-left:40px;}
-
-.footers {font-size:11pt;}
-#footers {margin-top:5px; margin-bottom:5px; background-image:url('/wtg/img/footer.png');}
-#f_link {height:60px; width:950px; margin:auto;}
-
-#wrapper {min-width:950px; border: 1px solid black; margin:auto;}
-
-</style>
 </head>
 <body>
 
 <div id="wrapper">
 <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 탑 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
-<div class="header" id="header">
-		<div class="header" id="info">
+<div id="header">
+	<div id="info">
 		<c:choose>
-		<c:when test="${sessionScope.memId ne null}">
-			${sessionScope.memId} 님 환영합니다!  
-			<a id="logout-btn" onclick="window.location='logout.nhn'">
-				<img src="/wtg/img/logoutBtn.jpg" width="100"/>
-			</a>
-		</c:when>
-		<c:otherwise>
-			<a href="http://localhost:8000/wtg/login.nhn">
-				<img src="/wtg/img/loginBtn.jpg" width="100"/>
-			</a>
-		</c:otherwise>
+			<c:when test="${sessionScope.memId ne null}">
+				${sessionScope.memId} 님 환영합니다!  
+				<a id="logout-btn" onclick="window.location='logout.nhn'">
+					<img src="/wtg/img/logoutBtn.jpg" width="100"/>
+				</a>
+			</c:when>
+			<c:otherwise>
+				<a href="http://localhost:8000/wtg/login.nhn">
+					<img src="/wtg/img/loginBtn.jpg" width="100"/>
+				</a>
+			</c:otherwise>
 		</c:choose>
 	</div>
-
-	<div class="header" id="logo">
-	로고로고로고로고로고로고로로고고고고고고로로로로ㅗ로
+	<div id="info2">
+		지역:${state_ko}
+		&nbsp;&nbsp;
+		<div class="roll">
+		<ul>
+			<li>현재온도:${temp}<jsp:include page="weather.jsp" flush="false"/></li>
+			<li>최고온도:${max_temp}<jsp:include page="weather.jsp" flush="false"/></li>
+			<li>최저온도:${min_temp}<jsp:include page="weather.jsp" flush="false"/></li>
+			<li>미세먼지농도:${pm10}</li>
+		</ul>
+		</div>
+	</div>
+	<div id="logo">
+	<img id="logo_img" src="/wtg/themeImg/${gg}" style="width: 100%; max-width: 100px; height:100%; max-height:100px;"/>
+	</div>	
+	<div class="dif" id="menu">
+		<ul id="main_menu">
+		<li>All</li>
+		<li>관광명소</li>
+		<li>데이트</li>
+		<li>스포츠</li>
+		<li>쇼핑</li>
+		<li>추천코스</li>
+		</ul>
 	</div>
 </div>
-
-<div class="menu" id="menu">
-	메뉴
-</div>
-
 <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 탑 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
-
-<div class="section" id="section">
-	<div class="section" id="content">
-		<table width="900">
+<div class="dif" id="contents">
+	<div id="slider">
+	<table width="950">
 	<tr>
 	  <td>
 		<div class="container">
@@ -159,66 +169,74 @@ body{text-align:center}
 		</div>
 	  </td>
 	</tr>
-	<tr>
-	  <td>
-		<section id="content">
-		  <div id="lista1" class="als-container">
-			<span class="als-prev"><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
-			<div class="als-viewport">
-			  <ul class="als-wrapper">
-				<c:forEach var="list2" items="${list2}">
-				  <li class="als-item">
-					<a href="http://${list2.fileaddr2}/">
-					<img src="/wtg/categoryimg/${list2.filetime2}${list2.orgname2}" style="width: 100%; max-width: 100px; height:100%; max-height:100px;"/>
-					</a>
-				  </li>	
-				</c:forEach>
-			  </ul>
-			</div>
-			<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
-		  </div>
-		</section>
-	  </td>
-	</tr>
-</table>
+	</table>
+	
 	</div>
 
-	<div class="section" id="search">
-		<div class="section" id="main_search">
-		<a>상세 검색</a>
-		</div>
-		<div class="section" id="sub_search">
-		</div>
-	</div>
-
-	<div class="section" id="theme">
-		<div class="box" >박스1</div>
-		<div class="box" >박스2</div>
-		<div class="box" >박스3</div>
-		<div class="box" >
-			지역:${state_ko}
-			<div class="roll">
-			<ul>
-				<li>현재온도:${temp}<jsp:include page="weather.jsp" flush="false"/></li>
-				<li>최고온도:${max_temp}<jsp:include page="weather.jsp" flush="false"/></li>
-				<li>최저온도:${min_temp}<jsp:include page="weather.jsp" flush="false"/></li>
-				<li>미세먼지농도:${pm10}</li>
+	<div id="search">
+		<form name="search" method="post"  enctype="multipart/form-data">
+		<input type="text" name="search">&nbsp;<input type="button" value="검색" onClick="test_Search()">
+		<div>
+		    <ul>
+		        <li class="menu">
+		        	<a><input type="button" value="상세검색"></a>
+		        	<ul class="hide">
+		                <li>
+							아웃터<input type="checkbox" name="check" value="1"/>
+							티셔츠<input type="checkbox" name="check" value="2"/>
+							셔츠<input type="checkbox" name="check" value="3"/>
+							신발<input type="checkbox" name="check" value="4"/>
+							가방<input type="checkbox" name="check" value="5"/>
+							모자<input type="checkbox" name="check" value="6"/>
+						</li>
+					</ul>
+				</li>
 			</ul>
-			</div>
 		</div>
+		</form>
+	</div>
+
+	<div id="theme">
+		<table>
+			<tr>
+			  <td>
+				<section id="content">
+				  <div id="lista1" class="als-container">
+					<span class="als-prev"><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
+					<div class="als-viewport">
+					  <ul class="als-wrapper">
+						<c:forEach var="list2" items="${list2}">
+						  <li class="als-item">
+							<a href="http://${list2.fileaddr2}/">
+							<img src="/wtg/categoryimg/${list2.filetime2}${list2.orgname2}" style="width: 100%; max-width: 100px; height:100%; max-height:100px;"/>
+							</a>
+						  </li>	
+						</c:forEach>
+					  </ul>
+					</div>
+					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
+				  </div>
+				</section>
+			  </td>
+			</tr>
+		</table>
+	</div>
+	<div id="review">
+		review
 	</div>
 </div>
-
 <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 바텀 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
-<div class="footer" id="footers">
-	<div class="footers" id="f_link">
+<div id="footer">
+	<div class="dif" id="link">
 	<a href="http://localhost:8000/wtg/login.nhn">회사소개</a> &nbsp;
 	<a href="http://localhost:8000/wtg/login.nhn">고객센터</a> &nbsp;
 	<a href="http://localhost:8000/wtg/login.nhn">사이트맵</a>
 	</div>
+	<div class="dif" id="company">
+	company
+	</div>
 </div>
 <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 바텀 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 </div>
-
 </body>
 </html>

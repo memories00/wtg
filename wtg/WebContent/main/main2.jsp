@@ -9,23 +9,23 @@
 <body>
 
 <div id="wrapper">
-
-<div id="site">
-
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é Å¾ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
 <div id="header">
 	<div id="info">
 	info
 	</div>
+	<div id="info2">
+	info2
+	</div>
 	<div id="logo">
 	logo
 	</div>
-	<div id="menu">
+	<div class="dif" id="menu">
 	menu
 	</div>
 </div>
 <!--¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è Å¾ ¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è-->
-<div id="contents">
+<div class="dif" id="contents">
 	<div id="slider">
 	slider
 	</div>
@@ -33,40 +33,22 @@
 	search
 	</div>
 	<div id="theme">
-		<div id="l_btn">
-		btn
-		</div>
-		<div id="box1">
-		box1
-		</div>
-		<div id="box1">
-		box1
-		</div>
-		<div id="r_btn">
-		btn
-		</div>
-		<div id="box2">
-			<div id="weather">
-			weather
-			</div>
-			<div id="add">
-			add
-			</div>
-			
-		</div>
+	theme
 	</div>
+	<div id="add">
+	add
+	</div>	
 </div>
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é ¹ÙÅÒ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
 <div id="footer">
-	<div id="link">
+	<div class="dif" id="link">
 	link
 	</div>
-	<div id="company">
+	<div class="dif" id="company">
 	company
 	</div>
 </div>
 <!--¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è ¹ÙÅÒ ¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è-->
-</div>
 </div>
 
 </body>

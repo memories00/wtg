@@ -190,7 +190,7 @@ ul#adminMenu li li{border:1px blue dashed; float:left; list-style:none;}
 			<c:when test="${sessionScope.memId ne '168456368'}">
 				<script>
 					alert("접근권한이 없습니다.");
-					location.replace("/wtg/main.nhn");
+					//location.replace("/wtg/main.nhn");
 				</script>
 			</c:when>
 

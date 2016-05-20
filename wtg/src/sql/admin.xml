@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap namespace="admin">
+<typeAlias alias="slide" type="main.bean.SlideDTO" />
+<typeAlias alias="mem" type="admin.bean.MemDTO" />
+
+	<select id="member" resultClass="mem">
+		select * from mem
+	</select>
+	
+	<select id="memsearch" resultClass="mem" parameterClass="String">
+		select * from mem where id like '%'||#search#||'%'
+	</select>
+	
+	<delete id="memdelete" parameterClass="String">
+			DELETE FROM mem WHERE id = #c#
+   	</delete>
+   	
+   	<update id="personal" parameterClass="mem">
+    		UPDATE personal SET per = #per#
+   	</update>
+   	
+   	<select id="per" resultClass="mem">
+		select per from personal
+	</select>
+	
+	<select id="testsearch" resultClass="slide" parameterClass="String">
+		select ou from(select ou from testsearch union all select ts from testsearch union all select st from testsearch 
+		union all select sin from testsearch union all select ga from testsearch union all select hat from testsearch) where ou like '%'||#search#||'%'
+	</select>
+	
+	<select id="searchou" resultClass="slide" parameterClass="String">
+		select ou from testsearch where ou like '%'||#search#||'%'
+	</select>
+	
+	<select id="searchts" resultClass="slide" parameterClass="String">
+		select ts from testsearch where ts like '%'||#search#||'%'
+	</select>
+	
+	<select id="searchst" resultClass="slide" parameterClass="String">
+		select st from testsearch where st like '%'||#search#||'%'
+	</select>
+	
+	<select id="searchsin" resultClass="slide" parameterClass="String">
+		select sin from testsearch where sin like '%'||#search#||'%'
+	</select>
+	
+	<select id="searchga" resultClass="slide" parameterClass="String">
+		select ga from testsearch where ga like '%'||#search#||'%'
+	</select>
+	
+	<select id="searchhat" resultClass="slide" parameterClass="String">
+		select hat from testsearch where hat like '%'||#search#||'%'
+	</select>
+	
+	<select id="testsql" resultClass="slide">
+		select filetime, DENSE_RANK() over(order by filec desc) as filec from(
+		select filetime, count(*) AS filec
+		from sldie
+		group by filetime
+		having count(*)>0)
+	</select>
+</sqlMap>
