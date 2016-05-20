@@ -87,7 +87,7 @@ ul#adminMenu li li{border:1px blue dashed; float:left; list-style:none;}
 			<a href="http://localhost:8000/wtg/boardAdmin.nhn">게시판 관리</a>
 			<ul>
 				<li><a href="http://localhost:8000/wtg/boardAdmin.nhn">게시글 관리</a></li>
-				<li><a href="http://localhost:8000/wtg/boardReportAdmin.nhn">신고글 관리</a></li>
+				<li><a href="http://localhost:8000/wtg/reportList.nhn">신고글 관리</a></li>
 				<li><a href="http://localhost:8000/wtg/boardReplyAdmin.nhn">덧글 관리</a></li>
 			</ul>
 		</li>
