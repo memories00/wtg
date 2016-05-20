@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="/spring/js/jquery-1.8.2.min.js"></script>
 <style>
@@ -10,7 +9,7 @@
 <script>
 function test_Search()
 {
-	document.search.action="/spring/searchaction.nhn"
+	document.search.action="/wtg/searchaction.nhn"
 	document.search.submit();
 }
 </script>

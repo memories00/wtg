@@ -78,6 +78,29 @@ $(document).ready(function(){
 
 
 </script>
+<script>
+function test_Search()
+{
+	document.search.action="/wtg/searchaction.nhn"
+	document.search.submit();
+}
+</script>
+<p><script>
+    // html dom 이 다 로딩된 후 실행된다.
+    $(document).ready(function(){
+        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+        $(".menu>a").click(function(){
+            var submenu = $(this).next("ul");
+ 
+            // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+            if( submenu.is(":visible") ){
+                submenu.slideUp();
+            }else{
+                submenu.slideDown();
+            }
+        });
+    });
+</script></p>
 
 
 </head>
@@ -103,6 +126,7 @@ $(document).ready(function(){
 	</div>
 	<div id="info2">
 		지역:${state_ko}
+		&nbsp;&nbsp;
 		<div class="roll">
 		<ul>
 			<li>현재온도:${temp}<jsp:include page="weather.jsp" flush="false"/></li>
@@ -113,10 +137,17 @@ $(document).ready(function(){
 		</div>
 	</div>
 	<div id="logo">
-	logo
+	<img id="logo_img" src="/wtg/themeImg/${gg}" style="width: 100%; max-width: 100px; height:100%; max-height:100px;"/>
 	</div>	
 	<div class="dif" id="menu">
-	menu
+		<ul id="main_menu">
+		<li>All</li>
+		<li>관광명소</li>
+		<li>데이트</li>
+		<li>스포츠</li>
+		<li>쇼핑</li>
+		<li>추천코스</li>
+		</ul>
 	</div>
 </div>
 <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 탑 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
@@ -143,7 +174,26 @@ $(document).ready(function(){
 	</div>
 
 	<div id="search">
-	search
+		<form name="search" method="post"  enctype="multipart/form-data">
+		<input type="text" name="search">&nbsp;<input type="button" value="검색" onClick="test_Search()">
+		<div>
+		    <ul>
+		        <li class="menu">
+		        	<a><input type="button" value="상세검색"></a>
+		        	<ul class="hide">
+		                <li>
+							아웃터<input type="checkbox" name="check" value="1"/>
+							티셔츠<input type="checkbox" name="check" value="2"/>
+							셔츠<input type="checkbox" name="check" value="3"/>
+							신발<input type="checkbox" name="check" value="4"/>
+							가방<input type="checkbox" name="check" value="5"/>
+							모자<input type="checkbox" name="check" value="6"/>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		</form>
 	</div>
 
 	<div id="theme">
@@ -170,11 +220,9 @@ $(document).ready(function(){
 			  </td>
 			</tr>
 		</table>
-
 	</div>
-	
-	<div id="add">
-	add
+	<div id="review">
+		review
 	</div>
 </div>
 <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 바텀 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
