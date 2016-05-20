@@ -37,20 +37,33 @@ public class map
 	{	
 		return  "/map/clickTest.jsp";
 	}
+	@RequestMapping("/stnName.nhn")
+	public String stnName(HttpServletRequest request,String start,String end)
+	{	
+		searchStation station=new searchStation();
+		String stnName=station.input2Station(start, end);
+		
+		request.setAttribute("stnName",stnName);
+		return  "/map/resultName.jsp";
+	}
+	
+	
+	
 	@RequestMapping("/searchStation.nhn")
 	public String searchStation(HttpServletRequest request,String start,String end)
 	{	
+
 		 ArrayList list=new ArrayList();
 		searchStation station=new searchStation();
 		String stnName=station.input2Station(start, end);
-		//stnName=stnName.substring(0, stnName.length()-1);
+		stnName=stnName.substring(0, stnName.length()-1);
 		String parseStn[]=stnName.split(",");
-		//System.out.println(parseStn.length);
+		System.out.println(parseStn.length);
 		for(int i =1; i<parseStn.length-1;i++)
 		{
 			//System.out.println("inputBefore"+parseStn[i]);
 			String stnNum=station.searchStnNum(parseStn[i]);
-			System.out.println(stnNum);
+			//System.out.println(stnNum);
 			String stnPos=station.searchStnPos(stnNum);
 			//System.out.println(stnPos);
 			//System.out.println(parseStn[i]+"^"+stnPos+"/");
