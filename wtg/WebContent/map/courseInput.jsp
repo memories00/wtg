@@ -54,7 +54,8 @@
 					<input type="button" value="경유지추가" onclick="addPass()">
 				</div>	
 					<hr>
-						<ul id="placesList"></ul>			
+						<ul id="placesList"></ul>	
+						<input type="button" value="등록하기"  style="width:300px;height:40px;"onclick="please()">		
 			</div>
 		</div>
 </div>	
@@ -172,6 +173,7 @@
 			function deletePass(LiId)
 			{
 				document.getElementById("passText").removeChild(LiId.parentNode);
+				cnt--;
 				//alert(c);
 			}
 			
@@ -267,11 +269,11 @@
  	 				    itemStr += '<span class="tel">' + places.phone  + '</span>' + '</div>'; 
  	 				    if(passCnt==0)//출발지,도착지를 선택했을경유
  	 				    {
- 	 						var button = "<input type='button' value='출발' id='"+title+"-"+x+"-"+y+"' onclick='choice(0,this);'><input type='button' value='도착' id='"+title+"-"+x+"-"+y+"' onclick='choice(2,this);'>";
+ 	 						var button = "<input type='button' value='출발' id='"+title+"-"+x+"-"+y+"-"+places.address+"' onclick='choice(0,this);'><input type='button' value='도착' id='"+title+"-"+x+"-"+y+"-"+places.address+"' onclick='choice(2,this);'>";
  	 				    }
  	 				    if(passCnt==1)//경유지를 추가했을경우
  	 				    {
- 	 				    	var button = "<input type='button' value='경유지' id='"+title+"-"+x+"-"+y+"' onclick='choice(1,this);'>";
+ 	 				    	var button = "<input type='button' value='경유지' id='"+title+"-"+x+"-"+y+"-"+places.address+"' onclick='choice(1,this);'>";
  	 				    }
  	 				    el.innerHTML = itemStr+button;
  	 				    el.className = 'item';
@@ -279,11 +281,14 @@
  	 				    return el;
  	 				}  
  	 			 	
- 	 			   function choice(index,bt){//검색리스트에서 선택을 눌렀을경우
+ 	 			   function choice(index,bt)
+ 	 			   {//검색리스트에서 선택을 눌렀을경우
  	 			    	if(index==0)
  	 			    	{
  	 			    		var btnId=bt.getAttribute('id');
  	 			    		var parseId=btnId.split('-');
+ 	 			    		var parseAddress=parseId[3];
+ 	 			    		//alert(parseAddress);
  	 			    		var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);//아이디에 합쳐져있는 위치값을가져온다
  	 			    		var tagId=document.getElementById('startKey');
  	 			    		
@@ -293,7 +298,7 @@
  	 			    		startMarker.setMap(map);//마커를 출력
  	 			    		tagId.value=parseId[0];	//input창에 이름을 출력
  	 			    		
- 	 			    		searchSub(index,markerPosition);
+ 	 			    		searchSub(index,markerPosition,parseAddress);
  	 			    		
  	 			    		var listEl = document.getElementById('placesList');
  	 			    		removeAllChildNods(listEl);
@@ -302,6 +307,8 @@
  	 			   		{	   			
 	 	 			   		var btnId=bt.getAttribute('id'); 			   		
 		 			    	var parseId=btnId.split('-');
+		 			    	var parseAddress=parseId[3];
+		 			    	//alert(parseAddress);
 		 			    	var minus=1;
 		 			    	var plusId=cnt-minus;
 		 			    	var tagId=document.getElementById('passKey'+plusId);	 			    	
@@ -313,8 +320,8 @@
 		 			    	passMarkerInfo[0].variable.setMap(map);
 		 			    	tagId.value=parseId[0];	
 		 			    	
-		 			    	searchSub(index,markerPosition);
-		 			    	
+		 			    	searchSub(index,markerPosition,parseAddress);
+
 		 			    	var listEl = document.getElementById('placesList');
  	 			    		removeAllChildNods(listEl);
  	 			   		}
@@ -322,6 +329,7 @@
  	 			    	{
  	 			    		var btnId=bt.getAttribute('id');
  	 			    		var parseId=btnId.split('-');
+ 	 			    		var parseAddress=parseId[3];
  	 			    		var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);
  	 			    		var tagId=document.getElementById('endKey');
  	 			    		
@@ -331,7 +339,7 @@
  	 			    		endMarker.setMap(map);
  	 			    		tagId.value=parseId[0];	
  	 			    		
- 	 			    		searchSub(index,markerPosition);
+ 	 			    		searchSub(index,markerPosition,parseAddress);
  	 			    		
  	 			    		var listEl = document.getElementById('placesList');
  	 			    		removeAllChildNods(listEl);
@@ -356,7 +364,8 @@
  			var allTitle=new Array();
  			var endInfo;
  			var endPosition;
- 			function searchSub(index,position)
+ 			
+ 			function searchSub(index,position,address)
 			{
 				map.setCenter(position);
 				var ps = new daum.maps.services.Places(map); 
@@ -394,33 +403,39 @@
 			         					
 			         					if(index==0)
 			         					{
-			         						allTitle[0]=str[0]+"/"+strTitle+"/"+strLnt+","+strLng;
+			         						allTitle[0]=str[0]+"/"+strTitle+"/"+address+"/"+strLnt+","+strLng;
 			         						stnStMarker.setTitle(strTitle);
 			         						stnStMarker.setPosition(markerPosition);
 			         						stnStMarker.setMap(map);
+			         						
 			         						if(startKey.value!="" && endKey.value!="")
 			         						{
+			         							CheckStation("0");
 			         							checkCourse();
 			         						}
 			         					}
 			         					if(index==1)
 			         					{
-			         						allTitle[cnt]=str[0]+"/"+strTitle+"/"+strLnt+","+strLng;
+			         						//alert("search"+address);
+			         						allTitle[cnt]=str[0]+"/"+strTitle+"/"+address+"/"+strLnt+","+strLng;
 			         						stnPassMarker[0].variable.setTitle(strTitle);
 			         						stnPassMarker[0].variable.setPosition(markerPosition);
 			         						stnPassMarker[0].variable.setMap(map);
+			         						//alert("여기");
+			         						CheckStation(index);
 			         					}
 			         					if(index==2)
 			         					{
 			         						
-			         						endInfo="도착지: "+endKey.value+"<br/> 근처역: "+strTitle+"<br/>역까지의 거리: "+str[0]+"m<br/><hr>";
+			         						endInfo="도착지: "+endKey.value+"<br/>주소: "+address+"<br/> 근처역: "+strTitle+"<br/>역까지의 거리: "+str[0]+"m<br/><hr>";
 			         						endPosition=strTitle;
 			         						stnEndMarker.setTitle(strTitle);
 			         						stnEndMarker.setPosition(markerPosition);
 			         						stnEndMarker.setMap(map);
-			         						
+			         						//alert("dd");
 			         						if(startKey.value!=""  && endKey.value!="")
 			         						{
+			         							CheckStation("2");
 			         							checkCourse();
 			         						}
 			         					}	
@@ -429,6 +444,18 @@
 			        }
 			    }			
 			}
+ 			
+ 			
+ 			
+ 			function sleep(num){	//[1/1000초]
+ 				 var now = new Date();
+ 				   var stop = now.getTime() + num;
+ 				   while(true){
+ 					 now = new Date();
+ 					 if(now.getTime() > stop)return;
+ 				   }
+ 	}
+ 			
 
  			function distanceSum(place)
  			{
@@ -455,34 +482,102 @@
  			}
  			////////////////////지하철검색 메서드끝///////////////////////////
  			/////////////////// 여행경로를 찾는 메서드들//////////////////
+ 			var totalStn=new Array();
  			function checkCourse()
  			{	
- 				var parseInfo=allTitle[0].split('/');//거리/역이름/x,y 로 결합
+ 				//alert(allTitle.length);
+ 				var parseInfo=allTitle[0].split('/');//거리/역이름/주소/x,y 로 결합
  				var el = document.createElement('li');//li를 추가	 			 
  				fragment = document.createDocumentFragment();
  				var listEl = document.getElementById('placesList');//진행상황 리스트를 치환					 
- 					
- 				var start="출발지: "+startKey.value+"<br/> 근처역: "+parseInfo[1]+"<br/>역까지의 거리: "+parseInfo[0]+"m"+"<br/><hr>";	
+
+ 				var start="출발지: "+startKey.value+"<br/>주소: "+parseInfo[2]+"<br/> 근처역: "+parseInfo[1]+"<br/>역까지의 거리: "+parseInfo[0]+"m<br/><hr>";	
 
  				var b="";
+
 				for(var i=1; i<allTitle.length;i++)
 				{
 					var Info=allTitle[i].split('/');
+					var parseInfo=info[2];
 					var name="passKey"+(i-1);
 					var c=document.getElementById(name);
-					
 					//var a=document.createElement('li');
-					var pass="경유지: "+c.value+"<br/> 근처역: "+Info[1]+"<br/>역까지의 거리: "+Info[0]+"m"+"<br/><hr>";
+					var pass="경유지: "+c.value+"<br/> 주소: "+parseInfo[2]+"<br/>근처역: "+Info[1]+"<br/>역까지의 거리: "+Info[0]+"m<br/><hr>";
 					b=b+pass;
+					
 				}
-
 				el.innerHTML=start+b+endInfo;//출발지+경유지+도착지로 결합
 				fragment.appendChild(el);
 				listEl.appendChild(fragment);
  			}
+ 			
+ 			
+ 			function CheckStation(a)
+ 	 		{
+ 				//alert("1");
+ 	 			var firstLo;
+ 	 			var lastLo;
+ 	 			var endCnt=0;
+ 	 			//alert("2");
+ 	 			if(a==1)//경유지가 2개이상 있는경우 경유지에서 경유지사이의 역
+ 	 			{
+ 	 				//alert("3");
+	 	 			var firStr=allTitle[cnt-1].split('/');
+	 	 			var firStr1=firStr[1].indexOf('역',1);
+	 		 				
+	 	 			var laStr=allTitle[cnt].split('/');
+	 	 			var laStr1=laStr[1].indexOf('역',1);
+	 	 			
+	 	 			firstLo=firStr[1].substring(0,firStr1);
+	 	 			lastLo=laStr[1].substring(0,laStr1);	
+ 	 			}
+ 	 			
+ 	 			if(a==0||a==2)
+ 	 			{
+ 	 				if(cnt>0)//경유지가 있고 마지막역을 출력
+ 	 				{
+ 	 					//alert("2");
+ 	 					var parseStr=allTitle[cnt].split('/');
+	 	 	 			var parseNum=parseStr[1].indexOf('역',1);
+	 	 	 			endCnt=1;
+ 	 				}
+ 	 				else//출발지와 경유지만있는경우
+ 	 				{
+	 	 	 			var parseStr=allTitle[0].split('/');	 	 	 			
+	 	 	 			var parseNum=parseStr[1].indexOf('역',1);
+ 	 				}
+ 	 				var endStr=endPosition.indexOf('역',1);
+ 	 				//alert(endStr);
 
- 			
- 			
+ 	 	 			firstLo=parseStr[1].substring(0,parseNum);
+ 	 	 			lastLo=endPosition.substring(0,endStr);		 				
+ 	 			}
+ 	 			var firstStr = escape(encodeURIComponent(firstLo)); 
+ 	 			var lastStr = escape(encodeURIComponent(lastLo)); 
+ 	 			
+ 	 			$.ajax({		
+ 	 				url:"searchStation.nhn?start="+firstStr+"&end="+lastStr,
+		 	 				success:function(data)
+		 	 				{
+		 	 					if(endCnt==1)
+		 	 					{
+		 	 						totalStn[cnt+1]=data.replace(/\s/gi, '');
+		 	 						
+		 	 					}
+		 	 					else//출발지와 경유지만있는경우
+		 	 					{
+			 	 					totalStn[0]=data.replace(/\s/gi, '');
+			 	 				}
+		 	 					
+		 	 				}
+ 		 	 	        })
+ 		 	 	     //alert("다를수있어요");
+ 	 		}
+ 			function please()
+ 			{
+ 				alert(totalStn[0]);
+ 			}
+
 	</script>
 
 <body>
