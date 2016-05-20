@@ -101,9 +101,20 @@ $(document).ready(function(){
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<div class="dif" id="logo">
-	logo
+	<div id="info2">
+		지역:${state_ko}
+		<div class="roll">
+		<ul>
+			<li>현재온도:${temp}<jsp:include page="weather.jsp" flush="false"/></li>
+			<li>최고온도:${max_temp}<jsp:include page="weather.jsp" flush="false"/></li>
+			<li>최저온도:${min_temp}<jsp:include page="weather.jsp" flush="false"/></li>
+			<li>미세먼지농도:${pm10}</li>
+		</ul>
+		</div>
 	</div>
+	<div id="logo">
+	logo
+	</div>	
 	<div class="dif" id="menu">
 	menu
 	</div>
@@ -161,17 +172,7 @@ $(document).ready(function(){
 		</table>
 
 	</div>
-	<div id="weather">
-		지역:${state_ko}
-		<div class="roll">
-		<ul>
-			<li>현재온도:${temp}<jsp:include page="weather.jsp" flush="false"/></li>
-			<li>최고온도:${max_temp}<jsp:include page="weather.jsp" flush="false"/></li>
-			<li>최저온도:${min_temp}<jsp:include page="weather.jsp" flush="false"/></li>
-			<li>미세먼지농도:${pm10}</li>
-		</ul>
-		</div>
-	</div>
+	
 	<div id="add">
 	add
 	</div>

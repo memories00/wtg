@@ -14,7 +14,10 @@
 	<div id="info">
 	info
 	</div>
-	<div class="dif" id="logo">
+	<div id="info2">
+	info2
+	</div>
+	<div id="logo">
 	logo
 	</div>
 	<div class="dif" id="menu">
@@ -31,9 +34,6 @@
 	</div>
 	<div id="theme">
 	theme
-	</div>
-	<div id="weather">
-	weather
 	</div>
 	<div id="add">
 	add

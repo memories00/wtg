@@ -1,27 +1,37 @@
 @CHARSET "EUC-KR";
 body{text-align:center;}
-#wrapper {border:1px solid black; min-width:950px;}
+#wrapper {min-width:950px;}
 
 #header {
 	width:100%; 
 	left:0px; top:0px; 
 	position: relative;
 }
+#logo {
+	width:67%; 
+	height:155px; 
+	top:5px;  
+	left:5%; 
+	margin-left:-50px;
+	border:1px solid black; 
+	position: absolute;
+}
 #info {
-	width:100%; 
+	width:30%; 
 	height:50px; 
-	top:5px; 
+	top:5px;
+	left:69%; 
 	border:1px solid black; 
 	text-align:right; 
 	position: absolute;
 }
-#logo {
-	width:100%; 
+#info2 {
+	width:30%; 
 	height:100px; 
-	top:60px; 
-	left:50%; 
-	margin-left:-475px; 
+	top:60px;
+	left:69%; 
 	border:1px solid black; 
+	text-align:right; 
 	position: absolute;
 }
 #menu {
@@ -86,7 +96,6 @@ body{text-align:center;}
 #footer {
 	width:100%; 
 	top:1040px; 
-	border:1px solid black; 
 	position: relative;
 }
 #link {
