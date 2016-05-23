@@ -64,7 +64,7 @@ function cut(info) {
 //	alert("info = "+info);
 	var line=info.split('//');
 //	alert("line = "+line[0]);
-
+ 
 	for(var i=0; i<line.length-1; i++)
 		{
 			var el = line[i].split("--");

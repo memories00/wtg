@@ -56,7 +56,7 @@ System.out.println("ÆÄ½Ì"+typeId);
 		        		  +mapX.getFirstChild().getNodeValue()+"--"
 		        		  +mapY.getFirstChild().getNodeValue()+"//";
 		        }
-	      }
+	      } 
 	    }        
 	   }catch(Exception e){
 		   e.printStackTrace();

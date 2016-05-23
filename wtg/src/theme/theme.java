@@ -219,7 +219,7 @@ public class theme {
 		request.setAttribute("ctHate", ctHate);
 		return "/theme/hate.jsp";
 	}
-
+ 
 	
 	@RequestMapping("/typeSearch.nhn")
 	public String type(HttpServletRequest request, String typeId)
