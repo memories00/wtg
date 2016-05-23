@@ -11,7 +11,7 @@
    <table width="400" border="0" cellspacing="0" cellpadding="0">
      <tr>
        <td width="100">신고자</td>
-       <td width="300"><input type="hidden" name="id" value="${memId}" />${memId }</td>
+       <td width="300"><input type="hidden" name="id" value="${id}" />${id}</td>
      <tr>
        <td width="100">신고 사유</td>
        <td width="300"><input type="text" name="subject"/></td>

@@ -21,6 +21,7 @@ public class Report {
 	public String report(HttpServletRequest request,HttpSession session){
 		String id= (String)session.getAttribute("memId");
 		int no=Integer.parseInt(request.getParameter("no"));
+		request.setAttribute("id", id);
 		request.setAttribute("no",no);
 		return "/theme/report.jsp";
 	}
@@ -72,8 +73,7 @@ public class Report {
 	
 	@RequestMapping("/reportView.nhn")
 	public String reportView(HttpServletRequest request,ReportDTO dto){
-		dto = (ReportDTO)sqlMapClientTemplate.queryForObject("theme.selectView",dto.getNum());
-		sqlMapClientTemplate.update("theme.proOne", dto.getNum());
+		dto = (ReportDTO)sqlMapClientTemplate.queryForObject("theme.selectView",dto.getNo());
 		request.setAttribute("dto", dto);
 		return "/theme/reportView.jsp";
 	}
