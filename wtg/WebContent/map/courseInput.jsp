@@ -86,14 +86,7 @@
 				draggable:true
 			});
 			
-			var stnStMarker=new daum.maps.Marker({//시작역의 마커
-				map:map,
-				position:map.getCenter(),
-				draggable:true
-			});
-			
 			startMarker.setMap();
-			stnStMarker.setMap();
 			
 			//////////////////////도착지의 마커와 이미지를 미리생성//////////////////////////
 			var endimageSrc = 'http://127.0.0.1:8000/wtg/map/blue_b.png', // 도착지마커이미지의 주소입니다    
@@ -107,15 +100,8 @@
  					    image:endImage,
  					    draggable: true, // 종료 마커가 드래그 가능하도록 설정합니다
  					});
- 					
- 					var stnEndMarker = new daum.maps.Marker({//도착역의 마커를 미리생성
- 					    map: map, // 종료 마커가 지도 위에 표시되도록 설정합니다
- 					    position:  map.getCenter(),
- 					    draggable: true, // 종료 마커가 드래그 가능하도록 설정합니다
- 					});
- 					
+
  					endMarker.setMap();
- 					stnEndMarker.setMap();
  					/////////////////////경유지 마커 이미지/////////////////
  					var psimageSrc = 'http://127.0.0.1:8000/wtg/map/green_b.png', // 경유지마커이미지의 주소입니다    
 			 		 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
@@ -124,12 +110,10 @@
 			///////////////////////////////////////////////////////
 			////////지하철역에 사용될 마커를 위한 배열선언//////
 			var cnt=0;//경유지추가시 button의 name 카운트
-			var passMarkerInfo;//경유지마커들을 경유지추가버튼을 누를때생성
-			var stnPassMarker;//경유지마커들을 경유지추가버튼을 누를때생성
+			var passMarkerInfo;//경유지마커들을 경유지추가버튼을 누를때생성	
 			
 			
 			///경유지추가를 눌렀을때 동적으로 생성되는 태그들
-			
 			function addPass(){
 		
 				var addTag=document.getElementById("passText");
@@ -139,10 +123,6 @@
 				addDiv.innerHTML=str;
 				addTag.appendChild(addDiv);
 
-				stnPassMarker=[
-	    	                    {
-	    	                    	variable:'stnPassMarker'+cnt,  	                    	
-	    	                    }];
 				
 				passMarkerInfo=[//경유지 마커를 생성하기위한 배열
 	    	                    {
@@ -151,18 +131,12 @@
 				
 				  passMarkerInfo[0].variable = new daum.maps.Marker({
 			           map: map, // 마커를 표시할 지도
-			           position:map.getCenter(), // 마커를 표시할 위치
+			           position:map.getCenter(), // 마커를 표 시할 위치
 			           image : psmarkerImage, // 마커 이미지
 			           draggable: true,
 			    	});
 				  passMarkerInfo[0].variable.setMap();
 			
- 		 	stnPassMarker[0].variable = new daum.maps.Marker({
-		           map: map, // 마커를 표시할 지도
-		           position:map.getCenter(), // 마커를 표시할 위치
-		    	});
- 		 	stnPassMarker[0].variable.setMap();
-
 				cnt++;
 			}
 			function insertPass()
@@ -719,11 +693,8 @@
 			     return parseInt(o.style.top.replace('px', ''));
 			}
 			
-			
 			function searchJibun(position)
 	 		{
-				alert(position);
-				alert("ddd");
 				var jibunResult;
 	 			var callback = function(status, result) { //선택된 좌표를 기준으로 주소를 검색	  
 	 				if (status === daum.maps.services.Status.OK) 
@@ -752,9 +723,14 @@
 		 			
 		 			return jibunResult;
 	 		}
+			var a=passMarkerInfo;
+			daum.maps.event.addListener(a[0].variable, 'dragend', function() {
+			     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+			     alert("dd");
+			});
+			 
 			
 			
-
 	</script>
 <body>
  	

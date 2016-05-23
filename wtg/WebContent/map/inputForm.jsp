@@ -156,8 +156,10 @@
  					
  					
  		
+ 					var s=startMarker;
  					daum.maps.event.addListener(startMarker, 'dragend', function() {
 					     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+					     alert("dd");
 					    var responseId =startMarker.getTitle();
 					    var mrkPosition=startMarker.getPosition();
 					    modifyList(responseId,"startModify"+mrkPosition);
