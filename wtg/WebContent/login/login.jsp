@@ -59,6 +59,7 @@ body{text-align:center}
 <div class="section" id="section">
 	<div class="section" id="content">
 		session : ${sessionScope.memId}
+		session : ${sessionScope.memName}
 		<br />
 		<c:choose>
 			<c:when test="${sessionScope.memId ne null}">
@@ -87,6 +88,7 @@ body{text-align:center}
     var id;
 	var nickname;
 	var profileImage;
+	var thumbnailImage;
     
     Kakao.init('43d7c500ee93e1ffb8beb38776c7d47a');
     function loginWithKakao() {
@@ -140,7 +142,9 @@ body{text-align:center}
 				id = res.id;
 				nickname = res.properties.nickname;
 				profileImage = res.properties.profile_image;
+				thumbnailImage = res.properties.thumbnail_image;
 				alert(res.id);
+				alert(res.properties.thumbnail_image);
 				$("#kakao-profile").append(res.id);
 				$("#kakao-profile").append(res.properties.nickname);
 				$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname}));
@@ -163,7 +167,8 @@ body{text-align:center}
 				re_token: refreshToken,
 			    mem_id: id,
 				mem_name: nickname,
-				mem_image: profileImage
+				mem_pro: profileImage,
+				mem_thumb: thumbnailImage
 			},
 			async: true,
 			success: function(){

@@ -9,12 +9,26 @@
 		SELECT COUNT(*) FROM mem WHERE id=#id#
 	</select>
 	
-	<insert id="join" parameterClass="login.bean.LoginDTO">
+	<insert id="login" parameterClass="java.util.Map">
 		INSERT INTO mem (id,reg) VALUES (#id#,#reg#)
 	</insert>
 	
 	<delete id="delete" parameterClass="login.bean.LoginDTO">
 		DELETE FROM mem WHERE id=#id#
 	</delete>
+	
+	<statement id="create" parameterClass="String">
+		CREATE TABLE mem_$num$ (
+								id varchar2(500) primary key,
+								nickname varchar2(1000),
+								profile varchar2(4000),
+								thumbnail varchar2(4000),
+								reg date default sysdate
+								)
+	</statement>
+	
+	<insert id="join" parameterClass="java.util.Map">
+		INSERT INTO mem_$num$ (id,nickname,profile,thumbnail,reg) VALUES (#id#,#nickname#,#profile#,#thumbnail#,#reg#)
+	</insert>
 	
 </sqlMap>

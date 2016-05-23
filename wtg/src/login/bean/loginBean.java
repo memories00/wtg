@@ -2,6 +2,7 @@ package login.bean;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,9 +37,12 @@ public class loginBean
 	}
 	
 	@RequestMapping("/login.nhn")
-	public String login(HttpSession session, LoginDTO dto ,HttpServletRequest request, String ac_token, String re_token, String mem_id, String mem_name, String mem_image)
+	public String login(HttpSession session, LoginDTO ldto, JoinDTO jdto, HttpServletRequest request, String ac_token, String re_token, String mem_id, String mem_name, String mem_pro, String mem_thumb)
 	{
 		System.out.println("java");
+		
+		HashMap log_map = new HashMap();
+		HashMap join_map = new HashMap();
 		
 		if(mem_id != null)
 		{
@@ -47,16 +51,29 @@ public class loginBean
 			if (count==1)
 			{
 				session.setAttribute("memId", mem_id);
+				session.setAttribute("memName", mem_name);
 				System.out.println("login");
 				System.out.println(mem_id);
 			}
 			else
 			{
 				Timestamp reg  = new Timestamp(System.currentTimeMillis());
-				dto.setId(mem_id);
-				dto.setReg(reg);
-				sqlMap.insert("mem.join", dto);
+				
+				log_map.put("id",mem_id);
+				log_map.put("reg",reg);
+				
+				join_map.put("num",mem_id);
+				join_map.put("id",mem_id);
+				join_map.put("nickname",mem_name);
+				join_map.put("profile",mem_pro);
+				join_map.put("thumbnail",mem_thumb);
+				join_map.put("reg",reg);
+				
+				sqlMap.insert("mem.login", log_map);
+				sqlMap.update("mem.create", mem_id);
+				sqlMap.insert("mem.join", join_map);
 				session.setAttribute("memId", mem_id);
+				session.setAttribute("memName", mem_name);
 				System.out.println("join");
 			}
 		}

@@ -112,7 +112,7 @@ function test_Search()
 	<div id="info">
 		<c:choose>
 			<c:when test="${sessionScope.memId ne null}">
-				${sessionScope.memId} 님 환영합니다!  
+				${sessionScope.memName} 님 환영합니다!  
 				<a id="logout-btn" onclick="window.location='logout.nhn'">
 					<img src="/wtg/img/logoutBtn.jpg" width="100"/>
 				</a>
@@ -137,7 +137,7 @@ function test_Search()
 		</div>
 	</div>
 	<div id="logo">
-	<img id="logo_img" src="/wtg/themeImg/${gg}" style="width: 100%; max-width: 100px; height:100%; max-height:100px;"/>
+	<img id="logo_img" src="/wtg/themeImg/logo.png" style="width: 100%; max-width: 100px; height:100%; max-height:100px;"/>
 	</div>	
 	<div class="dif" id="menu">
 		<ul id="main_menu">
