@@ -34,4 +34,7 @@ public class MapBean {
 		return "/search/insertOK.jsp";
 	}
 	
+
+	
+	
 }

@@ -45,6 +45,8 @@ var ps = new daum.maps.services.Places();
 var marker = new daum.maps.Marker({
     position:map.getCenter()
 });
+//지도를 재설정할 범위정보를 가지는 객체를 생성합니다.
+var bounds = new daum.maps.LatLngBounds();
 
 
 function contentType(type) {
@@ -54,18 +56,36 @@ function contentType(type) {
 	        data: {
 	        	typeId : t
 	        },
-	        success: test
+	        success : cut
 	    });
 	}
+	
+function cut(info) {
+//	alert("info = "+info);
+	var line=info.split('//');
+//	alert("line = "+line[0]);
 
-
-function test(a){
-	$("#ajaxReturn").html(a);
+	for(var i=0; i<line.length-1; i++)
+		{
+			var el = line[i].split("--");
+			var title = el[0];
+			var x = el[1];
+			var y = el[2];
+			xy = new daum.maps.LatLng(y,x);
+			bounds.extend(xy);	
+	alert(title);
+			marker = new daum.maps.Marker({
+				position : xy,
+				text : title,
+				map : map
+			})
+		    map.setBounds(bounds);
+		}
 }
+
+
+
+
 </script>
-
-<div id="ajaxReturn">test:이곳에 xy좌표</div>
-
-
 
 

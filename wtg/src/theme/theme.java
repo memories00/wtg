@@ -224,29 +224,11 @@ public class theme {
 	@RequestMapping("/typeSearch.nhn")
 	public String type(HttpServletRequest request, String typeId)
 	{
-//		System.out.println("빈"+typeId);
+		System.out.println("빈"+typeId);
 		TypeSearch ty = new TypeSearch();
-		String info = ty.typeTitle(typeId);
-		String parseLine[]=info.split("//");
-//	System.out.println("파쓰줄0>>"+parseLine[0]);
-
-		for(int i=0; i<parseLine.length; i++){
-			String parseValue[] = parseLine[i].split("--");
-			String title = parseValue[0];
-			String mapX = parseValue[1];
-			String mapY = parseValue[2];	
-
-			request.setAttribute("title", title);
-			request.setAttribute("mapX", mapX);
-			request.setAttribute("mapY", mapY);
-//	System.out.println("조각조각 따땃따 꺼내보고 따닷따 맘에들게 널다시 조.립.할.거.야☆  타이틀="+title+" x="+mapX+" y="+mapY);
-			
-			/*
-			FOR문을 typeMap.jsp페이지로 뺀다. 리턴페이지는 sample.jsp 
-			 */
-			
-		}
-			
+		String info = ty.typeTitle(typeId);			
+		request.setAttribute("info", info);
+//		System.out.println(info);
 		return "/search/sample.jsp";
 	}
 
