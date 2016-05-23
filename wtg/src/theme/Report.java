@@ -1,6 +1,7 @@
 package theme;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import main.bean.SlideDTO;
 
 
 @Controller
@@ -40,19 +43,19 @@ public class Report {
 	    int totalCount; 		
 		int blockCount = 10;	
 		int blockPage = 5; 
-		List list;
+		List<ReportDTO> list = new ArrayList<ReportDTO>();
 		String pagingHtml; 	
 		reportPaging page; 	
 		
 		list = sqlMapClientTemplate.queryForList("theme.selectReport", null);
         
-		totalCount = list.size(); 
+		totalCount = list.size();
 		
 		if(request.getParameter("currentPage")!=null)
 		{
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-			
+		
 		page = new reportPaging(currentPage, totalCount, blockCount, blockPage);
 		pagingHtml = page.getPagingHtml().toString();
 		
@@ -73,7 +76,7 @@ public class Report {
 	
 	@RequestMapping("/reportView.nhn")
 	public String reportView(HttpServletRequest request,ReportDTO dto){
-		dto = (ReportDTO)sqlMapClientTemplate.queryForObject("theme.selectView",dto.getNo());
+		dto = (ReportDTO)sqlMapClientTemplate.queryForObject("theme.selectView",dto.getNum());
 		request.setAttribute("dto", dto);
 		return "/theme/reportView.jsp";
 	}
@@ -82,6 +85,9 @@ public class Report {
 	public String reportDel(HttpServletRequest request,ThemeDTO dto,ReportDTO rto){
 		sqlMapClientTemplate.update("theme.updateReadHit",dto.getNo());
 		dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNo());
+		int num=rto.getNum();
+		System.out.println(num);
+		sqlMapClientTemplate.update("theme.proTwo",num );
 		request.setAttribute("dto", dto);
 		request.setAttribute("rto", rto);
 		return "/theme/reportDel.jsp";
@@ -89,14 +95,16 @@ public class Report {
 	
 	@RequestMapping("/reportDelete.nhn")
 	public String delete(HttpServletRequest request,ThemeDTO dto, ReportDTO rto){
-        int no =Integer.parseInt(request.getParameter("no"));
-        int num =Integer.parseInt(request.getParameter("num"));
+
         String path =request.getServletContext().getRealPath("")+"\\save\\";
 		dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNo());
 		File file = new File(path+dto.getFile_savname());
 		file.delete();
-		sqlMapClientTemplate.delete("theme.deletetheme", dto);
-		sqlMapClientTemplate.update("theme.proTwo", rto.getNum());
+		int no=dto.getNo();
+		int num=rto.getNum();
+		System.out.println(num);
+		sqlMapClientTemplate.delete("theme.deletetheme",no);
+		
 
 		request.setAttribute("dto", dto);
 	

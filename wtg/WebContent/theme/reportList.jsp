@@ -26,14 +26,17 @@
       <td align="left"><a href="reportView.nhn?num=${list.num}">${list.subject}</a></td>
       <td align="center">${list.id }</td>
       <td align="center"><fmt:formatDate value="${list.regdate}" pattern="MM.dd"/></td>
-  <c:if test="${list.process ==0}">
+  <c:if test="${list.process==0}">
       <td align="center">미 확 인</td>
   </c:if> 
-  <c:if test="${list.process ==1}">
+  <c:if test="${list.process==1}">
       <td align="center">확 인 중</td>
   </c:if>
-  <c:if test="${list.process ==2}">
+  <c:if test="${list.process==2}">
       <td align="center">삭제 완료</td>
+  </c:if>
+  <c:if test="${list.process==3}">
+      <td align="center">처리 완료</td>
   </c:if>   
     </tr>
  </c:forEach>

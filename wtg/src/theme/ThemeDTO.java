@@ -1,7 +1,6 @@
 package theme;
 
 import java.util.Date;
-
 public class ThemeDTO {
 	private int no;
 	private String name;

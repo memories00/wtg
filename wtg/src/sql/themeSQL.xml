@@ -20,11 +20,13 @@
   </resultMap>
   <!--  -->
   <resultMap class="report" id="r">
+  	<result property="num" column="num"/>
     <result property="id" column="id"/>
     <result property="subject" column="subject"/>
     <result property="no" column="no"/>
     <result property="content" column="content"/>
     <result property="regdate" column="regdate"/>
+    <result property="process" column="process"/>
   </resultMap>
   
   
@@ -69,7 +71,7 @@
   
   <!-- delete -->
   
-  <delete id="deleteTheme" parameterClass="theme">
+  <delete id="deletetheme" parameterClass="int">
     delete from theme where no=#no#
   </delete>
   
@@ -145,24 +147,26 @@
                         subject,
                         no,
                         content,
-                        regdate
+                        regdate,
+                        num
                         )
                  values(#id#,
                         #subject#,
                         #no#,
                         #content#,
-                        sysdate
+                        sysdate,
+                        report_seq.NEXTVAL
                         )
   </insert>	
   
   <!-- report select -->
   
- <select id="selectReport" resultMap="r" parameterClass="int">
+ <select id="selectReport" resultClass="report">
    select * from report order by no desc  
  </select>
  
  <select id="selectView" resultMap="r" parameterClass="int">
-   select * from report where no=#no#
+   select * from report where num=#num#
  </select>
  
  <update id="proOne" parameterClass="int">
@@ -171,6 +175,6 @@
  
   <update id="proTwo" parameterClass="int">
    update report set process= 2 where num=#num#
- </update>	
+ </update>
   
 </sqlMap>
