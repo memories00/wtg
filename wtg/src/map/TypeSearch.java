@@ -22,7 +22,7 @@ System.out.println("파싱"+typeId);
 					+ "&contentTypeId="+typeId	/*타입 ID*/
 					+ "&arrange=P"				/*정렬(O=제목순, P=조회순, Q=수정일순, R=생성일순)*/
 					+ "&areaCode=1"				/*지역코드(1=서울)*/
-					+ "&numOfRows=10"			/*한페이지결과수*/
+					+ "&numOfRows=100"			/*한페이지결과수*/
 					+ "&pageNo=1";				/*페이지번호*/
 			url = new URL(responseType);
 
