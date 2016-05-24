@@ -590,14 +590,14 @@
  			
  			function CheckStation(a)
  	 		{
- 				alert("??"+cnt);
+ 				//alert("??"+cnt);
  	 			var firstLo;
  	 			var lastLo;
  	 			var endCnt=0;
- 	 			alert("????"+a);
+ 	 			//alert("????"+a);
  	 			if(a==0)
  	 			{
- 	 				alert(allTitle[0]);
+ 	 				//alert(allTitle[0]);
  	 				var parseStr=allTitle[0].split('/');	 	 	 			
  	 	 			var parseNum=parseStr[1].indexOf('역',1);
  	 	 			var endStr=endPosition.indexOf('역',1);
@@ -640,9 +640,7 @@
 	 	 			}
 	 	 			
 	 	 		}
-	 	 		
- 	 			
- 
+
 	 	 		var firstStr = escape(encodeURIComponent(firstLo)); 
  	 			var lastStr = escape(encodeURIComponent(lastLo)); 
  	 			$.ajax({		
@@ -666,7 +664,7 @@
 		 	 					}
 		 	 					if(a==2 && endCnt==1)
 		 	 					{
-		 	 						alert(totalStn.length);
+		 	 						alert("배열의길이"+totalStn.length);
 		 	 						alert("a2-1");
 		 	 						totalStn[totalStn.length]=data.replace(/\s/gi, '');
 		 	 					}
@@ -677,7 +675,6 @@
  			function nextStep()
  			{
  				
- 				alert(totalStn.length);
  				for(var i=0;i<totalStn.length;i++)
  				{
  					alert(i+"번째"+totalStn[i]);
