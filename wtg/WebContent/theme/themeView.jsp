@@ -105,10 +105,10 @@
     <table align="center" width="600" border="0" cellspacing="0" cellpadding="0">
      <tr>
         <td width="200" align ="center" >
-         <img src="/spring/img/good.jpg" width="30">&nbsp;&nbsp;${dto.good}
+         <img src="/wtg/img/good.jpg" width="30">&nbsp;&nbsp;${dto.good}
         </td>
         <td width="200" align ="center">    
-         <img src="/spring/img/hate.jpg" width="30">&nbsp;&nbsp;${dto.hate}
+         <img src="/wtg/img/hate.jpg" width="30">&nbsp;&nbsp;${dto.hate}
         </td>
         <td width="200" align ="center"> 신고!</td>
       </tr>
@@ -119,4 +119,20 @@
       </tr>
     </table>
   </c:if>  
+  
+  
+  
+  <div> 덧글창
+  	<div>
+		<c:forEach var="list" items="${list}">
+			<div>유저이미지</div> ,<div>유저이름</div> , <div>코멘트 내용</div>
+		</c:forEach>
+	</div>
+  	<form id="commentWrite" action="/wtg/commentWrite.nhn">
+  		<div>
+  			<textarea cols="50" rows="2" id="commentText" maxlength="6000"></textarea>
+  		</div>
+  	</form>
+  </div>
+  
  </body>

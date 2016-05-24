@@ -81,7 +81,7 @@
     <table align="center" width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#FAF4C0">
     	
      <tr>
-       <td rowspan="2" width="150"><img src="/spring/save/${list.file_savname }" width="150"></td>
+       <td rowspan="2" width="150"><img src="/wtg/save/${list.file_savname }" width="150"></td>
        <td><h4>&nbsp;&nbsp;&nbsp;${list.subject}</h4></td>
        <td align="right">ÃßÃµ¼ö:${list.good }</td>
        <td align="right">${list.readhit}&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${list.regdate}" type="date"/></td>

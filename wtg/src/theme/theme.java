@@ -81,6 +81,10 @@ public class theme {
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("currentPage", currentPage);
+		
+		
+		//comment ¸®½ºÆ®
+		
 		return "/theme/themeView.jsp";
 	}
 	
@@ -97,6 +101,7 @@ public class theme {
 		MultipartFile mf = request.getFile("save");
 		String orgName = mf.getOriginalFilename();
 		String path =request.getServletContext().getRealPath("")+"\\save\\";
+		int num = 0;
 	    if(orgName ==""){	
 			sqlMapClientTemplate.insert("theme.insertTheme", dto);		
 		}else{ 
@@ -119,7 +124,11 @@ public class theme {
 	}
 	    sqlMapClientTemplate.update("theme.updateFile", dto);
 		request.setAttribute("dto", dto);
-
+		
+		num = dto.getNo();
+		sqlMapClientTemplate.update("theme.create", num);
+		
+		
 		return "/themeList.nhn";
 	}
 	

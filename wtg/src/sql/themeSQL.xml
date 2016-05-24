@@ -176,5 +176,16 @@
   <update id="proTwo" parameterClass="int">
    update report set process= 2 where num=#num#
  </update>
+ 
+ 
+ <statement id="create" parameterClass="int">
+		CREATE TABLE comment_$num$ (
+								no varchar2(500) primary key,
+								id varchar2(1000),
+								nickname varchar2(4000),
+								content varchar2(4000),
+								reg date default sysdate
+								)
+	</statement>
   
 </sqlMap>
