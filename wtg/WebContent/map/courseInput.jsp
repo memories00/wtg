@@ -65,13 +65,13 @@
 		var container = document.getElementById('map'); //div id=map자리에 지도를생성			
 		var options = { 
 										center: new daum.maps.LatLng(37.515504, 126.907628), 
-										level: 8
+										level: 6
 									  };  			
 			var map = new daum.maps.Map(container, options); 
 			var geocoder = new daum.maps.services.Geocoder();//지번을검색할대 사용
 			var ps = new daum.maps.services.Places();//검색기능을 사용할때의 선언
 			var cnt=0;//경유지추가시 button의 name 카운트
-			var passMarkerInfo;//경유지마커들을 경유지추가버튼을 누를때생성
+			var passMarkerInfo=new Array();//경유지마커들을 경유지추가버튼을 누를때생성
 			
 			//////////////출발지의 마커와 이미지를 미리생성//////////////
 			var stimageSrc = 'http://127.0.0.1:8000/wtg/map/red_b.png', // 출발마커이미지의 주소입니다    
@@ -83,7 +83,8 @@
 				map:map,
 				position:map.getCenter(),
 				image:startImage,
-				draggable:true
+				draggable:true,
+				clickable:true
 			});
 			
 			startMarker.setMap();
@@ -107,53 +108,69 @@
 			 		 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
 			 		 	    psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 							psmarkerImage = new daum.maps.MarkerImage(psimageSrc, psimageSize, psimageOption);
-			///////////////////////////////////////////////////////
-			////////지하철역에 사용될 마커를 위한 배열선언//////
-			var cnt=0;//경유지추가시 button의 name 카운트
-			var passMarkerInfo;//경유지마커들을 경유지추가버튼을 누를때생성	
-			
-			
-			///경유지추가를 눌렀을때 동적으로 생성되는 태그들
-			function addPass(){
 		
-				var addTag=document.getElementById("passText");
-				var str='경유지:&nbsp;<input type="text" id="passKey'+cnt+'" style="width:200px" onkeypress="enterKey(event,this);"> <input type="button" id="btn/passKey'+cnt+'" value="삭제" onclick="deletePass(this)">';
-				var addDiv=document.createElement('li');
-				addDiv.setAttribute("id","Li/passKey"+cnt);
-				addDiv.innerHTML=str;
-				addTag.appendChild(addDiv);
+			 		 	    
+			 		 	    
+			 		var passMarker0 =  new daum.maps.Marker({
+				           map: map, // 마커를 표시할 지도
+				           position:map.getCenter(), // 마커를 표시할 위치
+				           image : psmarkerImage, // 마커 이미지
+				           draggable: true
+				    	});	
+			 		var passMarker1 =  new daum.maps.Marker({
+				           map: map, // 마커를 표시할 지도
+				           position:map.getCenter(), // 마커를 표시할 위치
+				           image : psmarkerImage, // 마커 이미지
+				           draggable: true
+				    	});
+			 		var passMarker2 =  new daum.maps.Marker({
+				           map: map, // 마커를 표시할 지도
+				           position:map.getCenter(), // 마커를 표시할 위치
+				           image : psmarkerImage, // 마커 이미지
+				           draggable: true
+				    	});
+			 		var passMarker3 =  new daum.maps.Marker({
+				           map: map, // 마커를 표시할 지도
+				           position:map.getCenter(), // 마커를 표시할 위치
+				           image : psmarkerImage, // 마커 이미지
+				           draggable: true
+				    	});
+			 		var passMarker4 =  new daum.maps.Marker({
+				           map: map, // 마커를 표시할 지도
+				           position:map.getCenter(), // 마커를 표시할 위치
+				           image : psmarkerImage, // 마커 이미지
+				           draggable: true
+				    	});
+			 		passMarker0.setMap();
+			 		passMarker1.setMap();
+			 		passMarker2.setMap();
+			 		passMarker3.setMap();
+			 		passMarker4.setMap();
+			///////////////////////////////////////////////////////////////
+			var cnt=0;//경유지추가시 button의 name 카운트
+			///경유지추가를 눌렀을때 동적으로 생성되는 태그들
+	
+			function addPass(){
+				
+				if(cnt<5)
+				{
+					alert("add"+cnt);
+					var addTag=document.getElementById("passText");
+					var str='경유지:&nbsp;<input type="text" id="passKey'+cnt+'" style="width:200px" onkeypress="enterKey(event,this);"> <input type="button" id="btn/passKey'+cnt+'" value="삭제" onclick="deletePass(this)">';
+					var addDiv=document.createElement('li');
+					addDiv.setAttribute("id","Li/passKey"+cnt);
+					addDiv.innerHTML=str;
+					addTag.appendChild(addDiv);
+					cnt++;
+				}
+				else
+				{
+					alert("더이상 추가할수 없습니다.")
+					cnt=5;
+				}
 
-				
-				passMarkerInfo=[//경유지 마커를 생성하기위한 배열
-	    	                    {
-	    	                    	variable:'passMarker'+cnt,  	        //경유지마커의 이름을 Cnt에따라 증가하여 만든다            	
-	    	                    }];
-				
-				  passMarkerInfo[0].variable = new daum.maps.Marker({
-			           map: map, // 마커를 표시할 지도
-			           position:map.getCenter(), // 마커를 표 시할 위치
-			           image : psmarkerImage, // 마커 이미지
-			           draggable: true,
-			    	});
-				  passMarkerInfo[0].variable.setMap();
-			
-				cnt++;
-			}
-			function insertPass()
-			{
-				passMarkerInfo=[//경유지 마커를 생성하기위한 배열
-	    	                    {
-	    	                    	variable:'passMarker'+cnt,  	        //경유지마커의 이름을 Cnt에따라 증가하여 만든다            	
-	    	                    }];
-				
-				  passMarkerInfo[0].variable = new daum.maps.Marker({
-			           map: map, // 마커를 표시할 지도
-			           position:map.getCenter(), // 마커를 표시할 위치
-			           image : psmarkerImage // 마커 이미지 
-			    	});
-		 	  passMarkerInfo[0].variable.setMap();
-			}
-			
+
+			}		
 			/////////////input Text에서 ender키입력을 했을경우
 			 function enterKey(e,here){
 			      if(e.keyCode == 13){  //enter key입력	
@@ -163,8 +180,34 @@
 			   }
 			function deletePass(LiId)
 			{
+				//alert("11");
+				var parseId=LiId.getAttribute('id').toString();
+				var findY=parseId.indexOf('y');
+				//alert(findY);
+				var count=parseId.substring(findY+1,parseId.length);
+				count=Number(count);
+				
+				count+=1;
+				//alert(count);
+				
 				document.getElementById("passText").removeChild(LiId.parentNode);
-				cnt--;
+				if(count==1){passMarker0.setMap();}
+				if(count==2){passMarker1.setMap();}
+				if(count==3){passMarker2.setMap();}
+				if(count==4){passMarker3.setMap();}
+				if(count==5){passMarker4.setMap();}
+					
+				//alert(count);
+				 //alert("전1"+allTitle[1]);
+				// alert("전2"+allTitle[2]);
+			   for(var i=0;i<allTitle.length-1;i++)
+			   {
+				allTitle[count+i]=allTitle[count+(i+1)];
+				allTitle[count+(i+1)]="";
+			   }
+			   //alert("후1"+allTitle[1]);
+				 //alert("후2"+allTitle[2]);
+			   
 				//alert(c);
 			}
 			
@@ -274,6 +317,9 @@
  	 			 	
  	 			   function choice(index,bt)
  	 			   {//검색리스트에서 선택을 눌렀을경우
+ 	 				// alert("choice0");
+ 	 				//alert(index);
+ 	 				
  	 			    	if(index==0)
  	 			    	{
  	 			    		var btnId=bt.getAttribute('id');
@@ -305,10 +351,38 @@
 		 			    	var tagId=document.getElementById('passKey'+plusId);	 			    	
 		 			    	var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);
 		 			    	
+		 			    	//alert("choice");
+		 			    	//alert("brees"+cnt);
+		 			    	
+		 			    	
 		 			    	fragment = document.createDocumentFragment();
-		 			    	passMarkerInfo[0].variable.setTitle(parseId[0]);
-		 			    	passMarkerInfo[0].variable.setPosition(markerPosition);
-		 			    	passMarkerInfo[0].variable.setMap(map);
+		 			    	if(cnt==1)
+							{
+		 			    		//alert("marker0");
+		 			    		//alert(position);
+								passMarker0.setPosition(markerPosition);
+								passMarker0.setMap(map);
+							}
+							if(cnt==2)
+							{
+								passMarker1.setPosition(markerPosition);
+								passMarker1.setMap(map);
+							}
+							if(cnt==3)
+							{
+								passMarker2.setPosition(markerPosition);
+								passMarker2.setMap(map);
+							}
+							if(cnt==4)
+							{
+								passMarker3.setPosition(markerPosition);
+								passMarker3.setMap(map);
+							}
+							if(cnt==5)
+							{
+								passMarker4.setPosition(markerPosition);
+								passMarker4.setMap(map);
+							}
 		 			    	tagId.value=parseId[0];	
 		 			    	
 		 			    	searchSub(index,markerPosition,parseAddress);
@@ -342,7 +416,7 @@
  	 			    	var markerPosition  = new daum.maps.LatLng(strArray[1], strArray[2]);
  	 			
  	 			    	
- 	 			    	makePassMarker(strArray[0],markerPosition);//경유기 마커들을 추가한다.
+ 	 			    	//makePassMarker(strArray[0],markerPosition);//경유기 마커들을 추가한다.
  	 			    } 
  	 			 	
  	 			  function removeAllChildNods(el) {   
@@ -358,7 +432,7 @@
  			
  			function searchSub(index,position,address)
 			{
- 				//alert("1");
+
 				map.setCenter(position);
 				//alert("2");
 				var ps = new daum.maps.services.Places(map); 
@@ -398,41 +472,45 @@
 			         					if(index==0)
 			         					{
 			         						allTitle[0]=str[0]+"/"+strTitle+"/"+address+"/"+strLnt+","+strLng;
-			         						//stnStMarker.setTitle(strTitle);
-			         						//stnStMarker.setPosition(markerPosition);
-			         						//stnStMarker.setMap(map);
-			         						
+
 			         						if(startKey.value!="" && endKey.value!="")
 			         						{
+			         							alert("여기0");
+			         						     var listEl = document.getElementById('placesList');
+			         				    		removeAllChildNods(listEl);
 			         							CheckStation("0");
 			         							checkCourse();
 			         						}
 			         					}
 			         					if(index==1)
 			         					{
-			         						//alert("search"+address);
+			         						
 			         						allTitle[cnt]=str[0]+"/"+strTitle+"/"+address+"/"+strLnt+","+strLng;
-			         						//stnPassMarker[0].variable.setTitle(strTitle);
-			         						//stnPassMarker[0].variable.setPosition(markerPosition);
-			         						//stnPassMarker[0].variable.setMap(map);
-			         						//alert("여기");
 			         						CheckStation(index);
+			         						
+			         						if(startKey.value!="" && endKey.value!="")
+			         						{
+			         						
+			         						     var listEl = document.getElementById('placesList');
+			         				    		removeAllChildNods(listEl);
+			         							CheckStation("1");
+			         							checkCourse();
+			         						}
 			         					}
 			         					if(index==2)
 			         					{
 			         						if(address==undefined)
 			         						{
 			         							address="";
-			         						}
-			         						
+			         						}			         						
 			         						endInfo="도착지: "+endKey.value+"<br/>주소: "+address+"<br/> 근처역: "+strTitle+"<br/>역까지의 거리: "+str[0]+"m<br/><hr>";
 			         						endPosition=strTitle;
-			         						//stnEndMarker.setTitle(strTitle);
-			         						//stnEndMarker.setPosition(markerPosition);
-			         						//stnEndMarker.setMap(map);
-			         						//alert("dd");
-			         						if(startKey.value!=""  && endKey.value!="")
+
+			         						if(startKey.value!="" && endKey.value!="")
 			         						{
+			         							alert("여기2");
+			         						     var listEl = document.getElementById('placesList');
+			         				    		removeAllChildNods(listEl);
 			         							CheckStation("2");
 			         							checkCourse();
 			         						}
@@ -488,18 +566,21 @@
 
 				for(var i=1; i<allTitle.length;i++)
 				{
-					var Info=allTitle[i].split('/');
+				//	alert(allTitle[i]);
+					var info=allTitle[i].split('/');
+				//	alert("1"+info);
 					var parseInfo=info[2];
+				//	alert("2"+parseInfo);
 					var name="passKey"+(i-1);
+				//	alert("3"+name);
 					var c=document.getElementById(name);
-					if(parseInfo[2]=="undefined")
-	 				{
-	 					parseInfo[2]="";				
-	 				}
-					//var a=document.createElement('li');
-					var pass="경유지: "+c.value+"<br/> 주소: "+parseInfo[2]+"<br/>근처역: "+Info[1]+"<br/>역까지의 거리: "+Info[0]+"m<br/><hr>";
+					if(parseInfo=="undefined")
+					{
+						parseInfo="";
+					}
+
+					var pass="경유지: "+c.value+"<br/> 주소: "+parseInfo+"<br/>근처역: "+info[1]+"<br/>역까지의 거리: "+info[0]+"m<br/><hr>";
 					b=b+pass;
-					
 				}
 				el.innerHTML=start+b+endInfo;//출발지+경유지+도착지로 결합
 				fragment.appendChild(el);
@@ -509,14 +590,24 @@
  			
  			function CheckStation(a)
  	 		{
- 				//alert("1");
+ 				alert("??"+cnt);
  	 			var firstLo;
- 	 				var lastLo;
+ 	 			var lastLo;
  	 			var endCnt=0;
- 	 			//alert("2");
- 	 			if(a==1)//경유지가 2개이상 있는경우 경유지에서 경유지사이의 역
+ 	 			alert("????"+a);
+ 	 			if(a==0)
  	 			{
- 	 				//alert("3");
+ 	 				alert(allTitle[0]);
+ 	 				var parseStr=allTitle[0].split('/');	 	 	 			
+ 	 	 			var parseNum=parseStr[1].indexOf('역',1);
+ 	 	 			var endStr=endPosition.indexOf('역',1);
+	 	 			firstLo=parseStr[1].substring(0,parseNum);
+	 	 			lastLo=endPosition.substring(0,endStr);	
+ 	 								
+ 	 			}
+ 	 			
+	 	 		if(a==1)
+	 	 		{
 	 	 			var firStr=allTitle[cnt-1].split('/');
 	 	 			var firStr1=firStr[1].indexOf('역',1);
 	 		 				
@@ -524,55 +615,77 @@
 	 	 			var laStr1=laStr[1].indexOf('역',1);
 	 	 			
 	 	 			firstLo=firStr[1].substring(0,firStr1);
-	 	 			lastLo=laStr[1].substring(0,laStr1);	
- 	 			}
+	 	 			lastLo=laStr[1].substring(0,laStr1);
+	 	 		}
+	 	 		if(a==2)
+	 	 		{
+	 	 			if(allTitle.length==1)
+	 	 			{
+	 	 				//alert("왔니");
+	 	 				var parseStr=allTitle[0].split('/');	 	 	 			
+	 	 	 			var parseNum=parseStr[1].indexOf('역',1);
+	 	 	 			var endStr=endPosition.indexOf('역',1);
+		 	 			firstLo=parseStr[1].substring(0,parseNum);
+		 	 			lastLo=endPosition.substring(0,endStr);	
+		 	 			endCnt=0;
+	 	 			}
+	 	 			else
+	 	 			{
+	 	 				var parseStr=allTitle[(allTitle.length-1)].split('/');	 	 	 			
+	 	 	 			var parseNum=parseStr[1].indexOf('역',1);
+	 	 	 			var endStr=endPosition.indexOf('역',1);
+		 	 			firstLo=parseStr[1].substring(0,parseNum);
+		 	 			lastLo=endPosition.substring(0,endStr);	
+		 	 			endCnt=1;
+	 	 			}
+	 	 			
+	 	 		}
+	 	 		
  	 			
- 	 			if(a==0||a==2)
- 	 			{
- 	 				if(cnt>0)//경유지가 있고 마지막역을 출력
- 	 				{
- 	 					//alert("2");
- 	 					var parseStr=allTitle[cnt].split('/');
-	 	 	 			var parseNum=parseStr[1].indexOf('역',1);
-	 	 	 			endCnt=1;
- 	 				}
- 	 				else//출발지와 경유지만있는경우
- 	 				{
-	 	 	 			var parseStr=allTitle[0].split('/');	 	 	 			
-	 	 	 			var parseNum=parseStr[1].indexOf('역',1);
- 	 				}
- 	 				var endStr=endPosition.indexOf('역',1);
- 	 				//alert(endStr);
-
- 	 	 			firstLo=parseStr[1].substring(0,parseNum);
- 	 	 			lastLo=endPosition.substring(0,endStr);		 				
- 	 			}
- 	 			var firstStr = escape(encodeURIComponent(firstLo)); 
+ 
+	 	 		var firstStr = escape(encodeURIComponent(firstLo)); 
  	 			var lastStr = escape(encodeURIComponent(lastLo)); 
- 	 			
  	 			$.ajax({		
  	 				url:"searchStation.nhn?start="+firstStr+"&end="+lastStr,
 		 	 				success:function(data)
 		 	 				{
-		 	 					if(endCnt==1)
+		 	 					if(a==0)
 		 	 					{
-		 	 						totalStn[cnt+1]=data.replace(/\s/gi, '');
-		 	 						
+		 	 						alert("a2");
+		 	 						totalStn[0]=data.replace(/\s/gi, '');			
 		 	 					}
-		 	 					else//출발지와 경유지만있는경우
+		 	 					if(a==1)
 		 	 					{
-			 	 					totalStn[0]=data.replace(/\s/gi, '');
-			 	 				}
+		 	 						alert("a1");
+		 	 						totalStn[cnt-1]=data.replace(/\s/gi, '');
+		 	 					}
+		 	 					if(a==2 && endCnt==0)
+		 	 					{
+		 	 						alert("a2-0");
+		 	 						totalStn[0]=data.replace(/\s/gi, '');
+		 	 					}
+		 	 					if(a==2 && endCnt==1)
+		 	 					{
+		 	 						alert(totalStn.length);
+		 	 						alert("a2-1");
+		 	 						totalStn[totalStn.length]=data.replace(/\s/gi, '');
+		 	 					}
 		 	 					
 		 	 				}
  		 	 	        })
  	 		}
  			function nextStep()
  			{
- 				alert(totalStn[0]);
+ 				
+ 				alert(totalStn.length);
+ 				for(var i=0;i<totalStn.length;i++)
+ 				{
+ 					alert(i+"번째"+totalStn[i]);
+ 				}
  			}
 /////////////////////////////////////////////// 
 			var cateTotal;
+			
 			function startDrag(e,cateCnt)
 			{
 				cateTotal=cateCnt;
@@ -641,41 +754,60 @@
 							//startMarker.setTitle(parseId[0]);//마커에 이름을 생성
 	 			    		startMarker.setPosition(position);//미리생성한 출발마커의 위치를 이동한다.
 	 			    		startMarker.setMap(map);//마커를 출력
-	 			    		var address=searchJibun(position);
+	 			    		var address=searchJibun(position,cateTotal);
 	 			    		searchSub(cateTotal,position,address);
-	 			    		if(startKey.value!=""  && endKey.value!="")
-     						{
-     							CheckStation("0");
-     							checkCourse();
-     						}
+  		
 					}
 					
 					if(cateTotal==1)
 					{
-						
+						//alert("stop"+cateTotal);
 						addPass();
-						//alert(cnt);
-						passMarkerInfo[0].variable.setPosition(position);
-	 			    	passMarkerInfo[0].variable.setMap(map);
-	 			    	var address=searchJibun(position);
+						var address;
+						if(cnt==1)
+						{
+							passMarker0.setPosition(position);
+							passMarker0.setMap(map);
+							address=searchJibun(position,cateTotal,0);
+						}
+						if(cnt==2)
+						{
+							passMarker1.setPosition(position);
+							passMarker1.setMap(map);
+							address=searchJibun(position,cateTotal,1);
+						}
+						if(cnt==3)
+						{
+							passMarker2.setPosition(position);
+							passMarker2.setMap(map);
+							address=searchJibun(position,cateTotal,2);
+						}
+						if(cnt==4)
+						{
+							passMarker3.setPosition(position);
+							passMarker3.setMap(map);
+							address=searchJibun(position,cateTotal,3);
+						}
+						if(cnt==5)
+						{
+							passMarker4.setPosition(position);
+							passMarker4.setMap(map);
+							address=searchJibun(position,cateTotal,4);
+						}
  			    		searchSub(cateTotal,position,address);
 
 				    }     
 			    
 					if(cateTotal==2)
 			     	{
+						var listEl = document.getElementById('placesList');
+				    		removeAllChildNods(listEl);
 						//endMarker.setTitle(parseId[0]);
 	 			    	endMarker.setPosition(position);
 	 			    	endMarker.setMap(map);	
-	 			    	var address=searchJibun(position);
+	 			    	var address=searchJibun(position,cateTotal);
  			    		searchSub(cateTotal,position,address);
- 			    		
- 			    		if(startKey.value!=""  && endKey.value!="")
- 						{
- 							CheckStation("2");
- 							checkCourse();
- 						}
-	 			    	
+
 			     	}				
 				}
 			}
@@ -693,27 +825,36 @@
 			     return parseInt(o.style.top.replace('px', ''));
 			}
 			
-			function searchJibun(position)
+			function searchJibun(position,cateCnt,drag)
 	 		{
 				var jibunResult;
 	 			var callback = function(status, result) { //선택된 좌표를 기준으로 주소를 검색	  
 	 				if (status === daum.maps.services.Status.OK) 
 	 				{
 	 					
-	 					 if(cateTotal==0)
+	 					 if(cateCnt==0)
 	 					 {
 	 						 startKey.value= result[0].jibunAddress.name;
 	 					 } 
 	 					
-		 			     if(cateTotal==1)
+		 			     if(cateCnt==1)
 	 					 {
-		 			   		var minus=1;
-	 			    		var plusId=cnt-minus;  		
-	 			    		var keyId=document.getElementById('passKey'+plusId);
-		 			       keyId.value= result[0].jibunAddress.name;
+		 			    	 alert(cnt);
+		 			    	 //alert("지번검색1");		
+	 			    		//var keyId=document.getElementById('passKey'+plusId);
+		 			      // keyId.value= result[0].jibunAddress.name;
+		 			      //alert(result[0].jibunAddress.name);
+		 			      	if(drag==0){passKey0.value=result[0].jibunAddress.name;}
+		 			      	if(drag==1){passKey1.value=result[0].jibunAddress.name;}
+		 			      	if(drag==2){passKey2.value=result[0].jibunAddress.name;}
+		 			   	  	if(drag==3){passKey3.value=result[0].jibunAddress.name;}
+		 			      	if(drag==4){passKey4.value=result[0].jibunAddress.name;}
+		 			  
+		 			    	  
 	 				 	 }
-		 			    if(cateTotal==2)
+		 			    if(cateCnt==2)
 	 					 {
+		 			    	//alert("지번검색2");
 	 						 endKey.value= result[0].jibunAddress.name;
 	 					 }
 		 			   jibunResult=result[0].jibunAddress.name;
@@ -723,14 +864,72 @@
 		 			
 		 			return jibunResult;
 	 		}
-			var a=passMarkerInfo;
-			daum.maps.event.addListener(a[0].variable, 'dragend', function() {
+			daum.maps.event.addListener(startMarker, 'dragend', function(mouseEvent) {
 			     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
-			     alert("dd");
+			        var listEl = document.getElementById('placesList');
+ 	 			    		removeAllChildNods(listEl);
+			     var position=startMarker.getPosition();
+			     var address=searchJibun(position,cateTotal);
+		    		searchSub(cateTotal,position,address);
+			     
+			     
 			});
-			 
+			daum.maps.event.addListener(endMarker, 'dragend', function() {
+			     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다
+			     var listEl = document.getElementById('placesList');
+ 	 			    		removeAllChildNods(listEl);
+				 var position=endMarker.getPosition();
+			     var address=searchJibun(position,cateTotal);
+		    		searchSub(cateTotal,position,address);
+			});
 			
-			
+			daum.maps.event.addListener(passMarker0, 'dragend', function() {
+			     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다  
+			     alert("1");
+			     var listEl = document.getElementById('placesList');
+ 			    		removeAllChildNods(listEl);
+	 	 		 var position=passMarker0.getPosition();
+			     var address=searchJibun(position,1,0);
+
+		    		searchSub("1",position,address);
+			});
+			daum.maps.event.addListener(passMarker1, 'dragend', function() {
+			     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다    
+			     var listEl = document.getElementById('placesList');
+			    		removeAllChildNods(listEl);
+	 	 		 var position=passMarker1.getPosition();
+			     var address=searchJibun(position,1,1);
+
+		    		searchSub("1",position,address);
+			});
+			daum.maps.event.addListener(passMarker2, 'dragend', function() {
+			     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다    
+			     var listEl = document.getElementById('placesList');
+			    		removeAllChildNods(listEl);
+	 	 		 var position=passMarker2.getPosition();
+			     var address=searchJibun(position,1,2);
+
+		    		searchSub("1",position,address);
+			});
+			daum.maps.event.addListener(passMarker3, 'dragend', function() {
+			     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다    
+			     var listEl = document.getElementById('placesList');
+			    		removeAllChildNods(listEl);
+	 	 		 var position=passMarker3.getPosition();
+			     var address=searchJibun(position,1,3);
+
+		    		searchSub("1",position,address);
+			});
+			daum.maps.event.addListener(passMarker4, 'dragend', function() {
+			     // 출발 마커의 드래그가 종료될 때 마커 이미지를 원래 이미지로 변경합니다    
+			     var listEl = document.getElementById('placesList');
+			    		removeAllChildNods(listEl);
+	 	 		 var position=passMarker4.getPosition();
+			     var address=searchJibun(position,1,4);
+
+		    		searchSub("1",position,address);
+			});
+	
 	</script>
 <body>
  	

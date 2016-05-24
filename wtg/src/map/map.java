@@ -58,7 +58,7 @@ public class map
 		String stnName=station.input2Station(start, end);
 		stnName=stnName.substring(0, stnName.length()-1);
 		String parseStn[]=stnName.split(",");
-		System.out.println(parseStn.length);
+		//System.out.println(parseStn.length);
 		for(int i =1; i<parseStn.length-1;i++)
 		{
 			//System.out.println("inputBefore"+parseStn[i]);
