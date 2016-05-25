@@ -1,5 +1,6 @@
 package map;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +18,6 @@ public class map
 	@Autowired
 	private SqlMapClientTemplate sqlMap;
 	
-	@RequestMapping("/map.nhn")
-	public String map()
-	{	
-		return  "/map/map.jsp";
-	}
 	@RequestMapping("/inputForm.nhn")
 	public String inputForm(){	
 		
@@ -37,13 +33,27 @@ public class map
 	{	
 		return  "/map/clickTest.jsp";
 	}
-	@RequestMapping("/stnName.nhn")
-	public String stnName(HttpServletRequest request,String start,String end)
+	@RequestMapping("/insertTable.nhn")
+	public String insertTable(HttpServletRequest request,String[] basicName)
 	{	
-		searchStation station=new searchStation();
-		String stnName=station.input2Station(start, end);
-		
-		request.setAttribute("stnName",stnName);
+		try 
+		{
+			request.setCharacterEncoding("EUC-KR");
+			//System.out.println(basicName[0]);	
+			String arrayName[]=basicName[0].split(",");
+			String testCate="½ºÆ÷Ã÷";
+			String testId="namuda";    
+			for(int i=0;i<arrayName.length;i++)
+			{
+				System.out.println(arrayName[i]);
+			}
+		} 
+		catch (Exception e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return  "/map/resultName.jsp";
 	}
 	

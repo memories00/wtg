@@ -148,13 +148,14 @@
 			 		passMarker4.setMap();
 			///////////////////////////////////////////////////////////////
 			var cnt=0;//경유지추가시 button의 name 카운트
+			var totalStn=new Array();
 			///경유지추가를 눌렀을때 동적으로 생성되는 태그들
 	
 			function addPass(){
 				
 				if(cnt<5)
 				{
-					alert("add"+cnt);
+					//alert("add"+cnt);
 					var addTag=document.getElementById("passText");
 					var str='경유지:&nbsp;<input type="text" id="passKey'+cnt+'" style="width:200px" onkeypress="enterKey(event,this);"> <input type="button" id="btn/passKey'+cnt+'" value="삭제" onclick="deletePass(this)">';
 					var addDiv=document.createElement('li');
@@ -180,35 +181,24 @@
 			   }
 			function deletePass(LiId)
 			{
+			     var listEl = document.getElementById('placesList');
+		    		removeAllChildNods(listEl);
 				//alert("11");
+				//alert("cnt"+cnt);
 				var parseId=LiId.getAttribute('id').toString();
 				var findY=parseId.indexOf('y');
-				//alert(findY);
+				//alert("2");
 				var count=parseId.substring(findY+1,parseId.length);
-				count=Number(count);
-				
-				count+=1;
-				//alert(count);
-				
+
 				document.getElementById("passText").removeChild(LiId.parentNode);
-				if(count==1){passMarker0.setMap();}
-				if(count==2){passMarker1.setMap();}
-				if(count==3){passMarker2.setMap();}
-				if(count==4){passMarker3.setMap();}
-				if(count==5){passMarker4.setMap();}
-					
-				//alert(count);
-				 //alert("전1"+allTitle[1]);
-				// alert("전2"+allTitle[2]);
-			   for(var i=0;i<allTitle.length-1;i++)
-			   {
-				allTitle[count+i]=allTitle[count+(i+1)];
-				allTitle[count+(i+1)]="";
-			   }
-			   //alert("후1"+allTitle[1]);
-				 //alert("후2"+allTitle[2]);
-			   
-				//alert(c);
+				if(count==0){passMarker0.setMap();}
+				if(count==1){passMarker1.setMap();}
+				if(count==2){passMarker2.setMap();}
+				if(count==3){passMarker3.setMap();}
+				if(count==4){passMarker4.setMap();}
+				
+				count=Number(count);
+				basicName[count+1]="";
 			}
 			
 			///////////////////////////////////
@@ -315,11 +305,9 @@
  	 				    return el;
  	 				}  
  	 			 	
+ 	 			 	var basicName=new Array();
  	 			   function choice(index,bt)
  	 			   {//검색리스트에서 선택을 눌렀을경우
- 	 				// alert("choice0");
- 	 				//alert(index);
- 	 				
  	 			    	if(index==0)
  	 			    	{
  	 			    		var btnId=bt.getAttribute('id');
@@ -337,6 +325,7 @@
  	 			    		
  	 			    		searchSub(index,markerPosition,parseAddress);
  	 			    		
+ 	 			    		basicName[0]=btnId;
  	 			    		var listEl = document.getElementById('placesList');
  	 			    		removeAllChildNods(listEl);
  	 			    	}
@@ -351,6 +340,7 @@
 		 			    	var tagId=document.getElementById('passKey'+plusId);	 			    	
 		 			    	var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);
 		 			    	
+		 			    	basicName[cnt]=btnId;
 		 			    	//alert("choice");
 		 			    	//alert("brees"+cnt);
 		 			    	
@@ -406,17 +396,11 @@
  	 			    		
  	 			    		searchSub(index,markerPosition,parseAddress);
  	 			    		
+ 	 			    		basicName[cnt+1]=btnId;
  	 			    		var listEl = document.getElementById('placesList');
  	 			    		removeAllChildNods(listEl);
  	 			    	}
  	 				   
- 	 				   var a = bt.getAttribute('id');
- 	 			    	var strArray=a.split('-');
- 	 			    	fragment = document.createDocumentFragment();
- 	 			    	var markerPosition  = new daum.maps.LatLng(strArray[1], strArray[2]);
- 	 			
- 	 			    	
- 	 			    	//makePassMarker(strArray[0],markerPosition);//경유기 마커들을 추가한다.
  	 			    } 
  	 			 	
  	 			  function removeAllChildNods(el) {   
@@ -475,7 +459,7 @@
 
 			         						if(startKey.value!="" && endKey.value!="")
 			         						{
-			         							alert("여기0");
+			         							//alert("여기0");
 			         						     var listEl = document.getElementById('placesList');
 			         				    		removeAllChildNods(listEl);
 			         							CheckStation("0");
@@ -508,7 +492,7 @@
 
 			         						if(startKey.value!="" && endKey.value!="")
 			         						{
-			         							alert("여기2");
+			         							//alert("여기2");
 			         						     var listEl = document.getElementById('placesList');
 			         				    		removeAllChildNods(listEl);
 			         							CheckStation("2");
@@ -546,7 +530,7 @@
  			}
  			////////////////////지하철검색 메서드끝///////////////////////////
  			/////////////////// 여행경로를 찾는 메서드들//////////////////
- 			var totalStn=new Array();
+ 			
  			function checkCourse()
  			{	
  				//alert(allTitle.length);
@@ -638,7 +622,6 @@
 		 	 			lastLo=endPosition.substring(0,endStr);	
 		 	 			endCnt=1;
 	 	 			}
-	 	 			
 	 	 		}
 
 	 	 		var firstStr = escape(encodeURIComponent(firstLo)); 
@@ -649,23 +632,23 @@
 		 	 				{
 		 	 					if(a==0)
 		 	 					{
-		 	 						alert("a2");
+		 	 						//alert("a2");
 		 	 						totalStn[0]=data.replace(/\s/gi, '');			
 		 	 					}
 		 	 					if(a==1)
 		 	 					{
-		 	 						alert("a1");
+		 	 						//alert("a1");
 		 	 						totalStn[cnt-1]=data.replace(/\s/gi, '');
 		 	 					}
 		 	 					if(a==2 && endCnt==0)
 		 	 					{
-		 	 						alert("a2-0");
+		 	 						//alert("a2-0");
 		 	 						totalStn[0]=data.replace(/\s/gi, '');
 		 	 					}
 		 	 					if(a==2 && endCnt==1)
 		 	 					{
-		 	 						alert("배열의길이"+totalStn.length);
-		 	 						alert("a2-1");
+		 	 						//alert("배열의길이"+totalStn.length);
+		 	 						//alert("a2-1");
 		 	 						totalStn[totalStn.length]=data.replace(/\s/gi, '');
 		 	 					}
 		 	 					
@@ -674,11 +657,9 @@
  	 		}
  			function nextStep()
  			{
- 				
- 				for(var i=0;i<totalStn.length;i++)
- 				{
- 					alert(i+"번째"+totalStn[i]);
- 				}
+ 				//alert(basicName.length);
+ 				location.href="insertTable.nhn?basicName="+basicName;
+
  			}
 /////////////////////////////////////////////// 
 			var cateTotal;
