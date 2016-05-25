@@ -8,15 +8,25 @@
 <head>
      <title>테마여행</title>
 </head>
+<script>
+function main_Category()
+{
+	document.cate.action="/wtg/category.nhn"
+	document.cate.submit();
+}
+function theme_Write()
+{
+	document.cate.action="/wtg/themeWritePro.nhn"
+	document.cate.submit();
+}
+</script>
  <body>
    <table width="600" border="0" cellspacing="0" cellpadding="2"> 
      <tr>
        <td align="center"><h2>테마여행</h2></td>
      </tr> 
    </table>
-   
-   
-    <form action="themeWritePro.nhn" method="post" enctype="multipart/form-data"> 
+    <form name=cate method="post" enctype="multipart/form-data"> 
 
    
    <table width="600" border="0" cellspacing="0" cellpadding="0">
@@ -33,12 +43,17 @@
        <td><textarea name="content" cols="50" rows="30"></textarea>
      <tr>
      <tr>
-       <td>첨부이미지</td>
+       <td width="200">첨부이미지</td>
        <td><input type="file" name="save"></td>
      </tr>
      <tr>
+     <td width="200">대표이미지</td>
+     <td><input type="file" name="category" /></td>
+     <td><input type="button" value="카테고리추가" onClick="main_Category()"></td>
+     </tr>
+     <tr>
        <td align="right" colspan="2">
-         <input type="submit" value="등록">
+         <input type="button" value="등록" onClick="theme_Write()">
          <input type="button" value="목록" onClick="javascript:location.href='themeList.nhn'">
        </td>
      </tr>

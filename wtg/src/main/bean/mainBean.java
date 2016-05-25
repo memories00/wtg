@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import main.bean.SlideDTO;
+import theme.ThemeDTO;
 
 @Controller
 public class mainBean 
@@ -32,13 +33,16 @@ public class mainBean
 	@RequestMapping("/main.nhn")
 	public String main(HttpSession session, HttpServletRequest request) throws JDOMException, IOException
 	{	
+		String id=(String)session.getAttribute("memId");
 		List<SlideDTO> list = new ArrayList<SlideDTO>();
 		list = sqlMap.queryForList("main.selectAll",null);
-		List<SlideDTO> list2 = new ArrayList<SlideDTO>();
-		list2 = sqlMap.queryForList("main.cateselect",null);
+		List<ThemeDTO> list2 = new ArrayList<ThemeDTO>();
+		list2 = sqlMap.queryForList("main.cateselect",id);
+		int count=(Integer)sqlMap.queryForObject("main.catecount", id);
 		request.setAttribute("list2", list2);
 		request.setAttribute("list", list);
-		
+		request.setAttribute("count", count);
+		System.out.println(count);
 		SAXBuilder builder = new SAXBuilder();
 		Document doc=builder.build("C:/Users/user1/git/wtg/wtg/WebContent/main/get_today.xml");
 		//C:/DATA/XML/get_today.xml
@@ -71,7 +75,6 @@ public class mainBean
 			else if(tagName.equals("pm10")) // 미세먼지
 			{request.setAttribute("pm10", e.getValue());}
 		}
-		
 		return  "/main/main.jsp";
 	}
 	
