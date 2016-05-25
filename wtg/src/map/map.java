@@ -48,15 +48,7 @@ public class map
 			dto.setId(testId);
 			for(int i=1;i<arrayName.length-1;i++)
 			{
-				System.out.println("dd"+arrayName[i]);
 				String a[]=arrayName[i].split("/");
-				//System.out.println(arrayName[i]);
-				System.out.println("gses");
-				System.out.println(a[0]);
-				System.out.println(a[1]);
-				System.out.println(a[2]);
-				System.out.println(a[3]);
-				
 				if(i==1)
 				{
 					dto.setPass1name(a[0]);
@@ -94,7 +86,7 @@ public class map
 			e.printStackTrace();
 		}
 
-		return  "/map/resultName.jsp";
+		return  "/map/nextStep.jsp";
 	}
 	
 	
