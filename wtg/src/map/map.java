@@ -40,7 +40,8 @@ public class map
 		try 
 		{
 			request.setCharacterEncoding("EUC-KR");
-			System.out.println("ghrdfa"+basicName[0]);	
+			//System.out.println("ghrdfa"+basicName[0]);	
+			String returnName=basicName[0];
 			String arrayName[]=basicName[0].split(",");
 			String testCate="½ºÆ÷Ã÷";
 			String testId="namuda";    
@@ -79,6 +80,9 @@ public class map
 				sqlMap.insert("map.insertInfo", dto);	
 				}
 			}
+			
+			request.setAttribute("dto",dto);
+			request.setAttribute("returnName",returnName);
 		} 
 		catch (Exception e) 
 		{
