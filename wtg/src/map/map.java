@@ -34,22 +34,39 @@ public class map
 		return  "/map/clickTest.jsp";
 	}
 	@RequestMapping("/insertTable.nhn")
-	public String insertTable(HttpServletRequest request,String[] basicName)
+	public String insertTable(HttpServletRequest request,String[] basicName,String[] allTitle)
 	{	
 		mapDto dto=new mapDto();
 		try 
 		{
 			request.setCharacterEncoding("EUC-KR");
-			//System.out.println("ghrdfa"+basicName[0]);	
+			System.out.println("ghrdfa"+basicName[0]);	
+			//System.out.println(allTitle[0]);
+			//System.out.println(endTitle);
+			
 			String returnName=basicName[0];
 			String arrayName[]=basicName[0].split(",");
 			String testCate="½ºÆ÷Ã÷";
 			String testId="namuda";    
+			
+			ArrayList list=new ArrayList();
+			ArrayList phoneList=new ArrayList();
+			ArrayList addList=new ArrayList();
+			
+			String startTitle[]=arrayName[0].split("/");
+			String endTitle[]=arrayName[arrayName.length-1].split("/");
+			
 			dto.setCategory(testCate);
 			dto.setId(testId);
+			
 			for(int i=1;i<arrayName.length-1;i++)
 			{
 				String a[]=arrayName[i].split("/");
+				System.out.println(a[4]);
+				list.add(a[0]);
+				phoneList.add(a[4]);
+				addList.add(a[3]);
+				
 				if(i==1)
 				{
 					dto.setPass1name(a[0]);
@@ -81,7 +98,16 @@ public class map
 				}
 			}
 			
+			request.setAttribute("list",list);
+			request.setAttribute("phoneList",phoneList);
+			request.setAttribute("addList",addList);
 			request.setAttribute("dto",dto);
+			request.setAttribute("startTitle",startTitle[0]);
+			request.setAttribute("startPhone",startTitle[4]);
+			request.setAttribute("startAddress",startTitle[3]);
+			request.setAttribute("endTitle",endTitle[0]);
+			request.setAttribute("endPhone",endTitle[4]);
+			request.setAttribute("endAddress",endTitle[3]);
 			request.setAttribute("returnName",returnName);
 		} 
 		catch (Exception e) 
