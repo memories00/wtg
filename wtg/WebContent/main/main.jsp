@@ -195,7 +195,51 @@ function test_Search()
 		</div>
 		</form>
 	</div>
-
+	<c:if test="${count==0}">
+	<div id="theme">
+		<table>
+			<tr>
+			  <td>
+				<section id="content">
+				  <div id="lista1" class="als-container">
+					<span class="als-prev"><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
+					<div class="als-viewport">
+					  <ul class="als-wrapper">
+						  <li class="als-item">
+							<a href="/wtg/themeWrite.nhn?currentPage=1">
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							코스를 등록해 주세요
+							</a>
+						  </li>
+						  <li class="als-item">
+							<a href="/wtg/themeWrite.nhn?currentPage=1">
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							코스를 등록해 주세요
+							</a>
+						  </li>
+						  <li class="als-item">
+							<a href="/wtg/themeWrite.nhn?currentPage=1">
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							코스를 등록해 주세요
+							</a>
+						  </li>
+						  <li class="als-item">
+							<a href="/wtg/themeWrite.nhn?currentPage=1">
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							코스를 등록해 주세요
+							</a>
+						  </li>
+					  </ul>
+					</div>
+					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
+				  </div>
+				</section>
+			  </td>
+			</tr>
+		</table>
+	</div>
+	</c:if>
+	<c:if test="${count==1}">
 	<div id="theme">
 		<table>
 			<tr>
@@ -207,8 +251,125 @@ function test_Search()
 					  <ul class="als-wrapper">
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
-							<a href="http://${list2.fileaddr2}/">
-							<img src="/wtg/categoryimg/${list2.filetime2}${list2.orgname2}" style="width: 100%; max-width: 100px; height:100%; max-height:100px;"/>
+							<a href="http://">
+							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							</a>
+						  </li>
+						</c:forEach>
+						<li class="als-item">
+							<a href="/wtg/themeWrite.nhn?currentPage=1">
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							코스를 등록해 주세요
+							</a>
+						</li>
+						<li class="als-item">
+							<a href="/wtg/themeWrite.nhn?currentPage=1">
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							코스를 등록해 주세요
+							</a>
+						</li>
+						<li class="als-item">
+							<a href="/wtg/themeWrite.nhn?currentPage=1">
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							코스를 등록해 주세요
+							</a>
+						</li>
+					  </ul>
+					</div>
+					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
+				  </div>
+				</section>
+			  </td>
+			</tr>
+		</table>
+	</div>
+	</c:if>
+	<c:if test="${count==2}">
+	<div id="theme">
+		<table>
+			<tr>
+			  <td>
+				<section id="content">
+				  <div id="lista1" class="als-container">
+					<span class="als-prev"><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
+					<div class="als-viewport">
+					  <ul class="als-wrapper">
+						<c:forEach var="list2" items="${list2}">
+						  <li class="als-item">
+							<a href="http://">
+							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							</a>
+						  </li>	
+						</c:forEach>
+						<li class="als-item">
+							<a href="/wtg/themeWrite.nhn?currentPage=1">
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							코스를 등록해 주세요
+							</a>
+						</li>
+						<li class="als-item">
+							<a href="/wtg/themeWrite.nhn?currentPage=1">
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							코스를 등록해 주세요
+							</a>
+						</li>
+					  </ul>
+					</div>
+					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
+				  </div>
+				</section>
+			  </td>
+			</tr>
+		</table>
+	</div>
+	</c:if>
+	<c:if test="${count==3}">
+	<div id="theme">
+		<table>
+			<tr>
+			  <td>
+				<section id="content">
+				  <div id="lista1" class="als-container">
+					<span class="als-prev"><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
+					<div class="als-viewport">
+					  <ul class="als-wrapper">
+						<c:forEach var="list2" items="${list2}">
+						  <li class="als-item">
+							<a href="http://">
+							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							</a>
+						  </li>	
+						</c:forEach>
+						<li class="als-item">
+							<a href="/wtg/themeWrite.nhn?currentPage=1">
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							코스를 등록해 주세요
+							</a>
+						</li>
+					  </ul>
+					</div>
+					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
+				  </div>
+				</section>
+			  </td>
+			</tr>
+		</table>
+	</div>
+	</c:if>
+	<c:if test="${count>=4}">
+	<div id="theme">
+		<table>
+			<tr>
+			  <td>
+				<section id="content">
+				  <div id="lista1" class="als-container">
+					<span class="als-prev"><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
+					<div class="als-viewport">
+					  <ul class="als-wrapper">
+						<c:forEach var="list2" items="${list2}">
+						  <li class="als-item">
+							<a href="http://">
+							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
@@ -221,6 +382,8 @@ function test_Search()
 			</tr>
 		</table>
 	</div>
+	</c:if>
+	
 	<div id="review">
 		review
 	</div>

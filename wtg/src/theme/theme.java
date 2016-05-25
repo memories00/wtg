@@ -113,6 +113,7 @@ public class theme {
 					         orgName.length());
 			dto.setFile_orgname(orgName);
 			dto.setFile_savname(file_name+"."+file_ext);
+			String savename=(file_name+"."+file_ext);
 			
 			
 			File copy = new File(path+dto.getFile_savname());

@@ -60,7 +60,7 @@ public class sliderAdmin {
 		dto.setOrgname2(orgName); // dto에 파일네임 set시켜주기
 		
 		String path=request.getServletContext().getRealPath("")+"\\categoryimg\\"; // 파일경로
-		
+		System.out.println(path);
 		if(orgName=="") // 파일 선택
 		{
 			return "/main/return.jsp";
