@@ -83,10 +83,10 @@
     <table align="center" width="600" border="0" cellspacing="0" cellpadding="0">
      <tr>
         <td width="200" align ="center" >
-          <a href="javascript:callAjax(${dto.no });"><img src="/spring/img/good.jpg" width="30"></a> <span id="goodCnt${dto.no }">&nbsp;&nbsp;${dto.good}</span>
+          <a href="javascript:callAjax(${dto.no });"><img src="/wtg/img/good.jpg" width="30"></a> <span id="goodCnt${dto.no }">&nbsp;&nbsp;${dto.good}</span>
         </td>
         <td width="200" align ="center">    
-          <a href="javascript:callAjax2();"><img src="/spring/img/hate.jpg" width="30"></a> <span id="hateCnt">&nbsp;&nbsp;${dto.hate}</span>
+          <a href="javascript:callAjax2();"><img src="/wtg/img/hate.jpg" width="30"></a> <span id="hateCnt">&nbsp;&nbsp;${dto.hate}</span>
         </td>
         <td width="200" align ="center">
           <a href="javascript:open_win('report.nhn?no=${dto.no}','report')">½Å°í!</a>

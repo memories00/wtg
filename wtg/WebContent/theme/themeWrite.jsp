@@ -15,12 +15,9 @@
      </tr> 
    </table>
    
-<%--      <c:if test="${ }"> --%>
-<!--        <form action="" method="post" enctype="multipart/form-data"> -->
-<%--      </c:if> --%>
-<%--      <c:if test="${ }"> --%>
-       <form action="themeWritePro.nhn" method="post" enctype="multipart/form-data"> 
-<%--      </c:if> --%>
+   
+    <form action="themeWritePro.nhn" method="post" enctype="multipart/form-data"> 
+
    
    <table width="600" border="0" cellspacing="0" cellpadding="0">
      <tr>

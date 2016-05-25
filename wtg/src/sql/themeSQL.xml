@@ -177,6 +177,9 @@
    update report set process= 2 where num=#num#
  </update>
  
+  <update id="proThree" parameterClass="int">
+   update report set process= 3 where num=#num#
+ </update>
  
  <statement id="create" parameterClass="int">
 		CREATE TABLE comment_$num$ (
