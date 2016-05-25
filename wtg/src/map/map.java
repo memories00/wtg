@@ -36,16 +36,56 @@ public class map
 	@RequestMapping("/insertTable.nhn")
 	public String insertTable(HttpServletRequest request,String[] basicName)
 	{	
+		mapDto dto=new mapDto();
 		try 
 		{
 			request.setCharacterEncoding("EUC-KR");
-			//System.out.println(basicName[0]);	
+			System.out.println("ghrdfa"+basicName[0]);	
 			String arrayName[]=basicName[0].split(",");
 			String testCate="½ºÆ÷Ã÷";
 			String testId="namuda";    
-			for(int i=0;i<arrayName.length;i++)
+			dto.setCategory(testCate);
+			dto.setId(testId);
+			for(int i=1;i<arrayName.length-1;i++)
 			{
-				System.out.println(arrayName[i]);
+				System.out.println("dd"+arrayName[i]);
+				String a[]=arrayName[i].split("/");
+				//System.out.println(arrayName[i]);
+				System.out.println("gses");
+				System.out.println(a[0]);
+				System.out.println(a[1]);
+				System.out.println(a[2]);
+				System.out.println(a[3]);
+				
+				if(i==1)
+				{
+					dto.setPass1name(a[0]);
+					dto.setPass1xy(a[1]+"/"+a[2]);
+				}
+				if(i==2)
+				{
+					dto.setPass2name(a[0]);
+					dto.setPass2xy(a[1]+"/"+a[2]);
+				}
+				if(i==3)
+				{
+					dto.setPass3name(a[0]);
+					dto.setPass3xy(a[1]+"/"+a[2]);
+				}
+				if(i==4)
+				{
+					dto.setPass4name(a[0]);
+					dto.setPass4xy(a[1]+"/"+a[2]);
+				}
+				if(i==5)
+				{
+					dto.setPass5name(a[0]);
+					dto.setPass5xy(a[1]+"/"+a[2]);
+				}
+				if(i==arrayName.length-2)
+				{
+				sqlMap.insert("map.insertInfo", dto);	
+				}
 			}
 		} 
 		catch (Exception e) 

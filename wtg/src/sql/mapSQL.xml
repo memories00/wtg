@@ -6,6 +6,6 @@
 
 <insert id="insertInfo" parameterClass="dto">
   insert into basicCourseInfo(category,num,id,pass1name,pass1xy,pass2name,pass2xy,pass3name,pass3xy,pass4name,pass4xy,pass5name,pass5xy,regdate)
-           values(#category#,num,#id#,#pass1name#,#pass1xy#,#pass2name#,#pass2xy#,#pass3name#,#pass3xy#,#pass4name#,#pass4xy#,#pass5name#,#pass5xy#,sysdate)
+           values(#category#,basicCourseInfo_seq.NEXTVAL,#id#,#pass1name#,#pass1xy#,#pass2name#,#pass2xy#,#pass3name#,#pass3xy#,#pass4name#,#pass4xy#,#pass5name#,#pass5xy#,sysdate)
 </insert>
 </sqlMap>
