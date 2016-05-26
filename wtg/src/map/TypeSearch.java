@@ -10,8 +10,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 public class TypeSearch {
-	public static String typeTitle(String typeId){   
-System.out.println("ÆÄ½Ì"+typeId);
+	public String typeTitle(String typeId){   
+	System.out.println("ÆÄ½Ì"+typeId);
 	   URL url;
 	   String result="";	   
 	   try{
@@ -45,21 +45,35 @@ System.out.println("ÆÄ½Ì"+typeId);
 	      if (nl != null && nl.getLength() > 0)
 	      {
 		        for (int i = 0 ; i < nl.getLength(); i++) 
-		        {
+		        { //System.out.println(i);
 		          Element entry = (Element)nl.item(i);
+		          
 		          Element title = (Element)entry.getElementsByTagName("title").item(0);
-		          Element mapX = (Element)entry.getElementsByTagName("mapx").item(0);
+		          result += title.getFirstChild().getNodeValue()+"--";
+		          
+		          Element mapX =(Element)entry.getElementsByTagName("mapx").item(0);
+		          if(mapX == null){continue;}else{result += mapX.getFirstChild().getNodeValue()+"--"; }
+		          
 		          Element mapY = (Element)entry.getElementsByTagName("mapy").item(0);
-		    //      System.out.println(mapX.getFirstChild().getNodeValue()+"/"+mapY.getFirstChild().getNodeValue());
-	          
-		          result += title.getFirstChild().getNodeValue()+"--"
-		        		  +mapX.getFirstChild().getNodeValue()+"--"
-		        		  +mapY.getFirstChild().getNodeValue()+"//";
+		          if(mapY == null){continue;}else{result += mapY.getFirstChild().getNodeValue()+"--"; }
+		          
+		          Element addr1 = (Element)entry.getElementsByTagName("addr1").item(0);
+		          if(addr1 == null){continue;}else{result += addr1.getFirstChild().getNodeValue()+"--"; }
+
+		          Element addr2 =(Element)entry.getElementsByTagName("addr2").item(0);
+		          if(addr2 == null){continue;}else{result += addr2.getFirstChild().getNodeValue()+"--"; }
+		          
+		          Element firstimage2 = (Element)entry.getElementsByTagName("firstimage2").item(0);
+		          if(firstimage2 == null){continue;}else{result += firstimage2.getFirstChild().getNodeValue()+"--"; }
+		          
+		          Element tel = (Element)entry.getElementsByTagName("tel").item(0);
+		          if(tel == null){result+="^^";}else{result += tel.getFirstChild().getNodeValue()+"^^"; }
 		        }
 	      } 
 	    }        
 	   }catch(Exception e){
 		   e.printStackTrace();
+		   
 	   }
 	   System.out.println("URL PARSING RESULT = "+result);
 	   return result;

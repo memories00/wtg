@@ -231,6 +231,12 @@ public class theme {
 	}
  
 	
+	@RequestMapping("/typeMap.nhn")
+	public String tMap()
+	{
+		return "/search/typeMap.jsp";
+	}
+	
 	@RequestMapping("/typeSearch.nhn")
 	public String type(HttpServletRequest request, String typeId)
 	{
