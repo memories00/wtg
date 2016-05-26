@@ -36,12 +36,12 @@
         <hr> 
 		
         <div id="type">
-        	<input type="button" id="12" value="관광지12" onclick="contentType(this)"/>
-        	<input type="button" id="14" value="문화시설14" onclick="contentType(this)"/>
-        	<input type="button" id="28" value="레포츠28" onclick="contentType(this)"/>
-        	<input type="button" id="32" value="숙박32" onclick="contentType(this)"/>
-    		<input type="button" id="38" value="쇼핑38" onclick="contentType(this)"/>
-    		<input type="button" id="39" value="음식점39" onclick="contentType(this)"/>
+        	<input type="button" id="12" value="관광지12" onclick="categoryType(this)"/>
+        	<input type="button" id="14" value="문화시설14" onclick="categoryType(this)"/>
+        	<input type="button" id="28" value="레포츠28" onclick="categoryType(this)"/>
+        	<input type="button" id="32" value="숙박32" onclick="categoryType(this)"/>
+    		<input type="button" id="38" value="쇼핑38" onclick="categoryType(this)"/>
+    		<input type="button" id="39" value="음식점39" onclick="categoryType(this)"/>
         </div>   
     </div>
 </div>
@@ -71,10 +71,10 @@ var zoomControl = new daum.maps.ZoomControl();
 map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 
 //선택한 타입의 데이터를 요청합니다.
-function contentType(type) {
-	alert("버튼");
+function categoryType(a) {
+	//alert("버튼");
 	hideMarkers();	//생성된 마커를 지웁니다.
-	var t = type.getAttribute('id');
+	var t = a.getAttribute('id');
 		$.ajax({
 	        url:"/wtg/typeSearch.nhn",
 	        data: {
@@ -83,6 +83,7 @@ function contentType(type) {
 	        success : cut
 	    });
 	}
+
 	
 //장소명/x좌표/y좌표로 분리합니다.
 function cut(info) {
@@ -93,7 +94,7 @@ function cut(info) {
 			var name = el[0];
 			var x = el[1];
 			var y = el[2];
-			alert("y주소"+y);
+			//alert("y주소"+y);
 			addMarker(new daum.maps.LatLng(y,x), name);	
  		}
 //		alert(map.getBounds());
@@ -116,28 +117,37 @@ function addMarker(yx, name) {
 			content : name
 		})
 		
-		//커스텀 오버레이에 표시할 컨텐츠 입니다
-		var content = '<div class="wrap">' + 
-		         '    <div class="info">' + 
-		         '        <div class="title">' + 
-		         					name + 
-		         '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-		         '        </div>' + 
-		         '        <div class="body">' + 
-		         '            <div class="img">' +
-		         '                <img src="" width="73" height="70">' +
-		         '           </div>' + 
-		         '            <div class="desc">' + 
-		         '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-		         '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-		         '                <div><a href="http://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-		         '            </div>' + 
-		         '        </div>' + 
-		         '    </div>' +    
-		         '</div>';
+// 		//커스텀 오버레이에 표시할 컨텐츠 입니다
+// 		var content = '<div class="wrap">' + 
+// 		         '    <div class="info">' + 
+// 		         '        <div class="title">' + 
+// 		         					name + 
+// 		         '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+// 		         '        </div>' + 
+// 		         '        <div class="body">' + 
+// 		         '            <div class="img">' +
+// 		         '                <img src="" width="73" height="70">' +
+// 		         '           </div>' + 
+// 		         '            <div class="desc">' + 
+// 		         '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
+// 		         '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
+// 		         '                <div><a href="http://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
+// 		         '            </div>' + 
+// 		         '        </div>' + 
+// 		         '    </div>' +    
+// 		         '</div>';
 		
 		daum.maps.event.addListener(marker, 'mouseover', function(){ //마우스오버시에 인포윈도우 열림
-			infowindow.open(map, marker);
+			var a=marker.getPosition().getLat();
+			var b=marker.getPosition().getLng();
+		a=Number(a);
+		b=Number(b);
+		a+=0.0001;
+		b+=0.0043;
+		
+		position=new daum.maps.LatLng(a,b);
+		infowindow.setPosition(position);
+			infowindow.open(map);
 		});
 		
 		daum.maps.event.addListener(marker, 'mouseout', function(){
@@ -156,21 +166,21 @@ function hideMarkers(map)
 	
 //마커 위에 커스텀오버레이를 표시합니다
 //마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-var overlay = new daum.maps.CustomOverlay({
- content: content,
- map: map,
- position: marker.getPosition()       
-});
+// var overlay = new daum.maps.CustomOverlay({
+//  content: content,
+//  map: map,
+//  position: marker.getPosition()       
+// });
 	
 //마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-daum.maps.event.addListener(marker, 'click', function() {
-    overlay.setMap(map);
-});
+// daum.maps.event.addListener(marker, 'click', function() {
+//     overlay.setMap(map);
+// });
 
 // 커스텀 오버레이를 닫습니다 
-function closeOverlay() {
-    overlay.setMap(null);     
-}
+// function closeOverlay() {
+//     overlay.setMap(null);     
+// }
 </script>
 
 
