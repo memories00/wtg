@@ -44,7 +44,7 @@ public class mainBean
 		request.setAttribute("count", count);
 		System.out.println(count);
 		SAXBuilder builder = new SAXBuilder();
-		Document doc=builder.build("C:/Users/Yoonho/git/wtg/wtg/WebContent/main/get_today.xml");
+		Document doc=builder.build("C:/Users/user1/git/wtg/wtg/WebContent/main/get_today.xml");
 		//C:/DATA/XML/get_today.xml
 		Element root=doc.getRootElement();
 		List children = root.getChildren();
