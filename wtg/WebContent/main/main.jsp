@@ -67,7 +67,7 @@ $(document).ready(function(){
 	 
 <%
 	String MyKey="5F5DC3B8-FFFF00AA9";
-	String XmlPath="/Users/user1/git/wtg/wtg/WebContent/main/";
+	String XmlPath="/Users/Yoonho/git/wtg/wtg/WebContent/main/";
 	String initRst=Api.Init(MyKey,XmlPath);
 
 	if(initRst=="1"){
@@ -368,7 +368,7 @@ function test_Search()
 					  <ul class="als-wrapper">
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
-							<a href="http://">
+							<a href="themeView.nhn?no=${list2.no}&currentPage=1"> 
 							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
@@ -383,9 +383,12 @@ function test_Search()
 		</table>
 	</div>
 	</c:if>
-	
+	<div id="themeadd">
+		<a href="/wtg/themeWrite.nhn?currentPage=1">
+			<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+		</a>
+	</div>
 	<div id="review">
-		review
 	</div>
 </div>
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é ¹ÙÅÒ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->

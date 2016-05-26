@@ -47,11 +47,6 @@ function theme_Write()
        <td><input type="file" name="save"></td>
      </tr>
      <tr>
-     <td width="200">대표이미지</td>
-     <td><input type="file" name="category" /></td>
-     <td><input type="button" value="카테고리추가" onClick="main_Category()"></td>
-     </tr>
-     <tr>
        <td align="right" colspan="2">
          <input type="button" value="등록" onClick="theme_Write()">
          <input type="button" value="목록" onClick="javascript:location.href='themeList.nhn'">
