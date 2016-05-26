@@ -95,6 +95,15 @@ ul#main_menu li{
 	margin-left:-475px; 
 	position: absolute;
 }
+#themeadd{
+	width:200px; 
+	height:300px; 
+	top:480px; 
+	left:50%; 
+	margin-left:+250px; 
+	position: absolute;
+	border: 1px solid black;
+}
 
 #review {
 	width:90%; 
