@@ -24,7 +24,11 @@ public class theme {
 	@RequestMapping("/themeList.nhn")
 	public String themeList(HttpSession session, HttpServletRequest request){
 		String id= (String)session.getAttribute("memId");
+		String name = (String)session.getAttribute("memName");
 		String a =request.getParameter("a");
+		
+		System.out.println(id);
+		System.out.println(name);
 		
 		int currentPage = 1;
 		int totalCount;
@@ -74,6 +78,10 @@ public class theme {
 	public String themeView(HttpServletRequest request,HttpSession session, ThemeDTO dto){
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		String id= (String)session.getAttribute("memId");
+		String name= (String)session.getAttribute("memName");
+		
+		System.out.println(id);
+		System.out.println(name);
         
 		sqlMapClientTemplate.update("theme.updateReadHit",dto.getNo());
 	
@@ -228,6 +236,17 @@ public class theme {
 		request.setAttribute("ctGood", ctGood);
 		request.setAttribute("ctHate", ctHate);
 		return "/theme/hate.jsp";
+	}
+	
+	@RequestMapping("/sendComment.nhn")
+	public String sendComment(String num, String id, String name, String text){
+		
+		System.out.println(num);
+		System.out.println(id);
+		System.out.println(name);
+		System.out.println(text);
+		
+		return "/theme/sendComment.jsp";
 	}
  
 	

@@ -132,11 +132,9 @@
 				<span class="form-inline" role="form">
  				<p>
 				<div class="form-group">
-					<input type="text" id="commentParentName" name="commentParentName" class="form-control col-lg-2" data-rule-required="true" placeholder="이름" maxlength="10">
+					${sessionScope.memId} ${sessionScope.memName}
 				</div>
-				<div class="form-group">
-					<input type="password" id="commentParentPassword" name="commentParentPassword" class="form-control col-lg-2" data-rule-required="true" placeholder="패스워드" maxlength="10">
-				</div>
+				
 				<div class="form-group">
 					<button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
 				</div>
@@ -170,19 +168,10 @@
 			$("#commentParentSubmit").click(function( event ) {
                                    
 			//ajax로 저장하고 성공하면 저장한 데이터를 가져와 넣어야 하는데 여기서는 테스트라 그냥 입력값을 가져옴
-			var pName = $("#commentParentName");
-			var pPassword = $("#commentParentPassword");//패스워드를 노출 시켰는데 저장하고 나서 저장한 날짜를 보여줄 예정
+			
 			var pText = $("#commentParentText");
                                    
-			if($.trim(pName.val())==""){
-				alert("이름을 입력하세요.");
-				pName.focus();
- 				return;
-			}else if($.trim(pPassword.val())==""){
-				alert("패스워드를 입력하세요.");
-				pPassword.focus();
-				return;
-			}else if($.trim(pText.val())==""){
+			if($.trim(pText.val())==""){
 				alert("내용을 입력하세요.");
  				pText.focus();
 				return;
@@ -190,7 +179,7 @@
                                    
 			var commentParentText = '<tr id="r1" name="commentParentCode">'+
 									 '<td colspan=2>'+
-                                     '<strong>'+pName.val()+'</strong> '+pPassword.val()+' <a style="cursor:pointer;" name="pAdd">답글</a> | <a style="cursor:pointer;" name="pDel">삭제</a><p>'+pText.val().replace(/\n/g, "<br>")+'</p>'+
+                                     '<strong>${sessionScope.memName}</strong><a style="cursor:pointer;" name="pAdd">답글</a> | <a style="cursor:pointer;" name="pDel">삭제</a><p>'+pText.val().replace(/\n/g, "<br>")+'</p>'+
                                      '</td>'+
                                      '</tr>';
                                    
@@ -201,30 +190,49 @@
 				$('#commentTable tr:last').after(commentParentText);
 			}
                                    
-			$("#commentParentName").val("");
-			$("#commentParentPassword").val("");
 			$("#commentParentText").val("");
 			
-			sendComment();
+			alert("1");
+
+			alert("2");
+			
+			var mid = ${memId};
+			alert(mid);
+			var bnum = ${dto.no};
+			alert(bnum);
+			var comment = commentParentText;
+			alert(comment);
+	
+			alert("3");
+			
+			$.ajax({
+				type: "POST",
+				url: "/wtg/sendComment.nhn",
+				data: {
+					num: bnum,
+					id: mid,
+					text: comment
+				},
+				async: true,
+				success: function(){
+					alert("post-success");
+				},
+				error: function(){
+					alert("post-error");
+				},
+				complete: function(){
+					alert("post-complete");
+				}
+			});
                                    
 		});
                                
 		 //댓글의 댓글을 다는 이벤트
 		$(document).on("click","#commentChildSubmit", function(){
                                    
-			var cName = $("#commentChildName");
-			var cPassword = $("#commentChildPassword");
 			var cText = $("#commentChildText");
                                    
-			if($.trim(cName.val())==""){
-				alert("이름을 입력하세요.");
-				cName.focus();
-				return;
-			}else if($.trim(cPassword.val())==""){
-				alert("패스워드를 입력하세요.");
-				cPassword.focus();
-				return;
-			}else if($.trim(cText.val())==""){
+			if($.trim(cText.val())==""){
 				alert("내용을 입력하세요.");
 				cText.focus();
 				return;
@@ -267,7 +275,7 @@
 				nextTr.after(commentChildText);
 			}
 			
-			sendComment();
+			
                                    
 		});
                                
@@ -330,13 +338,27 @@
 		});
 		
 		function sendComment(){
+			alert("2");
+			
+			var mid = ${memId};
+			alert(mid);
+			var bnum = ${dto.no};
+			alert(bnum);
+			var mname = "임의의값";
+			alert(mname);
+			var comment = $("#commentParentText");
+			alert(content);
+	
+			alert("3");
+			
 			$.ajax({
 				type: "POST",
-				url: "/wtg/login.nhn",
+				url: "/wtg/sendComment.nhn",
 				data: {
-					name: pName,
-					password: pPassword,//패스워드를 노출 시켰는데 저장하고 나서 저장한 날짜를 보여줄 예정
-					text: pText
+					num: bnum,
+					id: mid,
+					name: mname,
+					text: comment
 				},
 				async: true,
 				success: function(){
