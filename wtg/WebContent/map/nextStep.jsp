@@ -41,6 +41,7 @@
 				</div>
 			</div>
 			
+			
 		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06807e3624c0410b3525f8f75a0a967c&libraries=services"></script>
 		<script>
 		var totalStr='${returnName}';
@@ -120,18 +121,8 @@
 		}
 		map.setBounds(bounds);
 
-
-			
-			</script>
-				
+			</script>		
 	</head>
 	<body>
-	<br/>
-	<br/>
-	<table border="2" style="width:100%;height:400px">
-		<tr>
-			<td><font size="7">다음에디터</font></td>
-		</tr>
-	</table>
 	</body>
 </html>
