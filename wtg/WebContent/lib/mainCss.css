@@ -97,17 +97,18 @@ ul#main_menu li{
 }
 
 #review {
-	width:230px; 
-	height:310px; 
-	top:480px; 
-	right:50%;  
-	margin-right:-475px; 
+	width:90%; 
+	height:100px; 
+	top:800px; 
+	left:50%; 
+	margin-left:-425px;
 	position: absolute; 
+	border: 1px solid black;
 }
 
 #footer {
 	width:100%; 
-	top:1040px; 
+	top:1200px; 
 	position: relative;
 }
 #link {

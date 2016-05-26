@@ -137,7 +137,7 @@ function test_Search()
 		</div>
 	</div>
 	<div id="logo">
-	<img id="logo_img" src="/wtg/themeImg/logo.png" style="width: 100%; max-width: 100px; height:100%; max-height:100px;"/>
+	<img id="logo_img" src="/wtg/themeImg/logo.png" style="width: 100%; max-width: 250px; height:100%; max-height:100px;"/>
 	</div>	
 	<div class="dif" id="menu">
 		<ul id="main_menu">
