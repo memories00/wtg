@@ -1,6 +1,7 @@
 package theme;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -239,12 +240,31 @@ public class theme {
 	}
 	
 	@RequestMapping("/sendComment.nhn")
-	public String sendComment(String num, String id, String name, String text){
+	public String sendComment(HttpSession session, CommentDTO a_dto, MemCommentDTO m_dto, String num, String id, String name, String text){
+		
+		Timestamp reg  = new Timestamp(System.currentTimeMillis());
+		String nickname= (String)session.getAttribute("memName");
+		
+		System.out.println(nickname);
+		
+		a_dto.setBoard_Num(num);
+		a_dto.setMem_Id(id);
+		a_dto.setContent(text);
+		a_dto.setReg(reg);
+		
+		m_dto.setNickname(nickname);
+		m_dto.setId(id);
+		m_dto.setContent(text);
+		m_dto.setReg(reg);
 		
 		System.out.println(num);
 		System.out.println(id);
 		System.out.println(name);
 		System.out.println(text);
+		
+		sqlMapClientTemplate.insert("theme.insertAllComment", a_dto);
+		
+		sqlMapClientTemplate.insert("theme.insertMemComment", m_dto);
 		
 		return "/theme/sendComment.jsp";
 	}

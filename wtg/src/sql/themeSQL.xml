@@ -4,6 +4,8 @@
   <typeAlias alias="theme" type="theme.ThemeDTO"/>
   <typeAlias alias="good" type="theme.GoodDTO" />
   <typeAlias alias="report" type="theme.ReportDTO" />
+  <typeAlias alias="comment" type="theme.CommentDTO" />
+  <typeAlias alias="memComment" type="theme.MemCommentDTO" />
   
   <!-- 리절트 맵 정의 -->
   <resultMap class="theme" id="t"  >
@@ -190,5 +192,39 @@
 								reg date default sysdate
 								)
 	</statement>
+	
+	<insert id="insertAllComment" parameterClass="comment">
+     insert into comments(
+     					comment_no,
+                        mem_id,
+                        board_num,
+                        content,
+                        reg
+                        )
+                 values(
+                 		comments_seq.NEXTVAL
+                 		#mem_id#,
+                        #board_num#,
+                        #content#,
+                        #reg#
+                        )
+  </insert>
+  
+  <insert id="insertMemComment" parameterClass="memComment">
+     insert into comment_$num$(
+     					no,
+                        id,
+                        nuckname,
+                        content,
+                        reg
+                        )
+                 values(
+                 		comment_$num$_seq.NEXTVAL
+                 		#id#,
+                        #nickname#,
+                        #content#,
+                        #reg#
+                        )
+  </insert>
   
 </sqlMap>
