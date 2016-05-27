@@ -138,4 +138,19 @@ public class map
 			
 		return  "/map/result.jsp";
 	}
+	@RequestMapping("/insertDB.nhn")
+	public String insertDB(HttpServletRequest request,String daumeditor) {	
+		try {
+			request.setCharacterEncoding("EUC-KR");
+			System.out.println(daumeditor);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return "/main/main.jsp";
+	}
+	
+	
 }

@@ -1,0 +1,367 @@
+<!-- �뿉�뵒�꽣 而⑦뀒�씠�꼫 �떆�옉 -->
+<div id="tx_trex_container" class="tx-editor-container">
+	<!-- �궗�씠�뱶諛� -->
+	<div id="tx_sidebar" class="tx-sidebar">
+		<div class="tx-sidebar-boundary">
+			<!-- �궗�씠�뱶諛� / 泥⑤� -->
+			<ul class="tx-bar tx-bar-left tx-nav-attach">
+				<!-- �씠誘몄� 泥⑤� 踰꾪듉 �떆�옉 -->
+				<li class="tx-list">
+					<div unselectable="on" id="tx_image" class="tx-image tx-btn-trans">
+						<a href="#" title="�궗吏�" class="tx-text">�궗吏�</a>
+					</div>
+				</li>
+				<!-- �씠誘몄� 泥⑤� 踰꾪듉 �걹 -->
+			</ul>
+			<!-- �궗�씠�뱶諛� / �슦痢≪쁺�뿭 -->
+			<ul class="tx-bar tx-bar-right">
+				<li class="tx-list">
+					<div unselectable="on" class="tx-btn-lrbg tx-fullscreen" id="tx_fullscreen">
+						<a href="javascript:;" class="tx-icon" title="�꼻寃뚯벐湲� (Ctrl+M)">�꼻寃뚯벐湲�</a>
+					</div>
+				</li>
+			</ul>
+			<ul class="tx-bar tx-bar-right tx-nav-opt">
+				<li class="tx-list">
+					<div unselectable="on" class="tx-switchtoggle" id="tx_switchertoggle">
+						<a href="javascript:;" title="�뿉�뵒�꽣 ���엯">�뿉�뵒�꽣</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- �댋諛� - 湲곕낯 �떆�옉 -->
+	<!--
+		@decsription
+		�댋諛� 踰꾪듉�쓽 洹몃９�븨�쓽 蹂�寃쎌씠 �븘�슂�븷 �븣�뒗 �쐞移�(�쇊履�, 媛��슫�뜲, �삤瑜몄そ) �뿉 �뵲�씪 <li> �븘�옒�쓽 <div>�쓽 �겢�옒�뒪紐낆쓣 蹂�寃쏀븯硫� �맂�떎.
+		tx-btn-lbg: �쇊履�, tx-btn-bg: 媛��슫�뜲, tx-btn-rbg: �삤瑜몄そ, tx-btn-lrbg: �룆由쎌쟻�씤 洹몃９
+
+		�뱶濡��떎�슫 踰꾪듉�쓽 �겕湲곕�� 蹂�寃쏀븯怨좎옄 �븷 寃쎌슦�뿉�뒗 �꼻�씠�뿉 �뵲�씪 <li> �븘�옒�쓽 <div>�쓽 �겢�옒�뒪紐낆쓣 蹂�寃쏀븯硫� �맂�떎.
+		tx-slt-70bg, tx-slt-59bg, tx-slt-42bg, tx-btn-43lrbg, tx-btn-52lrbg, tx-btn-57lrbg, tx-btn-71lrbg
+		tx-btn-48lbg, tx-btn-48rbg, tx-btn-30lrbg, tx-btn-46lrbg, tx-btn-67lrbg, tx-btn-49lbg, tx-btn-58bg, tx-btn-46bg, tx-btn-49rbg
+	-->
+	<div id="tx_toolbar_basic" class="tx-toolbar tx-toolbar-basic"><div class="tx-toolbar-boundary">
+		<ul class="tx-bar tx-bar-left">
+			<li class="tx-list">
+				<div id="tx_fontfamily" unselectable="on" class="tx-slt-70bg tx-fontfamily">
+					<a href="javascript:;" title="湲�瑗�">援대┝</a>
+				</div>
+				<div id="tx_fontfamily_menu" class="tx-fontfamily-menu tx-menu" unselectable="on"></div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-left">
+			<li class="tx-list">
+				<div unselectable="on" class="tx-slt-42bg tx-fontsize" id="tx_fontsize">
+					<a href="javascript:;" title="湲��옄�겕湲�">9pt</a>
+				</div>
+				<div id="tx_fontsize_menu" class="tx-fontsize-menu tx-menu" unselectable="on"></div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-left tx-group-font">
+
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-lbg 	tx-bold" id="tx_bold">
+					<a href="javascript:;" class="tx-icon" title="援듦쾶 (Ctrl+B)">援듦쾶</a>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-bg 	tx-underline" id="tx_underline">
+					<a href="javascript:;" class="tx-icon" title="諛묒쨪 (Ctrl+U)">諛묒쨪</a>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-bg 	tx-italic" id="tx_italic">
+					<a href="javascript:;" class="tx-icon" title="湲곗슱�엫 (Ctrl+I)">湲곗슱�엫</a>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-bg 	tx-strike" id="tx_strike">
+					<a href="javascript:;" class="tx-icon" title="痍⑥냼�꽑 (Ctrl+D)">痍⑥냼�꽑</a>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-slt-tbg 	tx-forecolor" id="tx_forecolor">
+					<a href="javascript:;" class="tx-icon" title="湲��옄�깋">湲��옄�깋</a>
+					<a href="javascript:;" class="tx-arrow" title="湲��옄�깋 �꽑�깮">湲��옄�깋 �꽑�깮</a>
+				</div>
+				<div id="tx_forecolor_menu" class="tx-menu tx-forecolor-menu tx-colorpallete"
+					 unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-slt-brbg 	tx-backcolor" id="tx_backcolor">
+					<a href="javascript:;" class="tx-icon" title="湲��옄 諛곌꼍�깋">湲��옄 諛곌꼍�깋</a>
+					<a href="javascript:;" class="tx-arrow" title="湲��옄 諛곌꼍�깋 �꽑�깮">湲��옄 諛곌꼍�깋 �꽑�깮</a>
+				</div>
+				<div id="tx_backcolor_menu" class="tx-menu tx-backcolor-menu tx-colorpallete"
+					 unselectable="on"></div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-left tx-group-align">
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-lbg 	tx-alignleft" id="tx_alignleft">
+					<a href="javascript:;" class="tx-icon" title="�쇊履쎌젙�젹 (Ctrl+,)">�쇊履쎌젙�젹</a>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-bg 	tx-aligncenter" id="tx_aligncenter">
+					<a href="javascript:;" class="tx-icon" title="媛��슫�뜲�젙�젹 (Ctrl+.)">媛��슫�뜲�젙�젹</a>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-bg 	tx-alignright" id="tx_alignright">
+					<a href="javascript:;" class="tx-icon" title="�삤瑜몄そ�젙�젹 (Ctrl+/)">�삤瑜몄そ�젙�젹</a>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-rbg 	tx-alignfull" id="tx_alignfull">
+					<a href="javascript:;" class="tx-icon" title="�뼇履쎌젙�젹">�뼇履쎌젙�젹</a>
+				</div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-left tx-group-tab">
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-lbg 	tx-indent" id="tx_indent">
+					<a href="javascript:;" title="�뱾�뿬�벐湲� (Tab)" class="tx-icon">�뱾�뿬�벐湲�</a>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-rbg 	tx-outdent" id="tx_outdent">
+					<a href="javascript:;" title="�궡�뼱�벐湲� (Shift+Tab)" class="tx-icon">�궡�뼱�벐湲�</a>
+				</div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-left tx-group-list">
+			<li class="tx-list">
+				<div unselectable="on" class="tx-slt-31lbg tx-lineheight" id="tx_lineheight">
+					<a href="javascript:;" class="tx-icon" title="以꾧컙寃�">以꾧컙寃�</a>
+					<a href="javascript:;" class="tx-arrow" title="以꾧컙寃�">以꾧컙寃� �꽑�깮</a>
+				</div>
+				<div id="tx_lineheight_menu" class="tx-lineheight-menu tx-menu" unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="tx-slt-31rbg tx-styledlist" id="tx_styledlist">
+					<a href="javascript:;" class="tx-icon" title="由ъ뒪�듃">由ъ뒪�듃</a>
+					<a href="javascript:;" class="tx-arrow" title="由ъ뒪�듃">由ъ뒪�듃 �꽑�깮</a>
+				</div>
+				<div id="tx_styledlist_menu" class="tx-styledlist-menu tx-menu" unselectable="on"></div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-left tx-group-etc">
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-lbg 	tx-emoticon" id="tx_emoticon">
+					<a href="javascript:;" class="tx-icon" title="�씠紐⑦떚肄�">�씠紐⑦떚肄�</a>
+				</div>
+				<div id="tx_emoticon_menu" class="tx-emoticon-menu tx-menu" unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-bg 	tx-link" id="tx_link">
+					<a href="javascript:;" class="tx-icon" title="留곹겕 (Ctrl+K)">留곹겕</a>
+				</div>
+				<div id="tx_link_menu" class="tx-link-menu tx-menu"></div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-bg 	tx-specialchar" id="tx_specialchar">
+					<a href="javascript:;" class="tx-icon" title="�듅�닔臾몄옄">�듅�닔臾몄옄</a>
+				</div>
+				<div id="tx_specialchar_menu" class="tx-specialchar-menu tx-menu"></div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-bg 	tx-table" id="tx_table">
+					<a href="javascript:;" class="tx-icon" title="�몴留뚮뱾湲�">�몴留뚮뱾湲�</a>
+				</div>
+				<div id="tx_table_menu" class="tx-table-menu tx-menu" unselectable="on">
+					<div class="tx-menu-inner">
+						<div class="tx-menu-preview"></div>
+						<div class="tx-menu-rowcol"></div>
+						<div class="tx-menu-deco"></div>
+						<div class="tx-menu-enter"></div>
+					</div>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-rbg 	tx-horizontalrule" id="tx_horizontalrule">
+					<a href="javascript:;" class="tx-icon" title="援щ텇�꽑">援щ텇�꽑</a>
+				</div>
+				<div id="tx_horizontalrule_menu" class="tx-horizontalrule-menu tx-menu" unselectable="on"></div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-left">
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-lbg 	tx-richtextbox" id="tx_richtextbox">
+					<a href="javascript:;" class="tx-icon" title="湲��긽�옄">湲��긽�옄</a>
+				</div>
+				<div id="tx_richtextbox_menu" class="tx-richtextbox-menu tx-menu">
+					<div class="tx-menu-header">
+						<div class="tx-menu-preview-area">
+							<div class="tx-menu-preview"></div>
+						</div>
+						<div class="tx-menu-switch">
+							<div class="tx-menu-simple tx-selected"><a><span>媛꾨떒 �꽑�깮</span></a></div>
+							<div class="tx-menu-advanced"><a><span>吏곸젒 �꽑�깮</span></a></div>
+						</div>
+					</div>
+					<div class="tx-menu-inner">
+					</div>
+					<div class="tx-menu-footer">
+						<img class="tx-menu-confirm"
+							 src="/daumeditor/images/icon/editor/btn_confirm.gif?rv=1.0.1" alt=""/>
+						<img class="tx-menu-cancel" hspace="3"
+							 src="/daumeditor/images/icon/editor/btn_cancel.gif?rv=1.0.1" alt=""/>
+					</div>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-bg 	tx-quote" id="tx_quote">
+					<a href="javascript:;" class="tx-icon" title="�씤�슜援� (Ctrl+Q)">�씤�슜援�</a>
+				</div>
+				<div id="tx_quote_menu" class="tx-quote-menu tx-menu" unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-bg 	tx-background" id="tx_background">
+					<a href="javascript:;" class="tx-icon" title="諛곌꼍�깋">諛곌꼍�깋</a>
+				</div>
+				<div id="tx_background_menu" class="tx-menu tx-background-menu tx-colorpallete"
+					 unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-rbg 	tx-dictionary" id="tx_dictionary">
+					<a href="javascript:;" class="tx-icon" title="�궗�쟾">�궗�쟾</a>
+				</div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-left tx-group-undo">
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-lbg 	tx-undo" id="tx_undo">
+					<a href="javascript:;" class="tx-icon" title="�떎�뻾痍⑥냼 (Ctrl+Z)">�떎�뻾痍⑥냼</a>
+				</div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="		 tx-btn-rbg 	tx-redo" id="tx_redo">
+					<a href="javascript:;" class="tx-icon" title="�떎�떆�떎�뻾 (Ctrl+Y)">�떎�떆�떎�뻾</a>
+				</div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-right">
+			<li class="tx-list">
+				<div unselectable="on" class="tx-btn-nlrbg tx-advanced" id="tx_advanced">
+					<a href="javascript:;" class="tx-icon" title="�댋諛� �뜑蹂닿린">�댋諛� �뜑蹂닿린</a>
+				</div>
+			</li>
+		</ul>
+	</div></div>
+	<!-- �댋諛� - 湲곕낯 �걹 -->
+	<!-- �댋諛� - �뜑蹂닿린 �떆�옉 -->
+	<div id="tx_toolbar_advanced" class="tx-toolbar tx-toolbar-advanced"><div class="tx-toolbar-boundary">
+		<ul class="tx-bar tx-bar-left">
+			<li class="tx-list">
+				<div class="tx-tableedit-title"></div>
+			</li>
+		</ul>
+
+		<ul class="tx-bar tx-bar-left tx-group-align">
+			<li class="tx-list">
+				<div unselectable="on" class="tx-btn-lbg tx-mergecells" id="tx_mergecells">
+					<a href="javascript:;" class="tx-icon2" title="蹂묓빀">蹂묓빀</a>
+				</div>
+				<div id="tx_mergecells_menu" class="tx-mergecells-menu tx-menu" unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="tx-btn-bg tx-insertcells" id="tx_insertcells">
+					<a href="javascript:;" class="tx-icon2" title="�궫�엯">�궫�엯</a>
+				</div>
+				<div id="tx_insertcells_menu" class="tx-insertcells-menu tx-menu" unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div unselectable="on" class="tx-btn-rbg tx-deletecells" id="tx_deletecells">
+					<a href="javascript:;" class="tx-icon2" title="�궘�젣">�궘�젣</a>
+				</div>
+				<div id="tx_deletecells_menu" class="tx-deletecells-menu tx-menu" unselectable="on"></div>
+			</li>
+		</ul>
+
+		<ul class="tx-bar tx-bar-left tx-group-align">
+			<li class="tx-list">
+				<div id="tx_cellslinepreview" unselectable="on" class="tx-slt-70lbg tx-cellslinepreview">
+					<a href="javascript:;" title="�꽑 誘몃━蹂닿린"></a>
+				</div>
+				<div id="tx_cellslinepreview_menu" class="tx-cellslinepreview-menu tx-menu"
+					 unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div id="tx_cellslinecolor" unselectable="on" class="tx-slt-tbg tx-cellslinecolor">
+					<a href="javascript:;" class="tx-icon2" title="�꽑�깋">�꽑�깋</a>
+
+					<div class="tx-colorpallete" unselectable="on"></div>
+				</div>
+				<div id="tx_cellslinecolor_menu" class="tx-cellslinecolor-menu tx-menu tx-colorpallete"
+					 unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div id="tx_cellslineheight" unselectable="on" class="tx-btn-bg tx-cellslineheight">
+					<a href="javascript:;" class="tx-icon2" title="�몢猿�">�몢猿�</a>
+
+				</div>
+				<div id="tx_cellslineheight_menu" class="tx-cellslineheight-menu tx-menu"
+					 unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div id="tx_cellslinestyle" unselectable="on" class="tx-btn-bg tx-cellslinestyle">
+					<a href="javascript:;" class="tx-icon2" title="�뒪���씪">�뒪���씪</a>
+				</div>
+				<div id="tx_cellslinestyle_menu" class="tx-cellslinestyle-menu tx-menu" unselectable="on"></div>
+			</li>
+			<li class="tx-list">
+				<div id="tx_cellsoutline" unselectable="on" class="tx-btn-rbg tx-cellsoutline">
+					<a href="javascript:;" class="tx-icon2" title="�뀒�몢由�">�뀒�몢由�</a>
+
+				</div>
+				<div id="tx_cellsoutline_menu" class="tx-cellsoutline-menu tx-menu" unselectable="on"></div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-left">
+			<li class="tx-list">
+				<div id="tx_tablebackcolor" unselectable="on" class="tx-btn-lrbg tx-tablebackcolor"
+					 style="background-color:#9aa5ea;">
+					<a href="javascript:;" class="tx-icon2" title="�뀒�씠釉� 諛곌꼍�깋">�뀒�씠釉� 諛곌꼍�깋</a>
+				</div>
+				<div id="tx_tablebackcolor_menu" class="tx-tablebackcolor-menu tx-menu tx-colorpallete"
+					 unselectable="on"></div>
+			</li>
+		</ul>
+		<ul class="tx-bar tx-bar-left">
+			<li class="tx-list">
+				<div id="tx_tabletemplate" unselectable="on" class="tx-btn-lrbg tx-tabletemplate">
+					<a href="javascript:;" class="tx-icon2" title="�뀒�씠釉� �꽌�떇">�뀒�씠釉� �꽌�떇</a>
+				</div>
+				<div id="tx_tabletemplate_menu" class="tx-tabletemplate-menu tx-menu tx-colorpallete"
+					 unselectable="on"></div>
+			</li>
+		</ul>
+
+	</div></div>
+	<!-- �댋諛� - �뜑蹂닿린 �걹 -->
+	<!-- �렪吏묒쁺�뿭 �떆�옉 -->
+		<!-- �뿉�뵒�꽣 Start -->
+<div id="tx_canvas" class="tx-canvas">
+	<div id="tx_loading" class="tx-loading"><div><img src="/daumeditor/images/icon/editor/loading2.png" width="113" height="21" align="absmiddle"/></div></div>
+	<div id="tx_canvas_wysiwyg_holder" class="tx-holder" style="display:block;">
+		<iframe id="tx_canvas_wysiwyg" name="tx_canvas_wysiwyg" allowtransparency="true" frameborder="0"></iframe>
+	</div>
+	<div class="tx-source-deco">
+		<div id="tx_canvas_source_holder" class="tx-holder">
+			<textarea id="tx_canvas_source" rows="30" cols="30"></textarea>
+		</div>
+	</div>
+	<div id="tx_canvas_text_holder" class="tx-holder">
+		<textarea id="tx_canvas_text" rows="30" cols="30"></textarea>
+	</div>
+</div>
+<!-- �넂�씠議곗젅 Start -->
+<div id="tx_resizer" class="tx-resize-bar">
+	<div class="tx-resize-bar-bg"></div>
+	<img id="tx_resize_holder" src="/daumeditor/images/icon/editor/skin/01/btn_drag01.gif" width="58" height="12" unselectable="on" alt="" />
+</div>
+<!-- �렪吏묒쁺�뿭 �걹 -->
+</div>
+<!-- �뿉�뵒�꽣 而⑦뀒�씠�꼫 �걹 -->
