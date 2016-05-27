@@ -22,7 +22,7 @@ public class TypeSearch {
 					+ "&contentTypeId="+typeId	/*타입 ID*/
 					+ "&arrange=P"				/*정렬(O=제목순, P=조회순, Q=수정일순, R=생성일순)*/
 					+ "&areaCode=1"				/*지역코드(1=서울)*/
-					+ "&numOfRows=100"			/*한페이지결과수*/
+					+ "&numOfRows=50"			/*한페이지결과수*/
 					+ "&pageNo=1";				/*페이지번호*/
 			url = new URL(responseType);
 
@@ -43,7 +43,7 @@ public class TypeSearch {
 	      // Get a list of each earthquake entry.
 	      NodeList nl = docEle.getElementsByTagName("item");
 	      if (nl != null && nl.getLength() > 0)
-	      {
+	      { 
 		        for (int i = 0 ; i < nl.getLength(); i++) 
 		        { //System.out.println(i);
 		          Element entry = (Element)nl.item(i);
@@ -61,13 +61,13 @@ public class TypeSearch {
 		          if(addr1 == null){continue;}else{result += addr1.getFirstChild().getNodeValue()+"--"; }
 
 		          Element addr2 =(Element)entry.getElementsByTagName("addr2").item(0);
-		          if(addr2 == null){continue;}else{result += addr2.getFirstChild().getNodeValue()+"--"; }
+		          if(addr2 == null){String a=" --"; result+=a;}else{result += addr2.getFirstChild().getNodeValue()+"--"; }
 		          
 		          Element firstimage2 = (Element)entry.getElementsByTagName("firstimage2").item(0);
-		          if(firstimage2 == null){continue;}else{result += firstimage2.getFirstChild().getNodeValue()+"--"; }
+		          if(firstimage2 == null){String a=" --"; result+=a;}else{result += firstimage2.getFirstChild().getNodeValue()+"--"; }
 		          
 		          Element tel = (Element)entry.getElementsByTagName("tel").item(0);
-		          if(tel == null){result+="^^";}else{result += tel.getFirstChild().getNodeValue()+"^^"; }
+		          if(tel == null){result+=" ^^";}else{result += tel.getFirstChild().getNodeValue()+"^^"; }
 		        }
 	      } 
 	    }        
