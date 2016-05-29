@@ -2,6 +2,7 @@ package theme;
 
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +81,9 @@ public class theme {
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		String id= (String)session.getAttribute("memId");
 		String name= (String)session.getAttribute("memName");
+		List list = null;
+		int commentPage = 1;
+		int totalCommentCount;
 		
 		System.out.println(id);
 		System.out.println(name);
@@ -91,8 +95,11 @@ public class theme {
 		request.setAttribute("dto", dto);
 		request.setAttribute("currentPage", currentPage);
 		
+		list = sqlMapClientTemplate.queryForList("theme.selectAll", null);
 		
 		//comment ¸®½ºÆ®
+		//totalCommentCount = list.size();
+
 		
 		return "/theme/themeView.jsp";
 	}
@@ -112,7 +119,8 @@ public class theme {
 		String path =request.getServletContext().getRealPath("")+"\\save\\";
 		int num = 0;
 	    if(orgName ==""){	
-			sqlMapClientTemplate.insert("theme.insertTheme", dto);		
+			sqlMapClientTemplate.insert("theme.insertTheme", dto);
+			dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectLastNo", null);
 		}else{ 
 			sqlMapClientTemplate.insert("theme.insertTheme", dto);
 			dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectLastNo", null);
@@ -136,6 +144,8 @@ public class theme {
 		request.setAttribute("dto", dto);
 		
 		num = dto.getNo();
+		System.out.println(num);
+		
 		sqlMapClientTemplate.update("theme.create", num);
 		
 		
@@ -240,7 +250,9 @@ public class theme {
 	}
 	
 	@RequestMapping("/sendComment.nhn")
-	public String sendComment(HttpSession session, CommentDTO a_dto, MemCommentDTO m_dto, String num, String id, String name, String text){
+	public String sendComment(HttpSession session, CommentDTO a_dto, String num, String id, String text){
+		
+		HashMap m_map = new HashMap();
 		
 		Timestamp reg  = new Timestamp(System.currentTimeMillis());
 		String nickname= (String)session.getAttribute("memName");
@@ -252,19 +264,19 @@ public class theme {
 		a_dto.setContent(text);
 		a_dto.setReg(reg);
 		
-		m_dto.setNickname(nickname);
-		m_dto.setId(id);
-		m_dto.setContent(text);
-		m_dto.setReg(reg);
+		m_map.put("num", num);
+		m_map.put("id", id);
+		m_map.put("nickname", nickname);
+		m_map.put("content", text);
+		m_map.put("reg", reg);
 		
 		System.out.println(num);
 		System.out.println(id);
-		System.out.println(name);
 		System.out.println(text);
 		
 		sqlMapClientTemplate.insert("theme.insertAllComment", a_dto);
 		
-		sqlMapClientTemplate.insert("theme.insertMemComment", m_dto);
+		sqlMapClientTemplate.insert("theme.insertMemComment", m_map);
 		
 		return "/theme/sendComment.jsp";
 	}

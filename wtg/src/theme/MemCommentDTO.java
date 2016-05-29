@@ -4,18 +4,10 @@ import java.sql.Timestamp;
 
 public class MemCommentDTO {
 	
-	private int no;
 	private String id;
 	private String nickname;
 	private String content;
 	private Timestamp reg;
-	
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
 	
 	public String getNickname() {
 		return nickname;
