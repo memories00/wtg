@@ -17,13 +17,13 @@ public class TypeSearch {
 	   try{
 			String responseType = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"
 					+ "?ServiceKey=qczVz%2FMEZtFm3v%2Fl4ofQvjR4rEtDWICqtPhpwhwGpzSk5Iwd8Wk%2BRvegrpM1W%2Foyd0TveGp7zjfDTCUve9cC9w%3D%3D"
-					+ "&MobileOS=ETC"			/*OS 구분*/
-					+ "&MobileApp=WTG"			/*어플이름*/
-					+ "&contentTypeId="+typeId	/*타입 ID*/
-					+ "&arrange=P"				/*정렬(O=제목순, P=조회순, Q=수정일순, R=생성일순)*/
-					+ "&areaCode=1"				/*지역코드(1=서울)*/
 					+ "&numOfRows=50"			/*한페이지결과수*/
-					+ "&pageNo=1";				/*페이지번호*/
+					+ "&arrange=P"				/*정렬(O=제목순, P=조회순, Q=수정일순, R=생성일순)*/
+					+ "&contentTypeId="+typeId	/*타입 ID*/
+					+ "&areaCode=1"				/*지역코드(1=서울)*/
+		//			+ "&pageNo=1"				/*페이지번호*/
+					+ "&MobileOS=ETC"			/*OS 구분*/
+					+ "&MobileApp=WTG";			/*어플이름*/
 			url = new URL(responseType);
 
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
@@ -43,7 +43,7 @@ public class TypeSearch {
 	      // Get a list of each earthquake entry.
 	      NodeList nl = docEle.getElementsByTagName("item");
 	      if (nl != null && nl.getLength() > 0)
-	      { 
+	      { System.out.println("여기");
 		        for (int i = 0 ; i < nl.getLength(); i++) 
 		        { //System.out.println(i);
 		          Element entry = (Element)nl.item(i);
