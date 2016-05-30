@@ -95,8 +95,8 @@ public class theme {
 		request.setAttribute("dto", dto);
 		request.setAttribute("currentPage", currentPage);
 		
-		list = sqlMapClientTemplate.queryForList("theme.selectAll", null);
-		
+		list = sqlMapClientTemplate.queryForList("theme.memCommentAll", dto.getNo());
+		request.setAttribute("list", list);
 		//comment ¸®½ºÆ®
 		//totalCommentCount = list.size();
 
