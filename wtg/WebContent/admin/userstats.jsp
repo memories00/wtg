@@ -36,7 +36,10 @@ function user_Allday()
 	</tr>
 	<tr>
 	<td>
-	${statscount}${monthcount}${allcount}
+	일일통계${daycount}
+	</td>
+	<td>
+	전체통계${allcount}
 	</td>
 	</tr>
 	<tr>

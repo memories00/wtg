@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import admin.bean.MemDTO;
+import admin.bean.UserstatsDTO;
 import main.bean.SlideDTO;
 import theme.ThemeDTO;
 
@@ -31,13 +33,37 @@ public class mainBean
 	private SqlMapClientTemplate sqlMap;
 	
 	@RequestMapping("/main.nhn")
-	public String main(HttpSession session, HttpServletRequest request) throws JDOMException, IOException
+	public String main(HttpSession session, HttpServletRequest request,UserstatsDTO dto) throws JDOMException, IOException
 	{	
 		String id=(String)session.getAttribute("memId");
 		List<SlideDTO> list = new ArrayList<SlideDTO>();
 		list = sqlMap.queryForList("main.selectAll",null);
 		List<ThemeDTO> list2 = new ArrayList<ThemeDTO>();
 		list2 = sqlMap.queryForList("main.cateselect",id);
+		
+		long time = System.currentTimeMillis(); 
+		SimpleDateFormat y = new SimpleDateFormat("yy");
+		String year = y.format(new Date(time));
+		SimpleDateFormat m = new SimpleDateFormat("yyMM");
+		String month = m.format(new Date(time));
+		SimpleDateFormat d = new SimpleDateFormat("dd");
+		String day = d.format(new Date(time));
+		String yemoda=month+day;
+		String stats=id+yemoda;
+		
+		dto.setId(id);
+		dto.setYear(year);
+		dto.setMonth(month);
+		dto.setDay(day);
+		dto.setYemoda(yemoda);
+		dto.setStats(stats);
+		
+		int statscount=(Integer)sqlMap.queryForObject("admin.statsselect",dto);
+		
+		if(statscount==0){
+			sqlMap.insert("admin.statsinsert", dto);
+		}
+		
 		int count=(Integer)sqlMap.queryForObject("main.catecount", id);
 		request.setAttribute("list2", list2);
 		request.setAttribute("list", list);
