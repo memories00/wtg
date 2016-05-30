@@ -34,9 +34,7 @@ public class map
 		try 	{
 			request.setCharacterEncoding("EUC-KR");
 			
-			
-			String testId="namuda";
-			
+			System.out.println(endStn);
 			String parseTitle[]=allTitle[0].split(",");
 			String startDistance[]=parseTitle[0].split("/");//startDistance[0] 출발지 근처역까지거리
 			
@@ -124,16 +122,20 @@ public class map
 	}
 
 	@RequestMapping("/insertDB.nhn")
-	public String insertDB(HttpServletRequest request,String daumeditor) {	
+	public String  insertDB(HttpServletRequest request) {	
 		try {
+			mapDto dto=new mapDto();
 			request.setCharacterEncoding("EUC-KR");
-			System.out.println(daumeditor);
+			int num=(Integer)sqlMap.queryForObject("map.getNum",null);
+			String content=request.getParameter("daumeditor");
+			dto.setNum(num);
+			dto.setContent(content);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return "/main/main.jsp";
+		return "/map/courseInput.jsp";
 	}
 	 @RequestMapping(value = "/imagePopup.nhn")
 	    public String imagePopup(){     

@@ -320,22 +320,35 @@
  	 			   {//검색리스트에서 선택을 눌렀을경우
  	 			    	if(index==0)
  	 			    	{
+ 	 			   
  	 			    		var btnId=bt.getAttribute('id');
  	 			    		var parseId=btnId.split("/");
  	 			    		var parseAddress=parseId[3];
+ 	 			    		var phone=parseId[4];
+ 	 			    		var tagId=document.getElementById('startKey');
+ 	 			    	
  	 			    		//alert(parseAddress);
  	 			    		var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);//아이디에 합쳐져있는 위치값을가져온다
- 	 			    		var tagId=document.getElementById('startKey');
- 	 			    		
+ 	 			    		//var tagId=document.getElementById('startKey');
+ 	 			    	
  	 			    		fragment = document.createDocumentFragment();
  	 			    		startMarker.setTitle(parseId[0]);//마커에 이름을 생성
  	 			    		startMarker.setPosition(markerPosition);//미리생성한 출발마커의 위치를 이동한다.
  	 			    		startMarker.setMap(map);//마커를 출력
- 	 			    		tagId.value=parseId[0];	//input창에 이름을 출력
+ 	 			    		tagId.value=parseId[0];	 //input창에 이름을 출력
+ 	 			    	
+ 	 			    		searchSub(index,markerPosition,parseAddress,phone);
+ 	 			    		if(phone==null)
+ 	 			    		{
+ 	 			    			phone=" ";	
+ 	 			    			basicName[0]=btnId+"/"+phone+"/";
+ 	 			    		}
+ 	 			    		else
+ 	 			    		{
+ 	 			    			basicName[0]=btnId;
+ 	 			    		}
+ 	 			
  	 			    		
- 	 			    		searchSub(index,markerPosition,parseAddress);
- 	 			    		
- 	 			    		basicName[0]=btnId;
  	 			    		var listEl = document.getElementById('placesList');
  	 			    		removeAllChildNods(listEl);
  	 			    	}
@@ -344,6 +357,7 @@
 	 	 			   		var btnId=bt.getAttribute('id'); 			   		
 		 			    	var parseId=btnId.split("/");
 		 			    	var parseAddress=parseId[3];
+		
 		 			    	//alert(parseAddress);
 		 			    	var minus=1;
 		 			    	var plusId=cnt-minus;
@@ -390,8 +404,11 @@
  	 			    		var btnId=bt.getAttribute('id');
  	 			    		var parseId=btnId.split("/");
  	 			    		var parseAddress=parseId[3];
- 	 			    		var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);
+ 	 			    		var phone=parseId[4];
  	 			    		var tagId=document.getElementById('endKey');
+ 	 	
+ 	 			    		var markerPosition  = new daum.maps.LatLng(parseId[1], parseId[2]);
+ 	 			    		//var tagId=document.getElementById('endKey');
  	 			    		
  	 			    		fragment = document.createDocumentFragment();
  	 			    		endMarker.setTitle(parseId[0]);
@@ -399,8 +416,17 @@
  	 			    		endMarker.setMap(map);
  	 			    		
  	 			    		searchSub(index,markerPosition,parseAddress);
+ 	 			    		if(phone==null)
+ 	 			    		{
+ 	 			    			phone=" ";	
+ 	 			    			basicName[cnt+1]=btnId+"/"+phone+"/";
+ 	 			    		}
+ 	 			    		else
+ 	 			    		{
+ 	 			    			basicName[cnt+1]=btnId;
+ 	 			    		}
  	 			    		
- 	 			    		basicName[cnt+1]=btnId;
+ 	 			    		
  	 			    		var listEl = document.getElementById('placesList');
  	 			    		removeAllChildNods(listEl);
  	 			    	}	   
@@ -484,7 +510,7 @@
 			         						if(address==undefined)
 			         						{
 			         							address=" ";
-			         						}		     				
+			         						}
 			         						endInfo="도착지: "+endKey.value+"<br/>주소: "+address+"<br/> 근처역: "+strTitle+"<br/>역까지의 거리: "+str[0]+"m<br/><hr>";
 			         						endStn=str[0]+"/"+strTitle+"/"+address+"/"+strLnt+"^"+strLng;
 

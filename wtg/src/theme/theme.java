@@ -259,8 +259,8 @@ public class theme {
 		
 		System.out.println(nickname);
 		
-		a_dto.setBoard_Num(num);
-		a_dto.setMem_Id(id);
+		//a_dto.setBoard_Num(num);
+		//a_dto.setMem_Id(id);
 		a_dto.setContent(text);
 		a_dto.setReg(reg);
 		

@@ -20,15 +20,16 @@
 <!-- 에디터 시작 -->
     <form name="frm" id="frm" action="insertDB.nhn" method="post" accept-charset="EUC-KR">
         <!-- 에디터프레임호출 영역 -->
-       <div id="editor_frame" style="top:0;left:0;bottom:0;width:600px; height:500px;margin:0px 0px 0px 50px;border:1px solid black;float:left;" >
-       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>        	
+       <div id="editor_frame" style="top:0;left:0;bottom:0;width:600px; height:500px;margin:0px 0px 0px 50px;border:1px solid black;float:left;" > </div>  
        	 <textarea name="daumeditor" id="daumeditor" rows="100" cols="100" style="width:766px; height:0px;display: none;border:1px solid black;"></textarea> 
-        </div>  
+       
+       
         <!-- 실제 값이 담겨져서 넘어갈 textarea 태그 --> 
-    </form>
+   
      <div style="float:right">
-     	<input type="button" id="save_button"value="내용전송"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     </div>
+     	<input type="button" id="save_button" value="내용전송"/>
+     </div> 
+      </form>
 			<div id="menu_wrap" class="bg_white">
 				<div class="option">
 					<font size="4">
@@ -123,8 +124,6 @@
 			        position: markers[i].latlng, // 마커를 표시할 위치
 			        title : markers[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다 
 			    });
- 		 	    
- 		 	    
 				 marker.setImage(psmarkerImage);
 			}	
 		}
@@ -188,13 +187,6 @@ $(function aa(){
                     }
                 },
                 /* 이미지첨부 관련 추가 config */
-                attacher:{
-                    image:{
-                        features:{left:250,top:65,width:1400,height:190,scrollbars:0}, //팝업창 사이즈
-                        popPageUrl:'wtg/imagePopup.nhn' //팝업창 주소
-                    }
-                },
-                /* 이미지첨부 관련 추가 config */
                 size: {
                     /* 지정된 본문영역의 넓이가 있을 경우에 설정 */
                     contentWidth: 700 
@@ -219,6 +211,7 @@ $(function aa(){
 function validForm(editor) {
     var validator = new Trex.Validator();
     var content = editor.getContent();
+    
     if (!validator.exists(content)) {
         alert('내용을 입력하세요');
         return false;
@@ -229,7 +222,9 @@ function validForm(editor) {
 //validForm 함수까지 true값을 받으면 이어서 form submit을 시켜주는  setForm함수
 function setForm(editor) {
     var content = editor.getContent();
-    $("#daumeditor").val(content)
+    //alert(content);
+   $("#daumeditor").val(content)
+
     return true;
 }
 </script>
