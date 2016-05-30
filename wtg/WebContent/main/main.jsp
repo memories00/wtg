@@ -389,6 +389,9 @@ function test_Search()
 		</a>
 	</div>
 	<div id="review">
+		 <c:forEach var="comment" items="${comment}">
+		 <a href="/wtg/themeView.nhn?no=${comment.board_num}">{comment.content}</a>
+		</c:forEach>
 	</div>
 </div>
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é ¹ÙÅÒ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
