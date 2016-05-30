@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
@@ -19,12 +20,13 @@ public class map
 	private SqlMapClientTemplate sqlMap;
 	
 	@RequestMapping("/courseInput.nhn")
-	public String courseInput(){	
-		
+	public String courseInput(HttpServletRequest request){	
+		HttpSession session=request.getSession();
+		session.setAttribute("memId","test");
 		return  "/map/courseInput.jsp";
 	}
 	@RequestMapping("/insertTable.nhn")
-	public String insertTable(HttpServletRequest request,String[] basicName,String[] allTitle,String endStn){	
+	public String insertTable(HttpServletRequest request,String cate,String[] basicName,String[] allTitle,String endStn){	
 		mapDto dto=new mapDto();
 		ArrayList list=new ArrayList();
 		

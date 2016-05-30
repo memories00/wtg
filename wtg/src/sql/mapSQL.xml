@@ -3,9 +3,8 @@
 <sqlMap namespace="map">
   <typeAlias alias="dto" type="map.mapDto"/>
 
-
 <insert id="insertInfo" parameterClass="dto">
-  insert into basicCourseInfo(category,num,id,pass1name,pass1xy,pass2name,pass2xy,pass3name,pass3xy,pass4name,pass4xy,pass5name,pass5xy,regdate)
-           values(#category#,basicCourseInfo_seq.NEXTVAL,#id#,#pass1name#,#pass1xy#,#pass2name#,#pass2xy#,#pass3name#,#pass3xy#,#pass4name#,#pass4xy#,#pass5name#,#pass5xy#,sysdate)
+  insert into basicCourseInfo(category,num,id,s_name,s_point,e_name,e_point,p1_name,p1_point,p2_name,p2_point,p3_name,p3_point,p4_name,p4_point,p5_name,p5_point,content,m_image,s_image,regdate)
+           values(#category#,courseInfo_seq.NEXTVAL,#id#,#s_name#,#s_point#,#e_name#,#e_point#,#p1_name#,#p1_point#,#p2_name#,#p2_point#,#p3_name#,#p3_point#,#p4_name#,#p4_point#,#p5_name#,#p5_point#,#content#,#m_image#,#s_image#,sysdate)
 </insert>
 </sqlMap>

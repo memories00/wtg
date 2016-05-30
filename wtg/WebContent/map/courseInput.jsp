@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>코스등록하기</title>
 
+		
 	<style>
 			map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 			.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -27,6 +29,9 @@
 			.category .ico_end {background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/blue_b.png');} 				
 	</style>
 </head>
+<c:choose>
+	<c:when test="${sessionScope.memId ne null}">
+	
 <div class="map_wrap">
 	<div id="map" style="width:100%; height:900px;overflow:hidden;"></div>
 		<div class="category">
@@ -43,7 +48,15 @@
 			</ul>
 		</div>
 		<div id="menu_wrap" class="bg_white">
+
 			<div class="option">
+					테마선택 : 
+					<select id="cate">
+						<option>스포츠</option>
+						<option>데이트</option>
+						<option>역사관광</option>
+						<option>맛집</option>
+					</select>
 				<br/>
 				출발지:&nbsp; <input type="text" id="startKey" style="width:200px" onkeypress="enterKey(event,this);">		
 					<ul id="passText">
@@ -553,10 +566,10 @@
  			
  			function nextStep()
  			{
- 				//alert(basicName.length);
- 				//alert(endStn);+"&endStn="+endStn
- 				alert(endStn);
- 				location.href="insertTable.nhn?basicName="+basicName+"&allTitle="+allTitle+"&endStn="+endStn;
+ 				var cate=document.getElementById('cate');
+ 				
+ 				//alert(endStn);
+ 				location.href="insertTable.nhn?cate="+cate.value+"basicName="+basicName+"&allTitle="+allTitle+"&endStn="+endStn;
 
  			}
 /////////////////////////////////////////////// 
@@ -797,6 +810,14 @@
 			});
 	
 	</script>
+</c:when>
+			<c:otherwise>
+			<script>
+				alert("로그인 후 이용하세요");
+				window.location="main.nhn";
+			</script>
+			</c:otherwise>
+		</c:choose>	
 <body>
  	
 
