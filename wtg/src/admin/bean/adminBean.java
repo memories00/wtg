@@ -98,23 +98,14 @@ public class adminBean {
 		return "redirect:per.nhn";
 	}
 	@RequestMapping("/userstats.nhn")
-	public String userstats(){
-
-		return "/admin/userstats.jsp";
-	}
-	@RequestMapping("/oneday.nhn")
-	public String oneday(HttpServletRequest request){
+	public String userstats(HttpServletRequest request){
+		//-----------------------하루 방문자수----------------------
 		long time = System.currentTimeMillis(); 
 		SimpleDateFormat d = new SimpleDateFormat("dd");
 		String day = d.format(new Date(time));
 		int daycount=(Integer)sqlMap.queryForObject("admin.selectoneday",day);
 		request.setAttribute("daycount",daycount);
-
-		return "/admin/userstats.jsp";
-	}
-	@RequestMapping("/month.nhn")
-	public String month(HttpServletRequest request){
-		long time = System.currentTimeMillis(); 
+		//-----------------------월별 방문자수----------------------
 		SimpleDateFormat y = new SimpleDateFormat("yy");
 		String year = y.format(new Date(time));
 		
@@ -142,11 +133,7 @@ public class adminBean {
 		request.setAttribute("sevcount",sevcount);request.setAttribute("eigcount",eigcount);
 		request.setAttribute("nincount",nincount);request.setAttribute("tencount",tencount);
 		request.setAttribute("elecount",elecount);request.setAttribute("twecount",twecount);
-		
-		return "/admin/userstats.jsp";
-	}
-	@RequestMapping("/allday.nhn")
-	public String allday(HttpServletRequest request){
+		//-----------------------전체 방문자수----------------------
 		int allcount=(Integer)sqlMap.queryForObject("admin.allcount",null);
 		request.setAttribute("allcount", allcount);
 		return "/admin/userstats.jsp";

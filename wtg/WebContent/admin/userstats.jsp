@@ -1,7 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link class="include" rel="stylesheet" type="text/css" href="/wtg/lib/jquery.jqplot.min.css" />
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/wtg/js/jquery.jqplot.min.js"></script>
+
 <html>
+
+<script>
+$(function(){
+	
+	var onecount=${onecount};var twocount=${twocount};var thrcount=${thrcount};
+	var fourcount=${fourcount};var fivcount=${fivcount};var sixcount=${sixcount};
+	var sevcount=${sevcount};var eigcount=${eigcount};var nincount=${nincount};
+	var tencount=${tencount};var elecount=${elecount};var twecount=${twecount};
+	//1번째 입력값 (그려진 영역의 id값)
+	//2번째 입력값 (그래프내에 들어갈 데이터 값)
+	$.jqplot ('graph',[[onecount,twocount,thrcount,fourcount,fivcount,sixcount,sevcount,eigcount,nincount,
+	                    tencount,elecount,twecount]],
+			{
+				title : '방문자 통계',
+				axes:{
+					xaxis:{
+						label:"단위 : 월"
+					},
+					yaxis:{
+						label:"방문자수"
+					}
+				}
+			});
+});
+</script>
 <script>
 function user_Oneday()
 {
@@ -19,39 +48,69 @@ function user_Allday()
 	document.user.submit();
 }
 </script>
+<center><div id="graph" style="width:1000px; height:400px;"></div></center>
 <body>
 <form name="user" method="post"  enctype="multipart/form-data">
 <table>
 
 	<tr>
 		<td>
-			<input type="button" name="oneday" value="일일통계" onClick="user_Oneday()">
+			<b>Day Total : ${daycount}</b>
 		</td>
 		<td>
-			<input type="button" name="oneday" value="월별통계" onClick="user_Month()">
+			<b>all Total : ${allcount}</b>
+		</td>
+	</tr>
+	<tr>
+	</tr>
+	<tr>
+		<td>
+			<b>월별 통계</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			1월 : ${onecount}
 		</td>
 		<td>
-			<input type="button" name="oneday" value="전체통계" onClick="user_Allday()">
+			2월 : ${twocount}
+		</td>
+		<td>
+			3월 : ${thrcount}
 		</td>
 	</tr>
 	<tr>
-	<td>
-	일일통계${daycount}
-	</td>
-	<td>
-	전체통계${allcount}
-	</td>
+		<td>
+			4월 : ${fourcount}
+		</td>
+		<td>
+			5월 : ${fivcount}
+		</td>
+		<td>
+			6월 : ${sixcount}
+		</td>
 	</tr>
 	<tr>
-	<td>
-	월별통계
-	</td>
+		<td>
+			7월 : ${sevcount}
+		</td>
+		<td>
+			8월 : ${eigcount}
+		</td>
+		<td>
+			9월 : ${nincount}
+		</td>
 	</tr>
 	<tr>
-	<td>
-	1월=${onecount}<br />2월=${twocount}<br />3월=${thrcount}<br />4월=${fourcount}<br />5월=${fivcount}<br />6월=${sixcount}<br />
-	7월=${sevcount}<br />8월=${eigcount}<br />9월=${nincount}<br />10월=${tencount}<br />11월=${elecount}<br />12월=${twecount}
-	</td>
+		<td>
+			10월 : ${tencount}
+		</td>
+		<td>
+			11월 : ${elecount}
+		</td>
+		<td>
+			12월 : ${twecount}
+		</td>
 	</tr>
 
 </table>

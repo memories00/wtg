@@ -58,12 +58,15 @@ public class mainBean
 		dto.setYemoda(yemoda);
 		dto.setStats(stats);
 		
-		int statscount=(Integer)sqlMap.queryForObject("admin.statsselect",dto);
+		if(id!=null)
+		{
+			int statscount=(Integer)sqlMap.queryForObject("admin.statsselect",dto);
 		
-		if(statscount==0){
-			sqlMap.insert("admin.statsinsert", dto);
+			if(statscount==0)
+			{
+				sqlMap.insert("admin.statsinsert", dto);
+			}
 		}
-		
 		int count=(Integer)sqlMap.queryForObject("main.catecount", id);
 		request.setAttribute("list2", list2);
 		request.setAttribute("list", list);

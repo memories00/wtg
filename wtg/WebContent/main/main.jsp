@@ -19,6 +19,8 @@
     $(function() {
       $('#slides').slidesjs({
         width: 950,
+        
+        
         height: 300,
         play: {
           active: true,
