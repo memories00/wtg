@@ -4,6 +4,8 @@
   <typeAlias alias="theme" type="theme.ThemeDTO"/>
   <typeAlias alias="good" type="theme.GoodDTO" />
   <typeAlias alias="report" type="theme.ReportDTO" />
+  <typeAlias alias="comment" type="theme.CommentDTO" />
+  <typeAlias alias="memComment" type="theme.MemCommentDTO" />
   
   <!-- 리절트 맵 정의 -->
   <resultMap class="theme" id="t"  >
@@ -18,6 +20,7 @@
     <result property="hate" column="hate"/>
     <result property="regdate" column="regdate"/>
   </resultMap>
+
   <!--  -->
   <resultMap class="report" id="r">
   	<result property="num" column="num"/>
@@ -28,7 +31,23 @@
     <result property="regdate" column="regdate"/>
     <result property="process" column="process"/>
   </resultMap>
+ 
+  <!--  -->
+  <resultMap class="comment" id="c">
+    <result property="comment_no" column="commet_no"/>
+  	<result property="board_num" column="board_num"/>
+    <result property="mem_id" column="mem_id"/>
+    <result property="content" column="content"/>
+    <result property="reg" column="reg"/>
+  </resultMap>
   
+  <!--  -->
+  <resultMap class="memComment" id="mc">
+    <result property="id" column="id"/>
+    <result property="nickname" column="nickname"/>
+    <result property="content" column="content"/>
+    <result property="reg" column="reg"/>
+  </resultMap>
   
   <!-- 쿼리문 정의 -->
   <!-- select -->
@@ -181,14 +200,56 @@
    update report set process= 3 where num=#num#
  </update>
  
+  <!-- comment sql -->
+  
  <statement id="create" parameterClass="int">
 		CREATE TABLE comment_$num$ (
-								no varchar2(500) primary key,
-								id varchar2(1000),
-								nickname varchar2(4000),
+								id varchar2(1000) not null,
+								nickname varchar2(4000) not null,
 								content varchar2(4000),
 								reg date default sysdate
 								)
-	</statement>
+ </statement>
+	
+	<insert id="insertAllComment" parameterClass="comment">
+     insert into comments(
+     					comment_no,
+                        mem_id,
+                        board_num,
+                        content,
+                        reg
+                        )
+                 values(
+                 		comments_seq.NEXTVAL,
+                 		#mem_id#,
+                        #board_num#,
+                        #content#,
+                        #reg#
+                        )
+  </insert>
+  
+  <insert id="insertMemComment" parameterClass="java.util.Map">
+     insert into comment_$num$(
+                        id,
+                        nickname,
+                        content,
+                        reg
+                        )
+                 values(
+                 		#id#,
+                        #nickname#,
+                        #content#,
+                        #reg#
+                        )
+  </insert>
+  
+  <select id="memCommentAll" resultMap="mc" parameterClass="int">
+    select * from comment_$num$ order by reg desc
+  </select>
+  
+  <select id="commentAll" resultMap="c">
+    select * from comments order by reg desc
+  </select>
+  
   
 </sqlMap>

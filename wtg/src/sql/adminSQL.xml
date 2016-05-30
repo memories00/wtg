@@ -3,6 +3,8 @@
 <sqlMap namespace="admin">
 <typeAlias alias="slide" type="main.bean.SlideDTO" />
 <typeAlias alias="mem" type="admin.bean.MemDTO" />
+<typeAlias alias="stats" type="admin.bean.UserstatsDTO" />
+
 
 	<select id="member" resultClass="mem">
 		select * from mem
@@ -60,4 +62,71 @@
 		group by filetime
 		having count(*)>0)
 	</select>
+	
+	<select id="statsselect" resultClass="int" parameterClass="stats">
+		select count(*) from userstats where stats=#stats#
+	</select>
+	
+	<insert id="statsinsert" parameterClass="stats">
+		insert into userstats(
+			id,
+			year,
+			month,
+			day,
+			stats,
+			yemoda
+		)values(
+			#id#,
+			#year#,
+			#month#,
+			#day#,
+			#stats#,
+			#yemoda#
+		)
+	</insert>
+	
+	<select id="selectoneday" resultClass="int" parameterClass="String">
+		select count(*) from userstats where day=#day#
+	</select>
+	
+	<select id="onecount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#one#
+	</select>
+	<select id="twocount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#two#
+	</select>
+	<select id="thrcount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#thr#
+	</select>
+	<select id="fourcount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#four#
+	</select>
+	<select id="fivcount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#fiv#
+	</select>
+	<select id="sixcount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#six#
+	</select>
+	<select id="sevcount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#sev#
+	</select>
+	<select id="eigcount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#eig#
+	</select>
+	<select id="nincount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#nin#
+	</select>
+	<select id="tencount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#ten#
+	</select>
+	<select id="elecount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#ele#
+	</select>
+	<select id="twecount" resultClass="int" parameterClass="String">
+		select count(*) from userstats where month=#twe#
+	</select>
+	<select id="allcount" resultClass="int">
+		select count(*) from userstats
+	</select>
+	
 </sqlMap>

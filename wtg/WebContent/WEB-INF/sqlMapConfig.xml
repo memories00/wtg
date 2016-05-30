@@ -9,6 +9,7 @@
 	<sqlMap resource="/sql/themeSQL.xml"/>
 	<sqlMap resource="/sql/mainSQL.xml"/>
 	<sqlMap resource="/sql/mapSQL.xml"/>
+	<sqlMap resource="/sql/adminSQL.xml"/>
 	
 </sqlMapConfig>
 
