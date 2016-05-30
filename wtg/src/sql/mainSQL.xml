@@ -4,6 +4,7 @@
 
 	<typeAlias alias="slide" type="main.bean.SlideDTO" />
 	<typeAlias alias="theme" type="theme.ThemeDTO"/>
+	  <typeAlias alias="comment" type="theme.CommentDTO" />
 	
 		<resultMap id="slideRes" class="slide">
 		  	<result property="orgname" column="orgname"/>
@@ -21,6 +22,15 @@
 		  	<result property="hate" column="hate"/>
 		  	<result property="regdate" column="regdate"/>
 		</resultMap>
+		
+		  <!--  -->
+  <resultMap class="comment" id="c">
+    <result property="comment_no" column="comment_no"/>
+  	<result property="board_num" column="board_num"/>
+    <result property="mem_id" column="mem_id"/>
+    <result property="content" column="content"/>
+    <result property="reg" column="reg"/>
+  </resultMap>
 	
 	<select id="slidecount" resultClass="int">
 		select count(*) from slide
@@ -80,4 +90,8 @@
    	<delete id="categorydelete" parameterClass="String">
 			DELETE FROM CATE WHERE no2 = #c#
    	</delete>
+   	
+   <select id="commentAll" resultMap="c">
+    select * from comments order by reg desc
+  </select>
 </sqlMap>

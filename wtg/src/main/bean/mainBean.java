@@ -75,6 +75,9 @@ public class mainBean
 		Element root=doc.getRootElement();
 		List children = root.getChildren();
 		
+		List comment = sqlMap.queryForList("main.commentAll",null);
+		request.setAttribute("comment", comment);
+		
 		for(int i=0;i<children.size();i++)
 		{
 			Element e =(Element)children.get(i);
