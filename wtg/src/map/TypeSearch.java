@@ -2,7 +2,6 @@ package map;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -17,11 +16,10 @@ public class TypeSearch {
 	   try{
 			String responseType = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"
 					+ "?ServiceKey=qczVz%2FMEZtFm3v%2Fl4ofQvjR4rEtDWICqtPhpwhwGpzSk5Iwd8Wk%2BRvegrpM1W%2Foyd0TveGp7zjfDTCUve9cC9w%3D%3D"
-					+ "&numOfRows=50"			/*한페이지결과수*/
+					+ "&numOfRows=100"			/*한페이지결과수*/
 					+ "&arrange=P"				/*정렬(O=제목순, P=조회순, Q=수정일순, R=생성일순)*/
 					+ "&contentTypeId="+typeId	/*타입 ID*/
 					+ "&areaCode=1"				/*지역코드(1=서울)*/
-		//			+ "&pageNo=1"				/*페이지번호*/
 					+ "&MobileOS=ETC"			/*OS 구분*/
 					+ "&MobileApp=WTG";			/*어플이름*/
 			url = new URL(responseType);
@@ -43,7 +41,7 @@ public class TypeSearch {
 	      // Get a list of each earthquake entry.
 	      NodeList nl = docEle.getElementsByTagName("item");
 	      if (nl != null && nl.getLength() > 0)
-	      { System.out.println("여기");
+	      { 
 		        for (int i = 0 ; i < nl.getLength(); i++) 
 		        { //System.out.println(i);
 		          Element entry = (Element)nl.item(i);

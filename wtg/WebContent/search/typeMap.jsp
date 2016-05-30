@@ -8,13 +8,13 @@
     .wrap * {padding: 0;margin: 0;}
 	    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
 	    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-		    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 15px;font-weight: bold;}
+		    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 13px;font-weight: bold;}
 		    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
 		    .info .close:hover {cursor: pointer;}
 		    .info .body {position: relative;overflow: hidden;}
 		    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-			    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-			    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+			    .desc .address {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+			    .desc .detail address {font-size: 11px;color: #888;margin-top: -2px;}
 		    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
 		    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
 		    .info .link {color: #5085BB;}
@@ -27,7 +27,7 @@
 
 <!-- 지도생성 -->
 <div class="map_wrap">
-    <div id="map" style="width:100%;height:600px;position:relative;overflow:hidden;"></div>
+    <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
     <div id="menu_wrap" class="bg_white">
         <div class="option">
         </div>
@@ -107,7 +107,7 @@ function addMarker(xy) {
 	         '        </div>' + 
 	         '        <div class="body">' + 
 	         '            <div class="img">' +
-	         '                <img src=' + img + 'width="73" height="70">' +
+	         '                <img src="' + img + '" width="73" height="70">' +
 	         '           </div>' + 
 	         '            <div class="desc">' + 
 	         '                <div class="address">' + addr1 + '</div>' + 
@@ -118,27 +118,23 @@ function addMarker(xy) {
 	         '    </div>' +    
 	         '</div>';
          
-	var overlay = new daum.maps.CustomOverlay({		//마커위에 띄울 장소정보 오버레이를 생성합니다.
+	var overlay = new daum.maps.CustomOverlay({					//마커위에 띄울 장소정보 오버레이를 생성합니다.
 		content: content,
  		position: marker.getPosition(),
   		clickable: true
 	});
 	
-	
-	marker.setMap(map);						//마커를 지도에 띄웁니다
-	markers.push(marker);					//마커를 배열에 넣습니다	
+	marker.setMap(map);											//마커를 지도에 띄웁니다 
+	markers.push(marker);										//마커를 배열에 넣습니다	
 	daum.maps.event.addListener(marker, 'click', function()	{	//마커를 클릭했을 때 오버레이를 표시합니다
 		overlay.setMap(map);
-//		alert(name+"\\"+addr1+"\\"+addr2+"\\"+img+"\\"+tel);
 	});
-		
-
- 	}
+ }
  	
  	
 //오버레이를 닫습니다
-function closeOverlay() {
-		alert("close");
+function closeOverlay(map) {
+	alert("clo");
 		overlay.setMap(null);
 	}
 
