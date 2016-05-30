@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<style>
-			#menu_wrap {position:absolute;  top:0;left:0;bottom:0;width:690px; height:450px;margin:500px 50px 50px 100px;padding:5px;overflow-x:auto;background:rgba(0, 0, 0,0.3);z-index: 0.1;font-size:12px;border-radius: 0px; }
+			#menu_wrap {position:absolute;  top:0;left:0;bottom:0;width:650px; height:450px;margin:500px 50px 50px 50px;padding:5px;overflow-x:auto;background:rgba(0, 0, 0,0.3);z-index: 0.1;font-size:12px;border-radius: 0px; }
 			.bg_white {background:#fff;}		
 			#menu_wrap hr {display: block; height: 4px;border: 0;  border-top: 2px solid #5F5F5F;margin:3px 0;}
 			#menu_wrap .option{text-align: left;}
@@ -16,26 +16,19 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 			<title>코스등록하기</title>
 			<font size="6">${dto.category }</font>
-					<div  id="map" style="width:700px; height:400px;float:left; margin:50px 0px 0px 100px"></div>
-			
-
-
+					<div  id="map" style="width:650px; height:400px;float:left; margin:50px 0px 0px 50px"></div>
 <!-- 에디터 시작 -->
-
     <form name="frm" id="frm" action="insertDB.nhn" method="post" accept-charset="EUC-KR">
         <!-- 에디터프레임호출 영역 -->
-       <div id="editor_frame" style="top:0;left:0;bottom:0;width:900px; height:1000px;margin:0px 0px 0px 50px;border:1px solid black;float:left;" ></div>
-       	 <textarea name="daumeditor" id="daumeditor" rows="100" cols="500" style="width:766px; height:1000px;display: none;border:1px solid black;"></textarea>
-       <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
-        <div style="float: right;"><input type="button" id="save_button" value="내용전송"/></div>
-       
-       
-       
-        <!-- 실제 값이 담겨져서 넘어갈 textarea 태그 -->
-       
+       <div id="editor_frame" style="top:0;left:0;bottom:0;width:600px; height:500px;margin:0px 0px 0px 50px;border:1px solid black;float:left;" >
+       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>        	
+       	 <textarea name="daumeditor" id="daumeditor" rows="100" cols="100" style="width:766px; height:0px;display: none;border:1px solid black;"></textarea> 
+        </div>  
+        <!-- 실제 값이 담겨져서 넘어갈 textarea 태그 --> 
     </form>
-
-			
+     <div style="float:right">
+     	<input type="button" id="save_button"value="내용전송"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     </div>
 			<div id="menu_wrap" class="bg_white">
 				<div class="option">
 					<font size="4">
@@ -55,13 +48,11 @@
 					
 				</div>
 			</div>
-			
-		
+
 		<link rel="stylesheet" href="/wtg/daumeditor/css/editor.css" type="text/css" charset="EUC-KR"/>
 		<script src="/wtg/daumeditor/js/editor_loader.js" type="text/javascript" charset="EUC-KR"></script>
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>	
 		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06807e3624c0410b3525f8f75a0a967c&libraries=services"></script>
-		
 		<script>
 		var totalStr='${returnName}';
 		//alert(totalStr);
@@ -141,6 +132,7 @@
 
 			</script>			
 	</head>
+	  
 <body onload="aa()">
 
 <script>
@@ -195,6 +187,14 @@ $(function aa(){
                         confirmForDeleteAll: true
                     }
                 },
+                /* 이미지첨부 관련 추가 config */
+                attacher:{
+                    image:{
+                        features:{left:250,top:65,width:1400,height:190,scrollbars:0}, //팝업창 사이즈
+                        popPageUrl:'wtg/imagePopup.nhn' //팝업창 주소
+                    }
+                },
+                /* 이미지첨부 관련 추가 config */
                 size: {
                     /* 지정된 본문영역의 넓이가 있을 경우에 설정 */
                     contentWidth: 700 

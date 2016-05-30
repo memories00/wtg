@@ -37,17 +37,11 @@ public class map
 			String parseTitle[]=allTitle[0].split(",");
 			String startDistance[]=parseTitle[0].split("/");//startDistance[0] 출발지 근처역까지거리
 			String endDistance[]=endStn.split("/");//endDistance[0] 도착지 근처역까지거리
-			
-		//	System.out.println(startDistance[0]+"ees"+endDistance[0]);
-			
-			
 			String returnName=basicName[0];
 			String arrayName[]=basicName[0].split(",");
-			  
-			
+			  		
 			String startTitle[]=arrayName[0].split("/");
 			String endTitle[]=arrayName[arrayName.length-1].split("/");
-			
 			
 			int stDtn=Integer.parseInt(startDistance[0]);
 			int stWalk=stDtn/67| 0;
@@ -61,36 +55,35 @@ public class map
 			for(int i=1;i<arrayName.length-1;i++)	{
 				String a[]=arrayName[i].split("/");
 				String b[]=allTitle[0].split(",");
-				System.out.println(b[0]);
+				//System.out.println(b[0]);
 				String parseDis[]=b[0].split("/");
-				System.out.println(parseDis[0]);
+				//System.out.println(parseDis[0]);
 				int distance=Integer.parseInt(parseDis[0]);
-				System.out.println(distance);
+				//System.out.println(distance);
 				int walkTime = distance / 67 | 0;
 				
 				list.add(a[0]+"/"+a[3]+"/"+a[4]+"/"+parseDis[1]+"/"+parseDis[0]+"/"+walkTime+"/");
-				System.out.println(walkTime);
+				//System.out.println(walkTime);
 
-			
 				if(i==1){
-					dto.setPass1name(a[0]);
-					dto.setPass1xy(a[1]+"/"+a[2]);
+					dto.setP1_name(a[0]);
+					dto.setP1_point(a[1]+"/"+a[2]);
 				}
 				if(i==2){
-					dto.setPass2name(a[0]);
-					dto.setPass2xy(a[1]+"/"+a[2]);
+					dto.setP2_name(a[0]);
+					dto.setP2_point(a[1]+"/"+a[2]);
 				}
 				if(i==3){
-					dto.setPass3name(a[0]);
-					dto.setPass3xy(a[1]+"/"+a[2]);
+					dto.setP3_name(a[0]);
+					dto.setP3_point(a[1]+"/"+a[2]);
 				}
 				if(i==4){
-					dto.setPass4name(a[0]);
-					dto.setPass4xy(a[1]+"/"+a[2]);
+					dto.setP4_name(a[0]);
+					dto.setP4_point(a[1]+"/"+a[2]);
 				}
 				if(i==5){
-					dto.setPass5name(a[0]);
-					dto.setPass5xy(a[1]+"/"+a[2]);
+					dto.setP5_name(a[0]);
+					dto.setP5_point(a[1]+"/"+a[2]);
 				}
 				if(i==arrayName.length-2){
 				sqlMap.insert("map.insertInfo", dto);	
@@ -120,24 +113,6 @@ public class map
 		return  "/map/nextStep.jsp";
 	}
 
-	@RequestMapping("/searchStation.nhn")
-	public String searchStation(HttpServletRequest request,String start,String end)
-	{	
-		 ArrayList list=new ArrayList();
-		searchStation station=new searchStation();
-		String stnName=station.input2Station(start, end);
-		stnName=stnName.substring(0, stnName.length()-1);
-		String parseStn[]=stnName.split(",");
-		for(int i =1; i<parseStn.length-1;i++)
-		{
-			String stnNum=station.searchStnNum(parseStn[i]);
-			String stnPos=station.searchStnPos(stnNum);
-			list.add(parseStn[i]+"^"+stnPos+"/");
-		}
-		request.setAttribute("list",list);
-			
-		return  "/map/result.jsp";
-	}
 	@RequestMapping("/insertDB.nhn")
 	public String insertDB(HttpServletRequest request,String daumeditor) {	
 		try {
@@ -147,10 +122,14 @@ public class map
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return "/main/main.jsp";
 	}
+	 @RequestMapping(value = "/imagePopup.nhn")
+	    public String imagePopup(){     
+		// System.out.println("dd");
+	        return "daumeditor/image.jsp";
+	    }
 	
 	
 }
