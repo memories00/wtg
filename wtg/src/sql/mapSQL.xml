@@ -4,7 +4,7 @@
   <typeAlias alias="dto" type="map.mapDto"/>
 
 <insert id="insertInfo" parameterClass="dto">
-  insert into basicCourseInfo(category,num,id,s_name,s_point,e_name,e_point,p1_name,p1_point,p2_name,p2_point,p3_name,p3_point,p4_name,p4_point,p5_name,p5_point,content,m_image,s_image,regdate)
-           values(#category#,courseInfo_seq.NEXTVAL,#id#,#s_name#,#s_point#,#e_name#,#e_point#,#p1_name#,#p1_point#,#p2_name#,#p2_point#,#p3_name#,#p3_point#,#p4_name#,#p4_point#,#p5_name#,#p5_point#,#content#,#m_image#,#s_image#,sysdate)
+  insert into courseInfo(category,num,id,s_name,s_point,e_name,e_point,p1_name,p1_point,p2_name,p2_point,p3_name,p3_point,p4_name,p4_point,p5_name,p5_point,content,m_image,s_image,regdate)
+           values(#category#,courseInfo_seq.NEXTVAL,#id#,#s_name#,#s_point#,#e_name#,#e_point#,#p1_name#,#p1_point#,#p2_name#,#p2_point#,#p3_name#,#p3_point#,#p4_name#,#p4_point#,#p5_name#,#p5_point#,#content#,default,#s_image#,sysdate)
 </insert>
 </sqlMap>

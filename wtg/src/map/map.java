@@ -29,15 +29,17 @@ public class map
 	public String insertTable(HttpServletRequest request,String cate,String[] basicName,String[] allTitle,String endStn){	
 		mapDto dto=new mapDto();
 		ArrayList list=new ArrayList();
-		
+		HttpSession session =request.getSession();
+		String id=(String)session.getAttribute("memId");
 		try 	{
 			request.setCharacterEncoding("EUC-KR");
-			//System.out.println(endStn);
-			String testCate="스포츠";
+			
+			
 			String testId="namuda";
 			
 			String parseTitle[]=allTitle[0].split(",");
 			String startDistance[]=parseTitle[0].split("/");//startDistance[0] 출발지 근처역까지거리
+			
 			String endDistance[]=endStn.split("/");//endDistance[0] 도착지 근처역까지거리
 			String returnName=basicName[0];
 			String arrayName[]=basicName[0].split(",");
@@ -50,9 +52,15 @@ public class map
 			
 			int endDtn=Integer.parseInt(endDistance[0]);
 			int endWalk=endDtn/67| 0;
+			//System.out.println(startTitle[3]);
+			//System.out.println(endTitle[3]);
 			
-			dto.setCategory(testCate);
-			dto.setId(testId);
+			dto.setS_name(startTitle[0]);
+			dto.setS_point(startDistance[3]);
+			dto.setE_name(endTitle[0]);
+			dto.setE_point(endDistance[3]);
+			dto.setCategory(cate);
+			dto.setId(id);
 			
 			for(int i=1;i<arrayName.length-1;i++)	{
 				String a[]=arrayName[i].split("/");
@@ -69,23 +77,23 @@ public class map
 
 				if(i==1){
 					dto.setP1_name(a[0]);
-					dto.setP1_point(a[1]+"/"+a[2]);
+					dto.setP1_point(a[1]+"^"+a[2]);
 				}
 				if(i==2){
 					dto.setP2_name(a[0]);
-					dto.setP2_point(a[1]+"/"+a[2]);
+					dto.setP2_point(a[1]+"^"+a[2]);
 				}
 				if(i==3){
 					dto.setP3_name(a[0]);
-					dto.setP3_point(a[1]+"/"+a[2]);
+					dto.setP3_point(a[1]+"^"+a[2]);
 				}
 				if(i==4){
 					dto.setP4_name(a[0]);
-					dto.setP4_point(a[1]+"/"+a[2]);
+					dto.setP4_point(a[1]+"^"+a[2]);
 				}
 				if(i==5){
 					dto.setP5_name(a[0]);
-					dto.setP5_point(a[1]+"/"+a[2]);
+					dto.setP5_point(a[1]+"^"+a[2]);
 				}
 				if(i==arrayName.length-2){
 				sqlMap.insert("map.insertInfo", dto);	

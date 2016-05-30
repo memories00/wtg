@@ -31,7 +31,7 @@
 </head>
 <c:choose>
 	<c:when test="${sessionScope.memId ne null}">
-	
+		 
 <div class="map_wrap">
 	<div id="map" style="width:100%; height:900px;overflow:hidden;"></div>
 		<div class="category">
@@ -567,9 +567,9 @@
  			function nextStep()
  			{
  				var cate=document.getElementById('cate');
- 				
- 				//alert(endStn);
- 				location.href="insertTable.nhn?cate="+cate.value+"basicName="+basicName+"&allTitle="+allTitle+"&endStn="+endStn;
+	
+ 				//alert(basicName);
+ 				location.href="insertTable.nhn?cate="+cate.value+"&basicName="+basicName+"&allTitle="+allTitle+"&endStn="+endStn;
 
  			}
 /////////////////////////////////////////////// 
