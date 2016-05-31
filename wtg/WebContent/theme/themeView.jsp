@@ -125,7 +125,6 @@
   
 <div> µ°±€√¢
   
-	<table id="commentTable" class="table table-condensed"></table>
 	<table class="table table-condensed">
 		<c:forEach var="list" items="${list}">
 		<tr>
@@ -136,6 +135,9 @@
 			</td>
 		</tr>
 		</c:forEach>
+		
+		<table id="commentTable" class="table table-condensed"></table>
+		
 		<tr>
 			<td>
 				<span class="form-inline" role="form">
