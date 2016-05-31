@@ -391,9 +391,11 @@ function test_Search()
 		</a>
 	</div>
 	<div id="review">
+		<ol>
 		<c:forEach var="comment" items="${comment}">
-		 	<a href="/wtg/themeView.nhn?no=${comment.board_num}">${comment.content}</a>
+		 	<li><a href="/wtg/themeView.nhn?no=${comment.board_num}&currentPage=1">${comment.content}</a>
 		</c:forEach>
+		</ol>
 	</div>
 </div>
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é ¹ÙÅÒ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
