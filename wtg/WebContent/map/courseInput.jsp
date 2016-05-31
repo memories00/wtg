@@ -87,7 +87,7 @@
 			var passMarkerInfo=new Array();//경유지마커들을 경유지추가버튼을 누를때생성
 			
 			//////////////출발지의 마커와 이미지를 미리생성//////////////
-			var stimageSrc = 'http://127.0.0.1:8000/wtg/map/red_b.png', // 출발마커이미지의 주소입니다    
+			var stimageSrc = 'http://127.0.0.1:8000/wtg/map/img/red_b.png', // 출발마커이미지의 주소입니다    
 	 		 	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
 	 		 	    stimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 					var startImage = new daum.maps.MarkerImage(stimageSrc, stimageSize, stimageOption);
@@ -103,7 +103,7 @@
 			startMarker.setMap();
 			
 			//////////////////////도착지의 마커와 이미지를 미리생성//////////////////////////
-			var endimageSrc = 'http://127.0.0.1:8000/wtg/map/blue_b.png', // 도착지마커이미지의 주소입니다    
+			var endimageSrc = 'http://127.0.0.1:8000/wtg/map/img/blue_b.png', // 도착지마커이미지의 주소입니다    
 	 		 	    endimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
 	 		 	    endimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 					endImage = new daum.maps.MarkerImage(endimageSrc, endimageSize, endimageOption);
@@ -117,7 +117,7 @@
 
  					endMarker.setMap();
  					/////////////////////경유지 마커 이미지/////////////////
- 					var psimageSrc = 'http://127.0.0.1:8000/wtg/map/green_b.png', // 경유지마커이미지의 주소입니다    
+ 					var psimageSrc = 'http://127.0.0.1:8000/wtg/map/img/green_b.png', // 경유지마커이미지의 주소입니다    
 			 		 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
 			 		 	    psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 							psmarkerImage = new daum.maps.MarkerImage(psimageSrc, psimageSize, psimageOption);
@@ -610,17 +610,17 @@
 				var img=document.createElement("img");
 				if(cateCnt==0)//선택한 깃발에따리 이미지를 생성해주고 생성한 이미지에 id를 추가
 				{
-					img.setAttribute("src","map/red_b.png");
+					img.setAttribute("src","map/img/red_b.png");
 					img.setAttribute("id","imgtest");
 				}
 				if(cateCnt==1)
 				{
-					img.setAttribute("src","map/green_b.png");
+					img.setAttribute("src","map/img/green_b.png");
 					img.setAttribute("id","imgtest");
 				}
 				if(cateCnt==2)
 				{
-					img.setAttribute("src","map/blue_b.png");
+					img.setAttribute("src","map/img/blue_b.png");
 					img.setAttribute("id","imgtest");
 				}	
 					img.style.zIndex=6;

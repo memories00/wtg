@@ -11,14 +11,14 @@
 	#warp{width:100%;}
 	.box1{background-color:red; width:650px; height:500px; float:left;margin:0 50px 0 50px }
 	.box2{background-color:#6600ff; width:800px; height:400px;float:left; margin:0 0 0 0px}
-	.box3{background-color:#cccc33; width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
-	.box4{background-color:#0033cc; width:550px; height:400px;float:left;margin:50px 0 0 50px}
-	.box5{background-color:green; width:200px; height:300px;float:left;margin:50px 0 0 50px}
+	.box3{ width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
+	.box4{ width:600px; height:200px;float:left;margin:50px 0 0 50px}
+	.box5{width:200px; height:300px;float:left;margin:50px 0 0 50px}
 	.box-m{float:left;}
 	.box-m2{float:left;display:block;}
 	
 	
-	.body {margin: 10px}
+.body {margin: 10px}
 .where {
   display: block;
   margin: 25px 15px;
@@ -67,6 +67,39 @@
   background-color: #5cb85c;
     border-color: #4cae4c;
 }
+/* imaged preview */
+.filebox .upload-display {  /* 이미지가 표시될 지역 */
+  margin-bottom: 5px;
+
+}
+
+@media(min-width: 768px) { 
+  .filebox .upload-display {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 0;
+  }
+}
+
+.filebox .upload-thumb-wrap {  /* 추가될 이미지를 감싸는 요소 */
+  display: inline-block;
+  padding: 2px;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+   width:100px;
+  height:100px;
+}
+
+.filebox .upload-display img {  /* 추가될 이미지 */
+  display: block;
+  max-width: 100%;
+  width: 100% \9;
+  height: auto;
+}
+
+
 
  </style>
  </head>
@@ -99,23 +132,28 @@
 		<div class="box3">
 		<div id="menu_wrap" class="bg_white">
 			<div class="option">
-				<font size="4"> 출발지 이름: ${startTitle} 주소: ${startAddress} <br />
-					전화번호: ${startPhone } 근처역: ${startStn } 근처역까지거리: ${startDtc }m 이동시간:
-					${startWalk}분<br />
+				<font size="4"> 
+				   출발지 이름: ${startTitle} <br />
+				   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${startAddress} <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${startPhone } <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${startStn }역 까지 ${startDtc }m 떨어져 있습니다.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예상 소요시간:${startWalk}분<br />
 					<hr> <c:forEach var="alist" items="${list}">
 						경유지
 							<c:forTokens var="a" items="${alist}" delims="/" varStatus="i">
-							<c:if test="${i.count==1 }"> 이름: ${a}</c:if>
-							<c:if test="${i.count==2 }">주소: ${a} </c:if>
-							<c:if test="${i.count==3 }">
-								<br /> 전화번호: ${a} </c:if>
-							<c:if test="${i.count==4 }">근처역까지의 거리: ${a} </c:if>
-							<c:if test="${i.count==5 }">근처역: ${a}m </c:if>
-							<c:if test="${i.count==6 }">이동시간: ${a}분 </c:if>
+							<c:if test="${i.count==1 }"> 이름: ${a}<br /></c:if>
+							<c:if test="${i.count==2 }">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${a} <br /> </c:if>
+							<c:if test="${i.count==3 }">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${a} <br/></c:if>
+							<c:if test="${i.count==4 }">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${a}역 까지  </c:if>
+							<c:if test="${i.count==5 }">${a}m 떨어져 있습니다.<br/> </c:if>
+							<c:if test="${i.count==6 }">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예상 소요시간: ${a}분 </c:if>
 						</c:forTokens>
 						<hr>
-					</c:forEach> 도착지 이름: ${endTitle} 주소: ${endAddress} <br /> 전화번호: ${endPhone }
-					근처역: ${endStn } 근처역까지거리: ${endDtc }m 이동시간: ${endWalk }분<br />
+					</c:forEach> 
+					 도착지 이름: ${endTitle} <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${endAddress} <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${endPhone } <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${endStn }역 까지 ${endDtc }m 떨어져 있습니다.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예상 소요시간:${endWalk}분<br />
 				</font>
 
 			</div>
@@ -127,29 +165,30 @@
 
 					<div id="lista1" class="als-container" >
 
-					<span class="als-prev"><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
+					<span class="als-prev" ><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
 					<div class="als-viewport">
 					  <ul class="als-wrapper">
 						
-						  <li class="als-item"style="width:150px; height:250px;" >
-							<div class="filebox bs3-success"  >
-                         		<label for="ex_file2" style="width:130px;height:250px"></label> 
-                          		<input type="file" id="s_file1"  > 
+						  <li class="als-item"style="width:150px; height:150px;" >
+							<div class="filebox bs3-success" id="ex1">
+                          <label for="ex_file1">업로드</label> 
+                          <input type="file" id="ex_file1" onchange="test();"> 
+                        </div>	
                           </li>	
-							<li class="als-item" style="width:150px; height:250px;">
+							<li class="als-item" style="width:150px; height:150px;">
 								<div class="filebox bs3-success"  >
-                         		<label for="ex_file2" style="width:130px;height:250px"></label> 
-                          		<input type="file" id="s_file2"> 
+                         		<label for="ex_file2" style="width:130px;height:150px"></label> 
+                          		<input type="file" id="ex_file2" > 
                         </div>2</li>
-							<li class="als-item"style="width:150px; height:250px;">
+							<li class="als-item"style="width:150px; height:150px;">
 							<div class="filebox bs3-success"  >
-                         		<label for="ex_file2" style="width:130px;height:250px"></label> 
-                          		<input type="file" id="s_file3"> 
+                         		<label for="ex_file3" style="width:130px;height:150px"></label> 
+                          		<input type="file" id="ex_file3"> 
 							</li>
-								<li class="als-item"style="width:150px; height:250px;">
+								<li class="als-item"style="width:150px; height:150px;">
 								<div class="filebox bs3-success"  >
-                         		<label for="ex_file2" style="width:130px;height:250px"></label> 
-                          		<input type="file" id="s_file4"> 
+                         		<label for="ex_file4" style="width:130px;height:150px"></label> 
+                          		<input type="file" id="ex_file4"> 
                           		</li>
 	
 					  </ul>
@@ -160,9 +199,6 @@
 			</div>		
 	</div>
 		<div class="box5">
-				<div class="filebox bs3-success"  >
-                        <label for="ex_file2" style="width:130px;height:240px"></label> 
-                 <input type="file" id="m_file"> 
 	</div>
 		</div>
 	</div>
@@ -181,8 +217,43 @@
 		<script>
 		function test()
 		{
-			if($.trim($('#s_file1').val()) != ''){
-				   alert("dfdddd");
+			if($.trim($('#ex_file1').val()) != ''){
+				var src=$('#ex_file1').val();
+				//alert(src);
+				var index=src.lastIndexOf("\\");
+				var str=src.substring(index+1,src.length);
+				//alert(str);
+				
+				$.ajax({		
+ 	 				url:"imageInsert.nhn?filePath="+src+"&fileName="+str,
+		 	 				success:function(data)
+		 	 				{
+		 	 				}
+ 		 	 	        })
+
+				var imgStr='<img src="c:\\photo\\"'+str+'">';
+				//alert(str);
+				var el = document.createElement('li');//li를 추가	 			 
+ 				fragment = document.createDocumentFragment();
+ 				var listEl = document.getElementById('ex1');//진행상황 리스트를 치환
+				el.innerHTML=imgStr;
+				fragment.appendChild(el);
+				listEl.appendChild(fragment);	
+				  }
+			if($.trim($('#ex_file2').val()) != ''){
+				  //alert($('#ex_file1').val());
+				  }
+			if($.trim($('#ex_file3').val()) != ''){
+				  //alert($('#ex_file1').val());
+				  }
+			if($.trim($('#ex_file4').val()) != ''){
+				 // alert($('#ex_file1').val());
+				  }
+			if($.trim($('#ex_file5').val()) != ''){
+				 // alert($('#ex_file1').val());
+				  }
+			if($.trim($('#m_file1').val()) != ''){
+				  //alert($('#ex_file1').val());
 				  }
 		}
 		var totalStr='${returnName}';
@@ -214,7 +285,7 @@
 			
 			if(i==0)
 			{
-				var stimageSrc = 'http://127.0.0.1:8000/wtg/map/red_b.png', // 출발마커이미지의 주소입니다    
+				var stimageSrc = 'http://127.0.0.1:8000/wtg/map/img/red_b.png', // 출발마커이미지의 주소입니다    
  		 	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
  		 	    stimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 				var startImage = new daum.maps.MarkerImage(stimageSrc, stimageSize, stimageOption);
@@ -228,7 +299,7 @@
 			}
 			if(i==markers.length-1)
 			{
-				var endimageSrc = 'http://127.0.0.1:8000/wtg/map/blue_b.png', // 도착지마커이미지의 주소입니다    
+				var endimageSrc = 'http://127.0.0.1:8000/wtg/map/img/blue_b.png', // 도착지마커이미지의 주소입니다    
  		 	    endimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
  		 	    endimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 				endImage = new daum.maps.MarkerImage(endimageSrc, endimageSize, endimageOption);
@@ -244,7 +315,7 @@
 			}
 			if(i>0&&i<markers.length-1)
 			{
-				var psimageSrc = 'http://127.0.0.1:8000/wtg/map/green_b.png', // 경유지마커이미지의 주소입니다    
+				var psimageSrc = 'http://127.0.0.1:8000/wtg/map/img/green_b.png', // 경유지마커이미지의 주소입니다    
  		 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
  		 	    psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 				psmarkerImage = new daum.maps.MarkerImage(psimageSrc, psimageSize, psimageOption);
@@ -380,7 +451,41 @@ jQuery( document ).ready(function( $ ) {
 
 </script>
 
+<div class="filebox preview-image">
+  <label for="input-file">업로드</label> 
+  <input type="file" id="input-file" class="upload-hidden"> 
+</div>
+<script>
+var imgTarget = $('.preview-image .upload-hidden');
 
+imgTarget.on('change', function(){
+    var parent = $(this).parent();
+    parent.children('.upload-display').remove();
 
+    if(window.FileReader){
+        //image 파일만
+        if (!$(this)[0].files[0].type.match(/image\//)) return;
+        
+        var reader = new FileReader();
+        reader.onload = function(e){
+            var src = e.target.result;
+            parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
+        }
+        reader.readAsDataURL($(this)[0].files[0]);
+    }
+
+    else {
+        $(this)[0].select();
+        $(this)[0].blur();
+        var imgSrc = document.selection.createRange().text;
+        parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
+
+        var img = $(this).siblings('.upload-display').find('img');
+        img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
+    }
+});
+
+</script>
+<img src="http://127.0.0.1:8000/wtg/map/red_b.png" width="50" height="50">
 	</body>
 </html>
