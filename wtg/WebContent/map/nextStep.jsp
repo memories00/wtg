@@ -2,59 +2,189 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>               
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<style>
-			#menu_wrap {position:absolute;  top:0;left:0;bottom:0;width:650px; height:450px;margin:500px 50px 50px 50px;padding:5px;overflow-x:auto;background:rgba(0, 0, 0,0.3);z-index: 0.1;font-size:12px;border-radius: 0px; }
-			.bg_white {background:#fff;}		
-			#menu_wrap hr {display: block; height: 4px;border: 0;  border-top: 2px solid #5F5F5F;margin:3px 0;}
-			#menu_wrap .option{text-align: left;}
-			#menu_wrap .option p {margin:10px 0;}  
-			#menu_wrap .option button {margin-left:5px;} 
-		</style>
+		
 		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 			<title>코스등록하기</title>
-			<font size="6">${dto.category }</font>
-					<div  id="map" style="width:650px; height:400px;float:left; margin:50px 0px 0px 50px"></div>
-<!-- 에디터 시작 -->
-    <form name="frm" id="frm" action="insertDB.nhn" method="post" accept-charset="EUC-KR">
-        <!-- 에디터프레임호출 영역 -->
-       <div id="editor_frame" style="top:0;left:0;bottom:0;width:600px; height:500px;margin:0px 0px 0px 50px;border:1px solid black;float:left;" > </div>  
-       	 <textarea name="daumeditor" id="daumeditor" rows="100" cols="100" style="width:766px; height:0px;display: none;border:1px solid black;"></textarea> 
-       
-       
-        <!-- 실제 값이 담겨져서 넘어갈 textarea 태그 --> 
-   
-     <div style="float:right">
-     	<input type="button" id="save_button" value="내용전송"/>
-     </div> 
-      </form>
-			<div id="menu_wrap" class="bg_white">
-				<div class="option">
-					<font size="4">
-					출발지  이름: ${startTitle} 주소: ${startAddress} <br/> 전화번호: ${startPhone } 근처역: ${startStn } 근처역까지거리: ${startDtc }m 이동시간: ${startWalk}분<br/>
-					<hr>
-					
-						<c:forEach var="alist" items="${list}">
+<style>
+	#warp{width:100%;}
+	.box1{background-color:red; width:650px; height:500px; float:left;margin:0 50px 0 50px }
+	.box2{background-color:#6600ff; width:800px; height:400px;float:left; margin:0 0 0 0px}
+	.box3{background-color:#cccc33; width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
+	.box4{background-color:#0033cc; width:550px; height:400px;float:left;margin:50px 0 0 50px}
+	.box5{background-color:green; width:200px; height:300px;float:left;margin:50px 0 0 50px}
+	.box-m{float:left;}
+	.box-m2{float:left;display:block;}
+	
+	
+	.body {margin: 10px}
+.where {
+  display: block;
+  margin: 25px 15px;
+  font-size: 11px;
+  color: #000;
+  text-decoration: none;
+  font-family: verdana;
+  font-style: italic;
+} 
+.filebox {display:inline-block; margin-right: 10px;}
+
+
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+.filebox input[type="file"] {  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+.filebox.bs3-primary label {
+  color: #fff;
+  background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.filebox.bs3-success label {
+  color: #fff;
+  background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+ </style>
+ </head>
+ <body>
+ <font size="7">${dto.category }</font>
+  <div id="warp">
+	<div class="box-m">
+		<div class="box1" id="map">
+		
+		</div>
+		<div class="box2">
+				<form name="frm" id="frm" action="insertDB.nhn" method="post"
+				accept-charset="EUC-KR">
+				<!-- 에디터프레임호출 영역 -->
+				<div id="editor_frame">
+					<textarea name="daumeditor" id="daumeditor" rows="100" cols="100"
+						style="width: 766px; height: 0px; display: none; border: 1px solid black;"></textarea>
+				</div>
+
+				<!-- 실제 값이 담겨져서 넘어갈 textarea 태그 -->
+
+				<div id="btn" z-Index="5">
+					<input type="button" id="save_button" value="내용전송" />
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div class="box-m2">
+		<div class="box3">
+		<div id="menu_wrap" class="bg_white">
+			<div class="option">
+				<font size="4"> 출발지 이름: ${startTitle} 주소: ${startAddress} <br />
+					전화번호: ${startPhone } 근처역: ${startStn } 근처역까지거리: ${startDtc }m 이동시간:
+					${startWalk}분<br />
+					<hr> <c:forEach var="alist" items="${list}">
 						경유지
 							<c:forTokens var="a" items="${alist}" delims="/" varStatus="i">
-						<c:if test="${i.count==1 }"> 이름: ${a}</c:if> <c:if test="${i.count==2 }">주소: ${a} </c:if>  <c:if test="${i.count==3 }"><br/> 전화번호: ${a} </c:if>
-							<c:if test="${i.count==4 }">근처역까지의 거리: ${a} </c:if> <c:if test="${i.count==5 }">근처역: ${a}m </c:if> <c:if test="${i.count==6 }">이동시간: ${a}분 </c:if> 
-							</c:forTokens>
+							<c:if test="${i.count==1 }"> 이름: ${a}</c:if>
+							<c:if test="${i.count==2 }">주소: ${a} </c:if>
+							<c:if test="${i.count==3 }">
+								<br /> 전화번호: ${a} </c:if>
+							<c:if test="${i.count==4 }">근처역까지의 거리: ${a} </c:if>
+							<c:if test="${i.count==5 }">근처역: ${a}m </c:if>
+							<c:if test="${i.count==6 }">이동시간: ${a}분 </c:if>
+						</c:forTokens>
 						<hr>
-						</c:forEach>
-					도착지 이름: ${endTitle} 주소: ${endAddress} <br/> 전화번호: ${endPhone }  근처역: ${endStn } 근처역까지거리: ${endDtc }m 이동시간: ${endWalk }분<br/>
-					</font>
-					
-				</div>
-			</div>
+					</c:forEach> 도착지 이름: ${endTitle} 주소: ${endAddress} <br /> 전화번호: ${endPhone }
+					근처역: ${endStn } 근처역까지거리: ${endDtc }m 이동시간: ${endWalk }분<br />
+				</font>
 
-		<link rel="stylesheet" href="/wtg/daumeditor/css/editor.css" type="text/css" charset="EUC-KR"/>
+			</div>
+		</div>
+		</div>
+		<div class="box4">
+				
+				<div id="imgslide">
+
+					<div id="lista1" class="als-container" >
+
+					<span class="als-prev"><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
+					<div class="als-viewport">
+					  <ul class="als-wrapper">
+						
+						  <li class="als-item"style="width:150px; height:250px;" >
+							<div class="filebox bs3-success"  >
+                         		<label for="ex_file2" style="width:130px;height:250px"></label> 
+                          		<input type="file" id="s_file1"  > 
+                          </li>	
+							<li class="als-item" style="width:150px; height:250px;">
+								<div class="filebox bs3-success"  >
+                         		<label for="ex_file2" style="width:130px;height:250px"></label> 
+                          		<input type="file" id="s_file2"> 
+                        </div>2</li>
+							<li class="als-item"style="width:150px; height:250px;">
+							<div class="filebox bs3-success"  >
+                         		<label for="ex_file2" style="width:130px;height:250px"></label> 
+                          		<input type="file" id="s_file3"> 
+							</li>
+								<li class="als-item"style="width:150px; height:250px;">
+								<div class="filebox bs3-success"  >
+                         		<label for="ex_file2" style="width:130px;height:250px"></label> 
+                          		<input type="file" id="s_file4"> 
+                          		</li>
+	
+					  </ul>
+					</div>
+					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
+					
+				  </div>
+			</div>		
+	</div>
+		<div class="box5">
+				<div class="filebox bs3-success"  >
+                        <label for="ex_file2" style="width:130px;height:240px"></label> 
+                 <input type="file" id="m_file"> 
+	</div>
+		</div>
+	</div>
+  </div>
+<input type="button" value="test" onclick="test()">
+
+
+<link rel="stylesheet" href="/wtg/daumeditor/css/editor.css" type="text/css" charset="EUC-KR"/>
 		<script src="/wtg/daumeditor/js/editor_loader.js" type="text/javascript" charset="EUC-KR"></script>
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>	
 		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06807e3624c0410b3525f8f75a0a967c&libraries=services"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/als_demo.css" />
+		<script type="text/javascript" src="/wtg/js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="/wtg/js/jquery.als-1.7.min.js"></script>		
+		<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/CSSreset.min.css" />
 		<script>
+		function test()
+		{
+			if($.trim($('#s_file1').val()) != ''){
+				   alert("dfdddd");
+				  }
+		}
 		var totalStr='${returnName}';
 		//alert(totalStr);
 		var parseStr=totalStr.split(',');
@@ -204,8 +334,11 @@ $(function aa(){
         Editor.save();
     })
 })
- 
- 
+
+        //다음에디터가 포함된 form submit
+   	
+
+
 //Editor.save() 호출 한 다음에 validation 검증을 위한 함수 
 //validation 체크해줄 입력폼들을 이 함수에 추가 지정해줍니다.
 function validForm(editor) {
@@ -227,6 +360,27 @@ function setForm(editor) {
 
     return true;
 }
+
+$.noConflict();
+jQuery( document ).ready(function( $ ) {
+		$("#lista1").als({
+			visible_items: 3,
+			scrolling_items: 1,
+			orientation: "horizontal",
+			circular: "yes",
+			autoscroll: "no",
+			interval: 5000,
+			speed: 500,
+			easing: "linear",
+			direction: "right",
+			start_from: 0
+		});
+});
+
+
 </script>
+
+
+
 	</body>
 </html>
