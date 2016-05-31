@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap namespace="theme">
+  <typeAlias alias="themeN" type="theme.thDTO"/>
   <typeAlias alias="theme" type="theme.ThemeDTO"/>
   <typeAlias alias="good" type="theme.GoodDTO" />
   <typeAlias alias="report" type="theme.ReportDTO" />
   <typeAlias alias="comment" type="theme.CommentDTO" />
   <typeAlias alias="memComment" type="theme.MemCommentDTO" />
+  
+  <resultMap class="themeN" id="tn">
+  	<result property="category" column="category"/>
+  	<result property="num" column="num"/>
+  	<result property="id" column="id"/>
+  	<result property="s_name" column="s_name"/>
+  	<result property="s_point" column="s_point"/>
+  	<result property="e_name" column="e_name"/>
+  	<result property="e_point" column="e_point"/>
+  	<result property="p1_name" column="p1_name"/>
+  	<result property="p1_point" column="p1_point"/>
+  	<result property="p2_name" column="p2_name"/>
+  	<result property="p2_point" column="p2_point"/>
+  	<result property="p3_name" column="p3_name"/>
+  	<result property="p3_point" column="p3_point"/>
+  	<result property="p4_name" column="p4_name"/>
+  	<result property="p4_point" column="p4_point"/>
+  	<result property="p5_name" column="p5_name"/>
+  	<result property="p5_point" column="p5_point"/>
+  	<result property="content" column="content"/>
+  	<result property="m_image" column="m_image"/>
+  	<result property="s_image" column="s_image"/>
+  	<result property="regdate" column="regdate"/>  	
+  </resultMap>
   
   <!-- 리절트 맵 정의 -->
   <resultMap class="theme" id="t"  >

@@ -144,11 +144,11 @@ function test_Search()
 	<div class="dif" id="menu">
 		<ul id="main_menu">
 		<li>All</li>
-		<li>관광명소</li>
-		<li>데이트</li>
-		<li>스포츠</li>
-		<li>쇼핑</li>
-		<li>추천코스</li>
+		<li><a href="/wtg/themeList.nhn">All</a></li>
+		<li><a href="/wtg/themeList.nhn">관광명소</a></li>
+		<li><a href="/wtg/themeList.nhn">데이트</a></li>
+		<li><a href="/wtg/themeList.nhn">스포츠</a></li>
+		<li><a href="/wtg/themeList.nhn">쇼핑</a></li>
 		</ul>
 	</div>
 </div>
