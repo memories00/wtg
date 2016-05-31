@@ -7,7 +7,11 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-
+  function logo_Change()
+  {
+  	document.logo.action="/wtg/logochange.nhn"
+  	document.logo.submit();
+  }
   function main_Category()
   {
   	document.main.action="/wtg/category.nhn"
@@ -220,8 +224,7 @@ ul#adminMenu li li{border:1px blue dashed; float:left; list-style:none;}
 	<div class="section" id="content">
 		로고 이미지 바꾸기
 		<form name="logo" method="post" enctype="multipart/form-data">
-			<div>파일 경로: <input type="text" name="logo_fileAddr" /> </div>
-			<div><input type="file" name="logo_upload" /></div>
+			<div><input type="file" name="logo_upload" /><input type="button" value="로고변경" onClick="logo_Change()"></div>
 		</form>
 		*로고는 가로 950px 세로 100px의 크기의 이미지를 넣어주세요.
 	</div>

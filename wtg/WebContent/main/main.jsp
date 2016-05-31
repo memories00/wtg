@@ -139,7 +139,7 @@ function test_Search()
 		</div>
 	</div>
 	<div id="logo">
-	<img id="logo_img" src="/wtg/themeImg/logo.png" style="width: 100%; max-width: 250px; height:100%; max-height:100px;"/>
+	<img id="logo_img" src="/wtg/themeImg/${logo}" style="width: 100%; max-width: 250px; height:100%; max-height:100px;"/>
 	</div>	
 	<div class="dif" id="menu">
 		<ul id="main_menu">
@@ -371,11 +371,11 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="themeView.nhn?no=${list2.no}&currentPage=1"> 
-							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							 <img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
-					  </ul>
+					  </ul>					  
 					</div>
 					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
 				  </div>
@@ -391,8 +391,8 @@ function test_Search()
 		</a>
 	</div>
 	<div id="review">
-		 <c:forEach var="comment" items="${comment}">
-		 	<a href="/wtg/themeView.nhn?no=${comment.board_num}&currentPage=1">${comment.content}</a><br />
+		<c:forEach var="comment" items="${comment}">
+		 	<a href="/wtg/themeView.nhn?no=${comment.board_num}">${comment.content}</a>
 		</c:forEach>
 	</div>
 </div>

@@ -49,6 +49,7 @@ public class adminBean {
 	public String member(HttpServletRequest request){
 		List<MemDTO> list = new ArrayList<MemDTO>();
 		list=sqlMap.queryForList("admin.member",null);
+
 		request.setAttribute("list", list);
 		return "/admin/member.jsp";
 	}
@@ -71,9 +72,10 @@ public class adminBean {
 		for(String c:ch)
 		{
 			sqlMap.delete("admin.memdelete",c);
+			sqlMap.insert("admin.memdrop", c);
 		}
 		request.setAttribute("list", list);
-		return "/admin/memboard.jsp";
+		return "redirect:member.nhn";
 	}
 	@RequestMapping("/memboard.nhn")
 	public String memboard(HttpServletRequest request,MemDTO dto){
@@ -112,7 +114,6 @@ public class adminBean {
 		String one=year+"01";String two=year+"02";String thr=year+"03";String four=year+"04";
 		String fiv=year+"05";String six=year+"06";String sev=year+"07";String eig=year+"08";
 		String nin=year+"09";String ten=year+"10";String ele=year+"11";String twe=year+"12";
-		System.out.println(nin);
 		
 		int onecount=(Integer)sqlMap.queryForObject("admin.onecount",one);
 		int twocount=(Integer)sqlMap.queryForObject("admin.twocount",two);

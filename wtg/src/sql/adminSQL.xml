@@ -4,6 +4,8 @@
 <typeAlias alias="slide" type="main.bean.SlideDTO" />
 <typeAlias alias="mem" type="admin.bean.MemDTO" />
 <typeAlias alias="stats" type="admin.bean.UserstatsDTO" />
+<typeAlias alias="logo" type="admin.bean.LogoDTO" />
+
 
 
 	<select id="member" resultClass="mem">
@@ -17,6 +19,10 @@
 	<delete id="memdelete" parameterClass="String">
 			DELETE FROM mem WHERE id = #c#
    	</delete>
+   	
+   	<insert id="memdrop" parameterClass="String">
+   		drop table mem_$c$
+	</insert>
    	
    	<update id="personal" parameterClass="mem">
     		UPDATE personal SET per = #per#
@@ -128,5 +134,17 @@
 	<select id="allcount" resultClass="int">
 		select count(*) from userstats
 	</select>
+		
+	<select id="logoselect" resultClass="int">
+		select count(*) from logo
+	</select>
+	   
+	<select id="logocount" resultClass="String">
+		select * from logo
+	</select>
+	
+	<update id="logoupdate" parameterClass="logo">
+    		UPDATE logo SET orgname = #orgname#
+   	</update>
 	
 </sqlMap>

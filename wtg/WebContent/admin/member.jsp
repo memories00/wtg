@@ -5,17 +5,17 @@
 <script>
 function mem_Search()
 {
-	document.mem.action="/spring/memsearch.nhn"
+	document.mem.action="/wtg/memsearch.nhn"
 	document.mem.submit();
 }
 function mem_Delete()
 {
-	document.mem.action="/spring/memdelete.nhn"
+	document.mem.action="/wtg/memdelete.nhn"
 	document.mem.submit();
 }
 function mem_Board()
 {
-	document.mem.action="/spring/memboard.nhn"
+	document.mem.action="/wtg/memboard.nhn"
 	document.mem.submit();
 }
 </script>

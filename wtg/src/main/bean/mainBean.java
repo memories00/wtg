@@ -41,6 +41,8 @@ public class mainBean
 		List<ThemeDTO> list2 = new ArrayList<ThemeDTO>();
 		list2 = sqlMap.queryForList("main.cateselect",id);
 		
+		String logo=(String) sqlMap.queryForObject("admin.logocount", null);
+		
 		long time = System.currentTimeMillis(); 
 		SimpleDateFormat y = new SimpleDateFormat("yy");
 		String year = y.format(new Date(time));
@@ -71,6 +73,7 @@ public class mainBean
 		request.setAttribute("list2", list2);
 		request.setAttribute("list", list);
 		request.setAttribute("count", count);
+		request.setAttribute("logo", logo);
 		SAXBuilder builder = new SAXBuilder();
 		Document doc=builder.build("C:/Users/user1/git/wtg/wtg/WebContent/main/get_today.xml");
 		//C:/DATA/XML/get_today.xml
