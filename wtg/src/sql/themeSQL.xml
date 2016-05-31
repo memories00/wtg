@@ -244,11 +244,7 @@
   </insert>
   
   <select id="memCommentAll" resultMap="mc" parameterClass="int">
-    select * from comment_$num$ order by reg desc
-  </select>
-  
-  <select id="commentAll" resultMap="c">
-    select * from comments order by reg desc
+    select * from comment_$num$ order by reg asc
   </select>
   
   
