@@ -392,7 +392,7 @@ function test_Search()
 	</div>
 	<div id="review">
 		 <c:forEach var="comment" items="${comment}">
-		 <a href="/wtg/themeView.nhn?no=${comment.board_num}">{comment.content}</a>
+		 	<a href="/wtg/themeView.nhn?no=${comment.board_num}">${comment.content}</a>
 		</c:forEach>
 	</div>
 </div>

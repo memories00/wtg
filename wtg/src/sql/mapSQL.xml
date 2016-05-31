@@ -7,4 +7,11 @@
   insert into courseInfo(category,num,id,s_name,s_point,e_name,e_point,p1_name,p1_point,p2_name,p2_point,p3_name,p3_point,p4_name,p4_point,p5_name,p5_point,content,m_image,s_image,regdate)
            values(#category#,courseInfo_seq.NEXTVAL,#id#,#s_name#,#s_point#,#e_name#,#e_point#,#p1_name#,#p1_point#,#p2_name#,#p2_point#,#p3_name#,#p3_point#,#p4_name#,#p4_point#,#p5_name#,#p5_point#,#content#,default,#s_image#,sysdate)
 </insert>
+<select id="getNum" resultClass="int">
+	select max(num) from courseInfo order by num desc 
+</select>
+
+<update id="inputContent" parameterClass="dto" >
+	update courseInfo set content=#content# where num=#num#
+</update>
 </sqlMap>
