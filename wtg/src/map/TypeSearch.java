@@ -16,7 +16,7 @@ public class TypeSearch {
 	   try{
 			String responseType = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList"
 					+ "?ServiceKey=qczVz%2FMEZtFm3v%2Fl4ofQvjR4rEtDWICqtPhpwhwGpzSk5Iwd8Wk%2BRvegrpM1W%2Foyd0TveGp7zjfDTCUve9cC9w%3D%3D"
-					+ "&numOfRows=100"			/*한페이지결과수*/
+					+ "&numOfRows=100"		 	/*한페이지결과수*/
 					+ "&arrange=P"				/*정렬(O=제목순, P=조회순, Q=수정일순, R=생성일순)*/
 					+ "&contentTypeId="+typeId	/*타입 ID*/
 					+ "&areaCode=1"				/*지역코드(1=서울)*/

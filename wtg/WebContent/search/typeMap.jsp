@@ -48,9 +48,9 @@
 var mapContainer = document.getElementById('map'), 			// 지도를 표시할 div 
    	mapOption = {
     center: new daum.maps.LatLng(37.566826, 126.9786567), 	// 지도의 중심좌표
-    level: 5 												// 지도의 확대 레벨
+    level: 4 												// 지도의 확대 레벨  
 	};  
-var map = new daum.maps.Map(mapContainer, mapOption); 		//지도를 생성합니다   
+var map = new daum.maps.Map(mapContainer, mapOption); 		//지도를 생성합니다    
 var ps = new daum.maps.services.Places();  					//장소 검색 객체를 생성합니다
 var markers=[];												//마커를 담을 배열을 생성합니다.
 var mapTypeControl = new daum.maps.MapTypeControl();		//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
@@ -59,10 +59,10 @@ var name, x, y, addr1, addr2, img, tel;
 map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);	// 지도에 타입 컨트롤을 추가합니다
 map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);		// 지도에 줌 컨트롤을 추가합니다
 
-
 //선택한 카테고리의 데이터를 요청합니다.
 function categoryType(a) {
 	hideMarkers();								//이미 생성된 마커를 지웁니다.
+//	closeOverlay();
 	var t = a.getAttribute('id');				//버튼의 id값을 가져옵니다
 		$.ajax({
 	        url:"/wtg/typeSearch.nhn",
@@ -73,12 +73,13 @@ function categoryType(a) {
 	    });
 	}
 
-	
+var cnt=0;
 // 파싱된 데이터를 분리합니다.
 function cut(info) {
 	var line=info.split('^^');					//데이터를 라인별로 자릅니다.
 		for(var i=0; i<line.length-1; i++)
 		{
+			cnt++;
 			var el = line[i].split("--");		
 				name = el[0];					//장소명을 분리합니다.
 				x = el[2];						//x좌표를 분리합니다.
@@ -87,23 +88,23 @@ function cut(info) {
 				addr2 = el[4];					//상세주소를 분리합니다.
 				img = el[5];					//이미지 주소를 분리합니다.
 				tel = el[6];					//전화번호를 분리합니다.
-			addMarker(new daum.maps.LatLng(x,y));	
+			addMarker(new daum.maps.LatLng(x,y),cnt);	
  		}
 		//alert(map.getBounds());
 	}
 	
-
+var overInfo=new Array();
 //마커를 생성하고 지도에 표시합니다
-function addMarker(xy) {
+function addMarker(xy,cnt) {
 	var marker = new daum.maps.Marker({			//마커를 생성합니다
 		position: xy,
  		title: name
 	});
-		
+	
 	var content = '<div class="wrap">' + 		//장소정보 오버레이에 표시할 컨텐츠 입니다
 	         '    <div class="info">' + 
 	         '        <div class="title">' + name + 
-	         '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+	         '            <div class="close" id="'+cnt+'"onclick="closeOverlay(this)"  title="닫기"></div>' + 
 	         '        </div>' + 
 	         '        <div class="body">' + 
 	         '            <div class="img">' +
@@ -116,27 +117,28 @@ function addMarker(xy) {
 	         '            </div>' + 
 	         '        </div>' + 
 	         '    </div>' +    
-	         '</div>';
-         
-	var overlay = new daum.maps.CustomOverlay({					//마커위에 띄울 장소정보 오버레이를 생성합니다.
+	         '</div>';   
+	 var overlay = new daum.maps.CustomOverlay({					//장소정보 오버레이를 생성합니다.
 		content: content,
  		position: marker.getPosition(),
   		clickable: true
 	});
-	
+	overInfo[cnt]=overlay;
 	marker.setMap(map);											//마커를 지도에 띄웁니다 
-	markers.push(marker);										//마커를 배열에 넣습니다	
+	markers.push(marker);										//마커를 배열에 넣습니다
 	daum.maps.event.addListener(marker, 'click', function()	{	//마커를 클릭했을 때 오버레이를 표시합니다
 		overlay.setMap(map);
 	});
+
+	
  }
  	
- 	
-//오버레이를 닫습니다
-function closeOverlay(map) {
-	alert("clo");
-		overlay.setMap(null);
+	//오버레이를 닫습니다
+	function closeOverlay(btnId) {		
+		var check=btnId.getAttribute('id');		
+		overInfo[check].setMap(null);
 	}
+ 	
 
 
 //표시된 모든 마커를 숨깁니다
