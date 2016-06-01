@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap namespace="rec">
-<typeAlias alias="dto" type="main.bean.DTO" />
-	<select id="sports" resultClass="search" parameterClass="String">
+<typeAlias alias="dto" type="map.recommendDto" />
+	<select id="sports" resultClass="dto" parameterClass="String">
 	
 		select category,p1_name,p1_point, DENSE_RANK() over(order by rank desc) as rank from(
 		select category,p1_name, count(*) AS rank,p1_point
@@ -17,7 +17,7 @@
 		having count(*)>0)
 		
 	</select>
-		<select id="history" resultClass="search" parameterClass="String">
+		<select id="history" resultClass="dto" parameterClass="String">
 	
 		select category,p1_name,p1_point, DENSE_RANK() over(order by rank desc) as rank from(
 		select category,p1_name, count(*) AS rank,p1_point
@@ -32,7 +32,7 @@
 		having count(*)>0)
 		
 	</select>
-		<select id="couple" resultClass="search" parameterClass="String">
+		<select id="couple" resultClass="dto" parameterClass="String">
 	
 		select category,p1_name,p1_point, DENSE_RANK() over(order by rank desc) as rank from(
 		select category,p1_name, count(*) AS rank,p1_point
@@ -47,7 +47,7 @@
 		having count(*)>0)
 		
 	</select>
-		<select id="shoping" resultClass="search" parameterClass="String">
+		<select id="shoping" resultClass="dto" parameterClass="String">
 	
 		select category,p1_name,p1_point, DENSE_RANK() over(order by rank desc) as rank from(
 		select category,p1_name, count(*) AS rank,p1_point
