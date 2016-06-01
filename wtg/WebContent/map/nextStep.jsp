@@ -13,7 +13,8 @@
 	.box2{background-color:#6600ff; width:800px; height:400px;float:left; margin:0 0 0 0px}
 	.box3{ width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
 	.box4{ width:600px; height:200px;float:left;margin:50px 0 0 50px}
-	.box5{width:200px; height:300px;float:left;margin:50px 0 0 50px}
+	.box5{background-color:red;width:170px; height:230px;float:left;margin:55px 0 0 50px;border:1px;}
+	.imgbox{background-color:#6600ff; width:150px; height:150px;}
 	.box-m{float:left;}
 	.box-m2{float:left;display:block;}
 	
@@ -159,6 +160,7 @@
 			</div>
 		</div>
 		</div>
+		
 		<div class="box4">
 				
 				<div id="imgslide">
@@ -169,27 +171,41 @@
 					<div class="als-viewport">
 					  <ul class="als-wrapper">
 						
-						  <li class="als-item"style="width:150px; height:150px;" >
+						  <div class="als-item"style="width:170px; height:230px;" >
+						  	<div class="imgbox" id="img1" style="margin:5px 10px 5px 10px ">
+						  	</div>
 							<div class="filebox bs3-success" id="ex1">
-                          <label for="ex_file1">업로드</label> 
-                          <input type="file" id="ex_file1" onchange="test();"> 
-                        </div>	
-                          </li>	
-							<li class="als-item" style="width:150px; height:150px;">
-								<div class="filebox bs3-success"  >
-                         		<label for="ex_file2" style="width:130px;height:150px"></label> 
-                          		<input type="file" id="ex_file2" > 
-                        </div>2</li>
-							<li class="als-item"style="width:150px; height:150px;">
-							<div class="filebox bs3-success"  >
-                         		<label for="ex_file3" style="width:130px;height:150px"></label> 
-                          		<input type="file" id="ex_file3"> 
-							</li>
-								<li class="als-item"style="width:150px; height:150px;">
-								<div class="filebox bs3-success"  >
-                         		<label for="ex_file4" style="width:130px;height:150px"></label> 
-                          		<input type="file" id="ex_file4"> 
-                          		</li>
+                          		<label for="ex_file1" style="margin:10px 0 0 5px ">업로드</label> 
+                         	 	<input type="file" id="ex_file1" onchange="test();" > 
+                        	</div>	
+                          </div>
+                          	
+							 <div class="als-item"style="width:170px; height:230px;" >
+						  	<div class="imgbox" id="img2"style="margin:5px 10px 5px 10px ">
+						  	</div>
+							<div class="filebox bs3-success" id="ex2">
+                          		<label for="ex_file2" style="margin:10px 0 0 5px ">업로드</label> 
+                         	 	<input type="file" id="ex_file2" onchange="test();" > 
+                        	</div>	
+                          </div>
+                          
+							<div class="als-item"style="width:170px; height:230px;" >
+						  	<div class="imgbox" id="img3"style="margin:5px 10px 5px 10px ">
+						  	</div>
+							<div class="filebox bs3-success" id="ex3">
+                          		<label for="ex_file3" style="margin:10px 0 0 5px ">업로드</label> 
+                         	 	<input type="file" id="ex_file3" onchange="test();" > 
+                        	</div>	
+                          </div>
+                          
+                           <div class="als-item"style="width:170px; height:230px;" >
+						  	<div class="imgbox" id="img4" style="margin:5px 10px 5px 10px ">
+						  	</div>
+							<div class="filebox bs3-success" id="ex4">
+                          		<label for="ex_file4" style="margin:10px 0 0 5px ">업로드</label> 
+                         	 	<input type="file" id="ex_file4" onchange="test();" > 
+                        	</div>	
+                          </div>
 	
 					  </ul>
 					</div>
@@ -199,12 +215,18 @@
 			</div>		
 	</div>
 		<div class="box5">
+			<div class="imgbox" id="m_img"style="margin:5px 10px 5px 10px ">
+			</div>
+		<div class="filebox bs3-success"  id="mx">
+        	<label for="m_file" style="margin:10px 0 0 50px ">업로드</label> 
+         <input type="file" id="m_file"  onchange="test1(); "> 
+		
 	</div>
 		</div>
 	</div>
   </div>
-<input type="button" value="test" onclick="test()">
-
+  <form name="form1" method="post" action="plase.nhn">
+</form>
 
 <link rel="stylesheet" href="/wtg/daumeditor/css/editor.css" type="text/css" charset="EUC-KR"/>
 		<script src="/wtg/daumeditor/js/editor_loader.js" type="text/javascript" charset="EUC-KR"></script>
@@ -215,46 +237,72 @@
 		<script type="text/javascript" src="/wtg/js/jquery.als-1.7.min.js"></script>		
 		<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/CSSreset.min.css" />
 		<script>
+		function test1()
+		{
+
+			var src=$('#m_file').val();
+			var index=src.lastIndexOf("\\");
+			var str=src.substring(index+1,src.length);
+			
+			$.ajax({		
+	 				url:"imageInsert.nhn?filePath="+src+"&fileName="+str,
+	 	 				success:function(data)
+	 	 				{		 	 				}
+		 	 	        })
+		 	 	      
+			var listEl = document.getElementById('m_img');//진행상황 리스트를 치환
+
+			var imgStr='<img src="\\wtg\\img\\'+str+'"style="width:150px; height:150px;">';
+			var el = document.createElement('li');//li를 추가	 			 
+			fragment = document.createDocumentFragment();
+			el.innerHTML=imgStr;
+			fragment.appendChild(el);
+			listEl.appendChild(fragment);	
+			
+		}
 		function test()
 		{
-			if($.trim($('#ex_file1').val()) != ''){
-				var src=$('#ex_file1').val();
-				//alert(src);
-				var index=src.lastIndexOf("\\");
-				var str=src.substring(index+1,src.length);
-				//alert(str);
+			var src;
+			var index;
+			var str;
+			var listEl;
+			if($.trim($('#ex_file1').val()) != '')
+			{
+				src=$('#ex_file1').val();
+				listEl = document.getElementById('img1');//진행상황 리스트를 치환
 				
-				$.ajax({		
- 	 				url:"imageInsert.nhn?filePath="+src+"&fileName="+str,
-		 	 				success:function(data)
-		 	 				{
-		 	 				}
- 		 	 	        })
+			}
+			if($.trim($('#ex_file2').val()) != '')
+			{
+				src=$('#ex_file2').val();
+				listEl = document.getElementById('img2');//진행상황 리스트를 치환
+			}
+			if($.trim($('#ex_file3').val()) != '')
+			{
+				src=$('#ex_file3').val();
+				listEl = document.getElementById('img3');//진행상황 리스트를 치환
+				  }
+			if($.trim($('#ex_file4').val()) != '')
+			{
+				src=$('#ex_file4').val();
+				listEl = document.getElementById('img4');//진행상황 리스트를 치환
+				  }
+			
+			index=src.lastIndexOf("\\");
+			str=src.substring(index+1,src.length);
+			$.ajax({		
+	 				url:"imageInsert.nhn?filePath="+src+"&fileName="+str,
+	 	 				success:function(data)
+	 	 				{		 	 				}
+		 	 	        })
 
-				var imgStr='<img src="c:\\photo\\"'+str+'">';
-				//alert(str);
-				var el = document.createElement('li');//li를 추가	 			 
- 				fragment = document.createDocumentFragment();
- 				var listEl = document.getElementById('ex1');//진행상황 리스트를 치환
-				el.innerHTML=imgStr;
-				fragment.appendChild(el);
-				listEl.appendChild(fragment);	
-				  }
-			if($.trim($('#ex_file2').val()) != ''){
-				  //alert($('#ex_file1').val());
-				  }
-			if($.trim($('#ex_file3').val()) != ''){
-				  //alert($('#ex_file1').val());
-				  }
-			if($.trim($('#ex_file4').val()) != ''){
-				 // alert($('#ex_file1').val());
-				  }
-			if($.trim($('#ex_file5').val()) != ''){
-				 // alert($('#ex_file1').val());
-				  }
-			if($.trim($('#m_file1').val()) != ''){
-				  //alert($('#ex_file1').val());
-				  }
+			var imgStr='<img src="\\wtg\\img\\'+str+'" style="width:150px; height:150px;">';
+			var el = document.createElement('li');//li를 추가	 			 
+				fragment = document.createDocumentFragment();
+			el.innerHTML=imgStr;
+			fragment.appendChild(el);
+			listEl.appendChild(fragment);	
+			
 		}
 		var totalStr='${returnName}';
 		//alert(totalStr);
@@ -401,14 +449,82 @@ $(function aa(){
      
     //form submit 버튼 클릭
     $("#save_button").click(function(){
+    	//alert($('#ex_file1').val());
         //다음에디터가 포함된 form submit
         Editor.save();
+        submitForm();
     })
 })
 
-        //다음에디터가 포함된 form submit
-   	
-
+function submitForm()
+{	
+	//alert($('#m_file').val());
+	var totalStr="";
+	if($.trim($('#m_file').val())!='')
+	{
+		var src=$('#m_file').val();
+		var index=src.lastIndexOf("\\");
+		var str=src.substring(index+1,src.length);
+		totalStr+=str+"^";
+		//alert("m"+str);
+	}
+	 if($.trim($('#m_file').val())==''){
+		 totalStr+="defalut.jpg";
+	}
+	
+	if($.trim($('#ex_file1').val())!='')
+	{
+		var src=$('#ex_file1').val();
+		var index=src.lastIndexOf("\\");
+		var str=src.substring(index+1,src.length);
+		totalStr+=str+"/";
+		//alert("1"+str);
+	}
+	if($.trim($('#ex_file1').val())==''){
+		totalStr+=" /";
+	}
+	
+	if($.trim($('#ex_file2').val())!='')
+	{
+		var src=$('#ex_file2').val();
+		var index=src.lastIndexOf("\\");
+		var str=src.substring(index+1,src.length);
+		totalStr+=str+"/";
+		//alert("2"+str);
+	}
+	if($.trim($('#ex_file2').val())==''){
+		totalStr+=" /";
+	}
+	
+	if($.trim($('#ex_file3').val())!='')
+	{
+		var src=$('#ex_file3').val();
+		var index=src.lastIndexOf("\\");
+		var str=src.substring(index+1,src.length);
+		totalStr+=str+"/";
+		//alert("3"+str);
+	}
+	if($.trim($('#ex_file3').val())==''){
+		str+=" /";
+	}
+	
+	
+	if($.trim($('#ex_file4').val())!='')
+	{
+		var src=$('#ex_file4').val();
+		var index=src.lastIndexOf("\\");
+		var str=src.substring(index+1,src.length);
+		totalStr+=str+"/";
+		//alert("4"+str);
+	}
+	if($.trim($('#ex_file4').val())==''){
+		totalStr+=" /";
+	}
+		
+		alert(totalStr);
+	 document.form1.innerHTML = '<input type="hidden" name="totalName" value="'+totalStr+'">';
+	  document.form1.submit();
+}
 
 //Editor.save() 호출 한 다음에 validation 검증을 위한 함수 
 //validation 체크해줄 입력폼들을 이 함수에 추가 지정해줍니다.
