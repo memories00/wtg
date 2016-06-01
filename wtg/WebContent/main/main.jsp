@@ -67,6 +67,22 @@ $(document).ready(function(){
 			$this.text('Pause');
 			}
 	  });
+	   
+	   
+	   $('.roll2').vTicker();
+	   $('#pause').click(function(){
+		$this=$(this);
+		if($this.text()=='Pause'){
+			$('.roll2').vTicker('pause',true);
+			$this.text('Unpause');
+		}
+		else{
+			$('.roll2').vTicker('pause',false);
+			$this.text('Pause');
+			}
+	  });
+	   
+	   
 	 });
 	 
 	 
@@ -431,12 +447,12 @@ max-height:300px;"/>
 			<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 		</a>
 	</div>
-	<div id="review">
-		<ol>
+	<div id="review" class="roll2">
+		<ul>
 		<c:forEach var="comment" items="${comment}">
 		 	<li><a href="/wtg/themeView.nhn?no=${comment.board_num}&currentPage=1">${comment.content}</a>
 		</c:forEach>
-		</ol>
+		</ul>
 	</div>
 </div>
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é ¹ÙÅÒ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->

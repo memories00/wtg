@@ -250,7 +250,7 @@ public class theme {
 	}
 	
 	@RequestMapping("/sendComment.nhn")
-	public String sendComment(HttpSession session, CommentDTO a_dto, String num, String id, String text){
+	public String sendComment(HttpSession session, CommentDTO a_dto, String num, String id, String text, String del){
 		
 		HashMap m_map = new HashMap();
 		
@@ -258,7 +258,7 @@ public class theme {
 		String nickname= (String)session.getAttribute("memName");
 		
 		System.out.println(nickname);
-		
+		System.out.println(del);
 		a_dto.setBoard_num(num);
 		a_dto.setMem_id(id);
 		a_dto.setContent(text);

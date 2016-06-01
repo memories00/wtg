@@ -192,7 +192,7 @@
 			alert(comment);
 			var commentParentText = '<tr id="r1" name="commentParentCode">'+
 									 '<td colspan=2>'+
-                                     '<strong>${sessionScope.memName}</strong><a style="cursor:pointer;" name="pDel">삭제</a><p>'+pText.val().replace(/\n/g, "<br>")+'</p>'+
+                                     '<strong>${sessionScope.memName}</strong><a id="delete" style="cursor:pointer;" name="pDel">삭제</a><p>'+pText.val().replace(/\n/g, "<br>")+'</p>'+
                                      '</td>'+
                                      '</tr>';
                                    
@@ -239,7 +239,7 @@
 		});
                                
 		//답글링크를 눌렀을때 에디터 창을 뿌려주는 이벤트, 삭제링크를 눌렀을때 해당 댓글을 삭제하는 이벤트
-		$(document).on("click","table#commentTable a", function(){//동적으로 버튼이 생긴 경우 처리 방식
+		$(document).on("click","a#delete", function(){//동적으로 버튼이 생긴 경우 처리 방식
                                    
 			if($(this).attr("name")=="pDel"){
 				if (confirm("정말 삭제하시겠습니까?") == true){    //확인
@@ -247,6 +247,29 @@
 					var delComment = $(this).parent().parent();
 					var nextTr = delComment.next();
 					var delTr;
+					alert("1");
+					var test = delComment;
+					alert($(this).parent().parent().parent());
+					alert(nextTr);
+					alert("2");
+					$.ajax({
+						type: "POST",
+						url: "/wtg/sendComment.nhn",
+						data: {
+							del: test
+						},
+						async: true,
+						success: function(){
+							alert("post-success");
+						},
+						error: function(){
+							alert("post-error");
+						},
+						complete: function(){
+							alert("post-complete");
+						}
+					});
+					
 					//댓글(depth1)의 댓글(depth2_1)이 있는지 검사하여 삭제
 					while(nextTr.attr("name")=="commentCode"){
 						nextTr = nextTr.next();
@@ -289,7 +312,6 @@
 			}
                                    
 		});
-		
                                
 		$( "#list" ).click(function( event ) {
 			location.href='/community/notice';
