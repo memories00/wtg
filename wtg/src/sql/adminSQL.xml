@@ -5,7 +5,7 @@
 <typeAlias alias="mem" type="admin.bean.MemDTO" />
 <typeAlias alias="stats" type="admin.bean.UserstatsDTO" />
 <typeAlias alias="logo" type="admin.bean.LogoDTO" />
-
+<typeAlias alias="search" type="main.bean.SearchDTO" />
 
 
 	<select id="member" resultClass="mem">
@@ -32,33 +32,10 @@
 		select per from personal
 	</select>
 	
-	<select id="testsearch" resultClass="slide" parameterClass="String">
-		select ou from(select ou from testsearch union all select ts from testsearch union all select st from testsearch 
-		union all select sin from testsearch union all select ga from testsearch union all select hat from testsearch) where ou like '%'||#search#||'%'
-	</select>
-	
-	<select id="searchou" resultClass="slide" parameterClass="String">
-		select ou from testsearch where ou like '%'||#search#||'%'
-	</select>
-	
-	<select id="searchts" resultClass="slide" parameterClass="String">
-		select ts from testsearch where ts like '%'||#search#||'%'
-	</select>
-	
-	<select id="searchst" resultClass="slide" parameterClass="String">
-		select st from testsearch where st like '%'||#search#||'%'
-	</select>
-	
-	<select id="searchsin" resultClass="slide" parameterClass="String">
-		select sin from testsearch where sin like '%'||#search#||'%'
-	</select>
-	
-	<select id="searchga" resultClass="slide" parameterClass="String">
-		select ga from testsearch where ga like '%'||#search#||'%'
-	</select>
-	
-	<select id="searchhat" resultClass="slide" parameterClass="String">
-		select hat from testsearch where hat like '%'||#search#||'%'
+	<select id="mainsearch" resultClass="search" parameterClass="String">
+		select s_name,num from(select s_name,num from courseinfo union all select e_name,num from courseinfo union all select p1_name,num from courseinfo union all 
+		select p2_name,num from courseinfo union all select p3_name,num from courseinfo union all select p4_name,num from courseinfo union all select p5_name,num from courseinfo)
+		where s_name like '%'||#search#||'%'
 	</select>
 	
 	<select id="testsql" resultClass="slide">

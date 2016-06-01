@@ -226,7 +226,7 @@ ul#adminMenu li li{border:1px blue dashed; float:left; list-style:none;}
 		<form name="logo" method="post" enctype="multipart/form-data">
 			<div><input type="file" name="logo_upload" /><input type="button" value="로고변경" onClick="logo_Change()"></div>
 		</form>
-		*로고는 가로 950px 세로 100px의 크기의 이미지를 넣어주세요.
+		<img src=/>*로고는 가로 950px 세로 100px의 크기의 이미지를 넣어주세요.
 	</div>
 	
 	<div class="section" id="content">

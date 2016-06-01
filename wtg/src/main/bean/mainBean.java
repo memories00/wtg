@@ -117,63 +117,17 @@ public class mainBean
 	{
 		return  "/main/main2.jsp";
 	}
-	@RequestMapping("/testsearch.nhn")
-	public String testsearch(){
-		return "/main/testsearch.jsp";
-	}
 	@RequestMapping("/searchaction.nhn")
-	public String searchaction(HttpServletRequest request,SlideDTO dto){
-		List<SlideDTO> list = new ArrayList<SlideDTO>();
-		List<SlideDTO> listou = new ArrayList<SlideDTO>();
-		List<SlideDTO> listts = new ArrayList<SlideDTO>();
-		List<SlideDTO> listst = new ArrayList<SlideDTO>();
-		List<SlideDTO> listsin = new ArrayList<SlideDTO>();
-		List<SlideDTO> listga = new ArrayList<SlideDTO>();
-		List<SlideDTO> listhat = new ArrayList<SlideDTO>();
+	public String searchaction(HttpServletRequest request,SearchDTO dto){
+		List<SearchDTO> searchlist = new ArrayList<SearchDTO>();
 		
 		String ch[]=request.getParameterValues("check");
 		String search=dto.getSearch();
 		System.out.println(search);
 		if(ch==null){
 			System.out.println("체크를안함");
-			list=sqlMap.queryForList("main.testsearch",search);
-			request.setAttribute("list", list);
-		}
-		else{
-			for(String c:ch)
-			{
-				System.out.println(c);
-				if(c.equals("1")){
-					listou=sqlMap.queryForList("main.searchou",search);
-					request.setAttribute("listou", listou);
-					System.out.println("일이다");
-				}
-				else if(c.equals("2")){
-					listts=sqlMap.queryForList("main.searchts",search);
-					request.setAttribute("listts", listts);
-					System.out.println("이다");
-				}
-				else if(c.equals("3")){
-					listst=sqlMap.queryForList("main.searchst",search);
-					request.setAttribute("listst", listst);
-					System.out.println("삼이다");
-				}
-				else if(c.equals("4")){
-					listsin=sqlMap.queryForList("main.searchsin",search);
-					request.setAttribute("listsin", listsin);
-					System.out.println("사다");
-				}
-				else if(c.equals("5")){
-					listga=sqlMap.queryForList("main.searchga",search);
-					request.setAttribute("listga", listga);
-					System.out.println("오다");
-				}
-				else if(c.equals("6")){
-					listhat=sqlMap.queryForList("main.searchhat",search);
-					request.setAttribute("listhat", listhat);
-					System.out.println("육이다");
-				}
-			}
+			searchlist=sqlMap.queryForList("admin.mainsearch",search);
+			request.setAttribute("searchlist", searchlist);
 		}
 		return "/main/testsearch.jsp";
 	}
