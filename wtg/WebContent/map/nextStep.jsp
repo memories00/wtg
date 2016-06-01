@@ -161,9 +161,12 @@
 		</div>
 		</div>
 		
-		<div class="box4">	
+		<div class="box4">
+				
 				<div id="imgslide">
+
 					<div id="lista1" class="als-container" >
+
 					<span class="als-prev" ><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
 					<div class="als-viewport">
 					  <ul class="als-wrapper">
@@ -224,7 +227,6 @@
   </div>
   <form name="form1" method="post" action="plase.nhn">
 </form>
-
 <link rel="stylesheet" href="/wtg/daumeditor/css/editor.css" type="text/css" charset="EUC-KR"/>
 		<script src="/wtg/daumeditor/js/editor_loader.js" type="text/javascript" charset="EUC-KR"></script>
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>	

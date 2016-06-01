@@ -73,7 +73,7 @@
 		</div>
 </div>	
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06807e3624c0410b3525f8f75a0a967c&libraries=services"></script>
+		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=5460ec456d4488e25f7b4c60d6a8b21c&libraries=services"></script>
 		<script>
 		var container = document.getElementById('map'); //div id=map자리에 지도를생성			
 		var options = { 
