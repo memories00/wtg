@@ -10,6 +10,7 @@
 	<sqlMap resource="/sql/mainSQL.xml"/>
 	<sqlMap resource="/sql/mapSQL.xml"/>
 	<sqlMap resource="/sql/adminSQL.xml"/>
+	<sqlMap resource="/sql/recommendSQL.xml"/>
 	
 </sqlMapConfig>
 

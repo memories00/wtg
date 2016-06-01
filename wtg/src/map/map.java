@@ -97,7 +97,7 @@ public class map
 					dto.setP5_point(a[1]+"^"+a[2]);
 				}
 				if(i==arrayName.length-2){
-				//sqlMap.insert("map.insertInfo", dto);	
+				sqlMap.insert("map.insertInfo", dto);	
 				}
 			}		
 			request.setAttribute("list",list);
@@ -133,7 +133,7 @@ public class map
 			String content=request.getParameter("daumeditor");
 			dto.setNum(num);
 			dto.setContent(content);
-			//sqlMap.update("map.inputContent",dto);
+			sqlMap.update("map.inputContent",dto);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -183,7 +183,7 @@ public class map
 		 dto.setM_image(m_image[0]);
 		 dto.setS_image(m_image[1]);
 		 
-		 //sqlMap.update("map.inputImage",dto);
+		 sqlMap.update("map.inputImage",dto);
 			return  "/map/courseInput.jsp";
 		}
 	

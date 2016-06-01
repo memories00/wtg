@@ -100,8 +100,6 @@
   height: auto;
 }
 
-
-
  </style>
  </head>
  <body>
@@ -470,7 +468,7 @@ function submitForm()
 		//alert("m"+str);
 	}
 	 if($.trim($('#m_file').val())==''){
-		 totalStr+="defalut.jpg";
+		 totalStr+="defalut.jpg@";
 	}
 	
 	if($.trim($('#ex_file1').val())!='')

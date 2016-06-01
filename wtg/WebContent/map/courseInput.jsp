@@ -55,7 +55,7 @@
 						<option>스포츠</option>
 						<option>데이트</option>
 						<option>역사관광</option>
-						<option>맛집</option>
+						<option>쇼핑</option>
 					</select>
 				<br/>
 				출발지:&nbsp; <input type="text" id="startKey" style="width:200px" onkeypress="enterKey(event,this);">		
