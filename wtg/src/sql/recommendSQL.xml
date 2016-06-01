@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
+<sqlMap namespace="rec">
+<typeAlias alias="dto" type="main.bean.DTO" />
+	<select id="sports" resultClass="search" parameterClass="String">
+	
+		select category,p1_name,p1_point, DENSE_RANK() over(order by rank desc) as rank from(
+		select category,p1_name, count(*) AS rank,p1_point
+		from
+		(
+		select category,p1_name,p1_point from courseinfo union all select category,p2_name,p2_point from courseinfo union all 
+		select category,p3_name,p3_point from courseinfo union all select category,p4_name,p4_point from courseinfo union all 
+		select category,p5_name,p5_point from courseinfo
+		)
+		where category='스포츠'
+		group by category,p1_name,p1_point
+		having count(*)>0)
+		
+	</select>
+		<select id="history" resultClass="search" parameterClass="String">
+	
+		select category,p1_name,p1_point, DENSE_RANK() over(order by rank desc) as rank from(
+		select category,p1_name, count(*) AS rank,p1_point
+		from
+		(
+		select category,p1_name,p1_point from courseinfo union all select category,p2_name,p2_point from courseinfo union all 
+		select category,p3_name,p3_point from courseinfo union all select category,p4_name,p4_point from courseinfo union all 
+		select category,p5_name,p5_point from courseinfo
+		)
+		where category='역사관광'
+		group by category,p1_name,p1_point
+		having count(*)>0)
+		
+	</select>
+		<select id="couple" resultClass="search" parameterClass="String">
+	
+		select category,p1_name,p1_point, DENSE_RANK() over(order by rank desc) as rank from(
+		select category,p1_name, count(*) AS rank,p1_point
+		from
+		(
+		select category,p1_name,p1_point from courseinfo union all select category,p2_name,p2_point from courseinfo union all 
+		select category,p3_name,p3_point from courseinfo union all select category,p4_name,p4_point from courseinfo union all 
+		select category,p5_name,p5_point from courseinfo
+		)
+		where category='데이트'
+		group by category,p1_name,p1_point
+		having count(*)>0)
+		
+	</select>
+		<select id="shoping" resultClass="search" parameterClass="String">
+	
+		select category,p1_name,p1_point, DENSE_RANK() over(order by rank desc) as rank from(
+		select category,p1_name, count(*) AS rank,p1_point
+		from
+		(
+		select category,p1_name,p1_point from courseinfo union all select category,p2_name,p2_point from courseinfo union all 
+		select category,p3_name,p3_point from courseinfo union all select category,p4_name,p4_point from courseinfo union all 
+		select category,p5_name,p5_point from courseinfo
+		)
+		where category='쇼핑'
+		group by category,p1_name,p1_point
+		having count(*)>0)
+		
+	</select>
+</sqlMap>
