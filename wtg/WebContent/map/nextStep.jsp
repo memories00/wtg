@@ -161,12 +161,9 @@
 		</div>
 		</div>
 		
-		<div class="box4">
-				
+		<div class="box4">	
 				<div id="imgslide">
-
 					<div id="lista1" class="als-container" >
-
 					<span class="als-prev" ><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
 					<div class="als-viewport">
 					  <ul class="als-wrapper">
@@ -247,18 +244,17 @@
 			$.ajax({		
 	 				url:"imageInsert.nhn?filePath="+src+"&fileName="+str,
 	 	 				success:function(data)
-	 	 				{		 	 				}
-		 	 	        })
-		 	 	      
-			var listEl = document.getElementById('m_img');//진행상황 리스트를 치환
+	 	 				{		 	
+	 	 					var listEl = document.getElementById('m_img');//진행상황 리스트를 치환
 
-			var imgStr='<img src="\\wtg\\img\\'+str+'"style="width:150px; height:150px;">';
-			var el = document.createElement('li');//li를 추가	 			 
-			fragment = document.createDocumentFragment();
-			el.innerHTML=imgStr;
-			fragment.appendChild(el);
-			listEl.appendChild(fragment);	
-			
+	 	 					var imgStr='<img src="\\wtg\\img\\'+str+'"style="width:150px; height:150px;">';
+	 	 					var el = document.createElement('li');//li를 추가	 			 
+	 	 					fragment = document.createDocumentFragment();
+	 	 					el.innerHTML=imgStr;
+	 	 					fragment.appendChild(el);
+	 	 					listEl.appendChild(fragment);	
+	 	 				}
+		 	 	        })
 		}
 		function test()
 		{
@@ -293,15 +289,18 @@
 			$.ajax({		
 	 				url:"imageInsert.nhn?filePath="+src+"&fileName="+str,
 	 	 				success:function(data)
-	 	 				{		 	 				}
+	 	 				{		 	 
+	 	 					var imgStr='<img src="\\wtg\\img\\'+str+'" style="width:150px; height:150px;">';
+	 	 					var el = document.createElement('li');//li를 추가	 			 
+	 	 						fragment = document.createDocumentFragment();
+	 	 					el.innerHTML=imgStr;
+	 	 					fragment.appendChild(el);
+	 	 					listEl.appendChild(fragment);	
+	 	 					
+	 	 				}
 		 	 	        })
 
-			var imgStr='<img src="\\wtg\\img\\'+str+'" style="width:150px; height:150px;">';
-			var el = document.createElement('li');//li를 추가	 			 
-				fragment = document.createDocumentFragment();
-			el.innerHTML=imgStr;
-			fragment.appendChild(el);
-			listEl.appendChild(fragment);	
+			
 			
 		}
 		var totalStr='${returnName}';
@@ -465,7 +464,7 @@ function submitForm()
 		var src=$('#m_file').val();
 		var index=src.lastIndexOf("\\");
 		var str=src.substring(index+1,src.length);
-		totalStr+=str+"^";
+		totalStr+=str+"@";
 		//alert("m"+str);
 	}
 	 if($.trim($('#m_file').val())==''){
@@ -566,42 +565,5 @@ jQuery( document ).ready(function( $ ) {
 
 
 </script>
-
-<div class="filebox preview-image">
-  <label for="input-file">업로드</label> 
-  <input type="file" id="input-file" class="upload-hidden"> 
-</div>
-<script>
-var imgTarget = $('.preview-image .upload-hidden');
-
-imgTarget.on('change', function(){
-    var parent = $(this).parent();
-    parent.children('.upload-display').remove();
-
-    if(window.FileReader){
-        //image 파일만
-        if (!$(this)[0].files[0].type.match(/image\//)) return;
-        
-        var reader = new FileReader();
-        reader.onload = function(e){
-            var src = e.target.result;
-            parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
-        }
-        reader.readAsDataURL($(this)[0].files[0]);
-    }
-
-    else {
-        $(this)[0].select();
-        $(this)[0].blur();
-        var imgSrc = document.selection.createRange().text;
-        parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
-
-        var img = $(this).siblings('.upload-display').find('img');
-        img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
-    }
-});
-
-</script>
-<img src="http://127.0.0.1:8000/wtg/map/red_b.png" width="50" height="50">
 	</body>
 </html>

@@ -1,5 +1,7 @@
 package map;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import location.bean.MapDto;
 
@@ -130,6 +133,7 @@ public class map
 			String content=request.getParameter("daumeditor");
 			dto.setNum(num);
 			dto.setContent(content);
+			sqlMap.update("map.inputContent",dto);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,11 +141,51 @@ public class map
 
 		return "/map/courseInput.jsp";
 	}
-	 @RequestMapping(value = "/imagePopup.nhn")
-	    public String imagePopup(){     
-		// System.out.println("dd");
-	        return "daumeditor/image.jsp";
-	    }
+	
+	
+	@RequestMapping("/imageInsert.nhn" )
+	public ModelAndView imageInsert(HttpServletRequest request, String filePath,String fileName ) throws Exception{//
+	 
+	String path= request.getRealPath("img");
+	 //System.out.println(path);
+	 try {
+		   FileInputStream fis = new FileInputStream(filePath);
+		   FileOutputStream fos = new FileOutputStream(path+"\\"+fileName);
+		   
+		   int data = 0;
+		   while((data=fis.read())!=-1) {
+		    fos.write(data);
+		   }
+		   fis.close();
+		   fos.close();
+		   
+		  } catch (Exception e) {
+		   // TODO Auto-generated catch block
+		   e.printStackTrace();
+		  }
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("path",path);
+		mv.setViewName("/map/resultPage.jsp");
+		
+		return mv;
+	}
+	
+	 @RequestMapping("/plase.nhn")
+		public String plase(HttpServletRequest request,String totalName){	
+		
+		 mapDto dto=new mapDto();
+		 int num=(Integer)sqlMap.queryForObject("map.getNum",null);
+		 System.out.println(totalName);
+		 String m_image[]=totalName.split("@");
+		 System.out.println(m_image[0]);
+		 dto.setNum(num);
+		 dto.setM_image(m_image[0]);
+		 dto.setS_image(m_image[1]);
+		 
+		 sqlMap.update("map.inputImage",dto);
+			return  "/map/courseInput.jsp";
+		}
 	
 	
 }
