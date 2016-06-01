@@ -31,7 +31,7 @@
   	<result property="s_image" column="s_image"/>
   	<result property="regdate" column="regdate"/>  	
   </resultMap>
-  
+   
   <!-- 리절트 맵 정의 -->
   <resultMap class="theme" id="t"  >
     <result property="no" column="no"/>

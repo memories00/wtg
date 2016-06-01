@@ -15,6 +15,9 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/wtg/js/jquery.slides.min.js"></script>
 <script src="/wtg/js/vticker.min.js"></script>
+<script type="text/javascript" src="/wtg/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/wtg/js/jquery.als-1.7.min.js"></script>
+
 <script>
     $(function() {
       $('#slides').slidesjs({
@@ -32,8 +35,6 @@
     });
 </script>
 
-<script type="text/javascript" src="/wtg/js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="/wtg/js/jquery.als-1.7.min.js"></script>
 <script>
   $.noConflict();
   jQuery( document ).ready(function( $ ) {
@@ -51,6 +52,7 @@
 		});
   });
 </script>
+
 <script>
 $(document).ready(function(){
 	   $('.roll').vTicker();
@@ -67,9 +69,10 @@ $(document).ready(function(){
 	  });
 	 });
 	 
+	 
 <%
 	String MyKey="5F5DC3B8-FFFF00AA9";
-	String XmlPath="/Users/user1/git/wtg/wtg/WebContent/main/";
+	String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
 	String initRst=Api.Init(MyKey,XmlPath);
 
 	if(initRst=="1"){
@@ -77,9 +80,8 @@ $(document).ready(function(){
 		out.print(apiRst);
 	}
 %>
-
-
 </script>
+
 <script>
 function test_Search()
 {
@@ -87,7 +89,9 @@ function test_Search()
 	document.search.submit();
 }
 </script>
-<p><script>
+
+<p>
+<script>
     // html dom 이 다 로딩된 후 실행된다.
     $(document).ready(function(){
         // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
@@ -102,8 +106,15 @@ function test_Search()
             }
         });
     });
-</script></p>
+</script>
+</p>
 
+<script>
+	function locationHref(a) {
+		var ty = a.getAttribute("id");
+		location.href="/wtg/themeList.nhn?cate="+ty;
+	}
+</script>
 
 </head>
 <body>
@@ -143,13 +154,12 @@ function test_Search()
 	</div>	
 	<div class="dif" id="menu">
 		<ul id="main_menu">
-		<li>All</li>
-		<li><a href="/wtg/themeList.nhn">All</a></li>
-		<li><a href="/wtg/themeList.nhn">관광명소</a></li>
-		<li><a href="/wtg/themeList.nhn">데이트</a></li>
-		<li><a href="/wtg/themeList.nhn">스포츠</a></li>
-		<li><a href="/wtg/themeList.nhn">쇼핑</a></li>
-		<li><a href="/wtg/recommendMain.nhn">추천코스</a></li>
+			<li id="all" onClick="locationHref(this);" style="cursor:pointer; background-color:pink;">All</li>
+			<li id="관광명소" onClick="locationHref(this);" style="cursor:pointer; background-color:skyblue;">관광명소</li>
+			<li id="데이트" onClick="locationHref(this);" style="cursor:pointer; background-color:pink;">데이트</li>
+			<li id="스포츠" onClick="locationHref(this);" style="cursor:pointer; background-color:skyblue;">스포츠</li>
+			<li id="쇼핑" onClick="locationHref(this);" style="cursor:pointer; background-color:pink;">쇼핑</li>
+			<li>추천코스</li>
 		</ul>
 	</div>
 </div>
@@ -164,7 +174,9 @@ function test_Search()
 			<c:forEach var="list" items="${list}">
 			  <div class="images" style="display:block">
 				<a href="http://${list.fileaddr}/">
-				<img src="/wtg/adminImg/${list.filetime}${list.orgname}"  style="width: 100%; max-width: 940px; height:100%; max-height:400px;"/>
+				<img src="/wtg/adminImg/${list.filetime}${list.orgname}"  style="width: 100%; max-width: 940px; height:100%; max-
+
+height:400px;"/>
 				</a>
 			  </div>
 			</c:forEach>
@@ -194,10 +206,6 @@ function test_Search()
 						</li>
 					</ul>
 				</li>
-					<c:forEach var="searchlist" items="${searchlist}">
-					이름 : <b>${searchlist.s_name}</b>
-					번호 : <b>${searchlist.num}</b>
-					</c:forEach>
 			</ul>
 		</div>
 		</form>
@@ -214,25 +222,33 @@ function test_Search()
 					  <ul class="als-wrapper">
 						  <li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
+
+height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						  </li>
 						  <li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
+
+height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						  </li>
 						  <li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
+
+height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						  </li>
 						  <li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
+
+height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						  </li>
@@ -259,25 +275,33 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; 
+
+max-height:300px;"/>
 							</a>
 						  </li>
 						</c:forEach>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
+
+height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
+
+height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
+
+height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
@@ -304,19 +328,25 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; 
+
+max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
+
+height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
+
+height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
@@ -343,13 +373,17 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; 
+
+max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
+
+height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
@@ -376,7 +410,9 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="themeView.nhn?no=${list2.no}&currentPage=1"> 
-							 <img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							 <img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; 
+
+max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
