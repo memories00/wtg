@@ -149,7 +149,7 @@ function test_Search()
 		<li><a href="/wtg/themeList.nhn">데이트</a></li>
 		<li><a href="/wtg/themeList.nhn">스포츠</a></li>
 		<li><a href="/wtg/themeList.nhn">쇼핑</a></li>
-		<li><a href="/wtg/recommendMap.nhn">추천코스</a></li>
+		<li><a href="/wtg/recommendMain.nhn">추천코스</a></li>
 		</ul>
 	</div>
 </div>
