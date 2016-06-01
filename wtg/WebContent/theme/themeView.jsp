@@ -125,18 +125,18 @@
   
 <div> µ°±€√¢
   
-	<table id="commentTable" class="table table-condensed"></table>
 	<table class="table table-condensed">
+		<c:forEach var="list" items="${list}">
 		<tr>
-			<c:forEach var="list" items="${list}">
 			<td>
 			${list.nickname}<a style="cursor:pointer;" name="pDel">ªË¡¶</a>
-			</td>
-			<td>
+			<br />
 			${list.content}
 			</td>
-			</c:forEach>
 		</tr>
+		</c:forEach>
+		
+		<table id="commentTable" class="table table-condensed"></table>
 		
 		<tr>
 			<td>

@@ -92,6 +92,6 @@
    	</delete>
    	
    <select id="commentAll" resultMap="c">
-    select * from comments order by reg desc
+    select * from (select * from comments order by reg desc) where 10 >= rownum
   </select>
 </sqlMap>

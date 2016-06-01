@@ -70,10 +70,10 @@ ul#adminMenu li li{border:1px blue dashed; float:left; list-style:none;}
 <div class="menu" id="menu">
 	<ul id="adminMenu">
 		<li>
-			<a href="http://localhost:8000/wtg/memAdmin.nhn">회원 관리</a>
+			<a href="http://localhost:8000/wtg/member.nhn">회원 관리</a>
 			<ul>
 				<li><a href="http://localhost:8000/wtg/memAdmin.nhn">회원정보 조회</a></li>
-				<li><a href="http://localhost:8000/wtg/memStatsAdmin.nhn">이용자 통계</a></li>
+				<li><a href="http://localhost:8000/wtg/userstats.nhn">이용자 통계</a></li>
 			</ul>
 		</li>
 		<li>
