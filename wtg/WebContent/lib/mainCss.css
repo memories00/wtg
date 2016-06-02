@@ -1,11 +1,18 @@
 @CHARSET "EUC-KR";
-body{text-align:center;}
-#wrapper {min-width:950px;}
+body{
+	text-align:center;
+	background-color:#F6F6F6;
+}
+#wrapper {
+	min-width:950px;
+}
 
 #header {
 	width:100%; 
 	left:0px; top:0px; 
 	position: relative;
+	height:155px;
+	background-color:#3162C7;
 }
 #logo {
 	width:67%; 
@@ -38,42 +45,44 @@ body{text-align:center;}
 	padding:20px;
 	text-align:left;
 	position: absolute;
+	background-color:#FFFFFF;
 }
 #menu {
 	width:100%; 
 	height:70px; 
-	top:165px; 
-	left:50%; 
-	margin-left:-475px; 
+	top:155px;  
 	position: absolute;
+	background-color:#3162C7;
+	text-align:center;
+	border: 1px solid black;
 }
 ul#main_menu{
 	padding:20px;
 }
 ul#main_menu li{
 	width:125px; 
-	height:70px;
+	height:50px;
 	float:left;
 	list-style:none;
 }
 
 #contents {
 	width:100%; 
-	top:240px; 
-	position: relative;  
+	top:90px; 
+	position: relative;
 }
 #slider {
 	width:100%; 
 	height:320px; 
 	top:0px;  
-	position: absolute;  
+	position: absolute; 
 }
 #search {
 	width:90%; 
 	height:150px; 
 	top:325px; 
 	left:5%; 
-	position: absolute; 
+	position:absolute;
 }
 .menu {
 	list-style:none;
@@ -98,11 +107,11 @@ ul#main_menu li{
 #themeadd{
 	width:200px; 
 	height:300px; 
-	top:480px; 
+	top:485px; 
 	left:50%; 
 	margin-left:+250px; 
 	position: absolute;
-	border: 1px solid black;
+	background-color:#FFFFFF;
 }
 
 #review {
@@ -113,29 +122,30 @@ ul#main_menu li{
 	margin-left:-425px;
 	position: absolute; 
 	border: 1px solid black;
+	background-color:#FFFFFF;
+	text-align:center;
 }
 
 #footer {
 	width:100%; 
-	top:1200px; 
+	top:950px; 
 	position: relative;
 }
 #link {
 	width:100%;
 	height:50px; 
-	top:0px; 
+	top:10px; 
 	left:50%; 
 	margin-left:-475px; 
 	position: absolute; 
-	border:1px solid black;
 }
 #company {
 	width:100%; 
-	height:100px; 
-	top:55px; 
+	height:120px; 
+	top:60px; 
 	left:50%; 
 	margin-left:-475px; 
-	position: absolute; 
+	position: absolute;
 }
 
 .dif {max-width:950px; margin:auto;}

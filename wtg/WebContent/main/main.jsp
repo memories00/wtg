@@ -168,7 +168,7 @@ function test_Search()
 	<div id="logo">
 	<img id="logo_img" src="/wtg/themeImg/${logo}" style="width: 100%; max-width: 250px; height:100%; max-height:100px;"/>
 	</div>	
-	<div class="dif" id="menu">
+	<div id="menu">
 		<ul id="main_menu">
 			<li id="all" onClick="locationHref(this);" style="cursor:pointer; background-color:pink;">All</li>
 			<li id="관광명소" onClick="locationHref(this);" style="cursor:pointer; background-color:skyblue;">관광명소</li>
@@ -190,9 +190,7 @@ function test_Search()
 			<c:forEach var="list" items="${list}">
 			  <div class="images" style="display:block">
 				<a href="http://${list.fileaddr}/">
-				<img src="/wtg/adminImg/${list.filetime}${list.orgname}"  style="width: 100%; max-width: 940px; height:100%; max-
-
-height:400px;"/>
+				<img src="/wtg/adminImg/${list.filetime}${list.orgname}"  style="width: 100%; max-width: 940px; height:100%; max-height:400px;"/>
 				</a>
 			  </div>
 			</c:forEach>
@@ -238,33 +236,25 @@ height:400px;"/>
 					  <ul class="als-wrapper">
 						  <li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
-
-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						  </li>
 						  <li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
-
-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						  </li>
 						  <li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
-
-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						  </li>
 						  <li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
-
-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						  </li>
@@ -291,33 +281,25 @@ height:270px;"/>
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; 
-
-max-height:300px;"/>
+							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>
 						</c:forEach>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
-
-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
-
-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
-
-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
@@ -344,25 +326,19 @@ height:270px;"/>
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; 
-
-max-height:300px;"/>
+							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
-
-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
-
-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
@@ -389,17 +365,13 @@ height:270px;"/>
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; 
-
-max-height:300px;"/>
+							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
 						<li class="als-item">
 							<a href="/wtg/themeWrite.nhn?currentPage=1">
-							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-
-
-height:270px;"/>
+							<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 							코스를 등록해 주세요
 							</a>
 						</li>
@@ -426,9 +398,7 @@ height:270px;"/>
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="themeView.nhn?no=${list2.no}&currentPage=1"> 
-							 <img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; 
-
-max-height:300px;"/>
+							 <img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
@@ -457,6 +427,7 @@ max-height:300px;"/>
 </div>
 <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 바텀 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 <div id="footer">
+	<hr color="gray">
 	<div class="dif" id="link">
 	<a href="http://localhost:8000/wtg/login.nhn">회사소개</a> &nbsp;
 	<a href="http://localhost:8000/wtg/login.nhn">고객센터</a> &nbsp;
