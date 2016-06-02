@@ -25,13 +25,8 @@ public class theme {
 	
 	@RequestMapping("/themeList.nhn")
 	public String themeList(HttpSession session, HttpServletRequest request){
-		String id= (String)session.getAttribute("memId");
-		String name = (String)session.getAttribute("memName");
 		String a =request.getParameter("a");
-		
-		System.out.println(id);
-		System.out.println(name);
-		
+		String category = request.getParameter("cate");
 		int currentPage = 1;
 		int totalCount;
 		int blockCount =5;
@@ -72,6 +67,7 @@ public class theme {
 		request.setAttribute("pagingHtml", pagingHtml);
 		request.setAttribute("page", page);
 		request.setAttribute("list", list);
+		request.setAttribute("category", category);
 		
 		return "/theme/themeList.jsp";
 	}
@@ -250,7 +246,7 @@ public class theme {
 	}
 	
 	@RequestMapping("/sendComment.nhn")
-	public String sendComment(HttpSession session, CommentDTO a_dto, String num, String id, String text, String del){
+	public String sendComment(HttpSession session, CommentDTO a_dto, String num, String id, String text){
 		
 		HashMap m_map = new HashMap();
 		
@@ -258,7 +254,7 @@ public class theme {
 		String nickname= (String)session.getAttribute("memName");
 		
 		System.out.println(nickname);
-		System.out.println(del);
+		
 		a_dto.setBoard_num(num);
 		a_dto.setMem_id(id);
 		a_dto.setContent(text);

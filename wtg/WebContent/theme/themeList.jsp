@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/mainCss.css"/>
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
@@ -18,7 +19,7 @@
 		 	        type: "post",
 		 	        data: {a:a},
 		 	        url : "themeList.nhn",
-		 	        success: list,	// 페이지요청 성공시 실행 함수
+		 	        success: list,		//페이지요청 성공시 실행 함수
 		 	        error: whenError	//페이지요청 실패시 실행함수
 		      	}); 
 	    }
@@ -31,13 +32,14 @@
 		          callAjax2();
 		      });
 		});
+		
 		function callAjax2(){
 			var a=2
 			 $.ajax({
 			 		type: "post",
 			 	    data: {a:a},
 			 	    url : "themeList.nhn",
-			 	    success: list2,	// 페이지요청 성공시 실행 함수
+			 	    success: list2,		// 페이지요청 성공시 실행 함수
 			 	    error: whenError	//페이지요청 실패시 실행함수
 			   	}); 
 		}
@@ -51,12 +53,15 @@
 </script>
 
 <!-- --------------------------------------------------------------------------------- -->
+<div id=head style="background-color:white;width:100%;height:70px">이곳이 헤더</div>
 
-<div id=category style="width:100%;height:30px;background-color:silver">
-	<font size="4"><b>&nbsp;&nbsp;테마별 코스 > ${category}</b></font>
+<div id=firstLine style="background-color:silver;width:100%;height:30px;display: table-cell;vertical-align: middle">
+	<div style="float:left">홈 ></div>
+	<div style="float:left">테마별 코스 ></div>
+	<div style="float:left">${category}</div>
 </div>
 
-<div id="list" style="background-color:pink"><div id="list2">
+<div id="list" style="background-color:pink"><div id="list2"></div>
    <table align="center" width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="orange">
     <tr>
       <td align="right"><input type="button" value="최신순" onClick="javascript:location.href='themeList.nhn'">
