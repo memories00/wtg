@@ -23,8 +23,10 @@
       height:18px;
       overflow: hidden;
       text-indent: -9999px;
-      float: left;
+      float:left;
+      margin:auto;
       margin-right:5px;
+      
     }
 
     a.slidesjs-next {

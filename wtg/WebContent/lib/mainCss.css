@@ -11,8 +11,8 @@ body{
 	width:100%; 
 	left:0px; top:0px; 
 	position: relative;
-	height:155px;
-	background-color:#3162C7;
+	height:550px;
+	background-color:#6799FF;
 }
 #logo {
 	width:67%; 
@@ -45,42 +45,60 @@ body{
 	padding:20px;
 	text-align:left;
 	position: absolute;
-	background-color:#FFFFFF;
 }
 #menu {
 	width:100%; 
 	height:70px; 
 	top:155px;  
 	position: absolute;
-	background-color:#3162C7;
+	background-color:#79ABFF;
 	text-align:center;
-	border: 1px solid black;
 }
+#menu_box {
+	width:790px;
+	margin:auto;
+}
+
 ul#main_menu{
-	padding:20px;
+	
 }
 ul#main_menu li{
 	width:125px; 
-	height:50px;
+	height:70px;
 	float:left;
 	list-style:none;
+	margin:auto;
+	text-align:center;
 }
 
-#contents {
-	width:100%; 
-	top:90px; 
-	position: relative;
+ul#main_menu li:hover, ul#main_menu li:active {
+    background:#6799FF;
+}
+
+ul#main_menu li p{
+	padding-top:20px;
+	font-weight: 600;
+	color: white;
+	font-size: 18px;
 }
 #slider {
 	width:100%; 
 	height:320px; 
-	top:0px;  
+	top:225px;  
 	position: absolute; 
+}
+
+#contents {
+	width:100%; 
+	top:50px;
+	height:800px;
+	position: relative;
+	background-color:#FFFFFF;
 }
 #search {
 	width:90%; 
 	height:150px; 
-	top:325px; 
+	top:100px; 
 	left:5%; 
 	position:absolute;
 }
@@ -99,7 +117,7 @@ ul#main_menu li{
 #theme {
 	width:710px; 
 	height:310px; 
-	top:480px; 
+	top:250px; 
 	left:50%; 
 	margin-left:-475px; 
 	position: absolute;
@@ -107,7 +125,7 @@ ul#main_menu li{
 #themeadd{
 	width:200px; 
 	height:300px; 
-	top:485px; 
+	top:255px; 
 	left:50%; 
 	margin-left:+250px; 
 	position: absolute;
@@ -117,7 +135,7 @@ ul#main_menu li{
 #review {
 	width:90%; 
 	height:100px; 
-	top:800px; 
+	top:650px; 
 	left:50%; 
 	margin-left:-425px;
 	position: absolute; 
@@ -128,7 +146,7 @@ ul#main_menu li{
 
 #footer {
 	width:100%; 
-	top:950px; 
+	top:90px; 
 	position: relative;
 }
 #link {
