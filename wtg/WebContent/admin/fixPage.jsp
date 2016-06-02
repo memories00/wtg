@@ -270,27 +270,6 @@ ul#adminMenu li li{border:1px blue dashed; float:left; list-style:none;}
 		</c:forEach>
 	  </tr>
 	<tr>
-	  <td>
-		<input type="button" value="삭제" onClick="slide_Delete()">
-	  </td>
-	</tr>
-	<tr>
-	  <td>
-		파일경로:<input type="text" name="fileaddr2">
-	  </td>
-	  <td>
-		<input type="file" name="category" />
-	  </td>
-	  <td>
-	    <input type="button" value="카테고리추가" onClick="main_Category()">
-	  </td>
-	</tr>
-	<tr>
-	  <td>
-	    	카테고리 전체체크<input id="allCheck" type="checkbox" onclick="allChk2(this);"/>
-	  </td>
-	</tr>
-	<tr>
 	  <c:forEach var="list2" items="${list2}">
 		<td>
 		  <a href="http://${list2.fileaddr2}/" target="_parent">

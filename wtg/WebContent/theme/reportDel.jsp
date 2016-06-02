@@ -9,12 +9,12 @@
 function report_Check()
 {
 	alert("접수확인 되었습니다.");
-	document.reprot.action="/wtg/reportcheck.nhn"
-	document.reprot.submit();
+	document.report.action="/wtg/reportcheck.nhn?no=${dto.no}&num=${rto.num}"
+	document.report.submit();
 }
 </script>
 <body>
-<form name="reprot" method="post"  enctype="multipart/form-data">
+<form name="report" method="post"  enctype="multipart/form-data">
 <c:if test="${dto !=null }">
  <table align="center" width="600" border="0" cellspacing="0" cellpadding="0">
      <tr>
@@ -47,7 +47,7 @@ function report_Check()
        <td>${dto.file_savname}</td>
      </tr>
     </table>
-    <input type="button" value="신고접수확인" onClick="javascript:location.href='reportcheck.nhn?no=${dto.no}&num=${rto.num }'">
+    <input type="button" value="신고접수확인" onClick="report_Check()">
     <input type="button" value="삭제" onClick="javascript:location.href='reportDelete.nhn?no=${dto.no}&num=${rto.num }'">
     <input type="button" value="처리 완료" onClick="javascript:location.href='reportcom.nhn?no=${dto.no}&num=${rto.num }'">
     </c:if>
