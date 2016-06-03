@@ -31,11 +31,15 @@
    	<select id="per" resultClass="mem">
 		select per from personal
 	</select>
-	
+
 	<select id="mainsearch" resultClass="search" parameterClass="String">
-		select s_name,num from(select s_name,num from courseinfo union all select e_name,num from courseinfo union all select p1_name,num from courseinfo union all 
-		select p2_name,num from courseinfo union all select p3_name,num from courseinfo union all select p4_name,num from courseinfo union all select p5_name,num from courseinfo)
-		where s_name like '%'||#search#||'%'
+		select num from (select p1_name,num,category from(select p1_name,num,category from courseinfo union all select p2_name,num,category from courseinfo union all 
+		select p3_name,num,category from courseinfo union all select p4_name,num,category from courseinfo union all select p5_name,num,category from courseinfo)
+		where p1_name like '%'||#search#||'%' order by num desc)group by num
+	</select>
+	
+   	<select id="courselist" resultClass="search" parameterClass="int">
+		select * from courseinfo where num=#num# order by num desc
 	</select>
 	
 	<select id="testsql" resultClass="slide">

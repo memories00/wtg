@@ -120,7 +120,7 @@ public class mainBean
 	@RequestMapping("/searchaction.nhn")
 	public String searchaction(HttpServletRequest request,SearchDTO dto){
 		List<SearchDTO> searchlist = new ArrayList<SearchDTO>();
-		
+		List list=new ArrayList();
 		String ch[]=request.getParameterValues("check");
 		String search=dto.getSearch();
 		System.out.println(search);
@@ -128,6 +128,13 @@ public class mainBean
 			System.out.println("체크를안함");
 			searchlist=sqlMap.queryForList("admin.mainsearch",search);
 			request.setAttribute("searchlist", searchlist);
+			for(int i=0;i<searchlist.size();i++){
+				SearchDTO sdto=new SearchDTO();
+				sdto=searchlist.get(i);
+				sdto=(SearchDTO)sqlMap.queryForObject("admin.courselist", sdto.getNum());
+				list.add(sdto);
+			}
+			request.setAttribute("list",list);
 		}
 		return "/main/testsearch.jsp";
 	}
