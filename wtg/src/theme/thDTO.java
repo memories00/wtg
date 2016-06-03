@@ -2,7 +2,7 @@ package theme;
 
 import java.util.Date;
 
-public class thDTO {
+public class thDTO { 
 	 
 	private String category;
 	private int num;
