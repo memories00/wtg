@@ -2,6 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap namespace="map">
   <typeAlias alias="dto" type="map.mapDto"/>
+  <typeAlias alias="recDto" type="map.recommendDto"/>
 
 <insert id="insertInfo" parameterClass="dto">
   insert into courseInfo(category,num,id,s_name,s_point,e_name,e_point,p1_name,p1_point,p2_name,p2_point,p3_name,p3_point,p4_name,p4_point,p5_name,p5_point,content,m_image,s_image,regdate)
@@ -22,4 +23,22 @@
 	select * from courseInfo where num='121'
 </select>
 
+<select id="getCourse" resultClass="dto" parameterClass="int">
+	select * from courseInfo where num=#num#
+</select>
+
+
+<select id="history" resultClass="recDto" parameterClass="String">	
+		select category,p1_name,p1_point, DENSE_RANK() over(order by rank desc) as rank from(
+		select category,p1_name, count(*) AS rank,p1_point
+		from
+		(
+		select category,p1_name,p1_point from courseinfo union all select category,p2_name,p2_point from courseinfo union all 
+		select category,p3_name,p3_point from courseinfo union all select category,p4_name,p4_point from courseinfo union all 
+		select category,p5_name,p5_point from courseinfo
+		)
+		where category=#category#
+		group by category,p1_name,p1_point
+		having count(*)>0)		
+</select>
 </sqlMap>

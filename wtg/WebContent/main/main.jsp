@@ -88,7 +88,8 @@ $(document).ready(function(){
 	 
 <%
 	String MyKey="5F5DC3B8-FFFF00AA9";
-	String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
+	//String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
+	String XmlPath="C:/DATA/XML/";
 	String initRst=Api.Init(MyKey,XmlPath);
 
 	if(initRst=="1"){
@@ -106,7 +107,7 @@ function test_Search()
 }
 </script>
 
-<p>
+
 <script>
     // html dom 이 다 로딩된 후 실행된다.
     $(document).ready(function(){
@@ -123,7 +124,7 @@ function test_Search()
         });
     });
 </script>
-</p>
+
 
 <script>
 	function locationHref(a) {
@@ -169,38 +170,34 @@ function test_Search()
 	<img id="logo_img" src="/wtg/themeImg/${logo}" style="width: 100%; max-width: 250px; height:100%; max-height:100px;"/>
 	</div>	
 	<div id="menu">
+		<div id=menu_box>
 		<ul id="main_menu">
-			<li id="all" onClick="locationHref(this);" style="cursor:pointer; background-color:pink;">All</li>
-			<li id="관광명소" onClick="locationHref(this);" style="cursor:pointer; background-color:skyblue;">관광명소</li>
-			<li id="데이트" onClick="locationHref(this);" style="cursor:pointer; background-color:pink;">데이트</li>
-			<li id="스포츠" onClick="locationHref(this);" style="cursor:pointer; background-color:skyblue;">스포츠</li>
-			<li id="쇼핑" onClick="locationHref(this);" style="cursor:pointer; background-color:pink;">쇼핑</li>
-			<li>추천코스</li>
+			<li id="all" onClick="locationHref(this);"><p>All</p></li>
+			<li id="관광명소" onClick="locationHref(this);"><p>관광명소</p></li>
+			<li id="데이트" onClick="locationHref(this);"><p>데이트</p></li>
+			<li id="스포츠" onClick="locationHref(this);"><p>스포츠</p></li>
+			<li id="쇼핑" onClick="locationHref(this);"><p>쇼핑</p></li>
+			<li id="추천코스" onClick="locationHref(this);"><p>추천코스</p></li>
 		</ul>
+		</div>
 	</div>
-</div>
-<!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 탑 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
-<div class="dif" id="contents">
+	
 	<div id="slider">
-	<table width="950">
-	<tr>
-	  <td>
 		<div class="container">
 		  <div id="slides">
 			<c:forEach var="list" items="${list}">
 			  <div class="images" style="display:block">
 				<a href="http://${list.fileaddr}/">
-				<img src="/wtg/adminImg/${list.filetime}${list.orgname}"  style="width: 100%; max-width: 940px; height:100%; max-height:400px;"/>
+				<img src="/wtg/adminImg/${list.filetime}${list.orgname}"  style="width:100%; height:100%; max-height:300px;"/>
 				</a>
 			  </div>
 			</c:forEach>
 		  </div>
 		</div>
-	  </td>
-	</tr>
-	</table>
-	
 	</div>
+</div>
+<!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 탑 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
+<div class="dif" id="contents">
 
 	<div id="search">
 		<form name="search" method="post"  enctype="multipart/form-data">
