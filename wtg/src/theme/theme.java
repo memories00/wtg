@@ -62,7 +62,7 @@ public class theme {
 		if (page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1; 
 		list = list.subList(page.getStartCount(), lastCount);
-		
+		System.out.println(pagingHtml);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
 		request.setAttribute("page", page);

@@ -1,0 +1,114 @@
+@CHARSET "EUC-KR";
+body {
+	text-align:center;
+	background-color:#F6F6F6;
+}
+#wrapper {
+	min-width:960px; 
+}
+
+#header {
+	width:100%; 
+	left:0px; top:0px; 
+	position: relative;
+	height:215px;
+	background-color:#6799FF;
+}
+#logo {
+	width:67%; 
+	height:155px; 
+	top:5px;  
+	left:5%; 
+	margin-left:-50px;
+	position: absolute;
+}
+#logo_img {
+	width: 100%;
+	max-width:630px;
+	height:100%;
+	max-height:155px;
+}
+#info {
+	width:30%; 
+	height:50px; 
+	top:5px;
+	right:0px; 
+	text-align:right; 
+	position: absolute;
+}
+
+#menu {
+	width:100%; 
+	height:70px; 
+	top:155px;  
+	position: absolute;
+	background-color:#79ABFF;
+	text-align:center;
+	font-size: 13px;
+}
+
+ul#admin_menu li{
+	width:380px; 
+	height:70px;
+	float:left;
+	list-style:none;
+	margin:auto;
+	text-align:center;
+	border: 1px solid black;
+}
+
+ul#admin_menu li:hover, ul#admin_menu li:active {
+    background:#6799FF;
+}
+
+ul#admin_menu li ul#sub_menu{
+	list-style:none;
+	text-align:center;
+	border: 1px solid black;
+	margin:auto;
+}
+
+ul#admin_menu li ul#sub_menu li {
+	width:110px; 
+	height:30px;
+	list-style:none;
+	text-align:center;
+	border: 1px solid black;
+	margin:auto;
+	paddin:0px;
+}
+
+#contents {
+	width:100%; 
+	top:50px;
+	height:800px;
+	position: relative;
+	background-color:#FFFFFF;
+}
+#section {
+	width:100%;
+}
+
+#footer {
+	width:100%; 
+	top:90px; 
+	position: relative;
+}
+#link {
+	width:100%;
+	height:50px; 
+	top:10px; 
+	left:50%; 
+	margin-left:-475px; 
+	position: absolute; 
+}
+#company {
+	width:100%; 
+	height:120px; 
+	top:60px; 
+	left:50%; 
+	margin-left:-475px; 
+	position: absolute;
+}
+
+.dif {max-width:950px; margin:auto;}
