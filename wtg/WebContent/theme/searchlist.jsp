@@ -55,7 +55,6 @@
 <!-- --------------------------------------------------------------------------------- -->
 <div id=head style="background-color:white;width:100%;height:70px">이곳이 헤더</div>
 
-
 <div id="list" style="background-color:pink"><div id="list2"></div>
    <table align="center" width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="orange">
     <tr>
@@ -78,15 +77,15 @@
    <tr>
    <td>
     <c:forEach var="list" items="${list}">
-   	 <a href="themeView.nhn?no=${list.no}&currentPage=${currentPage}"> 
+   	 <a href="themeView.nhn?no=${list.num}&currentPage=${currentPage}"> 
 	    <table align="center" width="650" border="1" cellspacing="0" cellpadding="0" bgcolor=gold>
 	   	 <tr><td>
 		    <table align="center" width="600" border="0" cellspacing="0" cellpadding="0" bgcolor=white>
 	     		<tr>
-	      			<td rowspan="2" width="150"><img src="/wtg/save/${list.file_savname }" width="150"></td>
+	      			<td rowspan="2" width="150"><img src="/wtg/save/" width="150"></td>
 	       			<td><h4>&nbsp;&nbsp;&nbsp;${list.subject}</h4></td>
-			      	<td align="right">추천수:${list.good }</td>
-			     	<td align="right">${list.readhit}&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${list.regdate}" type="date"/></td>
+			      	<td align="right">추천수:</td>
+			     	<td align="right">${list.readhit}&nbsp;&nbsp;&nbsp;</td>
 			    </tr>
 	    		<tr>
 	      			

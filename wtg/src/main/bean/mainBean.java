@@ -25,6 +25,8 @@ import admin.bean.MemDTO;
 import admin.bean.UserstatsDTO;
 import main.bean.SlideDTO;
 import theme.ThemeDTO;
+import theme.reportPaging;
+import theme.themePaging;
 
 @Controller
 public class mainBean 
@@ -119,23 +121,53 @@ public class mainBean
 	}
 	@RequestMapping("/searchaction.nhn")
 	public String searchaction(HttpServletRequest request,SearchDTO dto){
+		int currentPage = 1;
+		int totalCount;
+		int blockCount =5;
+		int blockPage = 5;
+		String pagingHtml;
+		reportPaging page;
+		
 		List<SearchDTO> searchlist = new ArrayList<SearchDTO>();
 		List list=new ArrayList();
 		String ch[]=request.getParameterValues("check");
 		String search=dto.getSearch();
 		System.out.println(search);
-		if(ch==null){
+		
+		if(ch==null)
+		{
 			System.out.println("체크를안함");
 			searchlist=sqlMap.queryForList("admin.mainsearch",search);
 			request.setAttribute("searchlist", searchlist);
-			for(int i=0;i<searchlist.size();i++){
+			for(int i=0;i<searchlist.size();i++)
+			{
 				SearchDTO sdto=new SearchDTO();
 				sdto=searchlist.get(i);
 				sdto=(SearchDTO)sqlMap.queryForObject("admin.courselist", sdto.getNum());
+				System.out.println(sdto);
 				list.add(sdto);
 			}
-			request.setAttribute("list",list);
 		}
-		return "/main/testsearch.jsp";
+		totalCount = list.size();
+			
+		if(request.getParameter("currentPage")!=null)
+		{
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+			
+		page = new reportPaging(currentPage, totalCount,blockCount, blockPage);
+		pagingHtml = page.getPagingHtml().toString();
+		System.out.println(pagingHtml);
+		int lastCount = totalCount;
+			
+		if (page.getEndCount() < totalCount)
+		lastCount = page.getEndCount() + 1; 
+		list = list.subList(page.getStartCount(), lastCount);
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("pagingHtml", pagingHtml);
+		request.setAttribute("page", page);
+		request.setAttribute("list",list);
+
+		return "/theme/searchlist.jsp";
 	}
 }

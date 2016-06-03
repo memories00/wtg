@@ -4,7 +4,7 @@
 <html>
 <body>
 	<c:forEach var="list" items="${list}">
-		${list.category}${list.num}${list.m_image}${list.regdate}${list.subject}${list.content}<br />
+		${list.num}${list.category}${list.m_image}${list.regdate}${list.subject}${list.content}<br />
 	</c:forEach>
 </body>
 </html>

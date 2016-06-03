@@ -50,9 +50,9 @@ public class themePaging {
 
 		String str;
 		if(a == 1 || a==2){
-			str="<a href=themeList.nhn?a="+a+"&";
+			str="<a href=searchaction.nhn?a="+a+"&";
 		}else {
-			str="<a href=themeList.nhn?";
+			str="<a href=searchaction.nhn?";
 		}
 		
 		// 이전 block 페이지
