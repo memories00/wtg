@@ -126,7 +126,7 @@
 		<div id="menu_wrap" class="bg_white">
 			<div class="option">
 				<font size="4"> 
-				   출발지 이름: ${startTitle} <br />
+				   출발지 이름: ${s_name} <br />
 				   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${startAddress} <br />
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${startPhone } <br />
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${startStn }역 까지 ${startDtc }m 떨어져 있습니다.<br/>
@@ -143,7 +143,7 @@
 						</c:forTokens>
 						<hr>
 					</c:forEach> 
-					 도착지 이름: ${endTitle} <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${endAddress} <br />
+					 도착지 이름: ${e_name} <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${endAddress} <br />
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${endPhone } <br />
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${endStn }역 까지 ${endDtc }m 떨어져 있습니다.<br/>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예상 소요시간:${endWalk}분<br />
@@ -203,6 +203,13 @@
 	}
 	
 	
+	var s_Info='${s_point}';
+	var e_Info='${e_point}';
+	var s_point=s_Info.split('^');
+	var e_point=e_Info.split('^');
+	
+	stPosition=new daum.maps.LatLng(s_point[0],s_point[1]);
+	edPosition=new daum.maps.LatLng(e_point[0],e_point[1]);
 	var stimageSrc = 'http://127.0.0.1:8000/wtg/map/img/red_b.png', // 출발마커이미지의 주소입니다    
 	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
 	    stimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -210,8 +217,9 @@
 	    
 	var startMarker = new daum.maps.Marker({
         map: map, // 마커를 표시할 지도
-        position: markers[i].latlng, // 마커를 표시할 위치
+        position:stPosition, // 마커를 표시할 위치
         title : '${s_name}', // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다 
+        image:startImage
 	});
 	
 	
@@ -222,16 +230,11 @@
 	    
 	var endMarker = new daum.maps.Marker({
         map: map, // 마커를 표시할 지도
-        position: markers[i].latlng, // 마커를 표시할 위치
+        position: edPosition, // 마커를 표시할 위치
         title :'${e_name}', // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다 
+        image:endImage
 	});
-	    
-	    
-	 endMarker.setImage(endImage);
-	
-	
-        startMarker.setImage(startImage);
-	
+
   
   </script>
 </body>

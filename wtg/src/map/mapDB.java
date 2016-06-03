@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import theme.thDTO;
+
 @Controller
 public class mapDB 
 {
@@ -46,8 +48,6 @@ public class mapDB
 			
 			int endDtn=Integer.parseInt(endDistance[0]);
 			int endWalk=endDtn/67| 0;
-			//System.out.println(startTitle[3]);
-			//System.out.println(endTitle[3]);
 			
 			dto.setS_name(startTitle[0]);
 			dto.setS_point(startDistance[3]);
@@ -118,16 +118,15 @@ public class mapDB
 	}
 
 	@RequestMapping("/insertDB.nhn")
-	public String  insertDB(HttpServletRequest request,String daumeditor) {	
-		try {
-			
-			mapDto dto=new mapDto();
+	public String  insertDB(HttpServletRequest request,String daumeditor,String subject,String hashtag) {	
+		try {		
+			thDTO dto=new thDTO();
 			request.setCharacterEncoding("EUC-KR");
 			int num=(Integer)sqlMap.queryForObject("map.getNum",null);
-			String content=daumeditor;
-			System.out.println(content);
 			dto.setNum(num);
 			dto.setContent(daumeditor);
+			dto.setHashtag(hashtag);
+			dto.setSubject(subject);
 			sqlMap.update("map.inputContent",dto);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

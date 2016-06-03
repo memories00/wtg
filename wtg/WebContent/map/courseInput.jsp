@@ -73,7 +73,7 @@
 		</div>
 </div>	
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=5460ec456d4488e25f7b4c60d6a8b21c&libraries=services"></script>
+		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06fa7b42a2af7b8c46c9ca9a71d40206&libraries=services"></script>
 		<script>
 		var container = document.getElementById('map'); //div id=map자리에 지도를생성			
 		var options = { 
@@ -207,7 +207,11 @@
 				if(count==4){passMarker4.setMap();}
 				
 				count=Number(count);
-				basicName[count+1]="";
+				//alert(basicName[count+1]);
+				alert(basicName.length);
+				basicName.splice(count+1,basicName.length);
+				
+				
 			}
 			
 			///////////////////////////////////
@@ -338,9 +342,9 @@
  	 			    		tagId.value=parseId[0];	 //input창에 이름을 출력
  	 			    	
  	 			    		searchSub(index,markerPosition,parseAddress,phone);
- 	 			    		if(phone==null)
+ 	 			    		if(phone=="")
  	 			    		{
- 	 			    			phone=" ";	
+ 	 			    			phone="등록되어있지 않습니다.";	
  	 			    			basicName[0]=btnId+"/"+phone+"/";
  	 			    		}
  	 			    		else
@@ -416,9 +420,9 @@
  	 			    		endMarker.setMap(map);
  	 			    		
  	 			    		searchSub(index,markerPosition,parseAddress);
- 	 			    		if(phone==null)
+ 	 			    		if(phone=="")
  	 			    		{
- 	 			    			phone=" ";	
+ 	 			    			phone="등록되어있지 않습니다.";	
  	 			    			basicName[cnt+1]=btnId+"/"+phone+"/";
  	 			    		}
  	 			    		else
@@ -509,7 +513,7 @@
 			         					{
 			         						if(address==undefined)
 			         						{
-			         							address=" ";
+			         							address="등록되어있지 않습니다.";
 			         						}
 			         						endInfo="도착지: "+endKey.value+"<br/>주소: "+address+"<br/> 근처역: "+strTitle+"<br/>역까지의 거리: "+str[0]+"m<br/><hr>";
 			         						endStn=str[0]+"/"+strTitle+"/"+address+"/"+strLnt+"^"+strLng;
@@ -563,7 +567,7 @@
  				//alert("2");
  				if(parseInfo[2]=="undefined")
  				{
- 					parseInfo[2]="";				
+ 					parseInfo[2]="등록되어 있지 않습니다.";				
  				}
 
  				var start="출발지: "+startKey.value+"<br/>주소: "+parseInfo[2]+"<br/> 근처역: "+parseInfo[1]+"<br/>역까지의 거리: "+parseInfo[0]+"m<br/><hr>";	
@@ -579,7 +583,7 @@
 					var c=document.getElementById(name);
 					if(parseInfo=="undefined")
 					{
-						parseInfo="";
+						parseInfo="등록되어 있지 않습니다.";
 					}
 						var pass="경유지: "+c.value+"<br/> 주소: "+parseInfo+"<br/>근처역: "+info[1]+"<br/>역까지의 거리: "+info[0]+"m<br/><hr>";
 						b=b+pass;
@@ -628,7 +632,7 @@
 					
 					img.style.position="absolute";
 					img.style.left=(x-5)+"px";
-					img.style.top=(y-60)+"px";
+					img.style.top=(y-10)+"px";
 					
 				     targetObj = a;
 				     var e_obj = window.event? window.event : e;

@@ -10,14 +10,16 @@
 <style>
 	#warp{width:100%;}
 	.box1{background-color:red; width:650px; height:500px; float:left;margin:0 50px 0 50px }
-	.box2{width:800px; height:400px;float:left; margin:0 0 0 0px}
+	.box2{width:800px; height:550px;float:left; margin:0 0 0 0px}
 	.box3{ width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
-	.box4{ width:600px; height:200px;float:left;margin:50px 0 0 50px}
-	.box5{background-color:red;width:170px; height:230px;float:left;margin:55px 0 0 50px;border:1px;}
+	.box4{ width:600px; height:200px;float:left;margin:60px 0 0 50px}
+	.box5{background-color:red;width:170px; height:230px;float:left;margin:65px 0 0 50px;border:1px;}
 	.imgbox{background-color:#6600ff; width:150px; height:150px;}
 	.box-m{float:left;}
 	.box-m2{float:left;display:block;}
 	.btn{background-color:#6600ff; width:150px; height:50px; margin:300px 0 0 0}
+	.sub{background-color:silver;width:800px;}
+	.tag{background-color:pink;width:800px;}
 	
 	
 .body {margin: 10px}
@@ -111,13 +113,15 @@
 		
 		</div>
 		<div class="box2">
+		<div class="sub">제목: <input type="text" id="subject" style="width:93%"> </div>
 				<form name="frm" id="frm" action="insertDB.nhn" method="post"	accept-charset="EUC-KR">
 				<!-- 에디터프레임호출 영역 -->
 				<div id="editor_frame">			
 					<textarea name="daumeditor" id="daumeditor" rows="100" cols="100"
 						style="width: 766px; height: 0px; display: none; border: 1px solid black;"></textarea>
 				</div>
-				<input type="button" id="save_button" value="내용전송" style="margin:0 0 0 0 "/>	
+				<div class="tag">tag: <input type="text" id="tag" style="width:93%"> </div>
+				<input type="button" id="save_button" value="내용전송" style="float:right;margin:5px 0 0 0 "/>	
 
 				<!-- 실제 값이 담겨져서 넘어갈 textarea 태그 -->
 
@@ -449,8 +453,7 @@ $(function aa(){
         //다음에디터가 포함된 form submit
         
         Editor.save();
-        var str=Editor.getContent;
-        submitForm(boardContent);
+        
         
     })
 })
@@ -480,7 +483,7 @@ function submitForm(strName)
 		//alert("1"+str);
 	}
 	if($.trim($('#ex_file1').val())==''){
-		totalStr+=" /";
+		totalStr+="default.jsp/";
 	}
 	
 	if($.trim($('#ex_file2').val())!='')
@@ -492,7 +495,7 @@ function submitForm(strName)
 		//alert("2"+str);
 	}
 	if($.trim($('#ex_file2').val())==''){
-		totalStr+=" /";
+		totalStr+="default.jsp/";
 	}
 	
 	if($.trim($('#ex_file3').val())!='')
@@ -504,7 +507,7 @@ function submitForm(strName)
 		//alert("3"+str);
 	}
 	if($.trim($('#ex_file3').val())==''){
-		str+=" /";
+		str+="default.jsp/";
 	}
 	
 	
@@ -517,13 +520,17 @@ function submitForm(strName)
 		//alert("4"+str);
 	}
 	if($.trim($('#ex_file4').val())==''){
-		totalStr+=" /";
+		totalStr+="default.jsp/";
 	}
-		alert(strName);
-	 document.form1.innerHTML = '<input type="hidden" name="totalName" value="'+totalStr+'">';
+	 
+	  document.form1.innerHTML = '<input type="hidden" name="totalName" value="'+totalStr+'">';
 	  document.form1.submit();
-	  
-	  document.frm.innerHTML='<input type="hidden" name="daumeditor" value="'+strName+'">';
+	 var sub=document.getElementById('subject');
+	 var hash=document.getElementById('tag');
+	 //alert(sub.value);
+	  document.frm.innerHTML='<input type="hidden" name="daumeditor" value="'+strName+'">'+
+	  													'<input type="hidden" name="subject" value="'+sub.value+'">'+
+	  													'<input type="hidden" name="hashtag" value="'+hash.value+'">';
 	  document.frm.submit();
 }
 
@@ -544,8 +551,8 @@ function validForm(editor) {
 var boardContent;
 function setForm(editor) {
     var content = editor.getContent();
-    boardContent=content;
-   $("#daumeditor").val(content)
+    submitForm(editor.getContent());
+   $("#daumeditor").val(content);
 
     return true;
 }

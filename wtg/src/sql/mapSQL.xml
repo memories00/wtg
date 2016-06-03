@@ -2,6 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap namespace="map">
   <typeAlias alias="dto" type="map.mapDto"/>
+  <typeAlias alias="thDto" type="theme.thDTO"/>
   <typeAlias alias="recDto" type="map.recommendDto"/>
 
 <insert id="insertInfo" parameterClass="dto">
@@ -12,8 +13,8 @@
 	select max(num) from courseInfo order by num desc 
 </select>
 
-<update id="inputContent" parameterClass="dto" >
-	update courseInfo set content=#content# where num=#num#
+<update id="inputContent" parameterClass="thDto" >
+	update courseInfo set content=#content#,subject=#subject#,hashtag=#hashtag# where num=#num#
 </update>
 <update id="inputImage" parameterClass="dto" >
 	update courseInfo set m_image=#m_image#,s_image=#s_image# where num=#num#
