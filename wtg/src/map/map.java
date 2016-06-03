@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,34 +34,32 @@ public class map
 		mapDto dto=new mapDto();
 		dto=(mapDto)sqlMap.queryForObject("map.getCourse",num);
 		String s_point=dto.getS_point();
+		String s_name=dto.getS_name();
 		String e_point=dto.getE_point();
-		int passCnt=0;
+		String e_name=dto.getE_name();
+		String passInfo="";
 		if(dto.getP1_point()!=null){
-			request.setAttribute("p1_name",dto.getP1_name());
-			request.setAttribute("p1_point",dto.getP1_point());
-			passCnt=1;
+			passInfo+=dto.getP1_name()+"/"+dto.getP1_point()+"@";
 		}
 		if(dto.getP2_point()!=null){
-			request.setAttribute("p2_name",dto.getP2_name());
-			request.setAttribute("p2_point",dto.getP2_point());
-			passCnt=2;
+			passInfo+=dto.getP2_name()+"/"+dto.getP2_point()+"@";
 		}
 		if(dto.getP3_point()!=null){
-			request.setAttribute("p3_name",dto.getP3_name());
-			request.setAttribute("p3_point",dto.getP3_point());
-			passCnt=3;
+			passInfo+=dto.getP3_name()+"/"+dto.getP3_point()+"@";
+
 		}
 		if(dto.getP4_point()!=null){
-			request.setAttribute("p4_name",dto.getP4_name());
-			request.setAttribute("p4_point",dto.getP4_point());
-			passCnt=4;
+			passInfo+=dto.getP4_name()+"/"+dto.getP4_point()+"@";
+
 		}
 		if(dto.getP5_point()!=null){
-			request.setAttribute("p5_name",dto.getP5_name());
-			request.setAttribute("p5_point",dto.getP5_point());
-			passCnt=5;
+			passInfo+=dto.getP5_name()+"/"+dto.getP5_point()+"^";
 		}
-		request.setAttribute("passCnt",passCnt);
+		request.setAttribute("passInfo",passInfo);
+		request.setAttribute("s_name",s_name);
+		request.setAttribute("s_point",s_point);
+		request.setAttribute("e_name",e_name);
+		request.setAttribute("e_point",e_point);
 		return  "/map/viewCourse.jsp";
 	}
 

@@ -109,7 +109,7 @@
 		<script type="text/javascript" src="/wtg/js/jquery.als-1.7.min.js"></script>		
 		<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/CSSreset.min.css" />
 </head>
-<body onload="responseDto();">
+<body>
 	<font size="7"></font>
   <div id="warp">
 	<div class="box-m">
@@ -152,7 +152,6 @@
 			</div>
 		</div>
 		</div>
-		<font size="7">${passCnt}</font>
 	<div class="box4">
 					
 	</div>
@@ -175,10 +174,64 @@
 								  };  			
 	var map = new daum.maps.Map(container, options);
 	
-	function responseDto()
+	var totalStr='${passInfo}';  //주소/x^y@
+	var parse1=totalStr.split('@');
+	
+	var markers=new Array();
+	for(var i=0; i<parse1.length-1;i++)
 	{
-		var dto='${dto}';
+		var parse2=parse1[i].split('/');//parse2[0]은 주소 [1]은 x^y
+		var parsePoint=parse2[1].split('^');
+		markerPosition=new daum.maps.LatLng(parsePoint[0],parsePoint[1]);
+		markers[i]={latlng:markerPosition,title:parse2[0]};
+
 	}
+
+	for( var i=0;i<markers.length;i++)
+	{
+		var psimageSrc = 'http://127.0.0.1:8000/wtg/map/img/green_b.png', // 경유지마커이미지의 주소입니다    
+	 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
+	 	    psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		psmarkerImage = new daum.maps.MarkerImage(psimageSrc, psimageSize, psimageOption);
+	 	    
+		var marker = new daum.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: markers[i].latlng, // 마커를 표시할 위치
+	        title : markers[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다 
+	    });
+		 marker.setImage(psmarkerImage);
+	}
+	
+	
+	var stimageSrc = 'http://127.0.0.1:8000/wtg/map/img/red_b.png', // 출발마커이미지의 주소입니다    
+	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
+	    stimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	var startImage = new daum.maps.MarkerImage(stimageSrc, stimageSize, stimageOption);
+	    
+	var startMarker = new daum.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: markers[i].latlng, // 마커를 표시할 위치
+        title : '${s_name}', // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다 
+	});
+	
+	
+	var endimageSrc = 'http://127.0.0.1:8000/wtg/map/img/blue_b.png', // 도착지마커이미지의 주소입니다    
+	    endimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
+	    endimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	endImage = new daum.maps.MarkerImage(endimageSrc, endimageSize, endimageOption);
+	    
+	var endMarker = new daum.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: markers[i].latlng, // 마커를 표시할 위치
+        title :'${e_name}', // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다 
+	});
+	    
+	    
+	 endMarker.setImage(endImage);
+	
+	
+        startMarker.setImage(startImage);
+	
   
   </script>
 </body>

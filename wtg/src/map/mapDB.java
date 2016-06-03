@@ -118,14 +118,16 @@ public class mapDB
 	}
 
 	@RequestMapping("/insertDB.nhn")
-	public String  insertDB(HttpServletRequest request) {	
+	public String  insertDB(HttpServletRequest request,String daumeditor) {	
 		try {
+			
 			mapDto dto=new mapDto();
 			request.setCharacterEncoding("EUC-KR");
 			int num=(Integer)sqlMap.queryForObject("map.getNum",null);
-			String content=request.getParameter("daumeditor");
+			String content=daumeditor;
+			System.out.println(content);
 			dto.setNum(num);
-			dto.setContent(content);
+			dto.setContent(daumeditor);
 			sqlMap.update("map.inputContent",dto);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

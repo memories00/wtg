@@ -10,13 +10,14 @@
 <style>
 	#warp{width:100%;}
 	.box1{background-color:red; width:650px; height:500px; float:left;margin:0 50px 0 50px }
-	.box2{background-color:#6600ff; width:800px; height:400px;float:left; margin:0 0 0 0px}
+	.box2{width:800px; height:400px;float:left; margin:0 0 0 0px}
 	.box3{ width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
 	.box4{ width:600px; height:200px;float:left;margin:50px 0 0 50px}
 	.box5{background-color:red;width:170px; height:230px;float:left;margin:55px 0 0 50px;border:1px;}
 	.imgbox{background-color:#6600ff; width:150px; height:150px;}
 	.box-m{float:left;}
 	.box-m2{float:left;display:block;}
+	.btn{background-color:#6600ff; width:150px; height:50px; margin:300px 0 0 0}
 	
 	
 .body {margin: 10px}
@@ -110,19 +111,17 @@
 		
 		</div>
 		<div class="box2">
-				<form name="frm" id="frm" action="insertDB.nhn" method="post"
-				accept-charset="EUC-KR">
+				<form name="frm" id="frm" action="insertDB.nhn" method="post"	accept-charset="EUC-KR">
 				<!-- 에디터프레임호출 영역 -->
-				<div id="editor_frame">
+				<div id="editor_frame">			
 					<textarea name="daumeditor" id="daumeditor" rows="100" cols="100"
 						style="width: 766px; height: 0px; display: none; border: 1px solid black;"></textarea>
 				</div>
+				<input type="button" id="save_button" value="내용전송" style="margin:0 0 0 0 "/>	
 
 				<!-- 실제 값이 담겨져서 넘어갈 textarea 태그 -->
 
-				<div id="btn" z-Index="5">
-					<input type="button" id="save_button" value="내용전송" />
-				</div>
+				
 			</form>
 		</div>
 	</div>
@@ -300,8 +299,6 @@
 	 	 				}
 		 	 	        })
 
-			
-			
 		}
 		var totalStr='${returnName}';
 		//alert(totalStr);
@@ -450,12 +447,15 @@ $(function aa(){
     $("#save_button").click(function(){
     	//alert($('#ex_file1').val());
         //다음에디터가 포함된 form submit
+        
         Editor.save();
-        submitForm();
+        var str=Editor.getContent;
+        submitForm(boardContent);
+        
     })
 })
 
-function submitForm()
+function submitForm(strName)
 {	
 	//alert($('#m_file').val());
 	var totalStr="";
@@ -519,10 +519,12 @@ function submitForm()
 	if($.trim($('#ex_file4').val())==''){
 		totalStr+=" /";
 	}
-		
-		alert(totalStr);
+		alert(strName);
 	 document.form1.innerHTML = '<input type="hidden" name="totalName" value="'+totalStr+'">';
 	  document.form1.submit();
+	  
+	  document.frm.innerHTML='<input type="hidden" name="daumeditor" value="'+strName+'">';
+	  document.frm.submit();
 }
 
 //Editor.save() 호출 한 다음에 validation 검증을 위한 함수 
@@ -539,9 +541,10 @@ function validForm(editor) {
 }
   
 //validForm 함수까지 true값을 받으면 이어서 form submit을 시켜주는  setForm함수
+var boardContent;
 function setForm(editor) {
     var content = editor.getContent();
-    //alert(content);
+    boardContent=content;
    $("#daumeditor").val(content)
 
     return true;
