@@ -25,6 +25,9 @@ public class thDTO {
 	private String m_image;
 	private String s_image;
 	private Date regdate;
+	private String subject;
+	private String hashtag;
+	private int readhit;
 	
 	public String getCategory() {
 		return category;
@@ -143,7 +146,7 @@ public class thDTO {
 	public String getS_image() {
 		return s_image;
 	}
-	public void setS_image(String s_image) {
+	public void setS_image(String s_image) { 
 		this.s_image = s_image;
 	}
 	public Date getRegdate() {
@@ -151,5 +154,25 @@ public class thDTO {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public int getReadhit() {
+		return readhit;
+	}
+	public void setReadhit(int readhit) {
+		this.readhit = readhit;
+	}
+	public String getHashtag()
+	{
+		return hashtag;
+	}
+	public void setHashtag(String hashtag)
+	{
+		this.hashtag=hashtag;
 	}
 }
