@@ -149,6 +149,7 @@ public class mainBean
 			}
 		}
 		totalCount = list.size();
+		System.out.println("토탈카운트="+totalCount);
 			
 		if(request.getParameter("currentPage")!=null)
 		{

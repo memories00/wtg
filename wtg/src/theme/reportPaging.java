@@ -29,7 +29,7 @@ public class reportPaging {
 		if (totalPage == 0) {
 			totalPage = 1;
 		}
-
+		System.out.println("토탈"+totalPage);
 		// 현재 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
 		if (currentPage > totalPage) {
 			currentPage = totalPage;
@@ -50,7 +50,7 @@ public class reportPaging {
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
 		if (currentPage > blockPage) {
-			pagingHtml.append("<a href=themeList.nhn?currentPage="
+			pagingHtml.append("<a href=searchaction.nhn?currentPage="
 					+ (startPage - 1) + ">");
 			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
@@ -69,7 +69,7 @@ public class reportPaging {
 				pagingHtml.append("</font></b>");
 			} else {
 				pagingHtml
-						.append("&nbsp;<a href='themeList.nhn?currentPage=");
+						.append("&nbsp;<a href='searchaction.nhn?currentPage=");
 				pagingHtml.append(i);
 				pagingHtml.append("'>");
 				pagingHtml.append(i);
@@ -83,7 +83,7 @@ public class reportPaging {
 
 		// 다음 block 페이지
 		if (totalPage - startPage >= blockPage) {
-			pagingHtml.append("<a href=themeList.nhn?currentPage="
+			pagingHtml.append("<a href=searchaction.nhn?currentPage="
 					+ (endPage + 1) + ">");
 			pagingHtml.append("다음");
 			pagingHtml.append("</a>");
