@@ -32,12 +32,18 @@ public class map
 	@RequestMapping("/courseView.nhn")
 	public String courseView(HttpServletRequest request,int num){	
 		mapDto dto=new mapDto();
+		startDto sDto=new startDto();
+		endDto eDto=new endDto();
+		List<passDto> list = new ArrayList<passDto>();
+		
 		dto=(mapDto)sqlMap.queryForObject("map.getCourse",num);
-		String s_point=dto.getS_point();
-		String s_name=dto.getS_name();
-		String e_point=dto.getE_point();
-		String e_name=dto.getE_name();
+		sDto=(startDto)sqlMap.queryForObject("map.startCourse",num);
+		eDto=(endDto)sqlMap.queryForObject("map.endCourse",num);	
+		list=sqlMap.queryForList("map.passCourse",num);
+		
 		String passInfo="";
+		
+
 		if(dto.getP1_point()!=null){
 			passInfo+=dto.getP1_name()+"/"+dto.getP1_point()+"@";
 		}
@@ -46,20 +52,23 @@ public class map
 		}
 		if(dto.getP3_point()!=null){
 			passInfo+=dto.getP3_name()+"/"+dto.getP3_point()+"@";
-
 		}
 		if(dto.getP4_point()!=null){
 			passInfo+=dto.getP4_name()+"/"+dto.getP4_point()+"@";
-
 		}
 		if(dto.getP5_point()!=null){
 			passInfo+=dto.getP5_name()+"/"+dto.getP5_point()+"^";
 		}
+		
+		
+		request.setAttribute("sDto",sDto);
+		request.setAttribute("eDto",eDto);
+		request.setAttribute("list",list);
 		request.setAttribute("passInfo",passInfo);
-		request.setAttribute("s_name",s_name);
-		request.setAttribute("s_point",s_point);
-		request.setAttribute("e_name",e_name);
-		request.setAttribute("e_point",e_point);
+		request.setAttribute("s_name",dto.getS_name());
+		request.setAttribute("s_point",dto.getS_point());
+		request.setAttribute("e_name",dto.getE_name());
+		request.setAttribute("e_point",dto.getE_point());
 		return  "/map/viewCourse.jsp";
 	}
 

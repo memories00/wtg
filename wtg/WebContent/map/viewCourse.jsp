@@ -7,10 +7,10 @@
 	<style>
 		<style>
 	#warp{width:100%;}
-	.box1{background-color:red; width:650px; height:500px; float:left;margin:0 50px 0 50px }
-	.box2{background-color:#6600ff; width:800px; height:400px;float:left; margin:0 0 0 0px}
+	.box1{background-color:red; width:650px; height:350px; float:left;margin:0 50px 0 50px }
+	.box2{background-color:#6600ff; width:800px; height:350px;float:left; margin:0 0 0 0px}
 	.box3{background-color:yellow; width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
-	.box4{ background-color:green;width:600px; height:200px;float:left;margin:50px 0 0 50px}
+	.box4{ background-color:green;width:600px; height:500px;float:left;margin:50px 0 0 50px}
 	.box5{background-color:red;width:170px; height:230px;float:left;margin:55px 0 0 50px;border:1px;}
 	.imgbox{background-color:#6600ff; width:150px; height:150px;}
 	.box-m{float:left;}
@@ -117,7 +117,7 @@
 		
 		</div>
 		<div class="box2">
-
+			<textarea style="width:100% height:500px" rows="20" cols="120"></textarea>
 		</div>
 	</div>
 	
@@ -126,34 +126,79 @@
 		<div id="menu_wrap" class="bg_white">
 			<div class="option">
 				<font size="4"> 
-				   출발지 이름: ${s_name} <br />
-				   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${startAddress} <br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${startPhone } <br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${startStn }역 까지 ${startDtc }m 떨어져 있습니다.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예상 소요시간:${startWalk}분<br />
-					<hr> <c:forEach var="alist" items="${list}">
-						경유지
-							<c:forTokens var="a" items="${alist}" delims="/" varStatus="i">
-							<c:if test="${i.count==1 }"> 이름: ${a}<br /></c:if>
-							<c:if test="${i.count==2 }">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${a} <br /> </c:if>
-							<c:if test="${i.count==3 }">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${a} <br/></c:if>
-							<c:if test="${i.count==4 }">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${a}역 까지  </c:if>
-							<c:if test="${i.count==5 }">${a}m 떨어져 있습니다.<br/> </c:if>
-							<c:if test="${i.count==6 }">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예상 소요시간: ${a}분 </c:if>
-						</c:forTokens>
+				   출발지 이름: ${sDto.startPlace} <br />
+				   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${sDto.startAddress} <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${sDto.startPhone } <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${sDto.startStn }역 까지 ${sDto.startDis }m 떨어져 있습니다.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예상 소요시간:${sDto.startWT}분<br />
+					<hr> <c:forEach var="list" items="${list}">
+					경유지 이름: ${list.passPlace } <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${list.passAddress} <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${list.passPhone } <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${list.passStn }역 까지 ${list.passDis}m 떨어져 있습니다.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예상 소요시간:${list.passWT}분<br />
 						<hr>
 					</c:forEach> 
-					 도착지 이름: ${e_name} <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${endAddress} <br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${endPhone } <br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${endStn }역 까지 ${endDtc }m 떨어져 있습니다.<br/>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예상 소요시간:${endWalk}분<br />
+					 도착지 이름: ${eDto.endPlace} <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소: ${eDto.endAddress} <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호: ${eDto.endPhone } <br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${eDto.endStn }역 까지 ${eDto.endDis }m 떨어져 있습니다.<br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예상 소요시간:${eDto.endWT}분<br />
 				</font>
 
 			</div>
 		</div>
 		</div>
 	<div class="box4">
+							<div id="imgslide" >
+
+					<div id="lista1" class="als-container" style="margin:400px 0 0 0;">
+
+					<span class="als-prev" ><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
+					<div class="als-viewport">
+					  <ul class="als-wrapper">
+						
+						  <div class="als-item"style="width:170px; height:230px;" >
+						  	<div class="imgbox" id="img1" style="margin:5px 10px 5px 10px ">
+						  	</div>
+							<div class="filebox bs3-success" id="ex1">
+                          		<label for="ex_file1" style="margin:10px 0 0 5px ">업로드</label> 
+                         	 	<input type="file" id="ex_file1" onchange="test();" > 
+                        	</div>	
+                          </div>
+                          	
+							 <div class="als-item"style="width:170px; height:230px;" >
+						  	<div class="imgbox" id="img2"style="margin:5px 10px 5px 10px ">
+						  	</div>
+							<div class="filebox bs3-success" id="ex2">
+                          		<label for="ex_file2" style="margin:10px 0 0 5px ">업로드</label> 
+                         	 	<input type="file" id="ex_file2" onchange="test();" > 
+                        	</div>	
+                          </div>
+                          
+							<div class="als-item"style="width:170px; height:230px;" >
+						  	<div class="imgbox" id="img3"style="margin:5px 10px 5px 10px ">
+						  	</div>
+							<div class="filebox bs3-success" id="ex3">
+                          		<label for="ex_file3" style="margin:10px 0 0 5px ">업로드</label> 
+                         	 	<input type="file" id="ex_file3" onchange="test();" > 
+                        	</div>	
+                          </div>
+                          
+                           <div class="als-item"style="width:170px; height:230px;" >
+						  	<div class="imgbox" id="img4" style="margin:5px 10px 5px 10px ">
+						  	</div>
+							<div class="filebox bs3-success" id="ex4">
+                          		<label for="ex_file4" style="margin:10px 0 0 5px ">업로드</label> 
+                         	 	<input type="file" id="ex_file4" onchange="test();" > 
+                        	</div>	
+                          </div>
+	
+					  </ul>
+					</div>
+					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
 					
+				  </div>
+			</div>			
 	</div>
 		<div class="box5">
 			<div class="imgbox" id="m_img"style="margin:5px 10px 5px 10px ">
@@ -234,7 +279,21 @@
         title :'${e_name}', // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다 
         image:endImage
 	});
-
+	$.noConflict();
+	jQuery( document ).ready(function( $ ) {
+			$("#lista1").als({
+				visible_items: 3,
+				scrolling_items: 1,
+				orientation: "horizontal",
+				circular: "yes",
+				autoscroll: "no",
+				interval: 5000,
+				speed: 500,
+				easing: "linear",
+				direction: "right",
+				start_from: 0
+			});
+	});
   
   </script>
 </body>

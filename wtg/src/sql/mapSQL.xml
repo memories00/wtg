@@ -2,6 +2,9 @@
 <!DOCTYPE sqlMap PUBLIC '-//ibatis.apache.org//DTD Sql Map 2.0//EN' 'http://ibatis.apache.org/dtd/sql-map-2.dtd'>
 <sqlMap namespace="map">
   <typeAlias alias="dto" type="map.mapDto"/>
+  <typeAlias alias="startDto" type="map.startDto"/>
+  <typeAlias alias="passDto" type="map.passDto"/>
+   <typeAlias alias="endDto" type="map.endDto"/>
   <typeAlias alias="thDto" type="theme.thDTO"/>
   <typeAlias alias="recDto" type="map.recommendDto"/>
 
@@ -9,10 +12,36 @@
   insert into courseInfo(category,num,id,s_name,s_point,e_name,e_point,p1_name,p1_point,p2_name,p2_point,p3_name,p3_point,p4_name,p4_point,p5_name,p5_point,content,m_image,s_image,regdate)
            values(#category#,courseInfo_seq.NEXTVAL,#id#,#s_name#,#s_point#,#e_name#,#e_point#,#p1_name#,#p1_point#,#p2_name#,#p2_point#,#p3_name#,#p3_point#,#p4_name#,#p4_point#,#p5_name#,#p5_point#,#content#,default,#s_image#,sysdate)
 </insert>
+
+<insert id="insertStartInfo" parameterClass="startDto">
+  insert into startInfo(num,startPlace,startAddress,startPhone,startStn,startDis,startWT) values(#num#,#startPlace#,#startAddress#,#startPhone#,#startStn#,#startDis#,#startWT#)
+</insert>
+<insert id="insertPassInfo" parameterClass="passDto">
+  insert into passInfo(num,passPlace,passAddress,passPhone,passStn,passDis,passWT) values(#num#,#passPlace#,#passAddress#,#passPhone#,#passStn#,#passDis#,#passWT#)
+</insert>
+<insert id="insertEndInfo" parameterClass="endDto">
+  insert into endInfo(num,endPlace,endAddress,endPhone,endStn,endDis,endWT) values(#num#,#endPlace#,#endAddress#,#endPhone#,#endStn#,#endDis#,#endWT#)
+</insert>
+
+
+<select id="getCourse" resultClass="dto" parameterClass="int">
+	select * from courseInfo where num=#num#
+</select>
+<select id="startCourse" resultClass="startDto" parameterClass="int">
+	select * from startInfo where num=#num#
+</select>
+<select id="passCourse" resultClass="passDto" parameterClass="int">
+	select * from passInfo where num=#num#
+</select>
+<select id="endCourse" resultClass="endDto" parameterClass="int">
+	select * from startInfo where num=#num#
+</select>
+
+
+
 <select id="getNum" resultClass="int">
 	select max(num) from courseInfo order by num desc 
 </select>
-
 <update id="inputContent" parameterClass="thDto" >
 	update courseInfo set content=#content#,subject=#subject#,hashtag=#hashtag# where num=#num#
 </update>
@@ -20,13 +49,6 @@
 	update courseInfo set m_image=#m_image#,s_image=#s_image# where num=#num#
 </update>
 
-<select id="testInfo" resultClass="dto">
-	select * from courseInfo where num='121'
-</select>
-
-<select id="getCourse" resultClass="dto" parameterClass="int">
-	select * from courseInfo where num=#num#
-</select>
 
 
 <select id="history" resultClass="recDto" parameterClass="String">	

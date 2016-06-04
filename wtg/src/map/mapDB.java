@@ -26,13 +26,15 @@ public class mapDB
 	@RequestMapping("/insertTable.nhn")
 	public String insertTable(HttpServletRequest request,String cate,String[] basicName,String[] allTitle,String endStn){	
 		mapDto dto=new mapDto();
+		startDto sDto=new startDto();
+		endDto eDto=new endDto();
 		ArrayList list=new ArrayList();
 		HttpSession session =request.getSession();
 		String id=(String)session.getAttribute("memId");
 		try 	{
 			request.setCharacterEncoding("EUC-KR");
 			
-			//System.out.println(endStn);
+			//System.out.println(allTitle[0]);
 			String parseTitle[]=allTitle[0].split(",");
 			String startDistance[]=parseTitle[0].split("/");//startDistance[0] 출발지 근처역까지거리
 			
@@ -55,12 +57,12 @@ public class mapDB
 			dto.setE_point(endDistance[3]);
 			dto.setCategory(cate);
 			dto.setId(id);
-			
+			int num=0;
 			for(int i=1;i<arrayName.length-1;i++)	{
 				String a[]=arrayName[i].split("/");
 				String b[]=allTitle[0].split(",");
 				//System.out.println(b[0]);
-				String parseDis[]=b[0].split("/");
+				String parseDis[]=b[i].split("/");
 				//System.out.println(parseDis[0]);
 				int distance=Integer.parseInt(parseDis[0]);
 				//System.out.println(distance);
@@ -90,12 +92,56 @@ public class mapDB
 					dto.setP5_point(a[1]+"^"+a[2]);
 				}
 				if(i==arrayName.length-2){
-				sqlMap.insert("map.insertInfo", dto);	
+					num=(Integer)sqlMap.queryForObject("map.getNum",null);
+					sqlMap.insert("map.insertInfo", dto);	
+					
+					sDto.setNum(num);
+					sDto.setStartPlace(startTitle[0]);
+					sDto.setStartAddress(startTitle[3]);
+					sDto.setStartPhone(startTitle[4]);
+					sDto.setStartStn(startDistance[1]);
+					sDto.setStartDis(Integer.parseInt(startDistance[0]));
+					sDto.setStartWT(stWalk);
+					
+					eDto.setNum(num);
+					eDto.setEndPlace(endTitle[0]);
+					eDto.setEndAddress(endTitle[3]);
+					eDto.setEndPhone(endTitle[4]);
+					eDto.setEndStn(endDistance[1]);
+					eDto.setEndDis(Integer.parseInt(endDistance[0]));
+					eDto.setEndWT(endWalk);
+					
+					sqlMap.insert("map.insertStartInfo", sDto);
+					sqlMap.insert("map.insertEndInfo", eDto);
+	
 				}
-			}		
+			}
+			
+			if(list.size()>0)
+			{
+	
+				for(int i=0;i<list.size();i++)
+				{
+					passDto pDto=new passDto();
+					String listAll=list.get(i).toString();	
+					String listStr[]=listAll.split("/");
+					
+					pDto.setNum(num);
+					pDto.setPassPlace(listStr[0]);
+					pDto.setPassAddress(listStr[1]);
+					pDto.setPassPhone(listStr[2]);
+					pDto.setPassStn(listStr[3]);
+					pDto.setPassDis(Integer.parseInt(listStr[4]));
+					pDto.setPassWT(Integer.parseInt(listStr[5]));
+					
+					sqlMap.update("map.insertPassInfo",pDto);
+					
+				}
+			}
+
 			request.setAttribute("list",list);
 			request.setAttribute("dto",dto);
-			
+						
 			request.setAttribute("startDtc",startDistance[0]);
 			request.setAttribute("startWalk",stWalk);
 			request.setAttribute("startStn",startDistance[1]);
@@ -109,6 +155,7 @@ public class mapDB
 			request.setAttribute("endTitle",endTitle[0]);
 			request.setAttribute("endPhone",endTitle[4]);
 			request.setAttribute("endAddress",endTitle[3]);
+			
 			request.setAttribute("returnName",returnName);
 		} 
 		catch (Exception e) 	{
@@ -141,7 +188,6 @@ public class mapDB
 	public ModelAndView imageInsert(HttpServletRequest request, String filePath,String fileName ) throws Exception{//
 	 
 	String path= request.getRealPath("img");
-	 //System.out.println(path);
 	 try {
 		   FileInputStream fis = new FileInputStream(filePath);
 		   FileOutputStream fos = new FileOutputStream(path+"\\"+fileName);
@@ -170,9 +216,7 @@ public class mapDB
 		
 		 mapDto dto=new mapDto();
 		 int num=(Integer)sqlMap.queryForObject("map.getNum",null);
-		 System.out.println(totalName);
 		 String m_image[]=totalName.split("@");
-		 System.out.println(m_image[0]);
 		 dto.setNum(num);
 		 dto.setM_image(m_image[0]);
 		 dto.setS_image(m_image[1]);
