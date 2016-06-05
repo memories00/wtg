@@ -10,11 +10,12 @@
 	.box1{background-color:red; width:650px; height:350px; float:left;margin:0 50px 0 50px }
 	.box2{background-color:#6600ff; width:800px; height:350px;float:left; margin:0 0 0 0px}
 	.box3{background-color:yellow; width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
-	.box4{ background-color:green;width:600px; height:500px;float:left;margin:50px 0 0 50px}
-	.box5{background-color:red;width:170px; height:230px;float:left;margin:55px 0 0 50px;border:1px;}
+	.box4{ background-color:green;width:800px; height:500px;float:left;margin:50px 0 0 50px}
+	.box5{background-color:red;margin:0px 0 0 0;width:170px; height:170px;float:left;border:1px;}
 	.imgbox{background-color:#6600ff; width:150px; height:150px;}
 	.box-m{float:left;}
 	.box-m2{float:left;display:block;}
+	.preview{ background-color:blue; width:700px;height:300; margin: 30px 0px 0 50px}
 	
 	.body {margin: 10px}
 .where {
@@ -110,19 +111,22 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/CSSreset.min.css" />
 </head>
 <body>
-	<font size="7"></font>
+	<font size="7">카테고리: ${dto.category }</font>
   <div id="warp">
 	<div class="box-m">
 		<div class="box1" id="map">
 		
 		</div>
 		<div class="box2">
-			<textarea style="width:100% height:500px" rows="20" cols="120"></textarea>
+			제목: <input type="text" id="subject" value="${dto.subject }" style="width:720px;">
+			<textarea style="margin:10px 0 0 0" rows="20" cols="117">${dto.content }</textarea>
+			tag: <input type="text" id="tag" value="${dto.hashtag }" style="margin:10px 0 0 0; width:720px;">
 		</div>
 	</div>
-	
+	 
 	<div class="box-m2">
 		<div class="box3">
+			
 		<div id="menu_wrap" class="bg_white">
 			<div class="option">
 				<font size="4"> 
@@ -149,65 +153,29 @@
 		</div>
 		</div>
 	<div class="box4">
-							<div id="imgslide" >
-
-					<div id="lista1" class="als-container" style="margin:400px 0 0 0;">
-
+		
+			<div id="imgslide" style="background-color:silver;">
+				<div id="lista1" class="als-container" style="margin:30px 0 0 0; width:800px;">
 					<span class="als-prev" ><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
 					<div class="als-viewport">
-					  <ul class="als-wrapper">
-						
-						  <div class="als-item"style="width:170px; height:230px;" >
+					 
+					  	<c:forEach var="s_image" items="${s_image }">	
+					  	 <ul class="als-wrapper">			
+						  <div class="als-item"style="width:700px;height:400;" >
 						  	<div class="imgbox" id="img1" style="margin:5px 10px 5px 10px ">
+						  	<img src=http://127.0.0.1:8000/wtg/img/${s_image} style="width:700px;height:400;">
 						  	</div>
-							<div class="filebox bs3-success" id="ex1">
-                          		<label for="ex_file1" style="margin:10px 0 0 5px ">업로드</label> 
-                         	 	<input type="file" id="ex_file1" onchange="test();" > 
-                        	</div>	
                           </div>
+                           </ul>
+                          </c:forEach>
                           	
-							 <div class="als-item"style="width:170px; height:230px;" >
-						  	<div class="imgbox" id="img2"style="margin:5px 10px 5px 10px ">
-						  	</div>
-							<div class="filebox bs3-success" id="ex2">
-                          		<label for="ex_file2" style="margin:10px 0 0 5px ">업로드</label> 
-                         	 	<input type="file" id="ex_file2" onchange="test();" > 
-                        	</div>	
-                          </div>
                           
-							<div class="als-item"style="width:170px; height:230px;" >
-						  	<div class="imgbox" id="img3"style="margin:5px 10px 5px 10px ">
-						  	</div>
-							<div class="filebox bs3-success" id="ex3">
-                          		<label for="ex_file3" style="margin:10px 0 0 5px ">업로드</label> 
-                         	 	<input type="file" id="ex_file3" onchange="test();" > 
-                        	</div>	
-                          </div>
-                          
-                           <div class="als-item"style="width:170px; height:230px;" >
-						  	<div class="imgbox" id="img4" style="margin:5px 10px 5px 10px ">
-						  	</div>
-							<div class="filebox bs3-success" id="ex4">
-                          		<label for="ex_file4" style="margin:10px 0 0 5px ">업로드</label> 
-                         	 	<input type="file" id="ex_file4" onchange="test();" > 
-                        	</div>	
-                          </div>
-	
-					  </ul>
-					</div>
-					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
-					
+                        
+					</div>		
+					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>	
 				  </div>
-			</div>			
 	</div>
-		<div class="box5">
-			<div class="imgbox" id="m_img"style="margin:5px 10px 5px 10px ">
-			</div>
-		<div class="filebox bs3-success"  id="mx">
-        	<label for="m_file" style="margin:10px 0 0 50px ">업로드</label> 
-         <input type="file" id="m_file"  onchange="test1(); "> 
-		
-	</div>
+	 
 		</div>
 	</div>
   </div>
@@ -222,6 +190,7 @@
 	var totalStr='${passInfo}';  //주소/x^y@
 	var parse1=totalStr.split('@');
 	
+	var bounds = new daum.maps.LatLngBounds();
 	var markers=new Array();
 	for(var i=0; i<parse1.length-1;i++)
 	{
@@ -229,7 +198,7 @@
 		var parsePoint=parse2[1].split('^');
 		markerPosition=new daum.maps.LatLng(parsePoint[0],parsePoint[1]);
 		markers[i]={latlng:markerPosition,title:parse2[0]};
-
+		bounds.extend(markers[i].latlng);
 	}
 
 	for( var i=0;i<markers.length;i++)
@@ -255,6 +224,9 @@
 	
 	stPosition=new daum.maps.LatLng(s_point[0],s_point[1]);
 	edPosition=new daum.maps.LatLng(e_point[0],e_point[1]);
+	bounds.extend(stPosition);
+	bounds.extend(edPosition);
+	map.setBounds(bounds);
 	var stimageSrc = 'http://127.0.0.1:8000/wtg/map/img/red_b.png', // 출발마커이미지의 주소입니다    
 	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
 	    stimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -282,7 +254,7 @@
 	$.noConflict();
 	jQuery( document ).ready(function( $ ) {
 			$("#lista1").als({
-				visible_items: 3,
+				visible_items: 1,
 				scrolling_items: 1,
 				orientation: "horizontal",
 				circular: "yes",
@@ -295,6 +267,9 @@
 			});
 	});
   
+	
+	
+	
   </script>
 </body>
 </html>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import location.bean.MapDto;
+import theme.thDTO;
 
 @Controller
 public class map
@@ -31,12 +32,12 @@ public class map
 	}
 	@RequestMapping("/courseView.nhn")
 	public String courseView(HttpServletRequest request,int num){	
-		mapDto dto=new mapDto();
+		thDTO dto=new thDTO();
 		startDto sDto=new startDto();
 		endDto eDto=new endDto();
 		List<passDto> list = new ArrayList<passDto>();
 		
-		dto=(mapDto)sqlMap.queryForObject("map.getCourse",num);
+		dto=(thDTO)sqlMap.queryForObject("map.getCourse",num);
 		sDto=(startDto)sqlMap.queryForObject("map.startCourse",num);
 		eDto=(endDto)sqlMap.queryForObject("map.endCourse",num);	
 		list=sqlMap.queryForList("map.passCourse",num);
@@ -59,8 +60,20 @@ public class map
 		if(dto.getP5_point()!=null){
 			passInfo+=dto.getP5_name()+"/"+dto.getP5_point()+"^";
 		}
-		
-		
+		System.out.println(dto.getS_image());
+		String s_imgArr[]=dto.getS_image().split("/");
+		String imgNameArr[]=new String[4];
+		//System.out.println(s_imgArr.length); length=4
+		for(int i=0;i<s_imgArr.length;i++)
+		{
+			if(!(s_imgArr[i].equals("default.jsp")))
+			{
+				imgNameArr[i]=s_imgArr[i];
+				request.setAttribute("s_image",imgNameArr[i]);
+			}
+			//
+		}
+		request.setAttribute("dto",dto);
 		request.setAttribute("sDto",sDto);
 		request.setAttribute("eDto",eDto);
 		request.setAttribute("list",list);

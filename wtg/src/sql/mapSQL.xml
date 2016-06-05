@@ -24,7 +24,7 @@
 </insert>
 
 
-<select id="getCourse" resultClass="dto" parameterClass="int">
+<select id="getCourse" resultClass="thDto" parameterClass="int">
 	select * from courseInfo where num=#num#
 </select>
 <select id="startCourse" resultClass="startDto" parameterClass="int">
@@ -34,9 +34,12 @@
 	select * from passInfo where num=#num#
 </select>
 <select id="endCourse" resultClass="endDto" parameterClass="int">
-	select * from startInfo where num=#num#
+	select * from endInfo where num=#num#
 </select>
 
+<select id="searchTag" resultClass="thDto" parameterClass="String">
+
+</select>
 
 
 <select id="getNum" resultClass="int">

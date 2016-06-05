@@ -92,9 +92,9 @@ public class mapDB
 					dto.setP5_point(a[1]+"^"+a[2]);
 				}
 				if(i==arrayName.length-2){
-					num=(Integer)sqlMap.queryForObject("map.getNum",null);
-					sqlMap.insert("map.insertInfo", dto);	
 					
+					sqlMap.insert("map.insertInfo", dto);	
+					num=(Integer)sqlMap.queryForObject("map.getNum",null);
 					sDto.setNum(num);
 					sDto.setStartPlace(startTitle[0]);
 					sDto.setStartAddress(startTitle[3]);
