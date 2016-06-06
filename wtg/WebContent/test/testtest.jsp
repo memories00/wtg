@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/header.css"/>
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/footer.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/contents.css"/>
 
 <jsp:include page="/include/inputHeader.jsp" flush="false"/>
 <jsp:include page="/include/adminHeader.jsp" flush="false"/>
