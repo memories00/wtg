@@ -1,39 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/inputCss.css"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>코스등록하기</title>
 
-		
-	<style>
-			map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-			.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-			.map_wrap {position:relative;width:100%;height:500px;}
-			#menu_wrap {position:absolute;  top:0;left:0;bottom:0;width:310px; height:800px;margin:10px 50px 30px 0;padding:5px;overflow-x:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px; }
-			.bg_white {background:#fff;}		
-			#menu_wrap hr {display: block; height: 1px;border: 0;  border-top: 2px solid #5F5F5F;margin:3px 0;}
-			#menu_wrap .option{text-align: left;}
-			#menu_wrap .option p {margin:10px 0;}  
-			#menu_wrap .option button {margin-left:5px;} 
-			
-			.category, .category *{margin:0;padding:0;color:#000;}   
-			.category {position:absolute;overflow:hidden;top:10px;left:320px;width:160px;height:53px;z-index:5;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;background:rgba(255, 255, 255, 0.7);}
-			.category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
-			.category li{list-style:none;float:left;width:50px;height:55px;padding-top:5px;cursor:pointer;} 
-			.category .ico_comm {display:block;width:50px;height:50px;} 
-			.category .ico_start { background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/red_b.png')}  
-			.category .ico_pass {background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/green_b.png');}   
-			.category .ico_end {background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/blue_b.png');} 				
-	</style>
 </head>
+<body>
+<div id="wrapper">
+<div id="header">
+	<jsp:include page="/include/inputHeader.jsp" flush="false"/>
+</div>
 <c:choose>
 	<c:when test="${sessionScope.memId ne null}">
 		 
 <div class="map_wrap">
-	<div id="map" style="width:100%; height:900px;overflow:hidden;"></div>
+	<div id="map" style="width:100%; height:890px;overflow:hidden;"></div>
 		<div class="category">
 			<ul>
 				<li id="start"  onmousedown="startDrag(event,0)">
@@ -71,7 +55,15 @@
 						<input type="button" value="등록하기"  style="width:300px;height:40px;"onclick="nextStep()">		
 			</div>
 		</div>
-</div>	
+</div>
+<div id="footer">
+	<div class="dif" id="link">
+	<a href="http://localhost:8000/wtg/login.nhn">회사소개</a> &nbsp;
+	<a href="http://localhost:8000/wtg/login.nhn">고객센터</a> &nbsp;
+	<a href="http://localhost:8000/wtg/login.nhn">사이트맵</a>
+	</div>
+</div>
+</div>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06fa7b42a2af7b8c46c9ca9a71d40206&libraries=services"></script>
 		<script>
@@ -847,9 +839,7 @@
 				window.location="main.nhn";
 			</script>
 			</c:otherwise>
-		</c:choose>	
-<body>
- 	
+	</c:choose>	
 
 </body>
 </html>

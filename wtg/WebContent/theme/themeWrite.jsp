@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/contents.css"/>
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,6 +21,12 @@ function theme_Write()
 }
 </script>
  <body>
+<!-- --------------------------------------------------------------------------------- -->
+<div id="wrapper">
+<div id="bs_header">
+	<jsp:include page="/include/baseHeader.jsp" flush="false"/>
+</div>
+<div id="tw_contents">
    <table width="600" border="0" cellspacing="0" cellpadding="2"> 
      <tr>
        <td align="center"><h2>테마여행</h2></td>
@@ -54,6 +60,10 @@ function theme_Write()
      </tr>
    </table> 
  </form> 
-   
-   
- </body>
+</div>
+<div id="bs_footer">
+	<jsp:include page="/include/baseFooter.jsp" flush="false"/>
+</div>
+</div>
+</body>
+</html>

@@ -3,9 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/mainCss.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/contents.css"/>
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+	function locationHref(a) {
+		var ty = a.getAttribute("id");
+		location.href="/wtg/themeList.nhn?cate="+ty;
+	}
+</script>
 <script type="text/javascript">
         $(document).ready(function(){ // 
 	      $("#readBtn").click(function(){
@@ -53,16 +59,19 @@
 </script>
 
 <!-- --------------------------------------------------------------------------------- -->
-<div id=head style="background-color:white;width:100%;height:70px">이곳이 헤더</div>
-
-<div id=firstLine style="background-color:silver;width:100%;height:30px;display: table-cell;vertical-align: middle">
+<div id="wrapper">
+<div id="bs_header">
+	<jsp:include page="/include/baseHeader.jsp" flush="false"/>
+</div>
+<div id="tl_contents">
+<div id="tl_firstLine">
 	<div style="float:left">홈 ></div>
 	<div style="float:left">테마별 코스 ></div>
 	<div style="float:left">${category}</div>
 </div>
 
-<div id="list" style="background-color:pink"><div id="list2"></div>
-   <table align="center" width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="orange">
+<div id="tl_list">
+   <table align="center" width="600" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td align="right"><input type="button" value="최신순" onClick="javascript:location.href='themeList.nhn'">
                         <input id="readBtn" type="button" value="조회순" >
@@ -71,7 +80,7 @@
   </table>
   
   
-  <table align="center" width="600" border="0" cellspacing="0" cellpadding="2" bgcolor=yellow>
+  <table align="center" width="600" border="0" cellspacing="0" cellpadding="2">
       <tr align="left">
         <td colspan="5">
     	  <input type="button" value="글쓰기" onClick="javascript:location.href='themeWrite.nhn?currentPage=${currentPage}'">
@@ -79,14 +88,15 @@
       </tr>
   	</table> 
    
-  <table align="center" width="1000" border="0" cellspacing="0" cellpadding="0" bgcolor=skyblue>
+  <table align="center" width="800" border="0" cellspacing="0" cellpadding="0">
    <tr>
    <td>
+   <hr width="81%">
     <c:forEach var="list" items="${list}">
    	 <a href="themeView.nhn?no=${list.no}&currentPage=${currentPage}"> 
-	    <table align="center" width="650" border="1" cellspacing="0" cellpadding="0" bgcolor=gold>
+	    <table  id="table" align="center" width="650" cellspacing="0" cellpadding="0">
 	   	 <tr><td>
-		    <table align="center" width="600" border="0" cellspacing="0" cellpadding="0" bgcolor=white>
+		    <table align="center" width="600" border="0" cellspacing="0" cellpadding="0">
 	     		<tr>
 	      			<td rowspan="2" width="150"><img src="/wtg/save/${list.file_savname }" width="150"></td>
 	       			<td><h4>&nbsp;&nbsp;&nbsp;${list.subject}</h4></td>
@@ -111,7 +121,7 @@
    			</table>
   		 </td></tr>
    		</table>
-     </a> 
+     </a> <hr width="81%">
    </c:forEach>
    <br/>
   </td>
@@ -120,4 +130,9 @@
      <td>${pagingHtml}</td>
     </tr>
   </table>
-</div></div>
+</div>
+</div>
+<div id="bs_footer">
+	<jsp:include page="/include/baseFooter.jsp" flush="false"/>
+</div>
+</div>

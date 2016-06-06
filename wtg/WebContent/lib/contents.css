@@ -1,0 +1,112 @@
+@CHARSET "EUC-KR";
+
+body {
+	text-align:center;
+	background-color:#F6F6F6;
+}
+a:link, a:visited, a:hover{
+	color:black;
+}
+
+#wrapper {
+	min-width:950px; 
+}
+#bs_wrapper {
+	min-width:950px; 
+}
+
+
+
+#ad_header {
+	width:100%; 
+	left:0px; top:0px; 
+	position: relative;
+	height:215px;
+	background-color:#6799FF;
+	z-index:3;
+}
+#ad_contents {
+	width:950px; 
+	top:50px;
+	margin:auto;
+	position: relative;
+	background-color:#FFFFFF;
+	height:800px;
+	z-index:2;
+}
+#ad_section {
+	width:100%;
+}
+#ad_footer {
+	width:100%; 
+	top:90px; 
+	position: relative;
+	z-index:3;
+}
+
+
+
+#tl_contents {
+	width:950px; 
+	top:50px;
+	height:1024px;
+	margin:auto;
+	position: relative;
+	background-color:#FFFFFF;
+}
+#tl_firstLine {
+	width:100%;
+	height:30px;
+	display: table-cell;
+	vertical-align: middle
+}
+#tl_list {
+	width:950px;
+}
+#tl_table:hover, #tl_table:active {
+    background:#F6F6F6;
+}
+
+
+
+
+#lg_contents {
+	width:950px; 
+	top:50px;
+	height:620px;
+	margin:auto;
+	position: relative;
+	background-color:#FFFFFF;
+}
+
+#tv_contents {
+	width:950px; 
+	top:50px;
+	height:1200px;
+	margin:auto;
+	position: relative;
+	background-color:#FFFFFF;
+}
+
+#tw_contents {
+	width:950px; 
+	top:50px;
+	height:700px;
+	margin:auto;
+	position: relative;
+	background-color:#FFFFFF;
+}
+
+#bs_header {
+	width:100%; 
+	left:0px;
+	top:0px; 
+	position: relative;
+	height:70px;
+	background-color:#6799FF;
+}
+#bs_footer {
+	width:100%; 
+	top:90px; 
+	position: relative;
+}

@@ -1,0 +1,48 @@
+@CHARSET "EUC-KR";
+
+map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'µ¸¿ò',sans-serif;font-size:12px;}
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
+.map_wrap {position:relative;width:100%;height:500px;}
+#menu_wrap {position:absolute;  top:0;left:0;bottom:0;width:310px; height:800px;margin:10px 50px 30px 0;padding:5px;overflow-x:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px; }
+.bg_white {background:#fff;}		
+#menu_wrap hr {display: block; height: 1px;border: 0;  border-top: 2px solid #5F5F5F;margin:3px 0;}
+#menu_wrap .option{text-align: left;}
+#menu_wrap .option p {margin:10px 0;}  
+#menu_wrap .option button {margin-left:5px;} 
+			
+.category, .category *{margin:0;padding:0;color:#000;}   
+.category {position:absolute;overflow:hidden;top:10px;left:320px;width:160px;height:53px;z-index:5;border:1px solid black;font-family:'Malgun Gothic','¸¼Àº °íµñ',sans-serif;font-size:12px;text-align:center;background-color:#fff;background:rgba(255, 255, 255, 0.7);}
+.category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
+.category li{list-style:none;float:left;width:50px;height:55px;padding-top:5px;cursor:pointer;} 
+.category .ico_comm {display:block;width:50px;height:50px;} 
+.category .ico_start { background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/red_b.png')}  
+.category .ico_pass {background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/green_b.png');}   
+.category .ico_end {background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/blue_b.png');} 				
+
+
+body{
+	text-align:center;
+	background-color:#F6F6F6;
+}
+a:link, a:visited, a:hover{
+	color:black;
+	text-decoration:none;
+}
+#wrapper {
+	min-width:950px;
+}
+
+#header {
+	width:100%; 
+	left:0px;
+	top:0px; 
+	position: relative;
+	height:50px;
+	background-color:#6799FF;
+}
+#footer {
+	width:100%; 
+	top:390px; 
+	position: relative;
+}
+.dif {max-width:950px; margin:auto;}

@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/contents.css"/>
 <link href="./bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -168,7 +168,12 @@
 </head>
 
 
- <body>
+<body>
+<div id="bs_wrapper">
+<div id="bs_header">
+	<jsp:include page="/include/baseHeader.jsp" flush="false"/>
+</div>
+<div id="tv_contents">
    <table align="center" width="600" border="0" cellspacing="0" cellpadding="0">
      <tr>
        <td align="center"><h3>테마여행</h3></td>
@@ -295,6 +300,12 @@
   
   
 </div>
+</div>
+<div id="bs_footer">
+	<jsp:include page="/include/baseFooter.jsp" flush="false"/>
+</div>
+</div>
+
 <script>
 function commentList(){}
 </script>

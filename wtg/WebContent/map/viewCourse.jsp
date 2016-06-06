@@ -1,104 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/view.css"/>
 <html>
 <head>
-	<style>
-		<style>
-	#warp{width:100%;}
-	.box1{background-color:red; width:650px; height:350px; float:left;margin:0 50px 0 50px }
-	.box2{background-color:#6600ff; width:800px; height:350px;float:left; margin:0 0 0 0px}
-	.box3{background-color:yellow; width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
-	.box4{ background-color:green;width:800px; height:500px;float:left;margin:50px 0 0 50px}
-	.box5{background-color:red;margin:0px 0 0 0;width:170px; height:170px;float:left;border:1px;}
-	.imgbox{background-color:#6600ff; width:150px; height:150px;}
-	.box-m{float:left;}
-	.box-m2{float:left;display:block;}
-	.preview{ background-color:blue; width:700px;height:300; margin: 30px 0px 0 50px}
-	
-	.body {margin: 10px}
-.where {
-  display: block;
-  margin: 25px 15px;
-  font-size: 11px;
-  color: #000;
-  text-decoration: none;
-  font-family: verdana;
-  font-style: italic;
-} 
-.filebox {display:inline-block; margin-right: 10px;}
-
-
-.filebox label {
-  display: inline-block;
-  padding: .5em .75em;
-  color: #999;
-  font-size: inherit;
-  line-height: normal;
-  vertical-align: middle;
-  background-color: #fdfdfd;
-  cursor: pointer;
-  border: 1px solid #ebebeb;
-  border-bottom-color: #e2e2e2;
-  border-radius: .25em;
-}
-
-.filebox input[type="file"] {  /* 파일 필드 숨기기 */
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip:rect(0,0,0,0);
-  border: 0;
-}
-
-.filebox.bs3-primary label {
-  color: #fff;
-  background-color: #337ab7;
-    border-color: #2e6da4;
-}
-
-.filebox.bs3-success label {
-  color: #fff;
-  background-color: #5cb85c;
-    border-color: #4cae4c;
-}
-/* imaged preview */
-.filebox .upload-display {  /* 이미지가 표시될 지역 */
-  margin-bottom: 5px;
-
-}
-
-@media(min-width: 768px) { 
-  .filebox .upload-display {
-    display: inline-block;
-    margin-right: 5px;
-    margin-bottom: 0;
-  }
-}
-
-.filebox .upload-thumb-wrap {  /* 추가될 이미지를 감싸는 요소 */
-  display: inline-block;
-  padding: 2px;
-  vertical-align: middle;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #fff;
-   width:100px;
-  height:100px;
-}
-
-.filebox .upload-display img {  /* 추가될 이미지 */
-  display: block;
-  max-width: 100%;
-  width: 100% \9;
-  height: auto;
-}
-	
-	</style>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>코스확인</title>
 <link rel="stylesheet" href="/wtg/daumeditor/css/editor.css" type="text/css" charset="EUC-KR"/>
@@ -111,6 +17,11 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/CSSreset.min.css" />
 </head>
 <body>
+<div id="wrapper">
+<div id="header">
+	<jsp:include page="/include/baseHeader.jsp" flush="false"/>
+</div>
+<div id="contents">
 	<font size="7">카테고리: ${dto.category }</font>
   <div id="warp">
 	<div class="box-m">
@@ -178,7 +89,12 @@
 	 
 		</div>
 	</div>
+	</div>
   </div>
+  <div id="footer">
+	<jsp:include page="/include/baseFooter.jsp" flush="false"/>
+</div>
+</div>
   <script>
   	var container = document.getElementById('map'); //div id=map자리에 지도를생성			
 	var options = { 
