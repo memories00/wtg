@@ -38,7 +38,7 @@
 </select>
 
 <select id="searchTag" resultClass="thDto" parameterClass="String">
-
+	select * from courseInfo where hashtag like '%'||#hashtag#||'%'
 </select>
 
 

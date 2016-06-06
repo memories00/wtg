@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import main.bean.SlideDTO;
+import theme.thDTO;
 
 
 @Controller
@@ -30,8 +31,16 @@ public class recommendMap {
 	}
 	@RequestMapping("/recomCourse.nhn")
 	public String recomCourse(HttpServletRequest request,String tag){	
-		
-		System.out.println(tag);
+		thDTO thDto=new thDTO();
+		List  < thDTO>list = new ArrayList<thDTO>();
+		 list=sqlMap.queryForList("map.searchTag",tag);
+		//for(int i=0;i<list.size();i++)
+		//{
+		//	int num=Integer.parseInt(list.get(i).toString());
+		//	thDto=(thDTO)sqlMap.queryForObject("map.getCourse",num);
+		//	System.out.println(thDto.getCategory());
+		//}
+		request.setAttribute("list",list);
 		return  "/map/recomCourse.jsp";
 	}
 	

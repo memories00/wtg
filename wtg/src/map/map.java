@@ -60,7 +60,7 @@ public class map
 		if(dto.getP5_point()!=null){
 			passInfo+=dto.getP5_name()+"/"+dto.getP5_point()+"^";
 		}
-		System.out.println(dto.getS_image());
+		//System.out.println(dto.getS_image());
 		String s_imgArr[]=dto.getS_image().split("/");
 		String imgNameArr[]=new String[4];
 		//System.out.println(s_imgArr.length); length=4

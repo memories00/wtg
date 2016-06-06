@@ -42,7 +42,29 @@
 			 				url:"recomCourse.nhn?tag="+tagName.value,
 			 	 				success:function(data)
 			 	 				{
+			 	 					var re=data.replace(/\s/gi, '');
+			 	 					var str=re.split("$");//게시글을 구분
+			 	 				//str=카테고리/글번호@시작이름/위^치@경유지1이름/1위^치#...5이름/5위^치@도착/위^치@내용/제목/조회수/좋아요$	
+			 	 					alert(re);
+			 	 					var markers = new Array();
+			 	 					for(var i=0;i<str.length-1;i++)
+			 	 					{
+			 	 						var cateInfo=str[i].split('@')[0];
+			 	 						var startInfo=str[i].split('@')[1];
+			 	 						var passInfo=str[i].split('@')[2];
+			 	 						var endInfo=str[i].split('@')[3];
+			 	 						var contentInfo=str[i].split('@')[4];
+			 	 						
+			 	 						var stPoint= startInfo.split('/')[1];
+			 	 						var endPoint= endInfo.split('/')[1];
+			 	 						
+			 	 						startPosition=new daum.maps.LatLng(stPoint.split('^')[0],stPoint.split('^')[1]);
+			 	 						endPosition=new daum.maps.LatLng(endPoint.split('^')[0],endPoint.split('^')[1]);
+			 	 						//alert(markerPosition);
 			 	 					
+			 	 						
+			 	 						
+			 	 					}
 			 	 				}
 						 })
 					}
