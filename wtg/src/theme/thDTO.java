@@ -28,6 +28,8 @@ public class thDTO {
 	private String subject;
 	private String hashtag;
 	private int readhit;
+	private int good;
+	private int hate;
 	
 	public String getCategory() {
 		return category;
@@ -174,5 +176,17 @@ public class thDTO {
 	public void setHashtag(String hashtag)
 	{
 		this.hashtag=hashtag;
+	}
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
+	public int getHate() {
+		return hate;
+	}
+	public void setHate(int hate) {
+		this.hate = hate;
 	}
 }
