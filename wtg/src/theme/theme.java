@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import map.TypeSearch;
 
-
+ 
 @Controller
 public class theme {
 	@Autowired
@@ -34,7 +34,7 @@ public class theme {
 		List list = null;
 		String pagingHtml;
 		themePaging page;
-	
+	System.out.println("a="+a);
 		int aa = 0; 
 		if(a!=null){
 			aa = Integer.parseInt(a);
@@ -44,9 +44,9 @@ public class theme {
 		}else if(aa==2){
 			list = sqlMapClientTemplate.queryForList("theme.selectG", null);
 		}else{
-			list = sqlMapClientTemplate.queryForList("theme.selectAll", null);
+			list = sqlMapClientTemplate.queryForList("theme.selectCategory", category);
 		}
-
+		
 		totalCount = list.size();
 		
 		if(request.getParameter("currentPage")!=null)
@@ -73,7 +73,7 @@ public class theme {
 	}
 	
 	@RequestMapping("/themeView.nhn")
-	public String themeView(HttpServletRequest request,HttpSession session, ThemeDTO dto){
+	public String themeView(HttpServletRequest request,HttpSession session, thDTO dto){
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		String id= (String)session.getAttribute("memId");
 		String name= (String)session.getAttribute("memName");
@@ -84,68 +84,18 @@ public class theme {
 		System.out.println(id);
 		System.out.println(name);
         
-		sqlMapClientTemplate.update("theme.updateReadHit",dto.getNo());
+		sqlMapClientTemplate.update("theme.updateReadHit",dto.getNum());
 	
-		dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNo());
+		dto = (thDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNum());
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("currentPage", currentPage);
 		
-		list = sqlMapClientTemplate.queryForList("theme.memCommentAll", dto.getNo());
+		list = sqlMapClientTemplate.queryForList("theme.memCommentAll", dto.getNum());
 		request.setAttribute("list", list);
-		//comment ¸®½ºÆ®
-		//totalCommentCount = list.size();
 
 		
 		return "/theme/themeView.jsp";
-	}
-	
-	@RequestMapping("/themeWrite.nhn")
-	public String boardWrite(HttpSession session, HttpServletRequest request){
-		String id= (String)session.getAttribute("memId");
-		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		request.setAttribute("currentPage", currentPage);
-		return "/theme/themeWrite.jsp";
-	}
-	
-	@RequestMapping("/themeWritePro.nhn")
-	public String writePro(MultipartHttpServletRequest request,ThemeDTO dto){
-		MultipartFile mf = request.getFile("save");
-		String orgName = mf.getOriginalFilename();
-		String path =request.getServletContext().getRealPath("")+"\\save\\";
-		int num = 0;
-	    if(orgName ==""){	
-			sqlMapClientTemplate.insert("theme.insertTheme", dto);
-			dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectLastNo", null);
-		}else{ 
-			sqlMapClientTemplate.insert("theme.insertTheme", dto);
-			dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectLastNo", null);
-			String file_name = "file_"+dto.getNo();
-			String file_ext = orgName.substring(
-					         orgName.lastIndexOf('.') + 1,
-					         orgName.length());
-			dto.setFile_orgname(orgName);
-			dto.setFile_savname(file_name+"."+file_ext);
-			String savename=(file_name+"."+file_ext);
-			
-			
-			File copy = new File(path+dto.getFile_savname());
-			try{
-				mf.transferTo(copy);
-			}catch(Exception e){
-				e.printStackTrace();
-			}		
-	}
-	    sqlMapClientTemplate.update("theme.updateFile", dto);
-		request.setAttribute("dto", dto);
-		
-		num = dto.getNo();
-		System.out.println(num);
-		
-		sqlMapClientTemplate.update("theme.create", num);
-		
-		
-		return "/themeList.nhn";
 	}
 	
 	@RequestMapping("/del.nhn")
