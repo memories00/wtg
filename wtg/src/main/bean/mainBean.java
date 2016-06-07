@@ -147,6 +147,7 @@ public class mainBean
 				list.add(sdto);
 			}
 		}
+		
 		totalCount = list.size();
 		
 			
@@ -161,12 +162,14 @@ public class mainBean
 		int lastCount = totalCount;
 			
 		if (page.getEndCount() < totalCount)
+			
 		lastCount = page.getEndCount() + 1; 
+		request.setAttribute("list",list);
 		list = list.subList(page.getStartCount(), lastCount);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
 		request.setAttribute("page", page);
-		request.setAttribute("list",list);
+		
 
 		return "/theme/searchlist.jsp";
 	}

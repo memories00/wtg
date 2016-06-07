@@ -27,6 +27,8 @@ public class SearchDTO {
 	private String s_image;
 	private String regdate;
 	private String subject;
+	private String hashtag;
+	
 	private int readhit;
 	public String getSearch() {
 		return search;
@@ -165,6 +167,12 @@ public class SearchDTO {
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
+	}
+	public String getHashtag() {
+		return hashtag;
+	}
+	public void setHashtag(String hashtag) {
+		this.hashtag = hashtag;
 	}
 	public int getReadhit() {
 		return readhit;

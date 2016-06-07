@@ -186,10 +186,10 @@ function test_Search()
 	<div id="slider">
 		<div class="container">
 		  <div id="slides">
-			<c:forEach var="list" items="${list}">
+			<c:forEach var="list" items="${list}" end="5">
 			  <div class="images" style="display:block">
 				<a href="http:///">
-				<img src="/wtg/adminImg/"  style="width:100%; height:100%; max-height:300px;"/>
+				<img src="/wtg/adminImg/160516010536c.jpg"  style="width:100%; height:100%; max-height:300px;"/>
 				</a>
 			  </div>
 			</c:forEach>
