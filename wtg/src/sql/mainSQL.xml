@@ -52,7 +52,7 @@
     			#fileaddr2#
     		)
     </insert>
-	<select id="selectAll" resultMap="slideRes">
+	<select id="selectAll" resultMap="slideRes"> 
 		select num,m_image,readhit,DENSE_RANK() over(order by readhit desc) as rank from courseinfo
 	</select>
 	<select id="cateselect" resultMap="cateGory" parameterClass="String">
