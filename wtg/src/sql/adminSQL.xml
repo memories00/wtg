@@ -128,4 +128,11 @@
     		UPDATE logo SET orgname = #orgname#
    	</update>
 	
+	<insert id="logoinsert" parameterClass="logo">
+		insert into logo(
+			orgname
+		)values(
+			#orgname#
+		)
+	</insert>
 </sqlMap>

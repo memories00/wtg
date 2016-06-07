@@ -29,7 +29,6 @@ public class reportPaging {
 		if (totalPage == 0) {
 			totalPage = 1;
 		}
-		System.out.println("토탈"+totalPage);
 		// 현재 페이지가 전체 페이지 수보다 크면 전체 페이지 수로 설정
 		if (currentPage > totalPage) {
 			currentPage = totalPage;

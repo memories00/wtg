@@ -36,7 +36,7 @@
 		select count(*) from slide
 	</select>
 	<select id="catecount" resultClass="int" parameterClass="String">
-		select count(*) from theme where name=#id#
+		select count(*) from courseinfo where id=#id#
 	</select>
 	<select id="fileselect" resultClass="int" parameterClass="slide">
 		select count(*) from slide where orgname=#orgname#
@@ -73,7 +73,7 @@
 		SELECT * FROM SLIDE ORDER BY no DESC
 	</select>
 	<select id="cateselect" resultMap="cateGory" parameterClass="String">
-		SELECT * FROM theme where name=#id# ORDER BY no DESC
+		SELECT * FROM COURSEINFO where id=#id# ORDER BY num DESC
 	</select>
 	<select id="no" resultMap="slideRes">
 		SELECT NO FROM SLIDE ORDER BY NO DESC

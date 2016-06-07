@@ -34,7 +34,6 @@ public class theme {
 		List list = null;
 		String pagingHtml;
 		themePaging page;
-	System.out.println("a="+a);
 		int aa = 0; 
 		if(a!=null){
 			aa = Integer.parseInt(a);
@@ -62,7 +61,6 @@ public class theme {
 		if (page.getEndCount() < totalCount)
 			lastCount = page.getEndCount() + 1; 
 		list = list.subList(page.getStartCount(), lastCount);
-		System.out.println(pagingHtml);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
 		request.setAttribute("page", page);
