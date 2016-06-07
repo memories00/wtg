@@ -70,88 +70,6 @@ public class theme {
 		return "/theme/themeList.jsp";
 	}
 	
-	@RequestMapping("/themeView.nhn")
-	public String themeView(HttpServletRequest request,HttpSession session, thDTO dto){
-		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		String id= (String)session.getAttribute("memId");
-		String name= (String)session.getAttribute("memName");
-		List list = null;
-		int commentPage = 1;
-		int totalCommentCount;
-		
-		System.out.println(id);
-		System.out.println(name);
-        
-		sqlMapClientTemplate.update("theme.updateReadHit",dto.getNum());
-	
-		dto = (thDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNum());
-		
-		request.setAttribute("dto", dto);
-		request.setAttribute("currentPage", currentPage);
-		
-		list = sqlMapClientTemplate.queryForList("theme.memCommentAll", dto.getNum());
-		request.setAttribute("list", list);
-
-		
-		return "/theme/themeView.jsp";
-	}
-	
-	@RequestMapping("/del.nhn")
-	public String delete(HttpServletRequest request,ThemeDTO dto){
-        int no =Integer.parseInt(request.getParameter("no"));
-        String path =request.getServletContext().getRealPath("")+"\\save\\";
-		dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNo());
-		
-		File file = new File(path+dto.getFile_savname());
-		file.delete();
-		sqlMapClientTemplate.delete("theme.deleteTheme", dto);
-		request.setAttribute("dto", dto);
-	
-		return "/themeList.nhn";
-	}
-	
-	@RequestMapping("/themeM.nhn")
-	public String modify(HttpServletRequest request, ThemeDTO dto){
-		
-		dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNo());
-		request.setAttribute("dto", dto);
-		
-		return "/themeWrite.nhn";
-	}
-	
-	@RequestMapping("/themeMP.nhn")
-	public String modifyPro(MultipartHttpServletRequest request, ThemeDTO dto){
-		
-		MultipartFile mf = request.getFile("save");
-		String orgName = mf.getOriginalFilename();
-		String path =request.getServletContext().getRealPath("")+"\\save\\";
-		if(orgName ==""){	
-			sqlMapClientTemplate.update("theme.updateTheme", dto);		
-		}else{  
-			sqlMapClientTemplate.update("theme.updateTheme", dto);
-			String file_name = "file_"+dto.getNo();
-			String file_ext = orgName.substring(
-					         orgName.lastIndexOf('.') + 1,
-					         orgName.length());
-			dto.setFile_orgname(orgName);
-			dto.setFile_savname(file_name+"."+file_ext);
-
-			File copy = new File(path+dto.getFile_savname());
-			try{
-				mf.transferTo(copy);
-			}catch(Exception e){
-				e.printStackTrace();
-			}	
-			File file = new File(path+dto.getFile_savname());
-			file.delete();
-	}
-		sqlMapClientTemplate.update("theme.updateFile", dto);
-		request.setAttribute("dto", dto);
-		
-		return "/themeView.nhn";
-			
-	}
-	
 	@RequestMapping("/good.nhn")
 	public String good(HttpSession session, HttpServletRequest request, ThemeDTO dto, GoodDTO gto){
 		String id= (String)session.getAttribute("memId");
@@ -243,5 +161,10 @@ public class theme {
 		return "/search/sample.jsp";
 	}
 
+	@RequestMapping("/selectBest.nhn")
+	public String best()
+	{
+		return "/theme/selectBest.jsp";
+	}
 
 }

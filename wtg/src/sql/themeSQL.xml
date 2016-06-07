@@ -35,7 +35,6 @@
     <result property="reg" column="reg"/>
   </resultMap>
   
-  <!-- 荑쇰━臾??뺤쓽 -->
   <!-- select -->
   <select id="selectCategory" resultClass="themeN" parameterClass="String">
 	select * from courseinfo where category=#category#
