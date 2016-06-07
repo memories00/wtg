@@ -411,7 +411,7 @@ function test_Search()
 	</div>
 	</c:if>
 	<div id="themeadd">
-		<a href="courseInput.nhn">
+		<a href="http://127.0.0.1:8000/wtg/courseInput.nhn">
 			<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 		</a>
 	</div>
