@@ -144,12 +144,11 @@ public class mainBean
 				SearchDTO sdto=new SearchDTO();
 				sdto=searchlist.get(i);
 				sdto=(SearchDTO)sqlMap.queryForObject("admin.courselist", sdto.getNum());
-				System.out.println(sdto);
 				list.add(sdto);
 			}
 		}
 		totalCount = list.size();
-		System.out.println("토탈카운트="+totalCount);
+		
 			
 		if(request.getParameter("currentPage")!=null)
 		{
@@ -158,7 +157,7 @@ public class mainBean
 			
 		page = new reportPaging(currentPage, totalCount,blockCount, blockPage);
 		pagingHtml = page.getPagingHtml().toString();
-		System.out.println(pagingHtml);
+
 		int lastCount = totalCount;
 			
 		if (page.getEndCount() < totalCount)

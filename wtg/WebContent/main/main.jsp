@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/yoonho.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/mainCss.css" />
 <jsp:useBean id="Api" class="api.lib.Api_Jsp_Client" scope="page"/>
-<html>
+<html> 
 <head>
 <title>main</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
