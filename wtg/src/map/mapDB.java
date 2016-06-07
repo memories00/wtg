@@ -184,7 +184,7 @@ public class mapDB
 			e.printStackTrace();
 		}
 
-		return "/map/courseInput.jsp";
+		return "/wtg/main.nhn";
 	}
 	
 	

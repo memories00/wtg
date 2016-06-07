@@ -34,19 +34,54 @@ public class recommendMap {
 		thDTO thDto=new thDTO();
 		List  < thDTO>list = new ArrayList<thDTO>();
 		 list=sqlMap.queryForList("map.searchTag",tag);
+		 
 
 		request.setAttribute("list",list);
 		return  "/map/recomCourse.jsp";
 	}
 	@RequestMapping("/gAndh.nhn")
-	public void gAndh(HttpServletRequest request,int cnt,int num){	
+	public String  gAndh(HttpServletRequest request,int cnt,int num){	
 		HttpSession session=request.getSession();
-		System.out.println(cnt);
-		if(cnt==0)
+		gAndHDto ghDto=new gAndHDto();
+		session.setAttribute("memId","test");
+		String sessionId=(String)session.getAttribute("memId");
+		ghDto.setNum(num);
+		ghDto.setId(sessionId);
+		ghDto.setStatus(cnt);
+		
+		int check=(Integer)sqlMap.queryForObject("map.checkGandH",ghDto);
+		System.out.println(check);
+		if(check==1)
 		{
-			sqlMap.update("map.updateGood",num);
+			int statusCnt=(Integer)sqlMap.queryForObject("map.getStatus",ghDto);
+			if(statusCnt==0 && cnt==1)
+			{
+				sqlMap.update("map.downGood",num);
+				sqlMap.update("map.updateHate",num);
+				request.setAttribute("statusCnt",new Integer(0));
+			}
+			if(statusCnt==1 && cnt==0)
+			{
+				sqlMap.update("map.downHate",num);
+				sqlMap.update("map.updateGood",num);
+				request.setAttribute("statusCnt",new Integer(1));
+			}		
+			sqlMap.update("map.updateGandH",cnt);
 		}
-		//return  "/map/recommendMain.jsp";
+		if(check==0)
+		{
+			if(cnt==0)
+			{
+				sqlMap.update("map.updateGood",num);
+				sqlMap.insert("map.insertGandH",ghDto);
+			}
+			if(cnt==1)
+			{
+				sqlMap.update("map.updateHate",num);
+				sqlMap.insert("map.insertGandH",ghDto);
+			}
+		}
+		return  "/map/status.jsp";
 	}
 	
 

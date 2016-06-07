@@ -1,8 +1,8 @@
+
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/view.css"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -14,15 +14,104 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/als_demo.css" />
 		<script type="text/javascript" src="/wtg/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="/wtg/js/jquery.als-1.7.min.js"></script>		
-		<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/CSSreset.min.css" />
+		<style>
+		#warp{width:100%;}
+	.box1{background-color:red; width:650px; height:450px; float:left;margin:0 50px 0 50px }
+	.box2{background-color:#6600ff; width:800px; height:430px;float:left; margin:0 0 0 0px}
+	.box3{background-color:yellow; width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
+	.box4{ background-color:green;width:800px; height:400px;float:left;margin:50px 0 0 50px}
+	.box5{background-color:red;margin:0px 0 0 0;width:170px; height:170px;float:left;border:1px;}
+	.imgbox{background-color:#6600ff; width:150px; height:150px;}
+	.box-m{float:left;}
+	.box-m2{float:left;display:block;}
+	.preview{ background-color:blue; width:700px;height:300; margin: 30px 0px 0 50px}
+	
+	.body {margin: 10px}
+.where {
+  display: block;
+  margin: 25px 15px;
+  font-size: 11px;
+  color: #000;
+  text-decoration: none;
+  font-family: verdana;
+  font-style: italic;
+} 
+.filebox {display:inline-block; margin-right: 10px;}
+
+
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+.filebox input[type="file"] {  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+.filebox.bs3-primary label {
+  color: #fff;
+  background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.filebox.bs3-success label {
+  color: #fff;
+  background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+/* imaged preview */
+.filebox .upload-display {  /* 이미지가 표시될 지역 */
+  margin-bottom: 5px;
+
+}
+
+@media(min-width: 768px) { 
+  .filebox .upload-display {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 0;
+  }
+}
+
+.filebox .upload-thumb-wrap {  /* 추가될 이미지를 감싸는 요소 */
+  display: inline-block;
+  padding: 2px;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+   width:100px;
+  height:100px;
+}
+
+.filebox .upload-display img {  /* 추가될 이미지 */
+  display: block;
+  max-width: 100%;
+  width: 100% \9;
+  height: auto;
+}
+		
+		</style>
 </head>
 <body>
-<div id="wrapper">
-<div id="header">
-	<jsp:include page="/include/baseHeader.jsp" flush="false"/>
-</div>
-<div id="contents">
-	<font size="7">카테고리: ${dto.category }</font>
+
+	<font size="7">카테고리: ${dto.category }${statusCnt}</font>
   <div id="warp">
 	<div class="box-m">
 		<div class="box1" id="map">
@@ -32,6 +121,18 @@
 			제목: <input type="text" id="subject" value="${dto.subject }" style="width:720px;">
 			<textarea style="margin:10px 0 0 0" rows="20" cols="117">${dto.content }</textarea>
 			tag: <input type="text" id="tag" value="${dto.hashtag }" style="margin:10px 0 0 0; width:720px;">
+			<div class="gAndh" align="center">
+				<c:if test="${statusCnt==0 }">
+					<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)"><input type='text' id="ghStatus" value="좋아요를 선택하셨어요" style="background-color:white;"readonly> 
+				</c:if>
+				<c:if test="${statusCnt==1 }">
+					<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)"><input type='text'   id="ghStatus" value="싫어요를 선택하셨어요" style="background-color:white;"readonly> 
+				</c:if>
+				<c:if test="${statusCnt==2 }">
+				<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)">
+				</c:if>
+				
+		</div>
 		</div>
 	</div>
 	 
@@ -79,9 +180,6 @@
                           </div>
                            </ul>
                           </c:forEach>
-                          	
-                          
-                        
 					</div>		
 					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>	
 				  </div>
@@ -90,11 +188,8 @@
 		</div>
 	</div>
 	</div>
-  </div>
-  <div id="footer">
-	<jsp:include page="/include/baseFooter.jsp" flush="false"/>
-</div>
-</div>
+
+
   <script>
   	var container = document.getElementById('map'); //div id=map자리에 지도를생성			
 	var options = { 
@@ -182,7 +277,41 @@
 				start_from: 0
 			});
 	});
-  
+	function check(num)
+	{
+		if(num==0)//좋아요
+		{
+			$.ajax({		
+					url:"gAndh.nhn?cnt="+num+"&num=${dto.num}",
+	 	 				success:function(data)
+	 	 				{
+	 	 					var str=data.replace(/\s/gi, '');
+	 	 					if(str=="1")
+	 	 						{
+	 	 							document.getElementById('ghStatus').value="좋아요를 선택하셨어요";
+	 	 						}
+	 	 				}
+		 	 	        })
+		}
+		
+		if(num==1)//싫거든요
+		{
+			$.ajax({		
+				url:"gAndh.nhn?cnt="+num+"&num=${dto.num}",
+	 	 				success:function(data)
+	 	 				{
+	 	 					var str=data.replace(/\s/gi, '');
+	 	 					if(str=="0")
+ 	 						{
+	 	 						document.getElementById('ghStatus').value="싫어요를 선택하셨어요";
+ 	 						}
+	 	 				}
+		 	 	        })
+		}
+		
+		
+		
+	}
 	
 	
 	

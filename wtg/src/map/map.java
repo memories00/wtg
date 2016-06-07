@@ -37,6 +37,27 @@ public class map
 		endDto eDto=new endDto();
 		List<passDto> list = new ArrayList<passDto>();
 		
+		HttpSession session=request.getSession();
+		gAndHDto ghDto=new gAndHDto();
+		session.setAttribute("memId","test");
+		String sessionId=(String)session.getAttribute("memId");
+		
+		ghDto.setNum(num);
+		ghDto.setId(sessionId);
+		
+		int check=(Integer)sqlMap.queryForObject("map.checkGandH",ghDto);
+		
+		if(check==1)
+		{
+			int statusCnt=(Integer)sqlMap.queryForObject("map.getStatus",ghDto);
+			request.setAttribute("statusCnt",statusCnt);
+		}
+		else
+		{
+			request.setAttribute("statusCnt",new Integer(2));
+		}
+
+		
 		sqlMap.update("map.updateReadHit",num);//조회수 증가
 		
 		dto=(thDTO)sqlMap.queryForObject("map.getCourse",num);
@@ -84,6 +105,7 @@ public class map
 		request.setAttribute("s_point",dto.getS_point());
 		request.setAttribute("e_name",dto.getE_name());
 		request.setAttribute("e_point",dto.getE_point());
+		
 		return  "/map/viewCourse.jsp";
 	}
 

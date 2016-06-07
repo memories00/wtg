@@ -7,6 +7,7 @@
    <typeAlias alias="endDto" type="map.endDto"/>
   <typeAlias alias="thDto" type="theme.thDTO"/>
   <typeAlias alias="recDto" type="map.recommendDto"/>
+  <typeAlias alias="ghDto" type="map.gAndHDto"/>
 
 <insert id="insertInfo" parameterClass="dto">
   insert into courseInfo(category,num,id,s_name,s_point,e_name,e_point,p1_name,p1_point,p2_name,p2_point,p3_name,p3_point,p4_name,p4_point,p5_name,p5_point,content,m_image,s_image,regdate)
@@ -29,6 +30,34 @@
 
 <update id="updateGood" parameterClass="int">
     			UPDATE courseInfo SET good = good + 1 where num=#num#
+</update>
+<update id="updateHate" parameterClass="int">
+    			UPDATE courseInfo SET hate = hate + 1 where num=#num#
+</update>
+
+<update id="downGood" parameterClass="int">
+    			UPDATE courseInfo SET good = good - 1 where num=#num#
+</update>
+<update id="downHate" parameterClass="int">
+    			UPDATE courseInfo SET hate = hate - 1 where num=#num#
+</update>
+
+
+
+<insert id="insertGandH"  parameterClass="ghDto">
+	insert into gAndh (num,id,status) values(#num#,#id#,#status#)
+</insert>
+
+<select id="checkGandH" resultClass="int" parameterClass="ghDto">
+	select count(*) from gAndh where num=#num# and id=#id#
+</select>
+
+<select id="getStatus" resultClass="int" parameterClass="ghDto">
+	select status from gAndh where num=#num# and id=#id#
+</select>
+
+<update id="updateGandH" parameterClass="int">
+	update gAndH set status=#status#
 </update>
 
 
