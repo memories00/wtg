@@ -5,11 +5,10 @@ import java.util.Date;
 public class SlideDTO {
 
 	
-	private String orgname;
-	private String filetime;
-	private String fileaddr;
-	private int no;
-	private String filec;
+	private String num;
+	private String m_image;
+	private int readhit;
+	private int rank;
 	
 	
 	private String orgname2;
@@ -17,17 +16,19 @@ public class SlideDTO {
 	private String fileaddr2;
 	private int no2;
 	
-	public String getOrgname() {return orgname;}
-	public void setOrgname(String orgname) {this.orgname = orgname;}
+
 	
-	public String getFiletime() {return filetime;}
-	public void setFiletime(String filetime) {this.filetime = filetime;}
+	public String getNum() {return num;}
+	public void setNum(String num) {this.num = num;}
 	
-	public String getFileaddr() {return fileaddr;}
-	public void setFileaddr(String fileaddr) {this.fileaddr = fileaddr;}
+	public String getM_image() {return m_image;}
+	public void setM_image(String m_image) {this.m_image = m_image;}
 	
-	public int getNo() {return no;}
-	public void setNo(int no) {this.no = no;}
+	public int getReadhit() {return readhit;}
+	public void setReadhit(int readhit) {this.readhit = readhit;}
+	
+	public int getRank() {return rank;}
+	public void setRank(int rank) {	this.rank = rank;}
 	
 	public String getOrgname2() {return orgname2;}
 	public void setOrgname2(String orgname2) {this.orgname2 = orgname2;}
@@ -40,9 +41,7 @@ public class SlideDTO {
 	
 	public int getNo2() {return no2;}
 	public void setNo2(int no2) {this.no2 = no2;}
-	
-	public String getFilec() {return filec;}
-	public void setFilec(String filec) {this.filec = filec;}
+
 	
 	
 	

@@ -188,8 +188,8 @@ function test_Search()
 		  <div id="slides">
 			<c:forEach var="list" items="${list}">
 			  <div class="images" style="display:block">
-				<a href="http://${list.fileaddr}/">
-				<img src="/wtg/adminImg/${list.filetime}${list.orgname}"  style="width:100%; height:100%; max-height:300px;"/>
+				<a href="http:///">
+				<img src="/wtg/adminImg/"  style="width:100%; height:100%; max-height:300px;"/>
 				</a>
 			  </div>
 			</c:forEach>

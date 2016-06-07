@@ -5,12 +5,12 @@
 	<typeAlias alias="slide" type="main.bean.SlideDTO" />
 	<typeAlias alias="theme" type="theme.ThemeDTO"/>
 	  <typeAlias alias="comment" type="theme.CommentDTO" />
-	
+		
 		<resultMap id="slideRes" class="slide">
-		  	<result property="orgname" column="orgname"/>
-		  	<result property="no" column="no"/>
-		  	<result property="filetime" column="filetime"/>
-		  	<result property="fileaddr" column="fileaddr"/>
+		  	<result property="num" column="num"/>
+		  	<result property="m_image" column="m_image"/>
+		  	<result property="readhit" column="readhit"/>
+		  	<result property="rank" column="rank"/>
 		</resultMap>
 		<resultMap id="cateGory" class="theme">
 		  	<result property="no" column="no"/>
@@ -38,23 +38,6 @@
 	<select id="catecount" resultClass="int" parameterClass="String">
 		select count(*) from courseinfo where id=#id#
 	</select>
-	<select id="fileselect" resultClass="int" parameterClass="slide">
-		select count(*) from slide where orgname=#orgname#
-	</select>
-	<insert id="slideinsert" parameterClass="slide">
-    		insert into slide(
-    			orgname,
-    			no,
-    			filetime,
-    			fileaddr
-    		)
-    		values(
-    			#orgname#,
-    			slide_no_seq.NEXTVAL,
-    			#filetime#,
-    			#fileaddr#
-    		)
-    </insert>
     <insert id="cateinsert" parameterClass="slide">
     		insert into cate(
     			orgname2,
@@ -70,23 +53,11 @@
     		)
     </insert>
 	<select id="selectAll" resultMap="slideRes">
-		SELECT * FROM SLIDE ORDER BY no DESC
+		select num,m_image,readhit,DENSE_RANK() over(order by readhit desc) as rank from courseinfo
 	</select>
 	<select id="cateselect" resultMap="cateGory" parameterClass="String">
 		SELECT * FROM COURSEINFO where id=#id# ORDER BY num DESC
 	</select>
-	<select id="no" resultMap="slideRes">
-		SELECT NO FROM SLIDE ORDER BY NO DESC
-	</select>
-	<select id="sldel" resultClass="slide" parameterClass="String">
-		select * from slide where no=#c#
-	</select>
-	<select id="cadel" resultClass="slide" parameterClass="String">
-		select * from cate where no2=#c#
-	</select>
-	<delete id="slidedelete" parameterClass="String">
-			DELETE FROM SLIDE WHERE no = #c#
-   	</delete>
    	<delete id="categorydelete" parameterClass="String">
 			DELETE FROM CATE WHERE no2 = #c#
    	</delete>

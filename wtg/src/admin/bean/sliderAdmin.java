@@ -21,38 +21,7 @@ public class sliderAdmin {
 	@Autowired
 	private SqlMapClientTemplate sqlMap;
 	
-	@RequestMapping("/mainslide.nhn")
-	public String mainslide(MultipartHttpServletRequest request,SlideDTO dto){
-		int count=(Integer)sqlMap.queryForObject("main.slidecount",null);//슬라이드갯수
-		MultipartFile mf=request.getFile("upload"); // 업로드명 갖고오기
-		String orgName=mf.getOriginalFilename(); // 파일네임 가져오기
-		dto.setOrgname(orgName); // dto에 파일네임 set시켜주기
-		
-		String path=request.getServletContext().getRealPath("")+"\\adminImg\\"; // 파일경로
-		System.out.println(path);
-		
-		if(orgName=="") // 파일 선택
-		{
-			return "/main/return.jsp";
-		}
-		
-		long time = System.currentTimeMillis(); 
-		SimpleDateFormat dayTime = new SimpleDateFormat("yyMMddhhmmss");
-		String str = dayTime.format(new Date(time));
-		dto.setFiletime(str);
 
-		sqlMap.insert("main.slideinsert",dto);
-		
-		File copy = new File(path+str+dto.getOrgname());
-		try{mf.transferTo(copy);}
-		catch(Exception e){e.printStackTrace();}
-		
-		request.setAttribute("dto", dto);
-		request.setAttribute("path", path);
-		request.setAttribute("count", count);
-		return "redirect:pageDesignAdmin.nhn";
-	}
-	
 	@RequestMapping("/category.nhn")
 	public String category(MultipartHttpServletRequest request,SlideDTO dto){
 		MultipartFile mf=request.getFile("category"); // 업로드명 갖고오기
@@ -79,20 +48,6 @@ public class sliderAdmin {
 		
 		request.setAttribute("dto", dto);
 		request.setAttribute("path", path);
-		return "redirect:pageDesignAdmin.nhn";
-	}
-	
-	@RequestMapping("/slidedelete.nhn")
-	public String slidedelete(HttpServletRequest request,SlideDTO dto){
-		String ch[]=request.getParameterValues("check");
-		String path=request.getServletContext().getRealPath("")+"\\adminImg\\";
-		for(String c:ch)
-		{
-			dto=(SlideDTO) sqlMap.queryForObject("main.sldel",c);//
-			File deleteFile = new File(path+dto.getFiletime()+dto.getOrgname());
-			deleteFile.delete();
-			sqlMap.delete("main.slidedelete",c);
-		}
 		return "redirect:pageDesignAdmin.nhn";
 	}
 	
