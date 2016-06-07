@@ -37,6 +37,8 @@ public class map
 		endDto eDto=new endDto();
 		List<passDto> list = new ArrayList<passDto>();
 		
+		sqlMap.update("map.updateReadHit",num);//조회수 증가
+		
 		dto=(thDTO)sqlMap.queryForObject("map.getCourse",num);
 		sDto=(startDto)sqlMap.queryForObject("map.startCourse",num);
 		eDto=(endDto)sqlMap.queryForObject("map.endCourse",num);	

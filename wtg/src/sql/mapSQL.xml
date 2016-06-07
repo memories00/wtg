@@ -23,6 +23,15 @@
   insert into endInfo(num,endPlace,endAddress,endPhone,endStn,endDis,endWT) values(#num#,#endPlace#,#endAddress#,#endPhone#,#endStn#,#endDis#,#endWT#)
 </insert>
 
+<update id="updateReadHit" parameterClass="int">
+    			UPDATE courseInfo SET READHIT = readHit + 1 where num=#num#
+</update>
+
+<update id="updateGood" parameterClass="int">
+    			UPDATE courseInfo SET good = good + 1 where num=#num#
+</update>
+
+
 
 <select id="getCourse" resultClass="thDto" parameterClass="int">
 	select * from courseInfo where num=#num#

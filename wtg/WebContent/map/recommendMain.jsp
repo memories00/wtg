@@ -10,10 +10,10 @@
 			#menu_wrap {background-color:#6600ff;position:absolute;  top:0;left:0;bottom:0;width:400px; height:800px;margin:10px 50px 30px 10px;padding:5px;overflow-x:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px; }
 			.bg_white {background:#fff;}		
 			#menu_wrap hr {display: block; height: 1px;border: 0;  border-top: 2px solid #5F5F5F;margin:3px 0;}
-			#menu_wrap .option{background-color:red;text-align: left; height:50px;margin:5px 0 0 0;}
+			#menu_wrap .option{background-color:red;text-align: left; height:30px;margin:5px 0 0 0;}
 			#menu_wrap .option p {margin:10px 0;}  
 			#menu_wrap .option button {margin-left:5px;} 
-			.box1{background-color:red; width:100%; height:30px; margin:10px 0 0 0 }
+			.box1{ width:100%; height:30px; margin:10px 0 0 0 }
 </style>			
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
@@ -24,11 +24,11 @@
 				<div class="map_wrap">
 					<div id="map" style="width:100%; height:900px;overflow:hidden;"></div>
 						<div id="menu_wrap" class="bg_white">
-						<div class="box1">
-							
+						<div class="box1" style="font-size: 25">
+							Tag검색
 						</div>
 					<div class="option" id="best">
-						<input type="text" id="tagName" ><input type="button" value="검색" onclick="test()">
+						<input type="text" id="tagName" style="width:85%; height:30px;" ><input type="button" value="검색" style="width:15%;height:30px"onclick="test()">
 					</div>
 					<hr>
 						<ul id="placesList"></ul>	
@@ -73,7 +73,7 @@
 					var container = document.getElementById('map'); //div id=map자리에 지도를생성			
 					var options = { 
 												center: new daum.maps.LatLng(37.515504, 126.907628), 
-												level: 6
+												level: 7
 											  };  			
 					var map = new daum.maps.Map(container, options);
 					
@@ -142,7 +142,9 @@
 			 							position:markers[i].latlng,
 			 						})
 			 						passMarker.setImage(psmarkerImage);
+			 						map.panTo(markers[i].latlng);
 		 						}
+		 					
 	 						}
 	 							endMarker = new daum.maps.Marker({
  	 					        map: map, // 마커를 표시할 지도

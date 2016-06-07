@@ -34,14 +34,19 @@ public class recommendMap {
 		thDTO thDto=new thDTO();
 		List  < thDTO>list = new ArrayList<thDTO>();
 		 list=sqlMap.queryForList("map.searchTag",tag);
-		//for(int i=0;i<list.size();i++)
-		//{
-		//	int num=Integer.parseInt(list.get(i).toString());
-		//	thDto=(thDTO)sqlMap.queryForObject("map.getCourse",num);
-		//	System.out.println(thDto.getCategory());
-		//}
+
 		request.setAttribute("list",list);
 		return  "/map/recomCourse.jsp";
+	}
+	@RequestMapping("/gAndh.nhn")
+	public void gAndh(HttpServletRequest request,int cnt,int num){	
+		HttpSession session=request.getSession();
+		System.out.println(cnt);
+		if(cnt==0)
+		{
+			sqlMap.update("map.updateGood",num);
+		}
+		//return  "/map/recommendMain.jsp";
 	}
 	
 
