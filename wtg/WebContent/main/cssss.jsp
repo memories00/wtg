@@ -22,7 +22,6 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/yoonho.css" />
 
 
-
 <script>
     $(function() {
     var a=screen.width;
