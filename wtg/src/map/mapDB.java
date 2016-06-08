@@ -184,7 +184,7 @@ public class mapDB
 			e.printStackTrace();
 		}
 
-		return "/wtg/main.nhn";
+		return "/main.nhn";
 	}
 	
 	

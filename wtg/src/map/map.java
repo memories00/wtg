@@ -26,8 +26,8 @@ public class map
 	
 	@RequestMapping("/courseInput.nhn")
 	public String courseInput(HttpServletRequest request){	
-		HttpSession session=request.getSession();
-		session.setAttribute("memId","test");
+		//HttpSession session=request.getSession();
+		//session.setAttribute("memId","test");
 		return  "/map/courseInput.jsp";
 	}
 	@RequestMapping("/courseView.nhn")
@@ -39,7 +39,7 @@ public class map
 		
 		HttpSession session=request.getSession();
 		gAndHDto ghDto=new gAndHDto();
-		session.setAttribute("memId","test");
+		//session.setAttribute("memId","test");
 		String sessionId=(String)session.getAttribute("memId");
 		
 		ghDto.setNum(num);

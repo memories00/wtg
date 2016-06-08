@@ -28,15 +28,27 @@
 							Tag검색
 						</div>
 					<div class="option" id="best">
-						<input type="text" id="tagName" style="width:85%; height:30px;" ><input type="button" value="검색" style="width:15%;height:30px"onclick="test()">
+						<input type="text" id="tagName" style="width:85%; height:30px;" onkeypress="enterKey(event,this);" ><input type="button" value="검색" style="width:15%;height:30px"onclick="test()">
 					</div>
 					<hr>
 						<ul id="placesList"></ul>	
 				</div>
 			</div>
 				<script>
+				 function enterKey(e,here){
+				      if(e.keyCode == 13){  //enter key입력	
+				    	  test()	;
+				      }
+				   }
+				  function removeAllChildNods(el) {   
+	 			        while (el.hasChildNodes()) {
+	 			            el.removeChild (el.lastChild);
+	 			        }
+	 			    }
 					function test()
 					{
+						var listEl = document.getElementById('placesList');
+	 			    		removeAllChildNods(listEl);
 						//alert(tagName.value);
 						$.ajax({		
 			 				url:"recomCourse.nhn?tag="+tagName.value,
@@ -106,7 +118,6 @@
 									markers[i]={latlng:passPosition};
 								}
 						}
-						//alert(startInfo);
 						
 						var stimageSrc = 'http://127.0.0.1:8000/wtg/map/img/red_b.png', // 출발마커이미지의 주소입니다    
 	 		 		 	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
