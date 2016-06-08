@@ -836,7 +836,7 @@
 			<c:otherwise>
 			<script>
 				alert("로그인 후 이용하세요");
-				window.location="main.nhn";
+				//window.location="main.nhn";
 			</script>
 			</c:otherwise>
 	</c:choose>	

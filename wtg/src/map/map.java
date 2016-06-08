@@ -26,8 +26,10 @@ public class map
 	
 	@RequestMapping("/courseInput.nhn")
 	public String courseInput(HttpServletRequest request){	
-		//HttpSession session=request.getSession();
+		HttpSession session=request.getSession();
 		//session.setAttribute("memId","test");
+		String sessionId=(String)session.getAttribute("memId");
+		System.out.println("dfesfess"+sessionId);
 		return  "/map/courseInput.jsp";
 	}
 	@RequestMapping("/courseView.nhn")

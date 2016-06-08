@@ -199,32 +199,7 @@
 	      	슬라이드 전체체크<input id="allCheck" type="checkbox" onclick="allChk(this);"/>
 	    </td>
 	  </tr>
-	  <tr>
-	    <c:forEach var="list" items="${list}">
-		  <td>
-			<a href="http://${list.fileaddr}/" target="_parent">
-			<img src="/wtg/adminImg/${list.filetime}${list.orgname}" width="100px" height="100px"/>
-			</a>
-			&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" name="check" value="${list.no}"/>${list.no}
-			&nbsp;&nbsp;&nbsp;
-			${list.fileaddr}
-		  </td>
-		</c:forEach>
-	  </tr>
-	<tr>
-	  <c:forEach var="list2" items="${list2}">
-		<td>
-		  <a href="http://${list2.fileaddr2}/" target="_parent">
-		  <img src="/wtg/categoryimg/${list2.filetime2}${list2.orgname2}" width="100px" height="100px"/>
-		  </a>
-		  &nbsp;&nbsp;&nbsp;
-		  <input type="checkbox" name="check2" value="${list2.no2}"/>${list2.no2}
-		  &nbsp;&nbsp;&nbsp;
-		  ${list2.fileaddr2}
-		</td>
-	  </c:forEach>
-	</tr>
+
 	<tr>
 	  <td>
 		<input type="button" value="삭제" onClick="category_Delete()">

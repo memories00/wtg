@@ -170,9 +170,9 @@ public class mapDB
 			thDTO dto=new thDTO();
 			request.setCharacterEncoding("EUC-KR");
 			int num=(Integer)sqlMap.queryForObject("map.getNum",null);
-			//System.out.println(daumeditor);
+			System.out.println(daumeditor);
 		
-			String parseStr=daumeditor.substring(9,daumeditor.indexOf("</p>"));
+			String parseStr=daumeditor.substring(3,daumeditor.indexOf("</p>"));
 			System.out.println(parseStr);
 			dto.setNum(num);
 			dto.setContent(parseStr);

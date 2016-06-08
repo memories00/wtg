@@ -279,7 +279,7 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							<img src="/wtg/img/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>
 						</c:forEach>
@@ -324,7 +324,7 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							<img src="/wtg/img/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
@@ -363,7 +363,7 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							<img src="/wtg/img/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
@@ -396,7 +396,7 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 						    <a href="courseView.nhn?num=${list2.num}">
-							 <img src="/wtg/save/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							 <img src="/wtg/img/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
