@@ -4,7 +4,8 @@
 
 	<typeAlias alias="slide" type="main.bean.SlideDTO" />
 	<typeAlias alias="theme" type="theme.ThemeDTO"/>
-	  <typeAlias alias="comment" type="theme.CommentDTO" />
+	<typeAlias alias="comment" type="theme.CommentDTO" />
+	<typeAlias alias="search" type="main.bean.SearchDTO" />
 		
 		<resultMap id="slideRes" class="slide">
 		  	<result property="num" column="num"/>
@@ -12,16 +13,7 @@
 		  	<result property="readhit" column="readhit"/>
 		  	<result property="rank" column="rank"/>
 		</resultMap>
-		<resultMap id="cateGory" class="theme">
-		  	<result property="no" column="no"/>
-		  	<result property="name" column="name"/>
-		  	<result property="file_orgname" column="file_orgname"/>
-		  	<result property="file_savname" column="file_savname"/>
-		  	<result property="readhit" column="readhit"/>
-		  	<result property="good" column="good"/>
-		  	<result property="hate" column="hate"/>
-		  	<result property="regdate" column="regdate"/>
-		</resultMap>
+
 		
 		  <!--  -->
   <resultMap class="comment" id="c">
@@ -55,7 +47,7 @@
 	<select id="selectAll" resultMap="slideRes"> 
 		select num,m_image,readhit,DENSE_RANK() over(order by readhit desc) as rank from courseinfo
 	</select>
-	<select id="cateselect" resultMap="cateGory" parameterClass="String">
+	<select id="cateselect" resultClass="search" parameterClass="String">
 		SELECT * FROM COURSEINFO where id=#id# ORDER BY num DESC
 	</select>
    	<delete id="categorydelete" parameterClass="String">

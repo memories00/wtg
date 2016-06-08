@@ -186,9 +186,9 @@ function test_Search()
 	<div id="slider">
 		<div class="container">
 		  <div id="slides">
-			<c:forEach var="list" items="${list}" end="5">
+			<c:forEach var="list" items="${list}" end="4">
 			  <div class="images" style="display:block">
-				<a href="http:///">
+				<a href="courseView.nhn?num=${list.num}">
 				<img src="/wtg/adminImg/160516010536c.jpg"  style="width:100%; height:100%; max-height:300px;"/>
 				</a>
 			  </div>
@@ -279,7 +279,7 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							<img src="/wtg/save/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>
 						</c:forEach>
@@ -324,7 +324,7 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							<img src="/wtg/save/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
@@ -363,7 +363,7 @@ function test_Search()
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
 							<a href="http://">
-							<img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+							<img src="/wtg/save/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
@@ -395,8 +395,8 @@ function test_Search()
 					  <ul class="als-wrapper">
 						<c:forEach var="list2" items="${list2}">
 						  <li class="als-item">
-							<a href="themeView.nhn?no=${list2.no}&currentPage=1"> 
-							 <img src="/wtg/save/${list2.file_savname}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
+						    <a href="courseView.nhn?num=${list2.num}">
+							 <img src="/wtg/save/${list2.m_image}" style="width: 100%; max-width: 200px; height:100%; max-height:300px;"/>
 							</a>
 						  </li>	
 						</c:forEach>
@@ -411,7 +411,7 @@ function test_Search()
 	</div>
 	</c:if>
 	<div id="themeadd">
-		<a href="http://127.0.0.1:8000/wtg/courseInput.nhn">
+		<a href="courseInput.nhn">
 			<img src="/wtg/categoryimg/bt.JPG" style="width: 100%; max-width: 200px; height:100%; max-height:270px;"/>
 		</a>
 	</div>
