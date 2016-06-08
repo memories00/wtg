@@ -7,18 +7,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>코스등록하기</title>
 
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+	<link href="/wtg/lib/default.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/wtg/lib/fonts.css" rel="stylesheet" type="text/css" media="all" />
+<style>
+	.box_t{background-color:#494949; width:100%; height:15%; float:left; }
+	.box_b{background-color:red; width:100%; height:50px; }
+	.box1{ width:13%; height:100%; float:left; }
+	.box2{ background-color:silver; width:65%; height:100%; float:left; margin:5px 0 0 50px;}
+	.box3{background-color:silver; width:13%; height:100%; float:left;  margin:5px 0 0 50px; }
+	
+</style>
 </head>
 <body>
+	<div class="box_t">
+	</div> 
 <div id="wrapper">
-<div id="header">
-	<jsp:include page="/include/inputHeader.jsp" flush="false"/>
-</div>
 <c:choose>
 	<c:when test="${sessionScope.memId ne null}">
-		 
 <div class="map_wrap">
-	<div id="map" style="width:100%; height:890px;overflow:hidden;"></div>
-		<div class="category">
+	<div id="map" style="width:100%; height:100%;"></div>
+		<div class="category" style="margin:10% 0 0 30px">
 			<ul>
 				<li id="start"  onmousedown="startDrag(event,0)">
 					<span class="ico_comm ico_start"></span>
@@ -31,7 +42,7 @@
 				</li>
 			</ul>
 		</div>
-		<div id="menu_wrap" class="bg_white">
+		<div id="menu_wrap" class="bg_white" style="margin:10% 0 0 10px">
 
 			<div class="option">
 					테마선택 : 
@@ -56,13 +67,10 @@
 			</div>
 		</div>
 </div>
-<div id="footer">
-	<div class="dif" id="link">
-	<a href="http://localhost:8000/wtg/login.nhn">회사소개</a> &nbsp;
-	<a href="http://localhost:8000/wtg/login.nhn">고객센터</a> &nbsp;
-	<a href="http://localhost:8000/wtg/login.nhn">사이트맵</a>
-	</div>
+<div class="box_b">
+너는어디에
 </div>
+
 </div>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06fa7b42a2af7b8c46c9ca9a71d40206&libraries=services"></script>
@@ -842,4 +850,5 @@
 	</c:choose>	
 
 </body>
+
 </html>

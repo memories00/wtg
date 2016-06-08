@@ -16,15 +16,16 @@
 		<script type="text/javascript" src="/wtg/js/jquery.als-1.7.min.js"></script>		
 		<style>
 		#warp{width:100%;}
-	.box1{background-color:red; width:650px; height:450px; float:left;margin:0 50px 0 50px }
-	.box2{background-color:#6600ff; width:800px; height:430px;float:left; margin:0 0 0 0px}
-	.box3{background-color:yellow; width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
-	.box4{ background-color:green;width:800px; height:400px;float:left;margin:50px 0 0 50px}
-	.box5{background-color:red;margin:0px 0 0 0;width:170px; height:170px;float:left;border:1px;}
-	.imgbox{background-color:#6600ff; width:150px; height:150px;}
-	.box-m{float:left;}
-	.box-m2{float:left;display:block;}
-	.preview{ background-color:blue; width:700px;height:300; margin: 30px 0px 0 50px}
+	.box_t{background-color:#494949; width:100%; height:15%; float:left; }
+	.box1{width:38%; height:80%; float:left;margin:20px 30px 0 30px}
+	.box2{;width:50%; height:65%;float:left; margin:0 0 0 0px}
+	.box3{ ;width:38%; height:90%;float:left;display:block;margin:20px 0 0 30px}
+	.box4{ background-color:#494949;width:50%; height:400px;float:left;margin:20px 0 0 20px;}
+	.box5{margin:0px 0 0 0;width:170px; height:170px;float:left;border:1px;}
+	.imgbox{ width:150px; height:150px;}
+	.box-m{float:left; width:100%;height:50%;}
+	.box-m2{float:left;display:block; width:100%;height:50%}
+	.preview{ width:50%;height:300; margin: 30px 0px 0 50px}
 	
 	.body {margin: 10px}
 .where {
@@ -110,17 +111,18 @@
 		</style>
 </head>
 <body>
-
-	<font size="7">카테고리: ${dto.category }${statusCnt}</font>
+<div class="box_t">
+	</div> 
+	<font size="7">카테고리: ${dto.category }</font>
   <div id="warp">
 	<div class="box-m">
 		<div class="box1" id="map">
 		
 		</div>
 		<div class="box2">
-			제목: <input type="text" id="subject" value="${dto.subject }" style="width:720px;">
-			<textarea style="margin:10px 0 0 0" rows="20" cols="117">${dto.content }</textarea>
-			tag: <input type="text" id="tag" value="${dto.hashtag }" style="margin:10px 0 0 0; width:720px;">
+			제목: <input type="text" id="subject" value="${dto.subject }" style="width:90%; margin:20px 0 0 0">
+			<textarea style="margin:10px 0 0 0;width:100%" rows="20" cols="100">${dto.content }</textarea>
+			tag: <input type="text" id="tag" value="${dto.hashtag }" style="margin:10px 0 0 0; width:90%;">
 			<div class="gAndh" align="center">
 				<c:if test="${statusCnt==0 }">
 					<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)"><input type='text' id="ghStatus" value="좋아요를 선택하셨어요" style="background-color:white;"readonly> 
@@ -166,16 +168,16 @@
 		</div>
 	<div class="box4">
 		
-			<div id="imgslide" style="background-color:silver;">
-				<div id="lista1" class="als-container" style="margin:30px 0 0 0; width:800px;">
+			<div id="imgslide" >
+				<div id="lista1" class="als-container" style="margin:30px 0 0 0; width:100%; ">
 					<span class="als-prev" ><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
 					<div class="als-viewport">
 					 
 					  	<c:forEach var="s_image" items="${s_image }">	
 					  	 <ul class="als-wrapper">			
-						  <div class="als-item"style="width:700px;height:400;" >
-						  	<div class="imgbox" id="img1" style="margin:5px 10px 5px 10px ">
-						  	<img src=http://127.0.0.1:8000/wtg/img/${s_image} style="width:700px;height:400;">
+						  <div class="als-item"style="width:50%;height:400;" >
+						  	<div class="imgbox" id="img1" style="background-color:#494949;margin:5px 10px 5px 10px ">
+						  	<img src=http://127.0.0.1:8000/wtg/img/${s_image} style="width:50%;height:400;">
 						  	</div>
                           </div>
                            </ul>

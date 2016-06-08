@@ -393,9 +393,9 @@
         scrollbar-shadow-color: #c3c3c3;
         scrollbar-track-color: #F3F3F3;
     }
-	.tx-canvas iframe { height:400px; }
+	.tx-canvas iframe { height:200px; }
 	.tx-canvas textarea {
-		height:398px;
+		height:198px;
 		overflow:auto;
 		border:none; 
 		background:#fff;

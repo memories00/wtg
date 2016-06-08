@@ -9,17 +9,19 @@
 			<title>코스등록하기</title>
 <style>
 	#warp{width:100%;}
-	.box1{background-color:red; width:650px; height:500px; float:left;margin:0 50px 0 50px }
-	.box2{width:800px; height:550px;float:left; margin:0 0 0 0px}
-	.box3{ width:650px; height:400px;float:left;display:block;margin:50px 0 0 50px}
-	.box4{ width:600px; height:200px;float:left;margin:60px 0 0 50px}
-	.box5{background-color:red;width:170px; height:230px;float:left;margin:65px 0 0 50px;border:1px;}
-	.imgbox{background-color:#6600ff; width:150px; height:150px;}
-	.box-m{float:left;}
-	.box-m2{float:left;display:block;}
-	.btn{background-color:#6600ff; width:150px; height:50px; margin:300px 0 0 0}
-	.sub{background-color:silver;width:800px;}
-	.tag{background-color:pink;width:800px;}
+	.box_t{background-color:#494949; width:100%; height:15%; float:left; }
+	.box_bot{background-color:#494949; width:100%; height:100px; }
+	.box1{background-color:red; width:38%; height:80%; float:left;margin:20px 30px 0 30px }
+	.box2{background-color:red;width:50%; height:65%;float:left; margin:0 0 0 0px}
+	.box3{ background-color:green;width:38%; height:90%;float:left;display:block;margin:20px 0 0 30px}
+	.box4{ background-color:green;width:40%; height:200px;float:left;margin:20px 0 0 30px}
+	.box5{background-color:red;width:150px; height:230px;float:left;margin:30px 0 0 30px;border:1px;}
+	.imgbox{background-color:#6600ff; width:120px; height:130px;}
+	.box-m{ background-color:blue;float:left; width:100%;height:60%}
+	.box-m2{background-color:yellow;float:left;display:block; width:100%;height:50%;}
+	.btn{background-color:#6600ff; width:150px; height:30px; margin:300px 0 0 0}
+	.sub{background-color:silver;width:100%;}
+	.tag{background-color:pink;width:100%;}
 	
 	
 .body {margin: 10px}
@@ -100,12 +102,14 @@
   display: block;
   max-width: 100%;
   width: 100% \9;
-  height: auto;
+  height: 40px;
 }
 
  </style>
  </head>
  <body>
+ <div class="box_t">
+	</div> 
  <font size="7">${dto.category }</font>
   <div id="warp">
 	<div class="box-m">
@@ -113,14 +117,15 @@
 		
 		</div>
 		<div class="box2">
-		<div class="sub">제목: <input type="text" id="subject" style="width:93%"> </div>
+		<div class="sub">제목: <input type="text" id="subject" style="width:80%"> </div>
 				<form name="frm" id="frm" action="insertDB.nhn" method="post"	accept-charset="EUC-KR">
 				<!-- 에디터프레임호출 영역 -->
-				<div id="editor_frame">			
-					<textarea name="daumeditor" id="daumeditor" rows="100" cols="100"
-						style="width: 766px; height: 0px; display: none; border: 1px solid black;"></textarea>
+				<div id="editor_frame" style="width:100%; height:44%;margin:10px 0 0 0" >			
+				
+					<textarea name="daumeditor" id="daumeditor" 
+						style=" height: 100px; display: none; border: 1px solid black;"></textarea>
 				</div>
-				<div class="tag">tag: <input type="text" id="tag" style="width:93%"> </div>
+				<div class="tag">tag: <input type="text" id="tag" style="width:80%; margin:10px; 0 0 0"> </div>
 				<input type="button" id="save_button" value="내용전송" style="float:right;margin:5px 0 0 0 "/>	
 
 				<!-- 실제 값이 담겨져서 넘어갈 textarea 태그 -->
@@ -172,8 +177,8 @@
 					<div class="als-viewport">
 					  <ul class="als-wrapper">
 						
-						  <div class="als-item"style="width:170px; height:230px;" >
-						  	<div class="imgbox" id="img1" style="margin:5px 10px 5px 10px ">
+						  <div class="als-item"style="width:23%; height:90%; margin:10px 10px 0 0;" >
+						  	<div class="imgbox" id="img1" >
 						  	</div>
 							<div class="filebox bs3-success" id="ex1">
                           		<label for="ex_file1" style="margin:10px 0 0 5px ">업로드</label> 
@@ -181,8 +186,8 @@
                         	</div>	
                           </div>
                           	
-							 <div class="als-item"style="width:170px; height:230px;" >
-						  	<div class="imgbox" id="img2"style="margin:5px 10px 5px 10px ">
+							 <div class="als-item"style="width:23%; height:90%; margin:10px 10px 0 0;" >
+						  	<div class="imgbox" id="img2">
 						  	</div>
 							<div class="filebox bs3-success" id="ex2">
                           		<label for="ex_file2" style="margin:10px 0 0 5px ">업로드</label> 
@@ -190,8 +195,8 @@
                         	</div>	
                           </div>
                           
-							<div class="als-item"style="width:170px; height:230px;" >
-						  	<div class="imgbox" id="img3"style="margin:5px 10px 5px 10px ">
+							<div class="als-item"style="width:23%; height:90%; margin:10px 10px 0 0;" >
+						  	<div class="imgbox" id="img3">
 						  	</div>
 							<div class="filebox bs3-success" id="ex3">
                           		<label for="ex_file3" style="margin:10px 0 0 5px ">업로드</label> 
@@ -199,8 +204,8 @@
                         	</div>	
                           </div>
                           
-                           <div class="als-item"style="width:170px; height:230px;" >
-						  	<div class="imgbox" id="img4" style="margin:5px 10px 5px 10px ">
+                           <div class="als-item"style="width:23%; height:90%; margin:10px 10px 0 0;" >
+						  	<div class="imgbox" id="img4" >
 						  	</div>
 							<div class="filebox bs3-success" id="ex4">
                           		<label for="ex_file4" style="margin:10px 0 0 5px ">업로드</label> 
@@ -219,13 +224,18 @@
 			<div class="imgbox" id="m_img"style="margin:5px 10px 5px 10px ">
 			</div>
 		<div class="filebox bs3-success"  id="mx">
-        	<label for="m_file" style="margin:10px 0 0 50px ">업로드</label> 
+        	<label for="m_file" style="margin:5px 0 0 35px ">업로드</label> 
          <input type="file" id="m_file"  onchange="test1(); "> 
 		
 	</div>
 		</div>
 	</div>
+	<div class="box_bot" style="margin:0 0 0 0">
+너는어디에
+</div>
+  
   </div>
+  
   <form name="form1" method="post" action="plase.nhn">
 </form>
 <link rel="stylesheet" href="/wtg/daumeditor/css/editor.css" type="text/css" charset="EUC-KR"/>
@@ -250,7 +260,7 @@
 	 	 				{		 	
 	 	 					var listEl = document.getElementById('m_img');//진행상황 리스트를 치환
 
-	 	 					var imgStr='<img src="\\wtg\\img\\'+str+'"style="width:150px; height:150px;">';
+	 	 					var imgStr='<img src="\\wtg\\img\\'+str+'"style="width:100%; height:90%;">';
 	 	 					var el = document.createElement('li');//li를 추가	 			 
 	 	 					fragment = document.createDocumentFragment();
 	 	 					el.innerHTML=imgStr;
@@ -293,7 +303,7 @@
 	 				url:"imageInsert.nhn?filePath="+src+"&fileName="+str,
 	 	 				success:function(data)
 	 	 				{		 	 
-	 	 					var imgStr='<img src="\\wtg\\img\\'+str+'" style="width:150px; height:150px;">';
+	 	 					var imgStr='<img src="\\wtg\\img\\'+str+'" style="width:100%; height:90%;">';
 	 	 					var el = document.createElement('li');//li를 추가	 			 
 	 	 						fragment = document.createDocumentFragment();
 	 	 					el.innerHTML=imgStr;
