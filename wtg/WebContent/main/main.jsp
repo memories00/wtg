@@ -149,7 +149,7 @@ function test_Search()
 				</a>
 			</c:when>
 			<c:otherwise>
-				<a href="http://localhost:8000/wtg/login.nhn">
+				<a href="http://127.0.0.1:8000/wtg/login.nhn">
 					<img src="/wtg/img/loginBtn.jpg" width="100"/>
 				</a>
 			</c:otherwise>
