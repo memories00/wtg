@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import map.TypeSearch;
+import map.recommendDto;
 
  
 @Controller
@@ -157,7 +158,6 @@ public class theme {
 		TypeSearch ty = new TypeSearch();
 		String info = ty.typeTitle(typeId);			
 		request.setAttribute("info", info);
-//		System.out.println(info);
 		return "/search/sample.jsp";
 	}
 
@@ -165,6 +165,15 @@ public class theme {
 	public String best()
 	{
 		return "/theme/selectBest.jsp";
+	}
+	
+	@RequestMapping("/searchBest.nhn")
+	public String sBest(HttpServletRequest request, String op, recommendDto rdto)
+	{
+		List list = null;	
+		list = sqlMapClientTemplate.queryForList("map.history", op);
+		request.setAttribute("list", list);
+		return "/theme/result.jsp";
 	}
 
 }

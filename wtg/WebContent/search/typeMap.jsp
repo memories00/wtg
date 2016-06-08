@@ -33,12 +33,12 @@
         </div>
         <hr> 
         <div id="type">
-        	<input type="button" id="12" value="°ü±¤Áö12" onclick="categoryType(this)"/>
-        	<input type="button" id="14" value="¹®È­½Ã¼³14" onclick="categoryType(this)"/>
-        	<input type="button" id="28" value="·¹Æ÷Ã÷28" onclick="categoryType(this)"/>
-        	<input type="button" id="32" value="¼÷¹Ú32" onclick="categoryType(this)"/>
-    		<input type="button" id="38" value="¼îÇÎ38" onclick="categoryType(this)"/>
-    		<input type="button" id="39" value="À½½ÄÁ¡39" onclick="categoryType(this)"/>
+        	<input type="button" id="12" value="°ü±¤Áö" onclick="categoryType(this)"/>
+        	<input type="button" id="14" value="¹®È­½Ã¼³" onclick="categoryType(this)"/>
+        	<input type="button" id="28" value="·¹Æ÷Ã÷" onclick="categoryType(this)"/>
+        	<input type="button" id="32" value="¼÷¹Ú" onclick="categoryType(this)"/>
+    		<input type="button" id="38" value="¼îÇÎ" onclick="categoryType(this)"/>
+    		<input type="button" id="39" value="À½½ÄÁ¡" onclick="categoryType(this)"/>
         </div>   
     </div>
 </div>

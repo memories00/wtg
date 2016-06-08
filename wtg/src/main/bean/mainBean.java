@@ -77,8 +77,8 @@ public class mainBean
 		request.setAttribute("count", count);
 		request.setAttribute("logo", logo);
 		SAXBuilder builder = new SAXBuilder();
-		//Document doc=builder.build("C:/Users/user1/git/wtg/wtg/WebContent/main/get_today.xml");
-		Document doc=builder.build("C:/DATA/XML/get_today.xml");
+		Document doc=builder.build("C:/Users/user1/git/wtg/wtg/WebContent/main/get_today.xml");
+		//Document doc=builder.build("C:/DATA/XML/get_today.xml");
 		Element root=doc.getRootElement();
 		List children = root.getChildren();
 		
@@ -147,7 +147,6 @@ public class mainBean
 				list.add(sdto);
 			}
 		}
-		
 		totalCount = list.size();
 		
 			
@@ -162,14 +161,12 @@ public class mainBean
 		int lastCount = totalCount;
 			
 		if (page.getEndCount() < totalCount)
-			
 		lastCount = page.getEndCount() + 1; 
-		request.setAttribute("list",list);
 		list = list.subList(page.getStartCount(), lastCount);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("pagingHtml", pagingHtml);
 		request.setAttribute("page", page);
-		
+		request.setAttribute("list",list);
 
 		return "/theme/searchlist.jsp";
 	}
