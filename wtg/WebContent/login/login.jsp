@@ -39,7 +39,6 @@
 <script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    alert("script");
     var obj;
     var accessToken;
     var tokenType;
@@ -54,12 +53,10 @@
     Kakao.init('43d7c500ee93e1ffb8beb38776c7d47a');
     function loginWithKakao() {
       // 로그인 창을 띄웁니다.
-		alert("login");
 		Kakao.Auth.login({
 			persistAccessToken: true,
 			persistRefreshToken: true,
 			success: function(authObj) {
-				alert("login-success");
 				
 				getKakaotalkUserProfile();
 				
@@ -68,7 +65,6 @@
 				refreshToken = authObj.refresh_token;
 				expiresIn = authObj.expires_in;
 				scope = authObj.scope;
-				alert(accessToken);
 				
 			},
 			fail: function(error) {
@@ -82,11 +78,8 @@
 		Kakao.API.request({
 			url: '/v1/user/logout',
 			success: function(res){
-				
-				alert(accessToken);
-				
-				alert("logout-success");
-				alert("로그아웃됨");
+
+				alert("정상적으로 로그아웃되었습니다!");
 				$("#kakao-profile").text("");
 			},
 			fail: function(error){
@@ -96,7 +89,6 @@
 	};
     
     function getKakaotalkUserProfile(){
-    	alert("profile");
     	Kakao.API.request({
 			url: '/v1/user/me',
 			success: function(res){
@@ -104,13 +96,10 @@
 				nickname = res.properties.nickname;
 				profileImage = res.properties.profile_image;
 				thumbnailImage = res.properties.thumbnail_image;
-				alert(res.id);
-				alert(res.properties.thumbnail_image);
 				$("#kakao-profile").append(res.id);
 				$("#kakao-profile").append(res.properties.nickname);
 				$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname}));
 				
-				alert("post-send");
 				sendPost();
 			},
 			fail: function(error){
@@ -133,13 +122,12 @@
 			},
 			async: true,
 			success: function(){
-				alert("post-success");
+				alert("정상적으로 로그인 되었습니다!");
 			},
 			error: function(){
-				alert("post-error");
+				alert("로그인에 실패하였습니다.");
 			},
 			complete: function(){
-				alert("post-complete");
 				location.replace("/wtg/main.nhn");
 			}
 		});

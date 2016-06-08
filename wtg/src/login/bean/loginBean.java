@@ -37,10 +37,10 @@ public class loginBean
 	}
 	
 	@RequestMapping("/login.nhn")
-	public String login(HttpSession session, LoginDTO ldto, JoinDTO jdto, HttpServletRequest request, String ac_token, String re_token, String mem_id, String mem_name, String mem_pro, String mem_thumb)
+	public String login( LoginDTO ldto, JoinDTO jdto, HttpServletRequest request, String ac_token, String re_token, String mem_id, String mem_name, String mem_pro, String mem_thumb)
 	{
 		System.out.println("java");
-		
+		HttpSession session=request.getSession();
 		HashMap log_map = new HashMap();
 		HashMap join_map = new HashMap();
 		
@@ -50,9 +50,10 @@ public class loginBean
 			
 			if (count==1)
 			{
-				session.setAttribute("memId", mem_id);
-				session.setAttribute("memName", mem_name);
-				System.out.println("login");
+				session.setAttribute("memId",mem_id);
+				session.setAttribute("memName",mem_name);
+				String sessId=(String)session.getAttribute("memId");
+				System.out.println("loginsesdfs"+sessId);
 				System.out.println(mem_id);
 			}
 			else
