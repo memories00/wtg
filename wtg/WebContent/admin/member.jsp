@@ -34,12 +34,16 @@ function mem_Board()
 <div id="ad_contents">
 	<div id="ad_section">
 		<form name="mem" method="post"  enctype="multipart/form-data">
-			<input type="text" name="search"><input type="button" value="검색" onClick="mem_Search()"><br />
+			회원ID검색 : <input type="text" name="search"><input type="button" value="검색" onClick="mem_Search()"><br />
+			<table align="center" width="700" border="1px" cellspacing="0" cellpadding="0" bordercolor="#E2E2C7">
 			<c:forEach var="list" items="${list}">
-			아이디:${list.id} 가입날짜:${list.reg}
+			<tr align="center"><td>아이디 : ${list.id}</td><td> 가입날짜 : ${list.reg}</td>
+			<td>
 			<input type="checkbox" name="check" value="${list.id}">
+			</td>
 			<br />
 			</c:forEach>
+			</table>
 			<input type="button" value="회원탈퇴" onClick="mem_Delete()">
 			<input type="button" value="게시글확인" onClick="mem_Board()">
 		</form>
