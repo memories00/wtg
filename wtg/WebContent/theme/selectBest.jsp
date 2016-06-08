@@ -37,8 +37,11 @@ var options = { 											//지도 옵션 설정
 		level: 6
 	};  			
 var map = new daum.maps.Map(container, options);			//지도 생성
+var titleList = [];											//리스트 배열  
+var points = [];	
+var bounds = new daum.maps.LatLngBounds();					//지도범위 재설정을 위한 좌표객체 생성
 
-//다중 셀렉트박스 생성 함수
+//다중 셀렉트박스 생성
 function multiSelect(srcE, targetId){						
     var val = srcE.options[srcE.selectedIndex].value;
     var targetE = document.getElementById(targetId);
@@ -57,7 +60,8 @@ function multiSelect(srcE, targetId){
     }
 }
 
-//두번째 셀렉트 박스의 value를 생성하는 함수
+
+//두번째 셀렉트 박스의 value를 생성
 function addOption(value, e){								
     var option = new Option(value);
     try{
@@ -67,13 +71,16 @@ function addOption(value, e){
     }
 }
 
-//두번째 셀렉트 박스의 value를 제거하는 함수
+
+//두번째 셀렉트 박스의 value를 제거
 function removeAll(e){										
     for(var i = 0, limit = e.options.length; i < limit - 1; ++i){
         e.remove(1);
     }
 }
 
+
+//선택된 셀렉트박스의 옵션을 컨트롤러로 전달
 function sendOpval(opval){
  	var opval = document.getElementById('selectTwo');
  	var op=opval.value;
@@ -88,6 +95,7 @@ function sendOpval(opval){
 	});
 }
 
+//전달받은 랭킹정보를 목적에 맞게 분할
 function searchOK(list) {
 	alert("팟씽뺘!");
 	var cnt=0;
@@ -101,22 +109,29 @@ function searchOK(list) {
 				y = val[2];
 				rank = val[3];
 			cnt++;	
-			addMarker(new daum.maps.LatLng(x,y),cnt);
+			var xy = new daum.maps.LatLng(x,y);
+			addMarker(xy,cnt);
+			bounds.extend(xy);
 		}
-		alert("마지막뺘!");
-	$("#resultList").html(list);
+	alert("범위재설정뺘!");
+	setbounds();
 }
 
+
+//좌표에 해당하는 마커를 생성하고 띄움
 function addMarker(xy, cnt) {
 	alert("마커뺘!");
 	var marker = new daum.maps.Marker({
 		position: xy
 	});
 	marker.setMap(map);
-	map.panTo(xy);
 }
 	
 	
+//마커를 중심으로 지도 범위를 재설정함
+function setbounds() {
+    map.setBounds(bounds);
+}
 	
 	
 	
