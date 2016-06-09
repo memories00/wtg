@@ -45,9 +45,9 @@
 <div id=header>
 	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
-
+<div style="width:100%; height:80px;"></div>
 <div id=firstLine style="background-color:silver; width:100%; height:30px; display:table-cell; vertical-align:middle">
-	<div style="float:left"><a href="main.nhn">홈</a> ></div>
+	<div style="float:left"><a href="main.nhn">홈</a> </div>
 	<div style="float:left">테마별 코스 ></div>
 	<div style="float:left">${category}</div>
 </div>
@@ -92,6 +92,10 @@
 </div>
  
 <div>${pagingHtml}</div>
+
+<div id=footer>
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+</div>
 
 </body>
 </html>
