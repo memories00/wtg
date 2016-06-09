@@ -282,6 +282,8 @@ function test_Search()
 								
 				            	</div>
 				          	</div><!--/ Item active end -->
+				          	
+				          	<c:if test="${count>=4}">
 							<div class="item">
 					            <div class="row">
 									<div class="col-xs-12 col-sm-6 col-md-3">   
@@ -354,6 +356,7 @@ function test_Search()
 									</div>
 					            </div>
 				          	</div><!--/ Item end -->
+				          	</c:if>
 				        </div><!-- Carousel inner end -->
 							
 							<div class="barrier-carousel-controller">
