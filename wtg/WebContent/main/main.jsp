@@ -249,10 +249,10 @@ function test_Search()
 																	<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
 																	    <i class="fa fa-search"></i>              
 																	</a>
-														        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
+														        	<a href="courseInput.nhn" class=""><i class="fa fa-link"></i></a>
 														        </span>
 														        <h3>등록된 코스가 없습니다.</h3>
-														        <p>코스를 등록해주세요!</p>
+														        <p>코스를 등록해주세요!111111</p>
 													    	</div>
 													    </div>
 													    <img src="categoryimg/bt.JPG" alt="portfolio" style="height:360px;">
@@ -269,10 +269,10 @@ function test_Search()
 																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
 																		    <i class="fa fa-search"></i>              
 																		</a>
-															        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
+															        	<a href="courseInput.nhn" class=""><i class="fa fa-link"></i></a>
 															        </span>
 															        <h3>등록된 코스가 없습니다.</h3>
-															        <p>코스를 등록해주세요!</p>
+															        <p>코스를 등록해주세요!222222</p>
 														    	</div>
 														    </div>
 														    <img src="save/${list2.m_image}" alt="portfolio" style="height:360px;">
