@@ -239,7 +239,7 @@ function distanceSum(place)
 		return distance;
 }
 
-
+ 
 
 
 
