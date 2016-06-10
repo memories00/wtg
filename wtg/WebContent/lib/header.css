@@ -1,19 +1,5 @@
 @CHARSET "EUC-KR";
 
-#ad_logo {
-	width:67%; 
-	height:155px; 
-	top:5px;  
-	left:5%; 
-	margin-left:-50px;
-	position: absolute;
-}
-#ad_logo_img {
-	width: 100%;
-	max-width:630px;
-	height:100%;
-	max-height:155px;
-}
 #ad_info {
 	width:30%; 
 	height:50px; 

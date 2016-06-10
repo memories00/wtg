@@ -284,74 +284,25 @@ function test_Search()
 								          	<c:if test="${count>=4}">
 											<div class="item">
 									            <div class="row">
+													<c:forEach var="list2" items="${list2}">
 													<div class="col-xs-12 col-sm-6 col-md-3">   
 														<div class="thumbnail">
 														    <div class="caption">
 														    	<div class="caption-content">
 															    	<span>
-																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
+																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
 																		    <i class="fa fa-search"></i>              
 																		</a>
-															        	<a href="#" class=""><i class="fa fa-link"></i></a>
+															        	<a href="courseInput.nhn" class=""><i class="fa fa-link"></i></a>
 															        </span>
-															        <h3>Creative Vision</h3>
-															        <p>Effektive is more than your average agency.</p>
+															        <h3>등록된 코스가 없습니다.</h3>
+															        <p>코스를 등록해주세요!222222</p>
 														    	</div>
 														    </div>
-														    <img src="sample/images/portfolio/portfolio5.jpg" alt="portfolio">
-														</div>
-													</div>          
-													<div class="col-xs-12 col-sm-6 col-md-3">   
-														<div class="thumbnail">
-														    <div class="caption">
-														    	<div class="caption-content">
-															    	<span>
-																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
-																		    <i class="fa fa-search"></i>              
-																		</a>
-															        	<a href="#" class=""><i class="fa fa-link"></i></a>
-															        </span>
-															        <h3>Creative Vision</h3>
-															        <p>Effektive is more than your average agency.</p>
-														    	</div>
-														    </div>
-														    <img src="sample/images/portfolio/portfolio6.jpg" alt="portfolio">
+														    <img src="save/${list2.m_image}" alt="portfolio" style="height:360px;">
 														</div>
 													</div>
-													<div class="col-xs-12 col-sm-6 col-md-3">   
-														<div class="thumbnail">
-														    <div class="caption">
-														    	<div class="caption-content">
-															    	<span>
-																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
-																		    <i class="fa fa-search"></i>              
-																		</a>
-															        	<a href="#" class=""><i class="fa fa-link"></i></a>
-															        </span>
-															        <h3>Creative Vision</h3>
-															        <p>Effektive is more than your average agency.</p>
-														    	</div>
-														    </div>
-														    <img src="sample/images/portfolio/portfolio7.jpg" alt="portfolio">
-														</div>
-													</div>
-													<div class="col-xs-12 col-sm-6 col-md-3">   
-														<div class="thumbnail">
-														    <div class="caption">
-														    	<div class="caption-content">
-															    	<span>
-																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
-																		    <i class="fa fa-search"></i>              
-																		</a>
-															        	<a href="#" class=""><i class="fa fa-link"></i></a>
-															        </span>
-															        <h3>Creative Vision</h3>
-															        <p>Effektive is more than your average agency.</p>
-														    	</div>
-														    </div>
-														    <img src="sample/images/portfolio/portfolio8.jpg" alt="portfolio">
-														</div>
-													</div>
+												</c:forEach>
 									            </div>
 								          	</div><!--/ Item end -->
 								          	</c:if>
