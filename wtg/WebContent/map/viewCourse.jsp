@@ -122,7 +122,7 @@
 		</div>
 		<div class="box2">
 			Á¦¸ñ: <input type="text" id="subject" value="${dto.subject }" style="width:90%; margin:20px 0 0 0">
-			<textarea style="margin:10px 0 0 0;width:100%" rows="20" cols="100">${dto.content }</textarea>
+			<textarea style="margin:10px 0 0 0;width:100%" rows="13" cols="80">${dto.content }</textarea>
 			tag: <input type="text" id="tag" value="${dto.hashtag }" style="margin:10px 0 0 0; width:90%;">
 			<div class="gAndh" align="center">
 				<c:if test="${statusCnt==0 }">
@@ -168,21 +168,18 @@
 		</div>
 		</div>
 	<div class="box4">
-		
 			<div id="imgslide" >
-				<div id="lista1" class="als-container" style="margin:30px 0 0 0; width:100%; ">
+				<div id="lista1" class="als-container" style="margin:30px 0 0 0;">
 					<span class="als-prev" ><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
 					<div class="als-viewport">
-					 
-					  	<c:forEach var="s_image" items="${s_image }">	
-					  	 <ul class="als-wrapper">			
-						  <div class="als-item"style="width:50%;height:400;" >
-						  	<div class="imgbox" id="img1" style="background-color:#494949;margin:5px 10px 5px 10px ">
-						  	<img src=http://127.0.0.1:8000/wtg/img/${s_image} style="width:50%;height:400;">
-						  	</div>
-                          </div>
-                           </ul>
-                          </c:forEach>
+								 
+					  	<c:forEach var="s_image" items="${imageList}" varStatus="i">
+					  		${s_image}	
+					  	 	<li class="als-item" style="background-color:blue;" >
+						  	<img src="http://127.0.0.1:8000/wtg/img/${s_image}"style="width:100px;height:150px" />
+						  	</li>
+                      </c:forEach>
+                          
 					</div>		
 					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>	
 				  </div>
@@ -190,9 +187,7 @@
 	 
 		</div>
 	</div>
-	<div id="ad_footer">
-	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
-</div>
+	
 	</div>
 
 

@@ -12,11 +12,11 @@
 	.box1{width:38%; height:80%; float:left;margin:20px 30px 0 30px }
 	.box2{width:50%; height:65%;float:left; margin:0 0 0 0px}
 	.box3{width:38%; height:90%;float:left;display:block;margin:20px 0 0 30px;overflow: auto;}
-	.box4{width:40%; height:200px;float:left;margin:20px 0 0 30px}
+	.box4{background-color:red;   width:40%; height:200px;float:left;margin:20px 0 0 30px}
 	.box5{width:150px; height:230px;float:left;margin:30px 0 0 30px;border:1px;}
 	.imgbox{width:120px; height:130px;}
-	.box-m{float:left; width:100%;height:60%}
-	.box-m2{float:left;display:block; width:100%;height:50%;}
+	.box-m{background-color:blue;float:left; width:100%;height:60%}
+	.box-m2{background-color:red;float:left;display:block; width:100%;height:50%;}
 	.btn{width:150px; height:30px; margin:300px 0 0 0}
 	.sub{width:100%;}
 	.tag{width:100%;}

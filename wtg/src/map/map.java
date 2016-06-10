@@ -89,14 +89,18 @@ public class map
 		String s_imgArr[]=dto.getS_image().split("/");
 		String imgNameArr[]=new String[4];
 		//System.out.println(s_imgArr.length); length=4
+		ArrayList imageList=new ArrayList();
 		for(int i=0;i<s_imgArr.length;i++)
 		{
 			if(!(s_imgArr[i].equals("default.jsp")))
 			{
 				imgNameArr[i]=s_imgArr[i];
-				request.setAttribute("s_image",imgNameArr[i]);
+				//System.out.println(imgNameArr[i]);
+				imageList.add(imgNameArr[i]);
+				//request.setAttribute("s_image",imgNameArr[i]);
 			}
 			//
+			//System.out.println(imageList.size());
 		}
 		request.setAttribute("dto",dto);
 		request.setAttribute("sDto",sDto);
@@ -107,6 +111,7 @@ public class map
 		request.setAttribute("s_point",dto.getS_point());
 		request.setAttribute("e_name",dto.getE_name());
 		request.setAttribute("e_point",dto.getE_point());
+		request.setAttribute("imageList",imageList);
 		
 		return  "/map/viewCourse.jsp";
 	}
