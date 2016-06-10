@@ -168,20 +168,26 @@ function test_Search()
 			  	<li data-target="#main-slide" data-slide-to="0" class="active"></li>
 			    <li data-target="#main-slide" data-slide-to="1"></li>
 			    <li data-target="#main-slide" data-slide-to="2"></li>
+			    <li data-target="#main-slide" data-slide-to="3"></li>
+			    <li data-target="#main-slide" data-slide-to="4"></li>
 			</ol><!--/ Indicators end-->
 			
 			<!-- Carousel inner -->
 			<div class="carousel-inner">
+			<c:forEach var="list" items="${list}" end="0">
 			    <div class="item active">
 			    	<img class="img-responsive" src="adminImg/160516010536c.jpg" alt="slider" style="height:700px; width:100%;">
 			    </div><!--/ Carousel item end -->
-
-				<c:forEach var="list" items="${list}" end="1">
+			</c:forEach>
+				<c:forEach var="list" items="${list}" end="4" varStatus="i">
+					<c:if test="${i.count>=2}">
 					<div class="item">
+					${list.num}
 						<a href="courseView.nhn?num=${list.num}">
 							<img class="img-responsive" src="adminImg/160516010536c.jpg" alt="slider" style="height:700px; width:100%;">
 						</a>
 					</div>
+					</c:if>
 				</c:forEach><!--/ Carousel item end -->
 			</div><!-- Carousel inner end-->
 			
