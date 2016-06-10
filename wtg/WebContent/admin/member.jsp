@@ -31,8 +31,8 @@ function mem_Board()
 
 <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 탑 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 
-<div id="ad_contents">
-	<div id="ad_section">
+<div id="contents">
+	<div id="section">
 		<form name="mem" method="post"  enctype="multipart/form-data">
 			회원ID검색 : <input type="text" name="search"><input type="button" value="검색" onClick="mem_Search()"><br />
 			<table align="center" width="700" border="1px" cellspacing="0" cellpadding="0" bordercolor="#E2E2C7">
