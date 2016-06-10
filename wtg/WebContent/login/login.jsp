@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/mainCss.css"/>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -13,10 +14,10 @@
 <body>
 
 <div id="wrapper">
-<div id="bs_header" style="width:100%; height:80px;">
+<div id="header">
 	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
-<div id="lg_contents" style="width:100%; height:300px; padding:60px;">
+<div id="contents" style="width:100%; height:450px; padding:150px;">
 	<div id="content" style="text-align:center">
 		<br />
 		<c:choose>
@@ -132,7 +133,7 @@
   //]]>
 </script>
 </div>
-<div id="bs_footer">
+<div id="footer">
 	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
 </div>
 </div>

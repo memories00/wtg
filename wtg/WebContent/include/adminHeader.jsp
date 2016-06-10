@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/header.css" />
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>    
-<div id="ad_info">
+<div id="ad_info" style="text-align:right;">
 	<c:choose>
 		<c:when test="${memId ne '168456368'}">
 			<script>
@@ -14,7 +14,7 @@
 		</c:when>
 
 		<c:otherwise>
-			${sessionScope.memId} 관리자님 &nbsp;&nbsp;<a href="main.nhn">메인 페이지로 이동</a>
+			<a href="main.nhn">메인 페이지로 이동</a>
 		</c:otherwise>
 	</c:choose>
 </div>

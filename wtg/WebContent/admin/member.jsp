@@ -21,7 +21,7 @@ function mem_Board()
 </script>
 
 <html>
-<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/admin.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/adminCss.css"/>
 <body>
 <div id="wrapper">
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é Å¾ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->

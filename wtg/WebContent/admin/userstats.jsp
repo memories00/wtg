@@ -46,7 +46,7 @@ function user_Allday()
 <link class="include" rel="stylesheet" type="text/css" href="/wtg/lib/jquery.jqplot.min.css" />
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="/wtg/js/jquery.jqplot.min.js"></script>
-<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/admin.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/adminCss.css"/>
 </head>
 <body>
 <div id="wrapper">

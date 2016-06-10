@@ -77,8 +77,8 @@ public class mainBean
 		request.setAttribute("count", count);
 		request.setAttribute("logo", logo);
 		SAXBuilder builder = new SAXBuilder();
-		Document doc=builder.build("C:/Users/user1/git/wtg/wtg/WebContent/main/get_today.xml");
-		//Document doc=builder.build("C:/DATA/XML/get_today.xml");
+		//Document doc=builder.build("C:/Users/user1/git/wtg/wtg/WebContent/main/get_today.xml");
+		Document doc=builder.build("C:/DATA/XML/get_today.xml");
 		Element root=doc.getRootElement();
 		List children = root.getChildren();
 		

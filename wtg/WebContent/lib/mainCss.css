@@ -1,169 +1,19 @@
 @CHARSET "EUC-KR";
 body{
 	text-align:center;
-	background-color:#F6F6F6;
+	background-color:#333;
 }
-#wrapper {
-	min-width:950px;
-}
-
 #header {
 	width:100%; 
-	left:0px; top:0px; 
-	position: relative;
-	height:550px;
-	background-color:#6799FF;
+	height:80px;
+	background-color:#333;
 }
-#logo {
-	width:30%; 
-	height:155px; 
-	top:5px;  
-	left:5%; 
-	margin-left:-50px;
-	position: absolute;
-}
-#logo_img {
-	width: 100%;
-	max-width:630px;
-	height:100%;
-	max-height:155px;
-}
-#info {
-	width:30%; 
-	height:50px; 
-	top:5px;
-	right:0px; 
-	text-align:right; 
-	position: absolute;
-}
-#info2 {
-	width:145px; 
-	height:60px; 
-	top:60px;
-	right:0px; 
-	text-align:center;
-	padding:20px;
-	text-align:left;
-	position: absolute;
-}
-#menu {
-	width:100%; 
-	height:70px; 
-	top:155px;  
-	position: absolute;
-	background-color:#79ABFF;
-	text-align:center;
-}
-#menu_box {
-	width:790px;
-	margin:auto;
-}
-
-ul#main_menu{
-	
-}
-ul#main_menu li{
-	width:125px; 
-	height:70px;
-	float:left;
-	list-style:none;
-	margin:auto;
-	text-align:center;
-}
-
-ul#main_menu li:hover, ul#main_menu li:active {
-    background:#6799FF;
-}
-
-ul#main_menu li p{
-	padding-top:20px;
-	font-weight: 600;
-	color: white;
-	font-size: 18px;
-}
-#slider {
-	width:100%; 
-	height:320px; 
-	top:225px;  
-	position: absolute; 
-}
-
 #contents {
-	width:100%; 
-	top:50px;
+	width:100%;
 	height:800px;
-	position: relative;
 	background-color:#FFFFFF;
 }
-#search {
-	width:90%; 
-	height:150px; 
-	top:100px; 
-	left:5%; 
-	position:absolute;
-}
-.menu {
-	list-style:none;
-}
-.menu a{
-	cursor:pointer;
-	list-style:none;
-}
-.menu .hide{
-	display:none;
-	list-style:none;
-}
-
-#theme {
-	width:710px; 
-	height:310px; 
-	top:250px; 
-	left:50%; 
-	margin-left:-475px; 
-	position: absolute;
-}
-#themeadd{
-	width:200px; 
-	height:300px; 
-	top:255px; 
-	left:50%; 
-	margin-left:+250px; 
-	position: absolute;
-	background-color:#FFFFFF;
-}
-
-#review {
-	width:90%; 
-	height:100px; 
-	top:650px; 
-	left:50%; 
-	margin-left:-425px;
-	position: absolute; 
-	border: 1px solid black;
-	background-color:#FFFFFF;
-	text-align:center;
-}
-
 #footer {
 	width:100%; 
-	top:90px; 
-	position: relative;
 }
-#link {
-	width:100%;
-	height:50px; 
-	top:10px; 
-	left:50%; 
-	margin-left:-475px; 
-	position: absolute; 
-}
-#company {
-	width:100%; 
-	height:120px; 
-	top:60px; 
-	left:50%; 
-	margin-left:-475px; 
-	position: absolute;
-}
-
 .dif {max-width:950px; margin:auto;}

@@ -75,8 +75,8 @@ $(function() {
 <script>
 <%
 	String MyKey="5F5DC3B8-FFFF00AA9";
-	String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
-	//String XmlPath="C:/DATA/XML/";
+	//String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
+	String XmlPath="C:/DATA/XML/";
 	String initRst=Api.Init(MyKey,XmlPath);
 
 	if(initRst=="1"){
@@ -324,7 +324,7 @@ function test_Search()
 																	<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
 																	    <i class="fa fa-search"></i>              
 																	</a>
-														        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
+														        	<a href="login.nhn" class=""><i class="fa fa-link"></i></a>
 														        </span>
 														        <h3>등록된 코스가 없습니다.</h3>
 														        <p>코스를 등록해주세요!</p>

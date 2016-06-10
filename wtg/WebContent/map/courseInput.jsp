@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-<div id="header" style="width:100%; height:80px;">
+<div id="header" style="width:100%; height:80px; background-color:#333;">
 	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
 <div id="wrapper">

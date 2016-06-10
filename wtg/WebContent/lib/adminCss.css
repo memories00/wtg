@@ -1,89 +1,28 @@
 @CHARSET "EUC-KR";
 
-#ad_info {
+#header {
 	width:100%;
-	text_align:right;
-	height:30px;
-	background-color:#333;
-	color:white;
-}
-
-#ad_menu {
-	width:100%;
-	height:70px;
+	height:130px;
 	background-color:#333;
 	text-align:center;
 }
-
-#topMenu {
-	top:70px;
-	height:70px;
+#menu {
+	width:100%;
+}
+#contents {
 	width:950px;
-	padding:50px;
-}
-#topMenu ul {
+	min-height:550px;
 	text-align:center;
-	list-style:none;
-	margin:0px;
-	padding:0px;
+	margin:auto;
 }
-#topMenu ul li{
-	list-style:none;
-	float:left;
-	line-height:30px;
-	list-style:none;
-	text-align:center;
-	position:relative;
-}
-.menuLink, .submenuLink {
-	text-decoration:none;
-	display:block;
-	width:150px;
-	font-size:14px;
-	font-weight:bold;
-}
-.topMenuLi:hover .menuLink {
-    color:#FFFFFF;
-}
-.submenuLink {
-	background-color:#333;
-	color:white;
-}
-.submenu{
-	position:absolute;
-	height:0px;
-	overflow:hidden;
-	transition:height .2s;
-	-webkit-transition: height .2s;
-	-moz-transition: height .2s;
-	-o-transition: height .2s;
-	margin:0px;
-	padding:0px;
-}
-.topMenuLi:hover .submenu { 
-	height: 70px;
-}
-.submenuLink:hover {
-	background-color:#000;
-	color:white;
-}
-
 #footer {
 	width:100%;
 	height:150px;
 	background-color:#333;
 	text-align:center;
 	color:gray;
-	bottom:0px;
-}
-#company {
-	font-size:13px;
-	width:500px; 
-	height:120px; 
-	margin:auto;
-	padding:50px;
 }
 a:link, a:visited, a:hover{
-	color:black;
+	color:gray;
 	text-decoration:none;
 }

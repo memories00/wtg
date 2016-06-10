@@ -6,7 +6,7 @@
 <title>admin</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/admin.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/adminCss.css"/>
 </head>
 <body>
 

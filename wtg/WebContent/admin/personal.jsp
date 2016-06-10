@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>회원가입 약관</title>
 </head>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/adminCss.css"/>
 <script>
 function personal_Check()
 {
@@ -17,12 +18,12 @@ function personal_Check()
 <div id="wrapper">
 <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 탑 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 <div id="header">
-	
+	<jsp:include page="/include/adminHeader.jsp" flush="false"/>
 </div>
 <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 탑 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 
-<div id="ad_contents">
-	<div id="ad_section">
+<div id="contents">
+	<div id="section">
 		 <form name="personal" method="post">
 		 <table width="600" height="650">
 		  <tr>
@@ -47,7 +48,7 @@ function personal_Check()
 
 <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 바텀 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 <div id="ad_footer">
-	
+	<jsp:include page="/include/adminFooter.jsp" flush="false"/>	
 </div>
 <!--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 바텀 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 </div>
