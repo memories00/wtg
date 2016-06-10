@@ -4,8 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <html>
 <head>
 <!-- CSS

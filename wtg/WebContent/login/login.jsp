@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/contents.css"/>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -14,13 +13,11 @@
 <body>
 
 <div id="wrapper">
-<div id="bs_header">
+<div id="bs_header" style="width:100%; height:80px;">
 	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
-<div id="lg_contents">
-	<div id="content">
-		session : ${sessionScope.memId}
-		session : ${sessionScope.memName}
+<div id="lg_contents" style="width:100%; height:300px; padding:60px;">
+	<div id="content" style="text-align:center">
 		<br />
 		<c:choose>
 			<c:when test="${sessionScope.memId ne null}">
@@ -96,9 +93,9 @@
 				nickname = res.properties.nickname;
 				profileImage = res.properties.profile_image;
 				thumbnailImage = res.properties.thumbnail_image;
-				$("#kakao-profile").append(res.id);
-				$("#kakao-profile").append(res.properties.nickname);
-				$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname}));
+				//$("#kakao-profile").append(res.id);
+				//$("#kakao-profile").append(res.properties.nickname);
+				//$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname}));
 				
 				sendPost();
 			},
