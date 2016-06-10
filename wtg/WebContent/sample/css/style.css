@@ -1083,68 +1083,6 @@ h5{
 }
 
 
-/*MAp wrapper
-==============================*/
-.map-wrapper{
-	position: relative;
-}
-
-.map {
-	height: 400px;
-	z-index: 1;
-}
-
-.contact-info-inner h3{
-	font-weight: 700;
-	margin-bottom: 25px;
-	font-size: 24px;
-	color: #fff;
-}
-
-.contact-info h3{
-	margin-top: 42px;
-	font-weight: 700;
-	font-size: 24px;
-}
-
-.contact-info p{
-	font-size: 18px;
-}
-
-.contact-info i{
-	font-size: 18px;
-	margin-right: 10px;
-}
-
-/* Contact inside Map */
-.contact-info-inner {
-	position: absolute;
-	color: #fff;
-	top: 0;
-	bottom: 0;
-	z-index: 2;
-	background: rgba(0,0,0,.7);
-	padding: 25px 30px;
-	max-width: 400px;
-	max-height: 400px;
-	text-align: left;
-	right: 70px;
-}
-
-.contact-info-inner p{
-	overflow: hidden;
-	margin-bottom: 25px;
-}
-
-.contact-info-inner p strong{
-	display: block;
-}
-
-.contact-info-inner i{
-	margin-right: 20px !important;
-	font-size: 24px;
-	margin-top: 5px;
-}
 
 
 /*FOOTER

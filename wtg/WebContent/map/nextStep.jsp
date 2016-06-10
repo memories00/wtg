@@ -108,8 +108,9 @@
  </style>
  </head>
  <body>
- <div class="box_t">
-	</div> 
+<div id="ad_footer">
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+</div>
  <font size="7">${dto.category }</font>
   <div id="warp">
 	<div class="box-m">
@@ -230,8 +231,8 @@
 	</div>
 		</div>
 	</div>
-	<div class="box_bot" style="margin:0 0 0 0">
-너는어디에
+<div id="ad_footer">
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
 </div>
   
   </div>

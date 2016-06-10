@@ -14,16 +14,17 @@
 	<link href="/wtg/lib/fonts.css" rel="stylesheet" type="text/css" media="all" />
 <style>
 	.box_t{background-color:#494949; width:100%; height:15%; float:left; }
-	.box_b{background-color:red; width:100%; height:50px; }
+	.box_b{width:100%; height:50px; }
 	.box1{ width:13%; height:100%; float:left; }
-	.box2{ background-color:silver; width:65%; height:100%; float:left; margin:5px 0 0 50px;}
-	.box3{background-color:silver; width:13%; height:100%; float:left;  margin:5px 0 0 50px; }
+	.box2{width:65%; height:100%; float:left; margin:5px 0 0 50px; overflow: auto;}
+	.box3{ width:13%; height:100%; float:left;  margin:5px 0 0 50px; }
 	
 </style>
 </head>
 <body>
-	<div class="box_t">
-	</div> 
+<div id="ad_footer">
+	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
+</div>
 <div id="wrapper">
 <c:choose>
 	<c:when test="${sessionScope.memId ne null}">
@@ -67,8 +68,8 @@
 			</div>
 		</div>
 </div>
-<div class="box_b">
-너는어디에
+<div id="ad_footer">
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
 </div>
 
 </div>
