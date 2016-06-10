@@ -1,38 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html;charset=utf-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <title>main</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/admin.css"/>
 </head>
 <body>
 
 <div id="wrapper">
-<!--ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ ลพ ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้-->
-<div id="header" style="width:100%; heigh:100px;">
-	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
+<!--โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“ ํ‘ โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“-->
+<div id="header" style="width:100%; heigh:70px; background-color:#333;">
+	<jsp:include page="/include/adminHeader.jsp" flush="false"/>
 </div>
-<!--ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ ลพ ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่-->
+<!--โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘ ํ‘ โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘-->
 
-<div id="ad_contents" style="width:100%; heigh:300px; text-align:center;">
+<div id="contents" style="width:100%; text-align:center; margin-top:110px; margin-bottom:110px;">
 	<div id="ad_section">
 		<br />
 		<br />
 		<br />
-		ฐüธฎภฺ ฦไภฬม๖ ภิดฯดู.
+		๊ด€๋ฆฌ์ ํ์ด์ง€ ์…๋๋ค.
+		<br />
 		<br />
 		<br />
 		<br />
 	</div>
 </div>
 
-<!--ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ นูลา ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้ก้-->
-<div id="ad_footer">
-	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+<!--โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“ ๋ฐ”ํ…€ โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“โ“-->
+<div id="footer" style="width:100%; height:150px; bottom:0px;">
+	<jsp:include page="/include/adminFooter.jsp" flush="false"/>
 </div>
-<!--ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ นูลา ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่ก่-->
+<!--โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘ ๋ฐ”ํ…€ โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘โ‘-->
 </div>
 </body>
 </html>

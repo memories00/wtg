@@ -102,10 +102,5 @@
     <script type="text/javascript" src="sample/js/jquery.counterup.min.js"></script>
     <!-- Waypoints -->
     <script type="text/javascript" src="sample/js/jquery.waypoints.min.js"></script>
-    <!-- Google Map API Key Source -->
-    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <!-- Google Map  Source -->
-    <script type="text/javascript" src="sample/js/gmaps.js"></script>
-    <script type="text/javascript" src="sample/js/custom.js"></script>
 </body>
 </html>

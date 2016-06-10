@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<link rel="stylesheet" type="text/css" media="screen" href="lib/contents.css"/>
-<link class="include" rel="stylesheet" type="text/css" href="/wtg/lib/jquery.jqplot.min.css" />
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="/wtg/js/jquery.jqplot.min.js"></script>
-
 <html>
-
+<head>
 <script>
 $(function(){
 	
@@ -49,6 +43,11 @@ function user_Allday()
 	document.user.submit();
 }
 </script>
+<link class="include" rel="stylesheet" type="text/css" href="/wtg/lib/jquery.jqplot.min.css" />
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/wtg/js/jquery.jqplot.min.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/admin.css"/>
+</head>
 <body>
 <div id="wrapper">
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é Å¾ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
@@ -132,7 +131,7 @@ function user_Allday()
 
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é ¹ÙÅÒ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
 <div id="ad_footer">
-	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+	<jsp:include page="/include/adminFooter.jsp" flush="false"/>
 </div>
 <!--¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è ¹ÙÅÒ ¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è-->
 </div>

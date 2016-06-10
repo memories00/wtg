@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/contents.css"/>
 <html>
 <head>
 <title>admin</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/admin.css"/>
 </head>
 <body>
 
@@ -32,7 +32,7 @@
 
 <!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é ¹ÙÅÒ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
 <div id="ad_footer">
-	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+	<jsp:include page="/include/adminFooter.jsp" flush="false"/>
 </div>
 <!--¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è ¹ÙÅÒ ¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è-->
 </div>
