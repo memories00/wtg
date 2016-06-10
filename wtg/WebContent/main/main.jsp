@@ -140,7 +140,7 @@ function test_Search()
     					<span class="icon-bar"></span>
     					<span class="icon-bar"></span>
     				</button>
-    				<a href="#" class="navbar-brand page-scroll">I SEOUL GA U</a>
+    				<a href="main.nhn" class="navbar-brand page-scroll">I SEOUL GA U</a>
     			</div> <!-- navabr-header -->
 
     			<div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1" role="navigation">
@@ -427,6 +427,11 @@ function test_Search()
 			</div>
 		</div><!-- container end -->
 	</footer>
+	<c:if test="${sessionScope.memId eq '168456368'}">
+		<div id="admin" style="position:fixed; float:right; bottom:0px; width:200px; height:30px; background-color:gray; color:white; text-align:center;">
+			<a href="admin.nhn">관리자 페이지로 이동</a>
+		</div>
+	</c:if>
 	<!-- footer end -->
 
 
