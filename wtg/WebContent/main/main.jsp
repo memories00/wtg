@@ -75,8 +75,8 @@ $(function() {
 <script>
 <%
 	String MyKey="5F5DC3B8-FFFF00AA9";
-	//String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
-	String XmlPath="C:/DATA/XML/";
+	String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
+	//String XmlPath="C:/DATA/XML/";
 	String initRst=Api.Init(MyKey,XmlPath);
 
 	if(initRst=="1"){
