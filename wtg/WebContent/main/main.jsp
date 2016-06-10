@@ -237,126 +237,150 @@ function test_Search()
 				        <div class="carousel-inner">
 				          	<div class="item  active">
 				            	<div class="row">
-				            	
-								<c:if test="${count<=3}">
-									<c:forEach var="i" begin="1" end="${4-count}" step="1">   
-									<div class="col-xs-12 col-sm-6 col-md-3">   
-										<div class="thumbnail">
-										    <div class="caption">
-										    	<div class="caption-content">
-											    	<span>
-														<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
-														    <i class="fa fa-search"></i>              
-														</a>
-											        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
-											        </span>
-											        <h3>등록된 코스가 없습니다.</h3>
-											        <p>코스를 등록해주세요!</p>
-										    	</div>
-										    </div>
-										    <img src="categoryimg/bt.JPG" alt="portfolio" style="height:360px;">
-										</div>
-									</div>
-									</c:forEach>
-									 
-									<c:forEach var="list2" items="${list2}">
-										<div class="col-xs-12 col-sm-6 col-md-3">   
-											<div class="thumbnail">
-											    <div class="caption">
-											    	<div class="caption-content">
-												    	<span>
-															<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
-															    <i class="fa fa-search"></i>              
-															</a>
-												        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
-												        </span>
-												        <h3>등록된 코스가 없습니다.</h3>
-												        <p>코스를 등록해주세요!</p>
-											    	</div>
-											    </div>
-											    <img src="save/${list2.m_image}" alt="portfolio" style="height:360px;">
-											</div>
-										</div>
-									</c:forEach>
-								</c:if>
-								
+					            	<c:choose>
+										<c:when test="${sessionScope.memId ne null}">
+											<c:if test="${count<=3}">
+												<c:forEach var="i" begin="1" end="${4-count}" step="1">   
+												<div class="col-xs-12 col-sm-6 col-md-3">   
+													<div class="thumbnail">
+													    <div class="caption">
+													    	<div class="caption-content">
+														    	<span>
+																	<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
+																	    <i class="fa fa-search"></i>              
+																	</a>
+														        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
+														        </span>
+														        <h3>등록된 코스가 없습니다.</h3>
+														        <p>코스를 등록해주세요!</p>
+													    	</div>
+													    </div>
+													    <img src="categoryimg/bt.JPG" alt="portfolio" style="height:360px;">
+													</div>
+												</div>
+												</c:forEach>
+												 
+												<c:forEach var="list2" items="${list2}">
+													<div class="col-xs-12 col-sm-6 col-md-3">   
+														<div class="thumbnail">
+														    <div class="caption">
+														    	<div class="caption-content">
+															    	<span>
+																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
+																		    <i class="fa fa-search"></i>              
+																		</a>
+															        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
+															        </span>
+															        <h3>등록된 코스가 없습니다.</h3>
+															        <p>코스를 등록해주세요!</p>
+														    	</div>
+														    </div>
+														    <img src="save/${list2.m_image}" alt="portfolio" style="height:360px;">
+														</div>
+													</div>
+												</c:forEach>
+											</c:if>
+											
+								          	<c:if test="${count>=4}">
+											<div class="item">
+									            <div class="row">
+													<div class="col-xs-12 col-sm-6 col-md-3">   
+														<div class="thumbnail">
+														    <div class="caption">
+														    	<div class="caption-content">
+															    	<span>
+																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
+																		    <i class="fa fa-search"></i>              
+																		</a>
+															        	<a href="#" class=""><i class="fa fa-link"></i></a>
+															        </span>
+															        <h3>Creative Vision</h3>
+															        <p>Effektive is more than your average agency.</p>
+														    	</div>
+														    </div>
+														    <img src="sample/images/portfolio/portfolio5.jpg" alt="portfolio">
+														</div>
+													</div>          
+													<div class="col-xs-12 col-sm-6 col-md-3">   
+														<div class="thumbnail">
+														    <div class="caption">
+														    	<div class="caption-content">
+															    	<span>
+																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
+																		    <i class="fa fa-search"></i>              
+																		</a>
+															        	<a href="#" class=""><i class="fa fa-link"></i></a>
+															        </span>
+															        <h3>Creative Vision</h3>
+															        <p>Effektive is more than your average agency.</p>
+														    	</div>
+														    </div>
+														    <img src="sample/images/portfolio/portfolio6.jpg" alt="portfolio">
+														</div>
+													</div>
+													<div class="col-xs-12 col-sm-6 col-md-3">   
+														<div class="thumbnail">
+														    <div class="caption">
+														    	<div class="caption-content">
+															    	<span>
+																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
+																		    <i class="fa fa-search"></i>              
+																		</a>
+															        	<a href="#" class=""><i class="fa fa-link"></i></a>
+															        </span>
+															        <h3>Creative Vision</h3>
+															        <p>Effektive is more than your average agency.</p>
+														    	</div>
+														    </div>
+														    <img src="sample/images/portfolio/portfolio7.jpg" alt="portfolio">
+														</div>
+													</div>
+													<div class="col-xs-12 col-sm-6 col-md-3">   
+														<div class="thumbnail">
+														    <div class="caption">
+														    	<div class="caption-content">
+															    	<span>
+																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
+																		    <i class="fa fa-search"></i>              
+																		</a>
+															        	<a href="#" class=""><i class="fa fa-link"></i></a>
+															        </span>
+															        <h3>Creative Vision</h3>
+															        <p>Effektive is more than your average agency.</p>
+														    	</div>
+														    </div>
+														    <img src="sample/images/portfolio/portfolio8.jpg" alt="portfolio">
+														</div>
+													</div>
+									            </div>
+								          	</div><!--/ Item end -->
+								          	</c:if>
+											
+										</c:when>
+										<c:otherwise>
+											<c:forEach var="i" begin="1" end="4" step="1">   
+												<div class="col-xs-12 col-sm-6 col-md-3">   
+													<div class="thumbnail">
+													    <div class="caption">
+													    	<div class="caption-content">
+														    	<span>
+																	<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
+																	    <i class="fa fa-search"></i>              
+																	</a>
+														        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
+														        </span>
+														        <h3>등록된 코스가 없습니다.</h3>
+														        <p>코스를 등록해주세요!</p>
+													    	</div>
+													    </div>
+													    <img src="categoryimg/bt.JPG" alt="portfolio" style="height:360px;">
+													</div>
+												</div>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>								
 				            	</div>
 				          	</div><!--/ Item active end -->
-				          	
-				          	<c:if test="${count>=4}">
-							<div class="item">
-					            <div class="row">
-									<div class="col-xs-12 col-sm-6 col-md-3">   
-										<div class="thumbnail">
-										    <div class="caption">
-										    	<div class="caption-content">
-											    	<span>
-														<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
-														    <i class="fa fa-search"></i>              
-														</a>
-											        	<a href="#" class=""><i class="fa fa-link"></i></a>
-											        </span>
-											        <h3>Creative Vision</h3>
-											        <p>Effektive is more than your average agency.</p>
-										    	</div>
-										    </div>
-										    <img src="sample/images/portfolio/portfolio5.jpg" alt="portfolio">
-										</div>
-									</div>          
-									<div class="col-xs-12 col-sm-6 col-md-3">   
-										<div class="thumbnail">
-										    <div class="caption">
-										    	<div class="caption-content">
-											    	<span>
-														<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
-														    <i class="fa fa-search"></i>              
-														</a>
-											        	<a href="#" class=""><i class="fa fa-link"></i></a>
-											        </span>
-											        <h3>Creative Vision</h3>
-											        <p>Effektive is more than your average agency.</p>
-										    	</div>
-										    </div>
-										    <img src="sample/images/portfolio/portfolio6.jpg" alt="portfolio">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-3">   
-										<div class="thumbnail">
-										    <div class="caption">
-										    	<div class="caption-content">
-											    	<span>
-														<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
-														    <i class="fa fa-search"></i>              
-														</a>
-											        	<a href="#" class=""><i class="fa fa-link"></i></a>
-											        </span>
-											        <h3>Creative Vision</h3>
-											        <p>Effektive is more than your average agency.</p>
-										    	</div>
-										    </div>
-										    <img src="sample/images/portfolio/portfolio7.jpg" alt="portfolio">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-3">   
-										<div class="thumbnail">
-										    <div class="caption">
-										    	<div class="caption-content">
-											    	<span>
-														<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
-														    <i class="fa fa-search"></i>              
-														</a>
-											        	<a href="#" class=""><i class="fa fa-link"></i></a>
-											        </span>
-											        <h3>Creative Vision</h3>
-											        <p>Effektive is more than your average agency.</p>
-										    	</div>
-										    </div>
-										    <img src="sample/images/portfolio/portfolio8.jpg" alt="portfolio">
-										</div>
-									</div>
-					            </div>
-				          	</div><!--/ Item end -->
-				          	</c:if>
 				        </div><!-- Carousel inner end -->
 							
 							<div class="barrier-carousel-controller">
@@ -401,14 +425,6 @@ function test_Search()
 				<div class="col-md-12">
 					<div class="footer-desc text-center">
 						<div class="logo wow fadeInDown">Team name</div>
-						<ul class="socail-list list-inline">
-							<li><a href="#"><i class="fa fa-facebook wow fadeInLeft" data-wow-delay=".2s"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter wow fadeInLeft" data-wow-delay=".4s"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus wow fadeInLeft" data-wow-delay=".6s"></i></a></li>
-							<li><a href="#"><i class="fa fa-linkedin wow fadeInLeft" data-wow-delay=".8s"></i></a></li>
-							<li><a href="#"><i class="fa fa-dribbble wow fadeInLeft" data-wow-delay="1s"></i></a></li>
-							<li><a href="#"><i class="fa fa-rss wow fadeInLeft" data-wow-delay="1.1s"></i></a></li>
-						</ul>
 					</div>
 				</div>
 			</div><!-- row end -->

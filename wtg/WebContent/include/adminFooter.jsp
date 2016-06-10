@@ -61,15 +61,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="footer-desc text-center">
-						<div class="logo wow fadeInDown">Team name</div>
-						<ul class="socail-list list-inline">
-							<li><a href="#"><i class="fa fa-facebook wow fadeInLeft" data-wow-delay=".2s"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter wow fadeInLeft" data-wow-delay=".4s"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus wow fadeInLeft" data-wow-delay=".6s"></i></a></li>
-							<li><a href="#"><i class="fa fa-linkedin wow fadeInLeft" data-wow-delay=".8s"></i></a></li>
-							<li><a href="#"><i class="fa fa-dribbble wow fadeInLeft" data-wow-delay="1s"></i></a></li>
-							<li><a href="#"><i class="fa fa-rss wow fadeInLeft" data-wow-delay="1.1s"></i></a></li>
-						</ul>
+						<div class="logo wow fadeInDown">Team name</div>			
 					</div>
 				</div>
 			</div><!-- row end -->

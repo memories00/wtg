@@ -9,19 +9,17 @@
 			<title>코스등록하기</title>
 <style>
 	#warp{width:100%;}
-	.box_t{background-color:#494949; width:100%; height:15%; float:left; }
-	.box_bot{background-color:#494949; width:100%; height:100px; }
-	.box1{background-color:red; width:38%; height:80%; float:left;margin:20px 30px 0 30px }
-	.box2{background-color:red;width:50%; height:65%;float:left; margin:0 0 0 0px}
-	.box3{ background-color:green;width:38%; height:90%;float:left;display:block;margin:20px 0 0 30px}
-	.box4{ background-color:green;width:40%; height:200px;float:left;margin:20px 0 0 30px}
-	.box5{background-color:red;width:150px; height:230px;float:left;margin:30px 0 0 30px;border:1px;}
-	.imgbox{background-color:#6600ff; width:120px; height:130px;}
-	.box-m{ background-color:blue;float:left; width:100%;height:60%}
-	.box-m2{background-color:yellow;float:left;display:block; width:100%;height:50%;}
-	.btn{background-color:#6600ff; width:150px; height:30px; margin:300px 0 0 0}
-	.sub{background-color:silver;width:100%;}
-	.tag{background-color:pink;width:100%;}
+	.box1{width:38%; height:80%; float:left;margin:20px 30px 0 30px }
+	.box2{width:50%; height:65%;float:left; margin:0 0 0 0px}
+	.box3{width:38%; height:90%;float:left;display:block;margin:20px 0 0 30px;overflow: auto;}
+	.box4{width:40%; height:200px;float:left;margin:20px 0 0 30px}
+	.box5{width:150px; height:230px;float:left;margin:30px 0 0 30px;border:1px;}
+	.imgbox{width:120px; height:130px;}
+	.box-m{float:left; width:100%;height:60%}
+	.box-m2{float:left;display:block; width:100%;height:50%;}
+	.btn{width:150px; height:30px; margin:300px 0 0 0}
+	.sub{width:100%;}
+	.tag{width:100%;}
 	
 	
 .body {margin: 10px}
@@ -108,8 +106,8 @@
  </style>
  </head>
  <body>
-<div id="ad_footer">
-	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+<div id="header" style="width:100%; height:80px;">
+	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
  <font size="7">${dto.category }</font>
   <div id="warp">
@@ -121,7 +119,7 @@
 		<div class="sub">제목: <input type="text" id="subject" style="width:80%"> </div>
 				<form name="frm" id="frm" action="insertDB.nhn" method="post"	accept-charset="EUC-KR">
 				<!-- 에디터프레임호출 영역 -->
-				<div id="editor_frame" style="width:100%; height:44%;margin:10px 0 0 0" >			
+				<div id="editor_frame" style="margin:10px 0 0 0" >			
 				
 					<textarea name="daumeditor" id="daumeditor" 
 						style=" height: 100px; display: none; border: 1px solid black;"></textarea>
@@ -231,11 +229,11 @@
 	</div>
 		</div>
 	</div>
-<div id="ad_footer">
-	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
-</div>
   
   </div>
+  <div id="ad_footer">
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+</div>
   
   <form name="form1" method="post" action="plase.nhn">
 </form>

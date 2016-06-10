@@ -19,7 +19,7 @@
 	.box_t{background-color:#494949; width:100%; height:15%; float:left; }
 	.box1{width:38%; height:80%; float:left;margin:20px 30px 0 30px}
 	.box2{;width:50%; height:65%;float:left; margin:0 0 0 0px}
-	.box3{ ;width:38%; height:90%;float:left;display:block;margin:20px 0 0 30px}
+	.box3{ ;width:38%; height:90%;float:left;display:block;margin:20px 0 0 30px;overflow: auto;}
 	.box4{ background-color:#494949;width:50%; height:400px;float:left;margin:20px 0 0 20px;}
 	.box5{margin:0px 0 0 0;width:170px; height:170px;float:left;border:1px;}
 	.imgbox{ width:150px; height:150px;}
@@ -111,8 +111,9 @@
 		</style>
 </head>
 <body>
-<div class="box_t">
-	</div> 
+<div id="header" style="width:100%; height:80px;">
+	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
+</div>
 	<font size="7">카테고리: ${dto.category }</font>
   <div id="warp">
 	<div class="box-m">
@@ -189,6 +190,9 @@
 	 
 		</div>
 	</div>
+	<div id="ad_footer">
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+</div>
 	</div>
 
 

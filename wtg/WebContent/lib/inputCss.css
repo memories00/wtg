@@ -19,31 +19,3 @@ map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'µ¸¿
 .category .ico_pass {background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/green_b.png');}   
 .category .ico_end {background:url('http://i1.daumcdn.net/localimg/localimages/07/2013/img/blue_b.png');} 				
 
-
-
-body{
-	text-align:center;
-	background-color:#00ff00;
-}
-a:link, a:visited, a:hover{
-	color:red;
-	text-decoration:none;
-}
-#wrapper {
-	min-width:950px;
-}
-
-#header {
-	width:100%; 
-	left:0px;
-	top:0px; 
-	position: relative;
-	height:50px;
-	background-color:#6799FF;
-}
-#footer {
-	width:100%; 
-	top:390px; 
-	position: relative;
-}
-.dif {max-width:950px; margin:auto;}

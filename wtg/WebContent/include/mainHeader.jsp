@@ -84,6 +84,11 @@ $(function() {
 		out.print(apiRst);
 	}
 %>
+function move()
+{
+	
+	window.location="/wtg/main.nhn";	
+}
 </script>
 </head>
 
@@ -91,7 +96,7 @@ $(function() {
 <!-- main coding strat -->
     <header id="header">
     	<nav class="navbar navbar-default navbar-fixed-top"  id="tf-menu" style="background-color:rgba(51, 51, 51, 0.7);">
-    			<div style="float:right; width:120px; height:50px; color:white;">
+    			<div style="float:right; width:120px; height:50px; color:white;" >
 			    	<c:choose>
 						<c:when test="${sessionScope.memId ne null}">
 							${sessionScope.memName} 님
@@ -119,7 +124,7 @@ $(function() {
     					<span class="icon-bar"></span>
     					<span class="icon-bar"></span>
     				</button>
-    				<a href="#" class="navbar-brand page-scroll">I SEOUL GA U</a>
+    				<a href="/wtg/main.nhn" class="navbar-brand page-scroll">I SEOUL GA U</a>
     			</div> <!-- navabr-header -->
 
     			<div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1" role="navigation">

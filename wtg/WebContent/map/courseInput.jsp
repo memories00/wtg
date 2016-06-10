@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
-<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/inputCss.css"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -12,6 +11,7 @@
 	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
 	<link href="/wtg/lib/default.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="/wtg/lib/fonts.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/inputCss.css"/>
 <style>
 	.box_t{background-color:#494949; width:100%; height:15%; float:left; }
 	.box_b{width:100%; height:50px; }
@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-<div id="ad_footer">
+<div id="header" style="width:100%; height:80px;">
 	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
 <div id="wrapper">
@@ -30,7 +30,7 @@
 	<c:when test="${sessionScope.memId ne null}">
 <div class="map_wrap">
 	<div id="map" style="width:100%; height:100%;"></div>
-		<div class="category" style="margin:10% 0 0 30px">
+		<div class="category" style="margin:0 0 0 30px">
 			<ul>
 				<li id="start"  onmousedown="startDrag(event,0)">
 					<span class="ico_comm ico_start"></span>
@@ -43,7 +43,7 @@
 				</li>
 			</ul>
 		</div>
-		<div id="menu_wrap" class="bg_white" style="margin:10% 0 0 10px">
+		<div id="menu_wrap" class="bg_white" style="margin:10px 0 0 30px">
 
 			<div class="option">
 					테마선택 : 
@@ -169,7 +169,7 @@
 				{
 					//alert("add"+cnt);
 					var addTag=document.getElementById("passText");
-					var str='경유지:&nbsp;<input type="text" id="passKey'+cnt+'" style="width:200px" onkeypress="enterKey(event,this);"> <input type="button" id="btn/passKey'+cnt+'" value="삭제" onclick="deletePass(this)">';
+					var str='경유지:&nbsp;<input type="text" id="passKey'+cnt+'" style="width:200px" onkeypress="enterKey(event,this);">';// <input type="button" id="btn/passKey'+cnt+'" value="삭제" onclick="deletePass(this)">';
 					var addDiv=document.createElement('li');
 					addDiv.setAttribute("id","Li/passKey"+cnt);
 					addDiv.innerHTML=str;
