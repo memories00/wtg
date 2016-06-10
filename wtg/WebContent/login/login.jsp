@@ -15,7 +15,7 @@
 
 <div id="wrapper">
 <div id="bs_header">
-	<jsp:include page="/include/baseHeader.jsp" flush="false"/>
+	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
 <div id="lg_contents">
 	<div id="content">
@@ -136,7 +136,7 @@
 </script>
 </div>
 <div id="bs_footer">
-	<jsp:include page="/include/baseFooter.jsp" flush="false"/>
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
 </div>
 </div>
 </body>

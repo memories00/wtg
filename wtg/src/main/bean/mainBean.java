@@ -77,8 +77,8 @@ public class mainBean
 		request.setAttribute("count", count);
 		request.setAttribute("logo", logo);
 		SAXBuilder builder = new SAXBuilder();
-		//Document doc=builder.build("C:/Users/user1/git/wtg/wtg/WebContent/main/get_today.xml");
-		Document doc=builder.build("C:/DATA/XML/get_today.xml");
+		Document doc=builder.build("C:/Users/user1/git/wtg/wtg/WebContent/main/get_today.xml");
+		//Document doc=builder.build("C:/DATA/XML/get_today.xml");
 		Element root=doc.getRootElement();
 		List children = root.getChildren();
 		
@@ -169,5 +169,45 @@ public class mainBean
 		request.setAttribute("list",list);
 
 		return "/theme/searchlist.jsp";
+	}
+	@RequestMapping("/testsearch.nhn")
+	public String testsearch(HttpSession session, HttpServletRequest request,UserstatsDTO dto) throws JDOMException, IOException
+	{
+		SAXBuilder builder = new SAXBuilder();
+		//Document doc=builder.build("C:/Users/user1/git/wtg/wtg/WebContent/main/get_today.xml");
+		Document doc=builder.build("C:/DATA/XML/get_today.xml");
+		Element root=doc.getRootElement();
+		List children = root.getChildren();
+		
+		List comment = sqlMap.queryForList("main.commentAll",null);
+		request.setAttribute("comment", comment);
+		
+		for(int i=0;i<children.size();i++)
+		{
+			Element e =(Element)children.get(i);
+			String tagName = e.getName();
+			
+			if(tagName.equals("state_ko")) // 지역
+			{request.setAttribute("state_ko", e.getValue());}
+			
+			else if(tagName.equals("temp")) // 현재온도
+			{request.setAttribute("temp", e.getValue());}
+			
+			else if(tagName.equals("max_temp")) // 최고온도
+			{request.setAttribute("max_temp", e.getValue());}
+			
+			else if(tagName.equals("min_temp")) // 최저온도
+			{request.setAttribute("min_temp", e.getValue());}
+			
+			else if(tagName.equals("wtext")) //
+			{request.setAttribute("wtext", e.getValue());}
+			
+			else if(tagName.equals("icon")) // 아이콘
+			{request.setAttribute("icon", e.getValue());}
+			
+			else if(tagName.equals("pm10")) // 미세먼지
+			{request.setAttribute("pm10", e.getValue());}
+		}
+		return  "/main/testsearch.jsp";
 	}
 }

@@ -1,25 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page contentType="text/html;charset=utf-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/mainCss.css"/>
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<html>
+<head>
+<!-- CSS
+  ================================================== -->
+    <!-- Bootstrap -->
+    <link href="sample/assets/css/bootstrap.min.css" rel="stylesheet">
+     <!-- Prettyphoto -->
+	<link rel="stylesheet" href="sample/css/prettyPhoto.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="sample/css/font-awesome.min.css">
+    <!--Line icon font -->
+    <link rel="stylesheet" href="sample/css/line-icons.min.css">
+    <!-- Animation -->
+    <link rel="stylesheet" href="sample/css/animate.css">
+    <!-- Prettyphoto -->
+    <link rel="stylesheet" href="sample/css/prettyPhoto.css">
+    <!-- Template styles-->
+    <link rel="stylesheet" href="sample/css/style.css">
+    <!-- color style -->
+    <link rel="stylesheet" href="sample/css/presets/maincolor.css">
+    <!-- Responsive styles-->
+    <link rel="stylesheet" href="sample/css/responsive.css">
+    <!-- circle counter -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
 
+</head>
+<body>
 
-<div id=head style="background-color:white;width:100%;height:70px">ÀÌ°÷ÀÌ Çì´õ</div>
-
+<div id=header>
+	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
+</div>
+<div style="width:100%; height:80px;"></div>
 <div id=firstLine style="background-color:silver; width:100%; height:30px; display:table-cell; vertical-align:middle">
-	<div style="float:left"><a href="main.nhn">È¨</a> ></div>
-	<div style="float:left">Å×¸¶º° ÄÚ½º ></div>
+	<div style="float:left"><a href="main.nhn">í™ˆ</a> </div>
+	<div style="float:left">í…Œë§ˆë³„ ì½”ìŠ¤ ></div>
 	<div style="float:left">${category}</div>
 </div>
 
 <div id="alignbutton" style="background-color:pink; align:left">
-	<input type="button" value="ÃÖ½Å¼ø" onClick="javascript:location.href='themeList.nhn?cate=${category}'">
-    <input id="readBtn" type="button" value="Á¶È¸¼ø" onClick="javascript:location.href='themeList.nhn?cate=${category}&a=1'">
-    <input id="goodBtn" type="button" value="ÃßÃµ¼ø" onClick="javascript:location.href='themeList.nhn?cate=${category}&a=2'"></td>
+	<input type="button" value="ìµœì‹ ìˆœ" onClick="javascript:location.href='themeList.nhn?cate=${category}'">
+    <input id="readBtn" type="button" value="ì¡°íšŒìˆœ" onClick="javascript:location.href='themeList.nhn?cate=${category}&a=1'">
+    <input id="goodBtn" type="button" value="ì¶”ì²œìˆœ" onClick="javascript:location.href='themeList.nhn?cate=${category}&a=2'"></td>
 </div>
 
 <div id="list" style="background-color:skyblue; align:left">
@@ -30,14 +66,14 @@
 	      	</div>
 	       	<div>
 		       	<div>
-		       		Á¦¸ñ : ${list.subject}
+		       		ì œëª© : ${list.subject}
 		       	</div>
 	        	<div>
-	       			Á¶È¸¼ö : ${list.readhit}&nbsp;&nbsp;&nbsp;µî·ÏÀÏ : <fmt:formatDate value="${list.regdate}" type="date"/>
+	       			ì¡°íšŒìˆ˜ : ${list.readhit}&nbsp;&nbsp;&nbsp;ë“±ë¡ì¼ : <fmt:formatDate value="${list.regdate}" type="date"/>
 	       		</div>
 	       		<div>
-	       			³»¿ë : 
-	       			<!-- Ç¥½ÃµÇ´Â ³»¿ë ±ÛÀÚ¼ö¸¦ Á¦ÇÑÇÑ´Ù -->
+	       			ë‚´ìš© : 
+	       			<!-- í‘œì‹œë˜ëŠ” ë‚´ìš© ê¸€ììˆ˜ë¥¼ ì œí•œí•œë‹¤ -->
 		    		<c:choose> 
 			   			<c:when test="${fn:length(list.content) > 40}">
 				          	<c:out value="${fn:substring(list.content,0,39)}"/>....
@@ -48,7 +84,7 @@
 					</c:choose>
 	       		</div>
 	       		<div>
-	       			ÅÂ±× : ${list.hashtag}
+	       			íƒœê·¸ : ${list.hashtag}
 	       		</div>
 	       	</div>
 	    </a> 
@@ -56,4 +92,11 @@
 </div>
  
 <div>${pagingHtml}</div>
+
+<div id=footer>
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+</div>
+
+</body>
+</html>
  

@@ -50,94 +50,48 @@
 
     <!-- script ================================================================= -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/wtg/js/vticker.min.js"></script>
-<script>
 
-$(function() {
-	  $('#example').vTicker('init', {
-	    speed: 1000, 
-	    pause: 3500,
-	    showItems: 1,
-	    padding: 4
-	  });
-	});
-</script>
-	<script>
-		function locationHref(a) {
-			var ty = a.getAttribute("id");
-			location.href="/wtg/themeList.nhn?cate="+ty;
-		}
-		function goHome()
-		{
-			window.location="/wtg/main.nhn";
-		}
-	</script>
-<script>
-<%
-	String MyKey="5F5DC3B8-FFFF00AA9";
-	//String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
-	String XmlPath="C:/DATA/XML/";
-	String initRst=Api.Init(MyKey,XmlPath);
-
-	if(initRst=="1"){
-		char apiRst=Api.get_today("11010");
-		out.print(apiRst);
-	}
-%>
-</script>
 </head>
-
 <body>
-<!-- main coding strat -->
-    <header id="header">
-    	<nav class="navbar navbar-default navbar-fixed-top"  id="tf-menu" style="background-color:rgba(51, 51, 51, 0.7);">
-    			<div style="float:right; width:120px; height:50px; color:white;">
-			    	<c:choose>
-						<c:when test="${sessionScope.memId ne null}">
-							${sessionScope.memName} 님
-							<a id="logout-btn" onclick="window.location='logout.nhn'">
-								<img src="img/logoutBtn.jpg" width="100"/>
-							</a>
-						</c:when>
-						<c:otherwise>
-							&nbsp;<br>
-							<a href="http://127.0.0.1:8000/wtg/login.nhn">
-								<img src="/wtg/img/loginBtn.jpg" width="100"/>
-							</a>
-						</c:otherwise>
-					</c:choose>
-    			</div>
-    			
-			   
-    	
-    	<div class="container">
-    		<div class="row">
-    			<div class="navbar-header ">
-    				<button class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse">
-    					<span class="sr-only"></span>
-    					<span class="icon-bar"></span>
-    					<span class="icon-bar"></span>
-    					<span class="icon-bar"></span>
-    				</button>
-    				<a href="#" class="navbar-brand page-scroll">I SEOUL GA U</a>
-    			</div> <!-- navabr-header -->
 
-    			<div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1" role="navigation">
-    				<ul class="nav navbar-nav navbar-right">
-						<li id="all" onClick="locationHref(this);" style="cursor:hand;"><a>전체보기</a></li>
-						<li id="관광명소" onClick="locationHref(this);" style="cursor:hand;"><a>관광명소</a></li>
-						<li id="데이트" onClick="locationHref(this);" style="cursor:hand;"><a>데이트</a></li>
-						<li id="스포츠" onClick="locationHref(this);" style="cursor:hand;"><a>스포츠</a></li>
-						<li id="쇼핑" onClick="locationHref(this);" style="cursor:hand;"><a>쇼핑</a></li>
-						<li id="추천코스" onClick="locationHref(this);" style="cursor:hand;"><a>추천코스</a></li>
-						<li id="장소별검색" onClick="locationHref(this);" style="cursor:hand;"><a>장소별검색</a></li>
-    				</ul>
-    			</div>
-    		</div> <!-- row end -->
-    	</div> <!-- container end -->
-    	</nav> <!-- nav end -->
-    </header>
-     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- footer start -->
+
+	<footer id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="footer-desc text-center">
+						<div class="logo wow fadeInDown">Team name</div>
+						<ul class="socail-list list-inline">
+							<li><a href="#"><i class="fa fa-facebook wow fadeInLeft" data-wow-delay=".2s"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter wow fadeInLeft" data-wow-delay=".4s"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus wow fadeInLeft" data-wow-delay=".6s"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin wow fadeInLeft" data-wow-delay=".8s"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble wow fadeInLeft" data-wow-delay="1s"></i></a></li>
+							<li><a href="#"><i class="fa fa-rss wow fadeInLeft" data-wow-delay="1.1s"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div><!-- row end -->
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="copyright-info m20">
+&copy; Copyright 2016 KH Class F Team 3. 
+        			</div>
+				</div>
+			</div><!--/ Row end -->
+
+			<div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top affix">
+			 	<a href="#slider" class="page-scroll">
+					<button class="btn btn-primary" title="Back to Top"><i class="fa fa-angle-double-up"></i></button>
+				</a>
+			</div>
+		</div><!-- container end -->
+	</footer>
+	<!-- footer end -->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="sample/assets/js/bootstrap.min.js"></script>
@@ -160,5 +114,5 @@ $(function() {
     <!-- Google Map  Source -->
     <script type="text/javascript" src="sample/js/gmaps.js"></script>
     <script type="text/javascript" src="sample/js/custom.js"></script>
-		
 </body>
+</html>

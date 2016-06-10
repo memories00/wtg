@@ -1,20 +1,17 @@
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
 <jsp:useBean id="Api" class="api.lib.Api_Jsp_Client" scope="page"/>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>Barrier- A responsive portfolio and business template</title>
+    <title>test</title>
 
     <!-- Mobile Specific Metas
   ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
     <!-- CSS
   ================================================== -->
     <!-- Bootstrap -->
@@ -85,10 +82,10 @@ $(function() {
 	}
 %>
 </script>
-</head>
-
-<body>
-<!-- main coding strat -->
+	
+  </head>
+  <body>
+    <!-- main coding strat -->
     <header id="header">
     	<nav class="navbar navbar-default navbar-fixed-top"  id="tf-menu" style="background-color:rgba(51, 51, 51, 0.7);">
     			<div style="float:right; width:120px; height:50px; color:white;">
@@ -108,7 +105,19 @@ $(function() {
 					</c:choose>
     			</div>
     			
-			   
+			   <!-- <div style="float:left; width:172px; height:55px; color:white; overflow: hidden" >
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					지역:${state_ko}
+					&nbsp;&nbsp;
+					<div id="example">
+					<ul style="color:white;">
+						<li>현재온도:${temp}<jsp:include page="main/weather.jsp" flush="false"/></li>
+						<li>최고온도:${max_temp}<jsp:include page="main/weather.jsp" flush="false"/></li>
+						<li>최저온도:${min_temp}<jsp:include page="main/weather.jsp" flush="false"/></li>
+						<li>미세먼지농도:${pm10}</li>
+					</ul>
+					</div>
+				</div>-->
     	
     	<div class="container">
     		<div class="row">
@@ -137,7 +146,63 @@ $(function() {
     	</div> <!-- container end -->
     	</nav> <!-- nav end -->
     </header>
-     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+
+	<!-- Service section Start -->
+
+	<section id="service" class="service">
+		<div class="container">
+			<div class="row">
+				
+				
+				여기에 내용 넣기!!!!!!!
+				
+				
+			</div><!-- row end -->
+		</div> <!-- container end -->
+	</section>
+	<!-- Service section End -->
+	
+	
+	
+	<!-- footer start -->
+
+	<footer id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="footer-desc text-center">
+						<div class="logo wow fadeInDown">Team name</div>
+						<ul class="socail-list list-inline">
+							<li><a href="#"><i class="fa fa-facebook wow fadeInLeft" data-wow-delay=".2s"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter wow fadeInLeft" data-wow-delay=".4s"></i></a></li>
+							<li><a href="#"><i class="fa fa-google-plus wow fadeInLeft" data-wow-delay=".6s"></i></a></li>
+							<li><a href="#"><i class="fa fa-linkedin wow fadeInLeft" data-wow-delay=".8s"></i></a></li>
+							<li><a href="#"><i class="fa fa-dribbble wow fadeInLeft" data-wow-delay="1s"></i></a></li>
+							<li><a href="#"><i class="fa fa-rss wow fadeInLeft" data-wow-delay="1.1s"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div><!-- row end -->
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="copyright-info m20">
+&copy; Copyright 2016 KH Class F Team 3. 
+        			</div>
+				</div>
+			</div><!--/ Row end -->
+
+			<div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top affix">
+			 	<a href="#slider" class="page-scroll">
+					<button class="btn btn-primary" title="Back to Top"><i class="fa fa-angle-double-up"></i></button>
+				</a>
+			</div>
+		</div><!-- container end -->
+	</footer>
+	<!-- footer end -->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="sample/assets/js/bootstrap.min.js"></script>
@@ -161,4 +226,6 @@ $(function() {
     <script type="text/javascript" src="sample/js/gmaps.js"></script>
     <script type="text/javascript" src="sample/js/custom.js"></script>
 		
-</body>
+		
+  </body>
+</html>

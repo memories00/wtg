@@ -171,7 +171,7 @@
 <body>
 <div id="bs_wrapper">
 <div id="bs_header">
-	<jsp:include page="/include/baseHeader.jsp" flush="false"/>
+	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
 <div id="tv_contents">
    <table align="center" width="600" border="0" cellspacing="0" cellpadding="0">
@@ -302,7 +302,7 @@
 </div>
 </div>
 <div id="bs_footer">
-	<jsp:include page="/include/baseFooter.jsp" flush="false"/>
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
 </div>
 </div>
 

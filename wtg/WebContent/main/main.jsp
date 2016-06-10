@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="sample/css/responsive.css">
     <!-- circle counter -->
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-
+	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -49,7 +49,19 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/yoonho.css" />
 
     <!-- script ================================================================= -->
-    <script src="/wtg/js/vticker.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/wtg/js/vticker.min.js"></script>
+<script>
+
+$(function() {
+	  $('#example').vTicker('init', {
+	    speed: 1000, 
+	    pause: 3500,
+	    showItems: 1,
+	    padding: 4
+	  });
+	});
+</script>
 	<script>
 		function locationHref(a) {
 			var ty = a.getAttribute("id");
@@ -60,43 +72,11 @@
 			window.location="/wtg/main.nhn";
 		}
 	</script>
-	<script>
-$(document).ready(function(){
-	   $('.roll').vTicker();
-	   $('#pause').click(function(){
-		$this=$(this);
-		if($this.text()=='Pause'){
-			$('.roll').vTicker('pause',true);
-			$this.text('Unpause');
-		}
-		else{
-			$('.roll').vTicker('pause',false);
-			$this.text('Pause');
-			}
-	  });
-	   
-	   
-	   $('.roll2').vTicker();
-	   $('#pause').click(function(){
-		$this=$(this);
-		if($this.text()=='Pause'){
-			$('.roll2').vTicker('pause',true);
-			$this.text('Unpause');
-		}
-		else{
-			$('.roll2').vTicker('pause',false);
-			$this.text('Pause');
-			}
-	  });
-	   
-	   
-	 });
-	 
-	 
+<script>
 <%
 	String MyKey="5F5DC3B8-FFFF00AA9";
-	//String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
-	String XmlPath="C:/DATA/XML/";
+	String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
+	//String XmlPath="C:/DATA/XML/";
 	String initRst=Api.Init(MyKey,XmlPath);
 
 	if(initRst=="1"){
@@ -120,15 +100,16 @@ function test_Search()
     <!-- main coding strat -->
     <header id="header">
     	<nav class="navbar navbar-default navbar-fixed-top"  id="tf-menu" style="background-color:rgba(51, 51, 51, 0.7);">
-    			<div style="float:right; width:120px; height:50px;">
+    			<div style="float:right; width:120px; height:50px; color:white;">
 			    	<c:choose>
 						<c:when test="${sessionScope.memId ne null}">
 							${sessionScope.memName} 님
 							<a id="logout-btn" onclick="window.location='logout.nhn'">
-								<img src="/wtg/img/logoutBtn.jpg" width="100"/>
+								<img src="img/logoutBtn.jpg" width="100"/>
 							</a>
 						</c:when>
 						<c:otherwise>
+							&nbsp;<br>
 							<a href="http://127.0.0.1:8000/wtg/login.nhn">
 								<img src="/wtg/img/loginBtn.jpg" width="100"/>
 							</a>
@@ -140,7 +121,7 @@ function test_Search()
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					지역:${state_ko}
 					&nbsp;&nbsp;
-					<div class="roll">
+					<div id="example">
 					<ul style="color:white;">
 						<li>현재온도:${temp}<jsp:include page="weather.jsp" flush="false"/></li>
 						<li>최고온도:${max_temp}<jsp:include page="weather.jsp" flush="false"/></li>
@@ -195,7 +176,7 @@ function test_Search()
 			    	<img class="img-responsive" src="adminImg/160516010536c.jpg" alt="slider" style="height:700px; width:100%;">
 			    </div><!--/ Carousel item end -->
 
-				<c:forEach var="list" items="${list}" end="4">
+				<c:forEach var="list" items="${list}" end="1">
 					<div class="item">
 						<a href="courseView.nhn?num=${list.num}">
 							<img class="img-responsive" src="adminImg/160516010536c.jpg" alt="slider" style="height:700px; width:100%;">
@@ -227,7 +208,10 @@ function test_Search()
 							<h3 class="big-title">Search</h3>
 						</div>
 						<div class="searchBox">
-							<input type="text" name="search" style="width:80%;">&nbsp;<input type="button" value="검색" onClick="test_Search()">
+							<form action="searchaction.nhn">
+								<input type="text" name="search" style="width:80%;">&nbsp;
+								<input type="submit" value="검색">
+							</form>
 						</div>
 					</div>
 				</div>
@@ -248,26 +232,14 @@ function test_Search()
 						</div>
 					</div>
 				<div class='row wow fadeInUp'>
-				<c:if test="${count==0}">
 				    <div class='col-lg-12'>
 				      <div class="carousel slide" id="portfolio-carousel">
 				        <div class="carousel-inner">
 				          	<div class="item  active">
 				            	<div class="row">
-									<div class="col-xs-12 col-sm-6 col-md-3">   
-										<div class="thumbnail">
-										    <div class="caption">
-										    	<div class="caption-content">
-											    	<span>
-											        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
-											        </span>
-											        <h3>등록된 코스가 없습니다.</h3>
-											        <p>코스를 등록해주세요!</p>
-										    	</div>
-										    </div>
-										    <img src="categoryimg/bt.JPG" alt="portfolio" style="height:360px;">
-										</div>
-									</div>          
+				            	
+								<c:if test="${count<=3}">
+									<c:forEach var="i" begin="1" end="${4-count}" step="1">   
 									<div class="col-xs-12 col-sm-6 col-md-3">   
 										<div class="thumbnail">
 										    <div class="caption">
@@ -276,51 +248,42 @@ function test_Search()
 														<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
 														    <i class="fa fa-search"></i>              
 														</a>
-											        	<a href="#" class=""><i class="fa fa-link"></i></a>
+											        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
 											        </span>
-											        <h3>Sunlight Shine</h3>
-											        <p>Effektive is more than your average agency.</p>
+											        <h3>등록된 코스가 없습니다.</h3>
+											        <p>코스를 등록해주세요!</p>
 										    	</div>
 										    </div>
-										    <img src="adminImg/160516010536c.jpg" alt="portfolio" style="height:360px;">
+										    <img src="categoryimg/bt.JPG" alt="portfolio" style="height:360px;">
 										</div>
 									</div>
-									<div class="col-xs-12 col-sm-6 col-md-3">   
-										<div class="thumbnail">
-										    <div class="caption">
-										    	<div class="caption-content">
-											    	<span>
-														<a data-rel="prettyPhoto" href="images/portfolio/portfolio-bg3.jpg">
-														    <i class="fa fa-search"></i>              
-														</a>
-											        	<a href="#" class=""><i class="fa fa-link"></i></a>
-											        </span>
-											        <h3>All Quiet Western</h3>
-											        <p>Effektive is more than your average agency.</p>
-										    	</div>
-										    </div>
-										    <img src="sample/images/portfolio/portfolio3.jpg" alt="portfolio">
+									</c:forEach>
+									 
+									<c:forEach var="list2" items="${list2}">
+										<div class="col-xs-12 col-sm-6 col-md-3">   
+											<div class="thumbnail">
+											    <div class="caption">
+											    	<div class="caption-content">
+												    	<span>
+															<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
+															    <i class="fa fa-search"></i>              
+															</a>
+												        	<a href="themeWrite.nhn?currentPage=1" class=""><i class="fa fa-link"></i></a>
+												        </span>
+												        <h3>등록된 코스가 없습니다.</h3>
+												        <p>코스를 등록해주세요!</p>
+											    	</div>
+											    </div>
+											    <img src="save/${list2.m_image}" alt="portfolio" style="height:360px;">
+											</div>
 										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6 col-md-3">   
-										<div class="thumbnail">
-										    <div class="caption">
-										    	<div class="caption-content">
-											    	<span>
-														<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg1.jpg">
-														    <i class="fa fa-search"></i>              
-														</a>
-											        	<a href="#" class=""><i class="fa fa-link"></i></a>
-											        </span>
-											        <h3>The GodFather</h3>
-											        <p>Effektive is more than your average agency.</p>
-										    	</div>
-										    </div>
-										    <img src="sample/images/portfolio/portfolio4.jpg" alt="portfolio">
-										</div>
-									</div>
+									</c:forEach>
+								</c:if>
+								
 				            	</div>
 				          	</div><!--/ Item active end -->
+				          	
+				          	<c:if test="${count>=4}">
 							<div class="item">
 					            <div class="row">
 									<div class="col-xs-12 col-sm-6 col-md-3">   
@@ -393,6 +356,7 @@ function test_Search()
 									</div>
 					            </div>
 				          	</div><!--/ Item end -->
+				          	</c:if>
 				        </div><!-- Carousel inner end -->
 							
 							<div class="barrier-carousel-controller">
@@ -401,7 +365,6 @@ function test_Search()
 					    	</div><!-- Controller end -->
 				      </div><!-- Carousel end -->                          
 				    </div><!-- Main Col end -->
-				</c:if>
 		  		</div><!--/  row end -->
 			</div><!--/ Main row end -->
 		</div><!--/ Container end -->
@@ -468,11 +431,11 @@ function test_Search()
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="sample/assets/js/bootstrap.min.js"></script>
     <!-- initialize jQuery Library -->
-    <script type="text/javascript" src="sample/js/jquery.js"></script>
+    <!-- <script type="text/javascript" src="sample/js/jquery.js"></script>  -->
     <!-- Wow Animation -->
     <script type="text/javascript" src="sample/js/wow.min.js"></script>
     <!-- SmoothScroll -->

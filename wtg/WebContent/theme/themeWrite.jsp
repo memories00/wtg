@@ -24,7 +24,7 @@ function theme_Write()
 <!-- --------------------------------------------------------------------------------- -->
 <div id="wrapper">
 <div id="bs_header">
-	<jsp:include page="/include/baseHeader.jsp" flush="false"/>
+	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
 <div id="tw_contents">
    <table width="600" border="0" cellspacing="0" cellpadding="2"> 
@@ -62,7 +62,7 @@ function theme_Write()
  </form> 
 </div>
 <div id="bs_footer">
-	<jsp:include page="/include/baseFooter.jsp" flush="false"/>
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
 </div>
 </div>
 </body>
