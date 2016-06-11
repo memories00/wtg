@@ -44,14 +44,35 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
-
+  
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/yoonho.css" />
 
     <!-- script ================================================================= -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="/wtg/js/vticker.min.js"></script>
 <script>
+$(document).ready(function(){
+	var modalLayer = ${"#modalLayer"};
+	var modalLink = ${"#modalLink"};
+	var modalCont = ${"#modalContent"};
+	var marginLeft=modalCont.outerWidth()/2;
+	var marginTop=modalCont.outerHeight()/2;
+	
+	modalLink.click(function(){
+		modalLayer.fadeIn("slow");
+		modalCont.css({"margin-top":-marginTop,"margin-left":-marginLeft});
+		
+		$(this).blur();
+		$(".modalCotent>a").focus();
+		return false;
+	});
+	
+	$(".modalContent>button").click(function(){
+		modalLayer.fadeOut("slow");
+		modalLink.focus();
+	});
+});
+
 
 $(function() {
 	  $('#example').vTicker('init', {
@@ -75,8 +96,8 @@ $(function() {
 <script>
 <%
 	String MyKey="5F5DC3B8-FFFF00AA9";
-	//String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
-	String XmlPath="C:/DATA/XML/";
+	String XmlPath="C:/Users/user1/git/wtg/wtg/WebContent/main/";
+	//String XmlPath="C:/DATA/XML/";
 	String initRst=Api.Init(MyKey,XmlPath);
 
 	if(initRst=="1"){
@@ -252,9 +273,7 @@ function test_Search()
 													    <div class="caption">
 													    	<div class="caption-content">
 														    	<span>
-																	<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
-																	    <i class="fa fa-search"></i>              
-																	</a>
+																	
 														        	<a href="courseInput.nhn" class=""><i class="fa fa-link"></i></a>
 														        </span>
 														        <h3>등록된 코스가 없습니다.</h3>
@@ -272,16 +291,16 @@ function test_Search()
 														    <div class="caption">
 														    	<div class="caption-content">
 															    	<span>
-																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
+																		<a data-rel="prettyPhoto" href="http://127.0.0.1:8000/wtg/img/${list2.m_image}" target="_blank">
 																		    <i class="fa fa-search"></i>              
 																		</a>
-															        	<a href="courseInput.nhn" class=""><i class="fa fa-link"></i></a>
+															        	<a href="courseView.nhn?num=${list2.num}" class=""><i class="fa fa-link"></i></a>
 															        </span>
-															        <h3>등록된 코스가 없습니다.</h3>
-															        <p>코스를 등록해주세요!222222</p>
+															        <h3>${list2.category}</h3>
+															        <p>${list2.subject}</p>
 														    	</div>
 														    </div>
-														    <img src="save/${list2.m_image}" alt="portfolio" style="height:360px;">
+														    <img src="http://127.0.0.1:8000/wtg/img/${list2.m_image}" alt="portfolio" style="height:360px;">
 														</div>
 													</div>
 												</c:forEach>
@@ -296,16 +315,16 @@ function test_Search()
 														    <div class="caption">
 														    	<div class="caption-content">
 															    	<span>
-																		<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
+															    		<a data-rel="prettyPhoto"  onclick="window.open('http://127.0.0.1:8000/wtg/img/${list2.m_image}','사진확인','width:100,height:100');return false;">
 																		    <i class="fa fa-search"></i>              
 																		</a>
-															        	<a href="courseInput.nhn" class=""><i class="fa fa-link"></i></a>
+															        	<a href="courseView.nhn?num=${list2.num}" class=""><i class="fa fa-link"></i></a>
 															        </span>
-															        <h3>등록된 코스가 없습니다.</h3>
-															        <p>코스를 등록해주세요!222222</p>
+															        <h3>${list2.category}</h3>
+															        <p>${list2.subject}</p>
 														    	</div>
 														    </div>
-														    <img src="save/${list2.m_image}" alt="portfolio" style="height:360px;">
+														    <img src="http://127.0.0.1:8000/wtg/img/${list2.m_image}" alt="portfolio" style="height:360px;">
 														</div>
 													</div>
 												</c:forEach>
@@ -320,10 +339,7 @@ function test_Search()
 													<div class="thumbnail">
 													    <div class="caption">
 													    	<div class="caption-content">
-														    	<span>
-																	<a data-rel="prettyPhoto" href="sample/images/portfolio/portfolio-bg2.jpg">
-																	    <i class="fa fa-search"></i>              
-																	</a>
+														    	<span>				
 														        	<a href="login.nhn" class=""><i class="fa fa-link"></i></a>
 														        </span>
 														        <h3>등록된 코스가 없습니다.</h3>
