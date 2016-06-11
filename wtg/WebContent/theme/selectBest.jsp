@@ -4,13 +4,36 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/inputCss.css"/>
 
 <style>
-	.wrap {position: absolute; width: 250px; height: 25px; overflow: hidden; background: #ffffff;}
-		.wrap .icon {width: 20px; height: 20px; backbround: #F0F8FF;}
+.wrap {position: absolute; width: 250px; height: 25px; overflow: hidden; background: #ffffff;}
+	.wrap .icon {width: 20px; height: 20px; backbround: #F0F8FF;}
+		
+.category, .category *{margin:0;padding:0;color:#000;}   
+.category {position:absolute;overflow:hidden;top:10px;left:10px;width:150px;height:50px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
+.category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
+.category li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
+.category .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png') no-repeat;} 
+.category .ico_coffee {background-position:-10px 0;}  
+.category .ico_store {background-position:-10px -36px;}   
+.category .ico_carpark {background-position:-10px -72px;} 
+
+    .cowrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 11px;line-height: 1.5;}
+    .cowrap * {padding: 0;margin: 0;}
+	    .cowrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+	    .cowrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+		    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 14px;font-weight: bold;}
+		    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+		    .info .close:hover {cursor: pointer;}
+		    .info .body {position: relative;overflow: hidden;}
+		    .info .desc {position: relative;margin: 9px 0 0 90px;height: 75px;}
+			    .desc .address {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+		    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+		    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+		    .info .link {color: #5085BB;}
 </style>
 
 <div id="wrapper">
 	<div id="header">
-		<jsp:include page="/include/inputHeader.jsp" flush="false"/>
+<%-- 		<jsp:include page="/include/inputHeader.jsp" flush="false"/> --%>
 	</div>
 
 	<div class="map_wrap">
@@ -47,6 +70,7 @@ var iconCafe = 'CE7';
 var ps = new daum.maps.services.Places(map); 				//장소검색 객체 생성
 var iconMarkers = [];
 var markerPosition;
+var cnt=0;
 
 //다중 셀렉트박스 생성
 function multiSelect(srcE, targetId){						
@@ -104,8 +128,6 @@ function sendOpval(opval){
 
 //전달받은 랭킹정보를 목적에 맞게 분할
 function searchOK(list) {
-//	alert("팟씽뺘!");
-	var cnt=0;
 	var str=list.replace(/\s/gi, '');
 	var line=str.split('@');
 		for(var i=0; i<line.length-1; i++)
@@ -120,37 +142,31 @@ function searchOK(list) {
 			addMarker(xy,cnt);
 			bounds.extend(xy);
 		}
-//	alert("범위재설정뺘!");
-	//setbounds();
 }
 
 
 //좌표에 해당하는 마커를 생성하고 띄움
 function addMarker(xy, cnt) {
-	var marker = new daum.maps.Marker({
+	var marker = new daum.maps.Marker({			//마커생성
 		position: xy,
 		clickable: true
 	});
-	var mkPosition = xy;
-	alert("마커포지션"+mkPosition);
 	var icon = '<div class="wrap">' +
-			'			<div class="icon" id="CE7" onclick="cateSearch(this)" title="'+xy.getLat()+"/"+xy.getLng()+'">'+ iconCafe +
-			'			</div>' +
+			'		<div class="icon" id="CE7" onclick="cateSearch(this)" title="'+xy.getLat()+"/"+xy.getLng()+'">'+ iconCafe +
+			'		</div>' +
 			'	</div>';	
-	var overlay = new daum.maps.CustomOverlay({			// 장소정보 오버레이 생성
+	var iconOverlay = new daum.maps.CustomOverlay({			//마커에 띄울 카테고리 아이콘 오버레이생성
 		content: icon,
  		position: marker.getPosition(),
   		clickable: true
 	});	
 	marker.setMap(map);									// 마커를 지도에 표시
 	daum.maps.event.addListener(marker, 'click', function(mouseEvent) {	// 클릭 가능한 아이콘 오버레이를 지도에 표시
-		alert("오버레이이벤트");
+	//	alert("오버레이이벤트");
 		markerPosition=marker.getPosition();
-		//alert("마우스"+markerPosition);
 		map.setCenter(markerPosition);
 		map.setLevel(4);
-		overlay.setMap(map);	
-		
+		iconOverlay.setMap(map);	
 	});															
 }
 	
@@ -159,7 +175,6 @@ function cateSearch(id) {
 	var cate='CS2';
 	var xy = id.getAttribute('title');
 
-	
 	syPosition=new daum.maps.LatLng(xy.split('/')[0],xy.split('/')[1]);
 	alert("클릭이벤트"+syPosition);
 	ps.categorySearch({
@@ -172,11 +187,8 @@ function cateSearch(id) {
 }
 
 function searchCB(status, data, pagination) {
-//	alert("st"+status);
-//	alert("dt"+data.places);
 	    if (status === daum.maps.services.Status.OK) {
-	        showIconMarker(data.places);					// 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
-	       
+	      	  showIconMarker(data.places);					// 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
 	    } else if (status === daum.maps.services.Status.ZERO_RESULT) {
 			alert("반경 1km 이내에 해당하는 검색결과가 없습니다");
 	    } else if (status === daum.maps.services.Status.ERROR) {
@@ -184,42 +196,73 @@ function searchCB(status, data, pagination) {
 	    }
 	}
 	
+	function add(point,place)
+	{
+		alert(place.title);
+		var content = '<div class="cowrap">' + 		//장소정보 오버레이에 표시할 컨텐츠 입니다
+        '    <div class="info">' + 
+        '        <div class="title">' + place.title+ 
+        '            <div class="close" id="'+cnt+'"onclick="closeOverlay(this)"  title="닫기"></div>' + 
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="desc">' + 
+        '                <div class="address">'+'주소 : ' + place.address + '</div>' + 
+        '                <div>'+'전화번호 : ' + place.phone + '</div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>';  
+        //alert("c"+content);
+       var dataOverlay = new daum.maps.CustomOverlay({					//장소정보 오버레이를 생성합니다.
+			content: content,
+			position: point,
+	 		clickable: true
+		});
+       alert("2");
+		var psimageSrc = 'http://127.0.0.1:8000/wtg/map/img/green_b.png', // 경유지마커이미지의 주소입니다    
+	 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
+	 	    psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		var psmarkerImage = new daum.maps.MarkerImage(psimageSrc, psimageSize, psimageOption);
+	 	    
+		var iconMarker = new daum.maps.Marker({
+			position : point,
+			clickable: true,
+			image:psmarkerImage
+		});
+		 alert("3");
+		iconMarker.setMap(map);
+		  daum.maps.event.addListener(iconMarker, 'click', function(mouseEvent) 
+	       { 
+			  alert(iconMarker.getPosition());
+			  dataOverlay.setMap(map);
+
+	       });	
+		  alert("4");
+				
+	}
+	
 function showIconMarker(places) {
-	alert("검색끝카페마커");
 	for (var i=0; i<places.length; i++)
 	{
 		 var distance=distanceSum(places[i]);
-		 alert("거리"+distance);
+		// alert("거리"+distance);
 		if(distance<=1000)
 		{
-//alert("data"+places[i].address); 
-			var psimageSrc = 'http://127.0.0.1:8000/wtg/map/img/green_b.png', // 경유지마커이미지의 주소입니다    
-			 		 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
-			 		 	    psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-			var psmarkerImage = new daum.maps.MarkerImage(psimageSrc, psimageSize, psimageOption);
-			var xy = new daum.maps.LatLng(places[i].latitude, places[i].longitude);
-				alert(i+xy);
-			var iconMarker = new daum.maps.Marker({
-				position : xy,
-				clickable: true,
-				image:psmarkerImage
-			});	
-			iconMarker.setMap(map);
+			var xy = new daum.maps.LatLng(places[i].latitude, places[i].longitude);	
+	        add(xy,places[i]);
 			
+	
 		}
-//		iconMarkers.push(iconMarker);
-//		var mkPosition = iconMarker.getPosition();
-//		alert("안뜨나"+mkPosition);
 	}
 }
 
+
 function distanceSum(place)
 {
-	//alert("김나경바보"+markerPosition);
 	// 마커를 생성하고 지도에 표시합니다
 		var distance;
 		var dis=new  daum.maps.LatLng(place.latitude, place.longitude);
-		alert("좌표:"+dis);
+//		alert("좌표:"+dis);
 		
 		clickLine = new daum.maps.Polyline({
 		 map: map, // 선을 표시할 지도입니다 
@@ -239,9 +282,12 @@ function distanceSum(place)
 		return distance;
 }
 
- 
-
-
+//오버레이를 닫습니다
+function closeOverlay(a) {		
+	alert("클로즈");
+	var check=a.getAttribute('id');		
+	overInfo[check].setMap(null);
+}
 
 //마커를 중심으로 지도 범위를 재설정함
 function setbounds() {
