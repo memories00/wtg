@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import location.bean.MapDto;
+import theme.MemCommentDTO;
 import theme.thDTO;
 
 @Controller
@@ -58,7 +59,6 @@ public class map
 		{
 			request.setAttribute("statusCnt",new Integer(2));
 		}
-
 		
 		sqlMap.update("map.updateReadHit",num);//조회수 증가
 		
@@ -67,8 +67,7 @@ public class map
 		eDto=(endDto)sqlMap.queryForObject("map.endCourse",num);	
 		list=sqlMap.queryForList("map.passCourse",num);
 		
-		String passInfo="";
-		
+		String passInfo="";		
 
 		if(dto.getP1_point()!=null){
 			passInfo+=dto.getP1_name()+"/"+dto.getP1_point()+"@";
@@ -85,23 +84,24 @@ public class map
 		if(dto.getP5_point()!=null){
 			passInfo+=dto.getP5_name()+"/"+dto.getP5_point()+"^";
 		}
-		//System.out.println(dto.getS_image());
+		//System.out.println(passInfo);
 		String s_imgArr[]=dto.getS_image().split("/");
 		String imgNameArr[]=new String[4];
-		//System.out.println(s_imgArr.length); length=4
 		ArrayList imageList=new ArrayList();
+		List<MemCommentDTO>commentList=new ArrayList<MemCommentDTO>();
+		
 		for(int i=0;i<s_imgArr.length;i++)
 		{
 			if(!(s_imgArr[i].equals("default.jsp")))
 			{
 				imgNameArr[i]=s_imgArr[i];
-				//System.out.println(imgNameArr[i]);
 				imageList.add(imgNameArr[i]);
-				//request.setAttribute("s_image",imgNameArr[i]);
 			}
-			//
-			//System.out.println(imageList.size());
 		}
+		
+		commentList=sqlMap.queryForList("theme.memCommentAll",num);//table에서 글의 댓글들을 가져옴
+		
+		request.setAttribute("commentList",commentList);
 		request.setAttribute("dto",dto);
 		request.setAttribute("sDto",sDto);
 		request.setAttribute("eDto",eDto);

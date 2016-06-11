@@ -13,22 +13,22 @@
 <lon>127.040001</lon>
 <lat>37.487999</lat>
 <tz>UTC:+9:0</tz>
-<date>2016061112</date>
+<date>2016061118</date>
 <dst>NA</dst>
 <daynight>NA</daynight>
-<icon>4</icon>
-<temp>25.9</temp>
+<icon>40</icon>
+<temp>24.9</temp>
 <max_temp>27.0</max_temp>
 <min_temp>20.0</min_temp>
-<sens_temp>25.9</sens_temp>
-<wd_ws>23:1.2</wd_ws>
-<humi>59</humi>
-<rainf>NA</rainf>
+<sens_temp>24.9</sens_temp>
+<wd_ws>29:1.1</wd_ws>
+<humi>76</humi>
+<rainf>1.5</rainf>
 <snowf>NA</snowf>
-<pa>1009.9</pa>
+<pa>1008.3</pa>
 <badfeel>74</badfeel>
-<pm10>38</pm10>
-<wtext><![CDATA[현재 대체로 흐린 가운데 약간 더운 날씨입니다. 적당한 습도이지만 잦은 환기로 실내의 온도 조절이 필요한 때입니다.]]></wtext>
+<pm10>49</pm10>
+<wtext><![CDATA[현재 짙은 안개가 낀 가운데 따뜻한 날씨입니다. 비염 등 호흡기 질환이 있으신 분은 주의하시기 바랍니다.]]></wtext>
 <wf_today><![CDATA[NA]]></wf_today>
 <wf_tomorrow><![CDATA[NA]]></wf_tomorrow>
 <wf_week><![CDATA[NA]]></wf_week>
@@ -37,5 +37,5 @@
 <moonset>*</moonset>
 <moonrise>11:19</moonrise>
 <violet>6</violet>
-<vs>2000</vs>
+<vs>900</vs>
 </today_weather>

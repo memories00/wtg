@@ -21,9 +21,10 @@ public class Report {
 	private SqlMapClientTemplate sqlMapClientTemplate;
 	
 	@RequestMapping("/report.nhn")
-	public String report(HttpServletRequest request,HttpSession session){
+	public String report(HttpServletRequest request,HttpSession session,String num){
 		String id= (String)session.getAttribute("memId");
-		int no=Integer.parseInt(request.getParameter("no"));
+		int no=Integer.parseInt(num);
+		System.out.println(id);
 		request.setAttribute("id", id);
 		request.setAttribute("no",no);
 		return "/theme/report.jsp";

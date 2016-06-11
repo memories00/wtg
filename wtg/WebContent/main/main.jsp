@@ -291,7 +291,7 @@ function test_Search()
 														    <div class="caption">
 														    	<div class="caption-content">
 															    	<span>
-																		<a data-rel="prettyPhoto" href="http://127.0.0.1:8000/wtg/img/${list2.m_image}" target="_blank">
+																		<a data-rel="prettyPhoto" onclick="window.open('http://127.0.0.1:8000/wtg/img/${list2.m_image}','사진확인','width:100,height:100');return false;">
 																		    <i class="fa fa-search"></i>              
 																		</a>
 															        	<a href="courseView.nhn?num=${list2.num}" class=""><i class="fa fa-link"></i></a>

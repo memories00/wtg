@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>코스확인</title>
 <link rel="stylesheet" href="/wtg/daumeditor/css/editor.css" type="text/css" charset="EUC-KR"/>
+		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="/wtg/daumeditor/js/editor_loader.js" type="text/javascript" charset="EUC-KR"></script>
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>	
 		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06807e3624c0410b3525f8f75a0a967c&libraries=services"></script>
@@ -15,18 +16,16 @@
 		<script type="text/javascript" src="/wtg/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="/wtg/js/jquery.als-1.7.min.js"></script>		
 		<style>
-		#warp{width:100%;}
+	#warp{width:100%;}
 	.box_t{background-color:#494949; width:100%; height:15%; float:left; }
-	.box1{width:38%; height:80%; float:left;margin:20px 30px 0 30px}
+	.box1{width:38%; height:80%; float:left;margin:0px 30px 0 30px}
 	.box2{;width:50%; height:65%;float:left; margin:0 0 0 0px}
 	.box3{ ;width:38%; height:90%;float:left;display:block;margin:20px 0 0 30px;overflow: auto;}
-	.box4{ background-color:#494949;width:50%; height:400px;float:left;margin:20px 0 0 20px;}
+	.box4{width:50%; height:320px;float:left;margin:20px 0 0 20px;background:rgba(255, 217, 236, 0.3)}
 	.box5{margin:0px 0 0 0;width:170px; height:170px;float:left;border:1px;}
 	.imgbox{ width:150px; height:150px;}
 	.box-m{float:left; width:100%;height:50%;}
 	.box-m2{float:left;display:block; width:100%;height:50%}
-	.preview{ width:50%;height:300; margin: 30px 0px 0 50px}
-	
 	.body {margin: 10px}
 .where {
   display: block;
@@ -35,7 +34,6 @@
   color: #000;
   text-decoration: none;
   font-family: verdana;
-  font-style: italic;
 } 
 .filebox {display:inline-block; margin-right: 10px;}
 
@@ -111,30 +109,58 @@
 		</style>
 </head>
 <body>
-<div id="header" style="width:100%; height:80px;">
+<div id="header" style="width:100%;">
 	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
-	<font size="7">카테고리: ${dto.category }</font>
   <div id="warp">
+
 	<div class="box-m">
-		<div class="box1" id="map">
-		
+		<div class="box1" id="map">	
 		</div>
 		<div class="box2">
-			제목: <input type="text" id="subject" value="${dto.subject }" style="width:90%; margin:20px 0 0 0">
-			<textarea style="margin:10px 0 0 0;width:100%" rows="13" cols="80">${dto.content }</textarea>
-			tag: <input type="text" id="tag" value="${dto.hashtag }" style="margin:10px 0 0 0; width:90%;">
-			<div class="gAndh" align="center">
-				<c:if test="${statusCnt==0 }">
-					<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)"><input type='text' id="ghStatus" value="좋아요를 선택하셨어요" style="background-color:white;"readonly> 
-				</c:if>
-				<c:if test="${statusCnt==1 }">
-					<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)"><input type='text'   id="ghStatus" value="싫어요를 선택하셨어요" style="background-color:white;"readonly> 
-				</c:if>
-				<c:if test="${statusCnt==2 }">
-				<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)">
-				</c:if>
+			<table border="0">
+				<tr>
+					<td><br/></td>
+				</tr>
+				<tr>
+					<td align="center"><font size="5" face="바탕">${dto.subject }</font></td>
+				</tr>
+				<tr>
+					<td><br/><br/><br/></td>
+				</tr>
+				<tr>
+					<td >${dto.content }</td>
+				</tr>
+				<tr>
+					<td><br/><br/><br/></td>
+				</tr>
+				<tr>
+					<td>tag: ${dto.hashtag }</td>
+				</tr>
+				<tr>
+					<td><br/></td>
+				</tr>
 				
+				<tr>
+					<td align="center">&nbsp;&nbsp;&nbsp;
+						<c:if test="${statusCnt==0 }">
+							<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)"><input type='text' id="ghStatus" value="좋아요를 선택하셨어요" style="background-color:white;"readonly>
+							<a onclick="window.open('report.nhn?num=${dto.num}','사진확인','width:100,height:100');return false;">신고</a> 
+						</c:if>
+						<c:if test="${statusCnt==1 }">
+							<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)"><input type='text'   id="ghStatus" value="싫어요를 선택하셨어요" style="background-color:white;"readonly>
+							<a onclick="window.open('report.nhn?num=${dto.num}','사진확인','width:100,height:100');return false;">신고</a> 
+						</c:if>
+						<c:if test="${statusCnt==2 }">
+							<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)">
+						<a onclick="window.open('report.nhn?num=${dto.num}','사진확인','width:100,height:100');return false;">신고</a>
+						</c:if>
+					</td>
+				</tr>
+			
+			</table>	
+			
+						
 		</div>
 		</div>
 	</div>
@@ -169,26 +195,56 @@
 		</div>
 	<div class="box4">
 			<div id="imgslide" >
-				<div id="lista1" class="als-container" style="margin:30px 0 0 0;">
+				<div id="lista1" class="als-container" style="margin:30px 0 0 0; height:250px;">
 					<span class="als-prev" ><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
-					<div class="als-viewport">
-								 
+					<div class="als-viewport">						 
 					  	<c:forEach var="s_image" items="${imageList}" varStatus="i">
-					  		${s_image}	
-					  	 	<li class="als-item" style="background-color:blue;" >
-						  	<img src="http://127.0.0.1:8000/wtg/img/${s_image}"style="width:100px;height:150px" />
+					  			
+					  	 	<li class="als-item" style="background-color:blue;margin:0 0 0 30px; width:30%; height:250px;" >
+						  	<img src="http://127.0.0.1:8000/wtg/img/${s_image}"style="width:100%;height:100%" />
 						  	</li>
                       </c:forEach>
                           
 					</div>		
 					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>	
 				  </div>
-	</div>
+			</div>
 	 
 		</div>
 	</div>
-	
+	<table class="table table-condensed" style="margin:100px 0 0 0">	
+		<tr>
+			<td>
+				<span class="form-inline" role="form">
+ 				
+					<div class="form-group">
+						댓글달기
+					</div>
+					
+					<div class="form-group">
+						<button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
+					</div>
+				
+					<textarea id="commentParentText" class="form-control col-lg-12" style="width:100%" rows="4"></textarea>
+					</span>
+			</td>
+		</tr>
+		
+		<c:forEach var="commentList" items="${commentList}">
+		<tr>
+			<td>
+			${commentList.nickname}<a style="cursor:pointer;" name="pDel">삭제</a>
+			<br />
+			${commentList.content}
+			</td>
+		</tr>
+		</c:forEach>
+		
+	</table>	
 	</div>
+  <div id="ad_footer">
+	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+</div>
 
 
   <script>
@@ -198,8 +254,9 @@
 									level: 7
 								  };  			
 	var map = new daum.maps.Map(container, options);
-	
+
 	var totalStr='${passInfo}';  //주소/x^y@
+	
 	var parse1=totalStr.split('@');
 	
 	var bounds = new daum.maps.LatLngBounds();
@@ -287,12 +344,11 @@
 	 	 				success:function(data)
 	 	 				{
 	 	 					var str=data.replace(/\s/gi, '');
-	 	 					if(str=="1")
-	 	 						{
+	 	 					if(str=="1"){
 	 	 							document.getElementById('ghStatus').value="좋아요를 선택하셨어요";
 	 	 						}
 	 	 				}
-		 	 	        })
+		 	 	   })
 		}
 		
 		if(num==1)//싫거든요
@@ -302,17 +358,133 @@
 	 	 				success:function(data)
 	 	 				{
 	 	 					var str=data.replace(/\s/gi, '');
-	 	 					if(str=="0")
- 	 						{
+	 	 					if(str=="0"){
 	 	 						document.getElementById('ghStatus').value="싫어요를 선택하셨어요";
  	 						}
 	 	 				}
-		 	 	        })
+		 	 	   })
 		}
-		
-		
-		
 	}
+	
+	$(function(){
+		//제일 하단에 있는 depth1의 댓글을 다는 이벤트
+		$("#commentParentSubmit").click(function( event ) {
+                                  
+		//ajax로 저장하고 성공하면 저장한 데이터를 가져와 넣어야 하는데 여기서는 테스트라 그냥 입력값을 가져옴
+			
+		var pText = $("#commentParentText");
+                                   
+		if($.trim(pText.val())==""){
+			alert("내용을 입력하세요.");
+ 			pText.focus();
+			return;
+		}
+            
+		var comment = pText.val();
+		//alert(comment);
+		var commentParentText = '<tr id="r1" name="commentParentCode">'+
+								 '<td colspan=2>'+
+                                 '<strong>${sessionScope.memName}</strong><a style="cursor:pointer;" name="pDel">삭제</a><p>'+pText.val().replace(/\n/g, "<br>")+'</p>'+
+                                 '</td>'+
+                                 '</tr>';
+                                   
+         //테이블의 tr자식이 있으면 tr 뒤에 붙인다. 없으면 테이블 안에 tr을 붙인다.
+		if($('#commentTable').contents().size()==0){
+			$('#commentTable').append(commentParentText);
+		}else{
+			$('#commentTable tr:last').after(commentParentText);
+		}
+                                   
+		$("#commentParentText").val("");
+
+		var mid = ${sessionScope.memId};
+			//alert("mem"+mid);
+		var bnum = ${dto.num};
+			//alert("bnum이 뭐냐"+bnum);
+			
+		$.ajax({
+			type: "POST",
+			url: "/wtg/sendComment.nhn",
+			data: {
+				num: bnum,
+				id: mid,
+				text: comment
+			},
+			async: true,
+			success: function(){
+		//		alert("post-success");
+			},
+			error: function(){
+				alert("다시 입력해 주세요.");
+			},
+			complete: function(){
+		//		alert("post-complete");
+			}
+		});                        
+	});
+                               
+	//답글링크를 눌렀을때 에디터 창을 뿌려주는 이벤트, 삭제링크를 눌렀을때 해당 댓글을 삭제하는 이벤트
+	$(document).on("click","table#commentTable a", function(){//동적으로 버튼이 생긴 경우 처리 방식
+                                   
+	if($(this).attr("name")=="pDel"){
+	if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+                                           
+	var delComment = $(this).parent().parent();
+	var nextTr = delComment.next();
+	var delTr;
+	
+	//댓글(depth1)의 댓글(depth2_1)이 있는지 검사하여 삭제
+	while(nextTr.attr("name")=="commentCode"){
+		nextTr = nextTr.next();
+		delTr = nextTr.prev();//삭제하고 넘기면 삭제되서 없기 때문에 다음값을 가져오기 어려워 다시 앞으로 돌려서 찾은 다음 삭제
+		delTr.remove();
+	}
+    delComment.remove();
+    }else{   //취소
+		return;
+	}
+	}else{
+	//자기 부모의 tr을 알아낸다.
+	var parentElement = $(this).parent().parent();
+	//댓글달기 창을 없앤다.
+	$("#commentEditor").remove();
+	//부모의 하단에 댓글달기 창을 삽입
+	var commentEditor = '<tr id="commentEditor">'+
+                        '<td style="width:1%"> </td>'+
+                        '<td>'+
+                        '<span class="form-inline" role="form">'+
+                        '<p>'+
+                        '<div class="form-group">'+
+                        '<input type="text" id="commentChildName" name="commentChildName" class="form-control col-lg-2" data-rule-required="true" placeholder="이름" maxlength="10">'+
+                        '</div>'+
+                        '<div class="form-group">'+
+                        ' <input type="password" id="commentChildPassword" name="commentChildPassword" class="form-control col-lg-2" data-rule-required="true" placeholder="패스워드" maxlength="10">'+
+                        '</div>'+
+                        '<div class="form-group">'+
+                        '<button type="button" id="commentChildSubmit" class="btn btn-default">확인</button>'+
+                        '</div>'+
+                        '</p>'+
+                        '<textarea id="commentChildText" name="commentChildText" class="form-control" style="width:98%" rows="4"></textarea>'+
+                        '</span>'+
+                        '</td>'+
+                        '</tr>';
+   		parentElement.after(commentEditor); 
+		}
+	});
+	
+		$( "#list" ).click(function( event ) {
+			location.href='/community/notice';
+		});
+		$( "#modify" ).click(function( event ) {
+			location.href='/community/modify/notice/${community.id}';
+		});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+		$( "#delete" ).click(function( event ) {
+			location.href='/community/delete/notice/${community.id}';
+		});
+		$( "#write" ).click(function( event ) {
+			location.href='/community/notice/edit';
+		});
+	});
 	
 	
 	

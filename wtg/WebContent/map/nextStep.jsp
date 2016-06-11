@@ -3,120 +3,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>               
 <html>
-	<head>
-		
-		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-			<title>코스등록하기</title>
-<style>
-	#warp{width:100%;}
-	.box1{width:38%; height:80%; float:left;margin:20px 30px 0 30px }
-	.box2{width:50%; height:65%;float:left; margin:0 0 0 0px}
-	.box3{width:38%; height:90%;float:left;display:block;margin:20px 0 0 30px;overflow: auto;}
-	.box4{background-color:red;   width:40%; height:200px;float:left;margin:20px 0 0 30px}
-	.box5{width:150px; height:230px;float:left;margin:30px 0 0 30px;border:1px;}
-	.imgbox{width:120px; height:130px;}
-	.box-m{background-color:blue;float:left; width:100%;height:60%}
-	.box-m2{background-color:red;float:left;display:block; width:100%;height:50%;}
-	.btn{width:150px; height:30px; margin:300px 0 0 0}
-	.sub{width:100%;}
-	.tag{width:100%;}
-	
-	
-.body {margin: 10px}
-.where {
-  display: block;
-  margin: 25px 15px;
-  font-size: 11px;
-  color: #000;
-  text-decoration: none;
-  font-family: verdana;
-  font-style: italic;
-} 
-.filebox {display:inline-block; margin-right: 10px;}
-
-
-.filebox label {
-  display: inline-block;
-  padding: .5em .75em;
-  color: #999;
-  font-size: inherit;
-  line-height: normal;
-  vertical-align: middle;
-  background-color: #fdfdfd;
-  cursor: pointer;
-  border: 1px solid #ebebeb;
-  border-bottom-color: #e2e2e2;
-  border-radius: .25em;
-}
-
-.filebox input[type="file"] {  /* 파일 필드 숨기기 */
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip:rect(0,0,0,0);
-  border: 0;
-}
-
-.filebox.bs3-primary label {
-  color: #fff;
-  background-color: #337ab7;
-    border-color: #2e6da4;
-}
-
-.filebox.bs3-success label {
-  color: #fff;
-  background-color: #5cb85c;
-    border-color: #4cae4c;
-}
-/* imaged preview */
-.filebox .upload-display {  /* 이미지가 표시될 지역 */
-  margin-bottom: 5px;
-
-}
-
-@media(min-width: 768px) { 
-  .filebox .upload-display {
-    display: inline-block;
-    margin-right: 5px;
-    margin-bottom: 0;
-  }
-}
-
-.filebox .upload-thumb-wrap {  /* 추가될 이미지를 감싸는 요소 */
-  display: inline-block;
-  padding: 2px;
-  vertical-align: middle;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #fff;
-   width:100px;
-  height:100px;
-}
-
-.filebox .upload-display img {  /* 추가될 이미지 */
-  display: block;
-  max-width: 100%;
-  width: 100% \9;
-  height: 40px;
-}
-
- </style>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>코스등록하기</title>
+<link rel="stylesheet" href="sample/css/map.css">
+<link rel="stylesheet" href="sample/css/style.css">
  </head>
- <body>
+
+<body onload="aa()">
+
 <div id="header" style="width:100%; height:80px;">
 	<jsp:include page="/include/mainHeader.jsp" flush="false"/>
 </div>
+ 
  <font size="7">${dto.category }</font>
-  <div id="warp">
-	<div class="box-m">
-		<div class="box1" id="map">
-		
-		</div>
-		<div class="box2">
-		<div class="sub">제목: <input type="text" id="subject" style="width:80%"> </div>
+  
+  <div id="container">
+  	<div class="col-sm-12">
+		<div class="col-sm-6">
+			<div class="panel-body ">
+					<div class="box1" id="map">
+				</div>
+			</div>
+		</div><!-- /지도 부분끝 -->
+	<div class="col-sm-6">
+			<div class="panel-body">
+					<div class="sub">제목: <input type="text" id="subject" style="width:80%"> </div>
 				<form name="frm" id="frm" action="insertDB.nhn" method="post"	accept-charset="EUC-KR">
 				<!-- 에디터프레임호출 영역 -->
 				<div id="editor_frame" style="margin:10px 0 0 0" >			
@@ -131,12 +43,13 @@
 
 				
 			</form>
+			</div>
 		</div>
 	</div>
-	
-	<div class="box-m2">
-		<div class="box3">
-		<div id="menu_wrap" class="bg_white">
+	<div class="container">
+	<div class="col-sm-6">
+			<div class="panel-body ">
+				<div id="menu_wrap" class="bg_white">
 			<div class="option">
 				<font size="4"> 
 				   출발지 이름: ${startTitle} <br />
@@ -164,11 +77,11 @@
 
 			</div>
 		</div>
+			</div>
 		</div>
-		
-		<div class="box4">
-				
-				<div id="imgslide">
+<div class="col-sm-5">
+			<div class="panel-body ">
+			<div id="imgslide">
 
 					<div id="lista1" class="als-container" >
 
@@ -217,23 +130,28 @@
 					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
 					
 				  </div>
-			</div>		
+			</div>
+		</div>
 	</div>
-		<div class="box5">
-			<div class="imgbox" id="m_img"style="margin:5px 10px 5px 10px ">
+<div class="col-sm-1">
+	<div class="imgbox" id="m_img"style="margin:5px 10px 5px 10px ">
 			</div>
 		<div class="filebox bs3-success"  id="mx">
         	<label for="m_file" style="margin:5px 0 0 35px ">업로드</label> 
          <input type="file" id="m_file"  onchange="test1(); "> 
 		
 	</div>
-		</div>
-	</div>
+</div>
+</div><!-- 2단 -->
+
+
+  
   
   </div>
-  <div id="ad_footer">
-	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
-</div>
+   
+
+	
+  
   
   <form name="form1" method="post" action="plase.nhn">
 </form>
@@ -388,9 +306,9 @@
 		map.setBounds(bounds);
 
 			</script>			
-	</head>
+
 	  
-<body onload="aa()">
+
 
 <script>
 $(function aa(){
@@ -584,5 +502,6 @@ jQuery( document ).ready(function( $ ) {
 
 
 </script>
+<jsp:include page="/include/mainFooter.jsp" flush="false"/>
 	</body>
 </html>

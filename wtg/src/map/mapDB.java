@@ -178,7 +178,11 @@ public class mapDB
 			dto.setContent(parseStr);
 			dto.setHashtag(hashtag);
 			dto.setSubject(subject);
+			System.out.println(num);
+			
+			sqlMap.insert("theme.createComment",num);//쓴글에대한 댓글 게시판 테이블을 생성
 			sqlMap.update("map.inputContent",dto);
+			
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

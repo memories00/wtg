@@ -62,7 +62,6 @@
 				<div class="col-md-12">
 					<div class="footer-desc text-center">
 						<div class="logo wow fadeInDown">Team name</div>
-					
 					</div>
 				</div>
 			</div><!-- row end -->

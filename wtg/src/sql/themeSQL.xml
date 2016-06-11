@@ -26,15 +26,7 @@
     <result property="content" column="content"/>
     <result property="reg" column="reg"/>
   </resultMap>
-  
-  <!--  -->
-  <resultMap class="memComment" id="mc">
-    <result property="id" column="id"/>
-    <result property="nickname" column="nickname"/>
-    <result property="content" column="content"/>
-    <result property="reg" column="reg"/>
-  </resultMap>
-  
+
   <!-- select -->
   <select id="selectCategory" resultClass="themeN" parameterClass="String">
 	select * from courseinfo where category=#category#
@@ -167,7 +159,7 @@
  
   <!-- comment sql -->
   
- <statement id="create" parameterClass="int">
+ <statement id="createComment" parameterClass="int">
 		CREATE TABLE comment_$num$ (
 								id varchar2(1000) not null,
 								nickname varchar2(4000) not null,
@@ -208,7 +200,7 @@
                         )
   </insert>
   
-  <select id="memCommentAll" resultMap="mc" parameterClass="int">
+  <select id="memCommentAll" resultClass="memComment" parameterClass="int">
     select * from comment_$num$ order by reg asc
   </select>
   
