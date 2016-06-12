@@ -11,7 +11,7 @@
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="/wtg/daumeditor/js/editor_loader.js" type="text/javascript" charset="EUC-KR"></script>
 		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>	
-		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06807e3624c0410b3525f8f75a0a967c&libraries=services"></script>
+		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06fa7b42a2af7b8c46c9ca9a71d40206&libraries=services"></script>
 		<link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/als_demo.css" />
 		<script type="text/javascript" src="/wtg/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="/wtg/js/jquery.als-1.7.min.js"></script>		
@@ -152,7 +152,7 @@
 							<a onclick="window.open('report.nhn?num=${dto.num}','사진확인','width:100,height:100');return false;">신고</a> 
 						</c:if>
 						<c:if test="${statusCnt==2 }">
-							<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)">
+							<input type="button" value="좋아요" onclick="check(0)">&nbsp;&nbsp;&nbsp;<input type="button" value="싫거든요" onclick="check(1)"><input type='text'   id="ghStatus" value="" style="background-color:white;"readonly>
 						<a onclick="window.open('report.nhn?num=${dto.num}','사진확인','width:100,height:100');return false;">신고</a>
 						</c:if>
 					</td>
@@ -212,38 +212,39 @@
 	 
 		</div>
 	</div>
-	<table class="table table-condensed" style="margin:100px 0 0 0">	
+	<table id="commentTable" class="table table-condensed"></table>
+<table class="table table-condensed">
+		
+		<c:forEach var="list" items="${commentList}">
+		<tr>
+			<td>
+			${list.nickname}<a style="cursor:pointer;" id="${list.content}" name="pDel" onclick="deleteComment(this)">삭제</a>
+			<br />
+			${list.content}
+			</td>
+		</tr>
+		</c:forEach>
+	
 		<tr>
 			<td>
 				<span class="form-inline" role="form">
- 				
-					<div class="form-group">
-						댓글달기
-					</div>
-					
-					<div class="form-group">
-						<button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
-					</div>
+ 				<p>
+				<div class="form-group">
+					${sessionScope.memId} ${sessionScope.memName}
+				</div>
 				
+				<div class="form-group">
+					<button type="button" id="commentParentSubmit" name="commentParentSubmit" class="btn btn-default">확인</button>
+				</div>
+				</p>
 					<textarea id="commentParentText" class="form-control col-lg-12" style="width:100%" rows="4"></textarea>
 					</span>
 			</td>
 		</tr>
-		
-		<c:forEach var="commentList" items="${commentList}">
-		<tr>
-			<td>
-			${commentList.nickname}<a style="cursor:pointer;" name="pDel">삭제</a>
-			<br />
-			${commentList.content}
-			</td>
-		</tr>
-		</c:forEach>
-		
 	</table>	
 	</div>
-  <div id="ad_footer">
-	<jsp:include page="/include/mainFooter.jsp" flush="false"/>
+  <div id="ad_footer" style="margin:0px 0 0 0;">
+	<jsp:include page="/include/mainFooter.jsp" flush="false" />
 </div>
 
 
@@ -256,7 +257,6 @@
 	var map = new daum.maps.Map(container, options);
 
 	var totalStr='${passInfo}';  //주소/x^y@
-	
 	var parse1=totalStr.split('@');
 	
 	var bounds = new daum.maps.LatLngBounds();
@@ -272,7 +272,7 @@
 
 	for( var i=0;i<markers.length;i++)
 	{
-		var psimageSrc = 'http://127.0.0.1:8000/wtg/map/img/green_b.png', // 경유지마커이미지의 주소입니다    
+		var psimageSrc = '/wtg/map/img/green_b.png', // 경유지마커이미지의 주소입니다    
 	 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
 	 	    psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 		psmarkerImage = new daum.maps.MarkerImage(psimageSrc, psimageSize, psimageOption);
@@ -296,7 +296,7 @@
 	bounds.extend(stPosition);
 	bounds.extend(edPosition);
 	map.setBounds(bounds);
-	var stimageSrc = 'http://127.0.0.1:8000/wtg/map/img/red_b.png', // 출발마커이미지의 주소입니다    
+	var stimageSrc = '/wtg/map/img/red_b.png', // 출발마커이미지의 주소입니다    
 	    stimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
 	    stimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 	var startImage = new daum.maps.MarkerImage(stimageSrc, stimageSize, stimageOption);
@@ -309,7 +309,7 @@
 	});
 	
 	
-	var endimageSrc = 'http://127.0.0.1:8000/wtg/map/img/blue_b.png', // 도착지마커이미지의 주소입니다    
+	var endimageSrc = '/wtg/map/img/blue_b.png', // 도착지마커이미지의 주소입니다    
 	    endimageSize = new daum.maps.Size(55, 55), // 마커이미지의 크기입니다
 	    endimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 	endImage = new daum.maps.MarkerImage(endimageSrc, endimageSize, endimageOption);
@@ -337,6 +337,7 @@
 	});
 	function check(num)
 	{
+		alert(num);
 		if(num==0)//좋아요
 		{
 			$.ajax({		
@@ -345,6 +346,7 @@
 	 	 				{
 	 	 					var str=data.replace(/\s/gi, '');
 	 	 					if(str=="1"){
+	 	 						//alert("여기");
 	 	 							document.getElementById('ghStatus').value="좋아요를 선택하셨어요";
 	 	 						}
 	 	 				}
@@ -365,8 +367,7 @@
 		 	 	   })
 		}
 	}
-	
-	$(function(){
+
 		//제일 하단에 있는 depth1의 댓글을 다는 이벤트
 		$("#commentParentSubmit").click(function( event ) {
                                   
@@ -380,6 +381,7 @@
 			return;
 		}
             
+		//alert("1");
 		var comment = pText.val();
 		//alert(comment);
 		var commentParentText = '<tr id="r1" name="commentParentCode">'+
@@ -387,7 +389,7 @@
                                  '<strong>${sessionScope.memName}</strong><a style="cursor:pointer;" name="pDel">삭제</a><p>'+pText.val().replace(/\n/g, "<br>")+'</p>'+
                                  '</td>'+
                                  '</tr>';
-                                   
+         //alert(commentParentText);                          
          //테이블의 tr자식이 있으면 tr 뒤에 붙인다. 없으면 테이블 안에 tr을 붙인다.
 		if($('#commentTable').contents().size()==0){
 			$('#commentTable').append(commentParentText);
@@ -396,7 +398,8 @@
 		}
                                    
 		$("#commentParentText").val("");
-
+		//alert("2");
+		
 		var mid = ${sessionScope.memId};
 			//alert("mem"+mid);
 		var bnum = ${dto.num};
@@ -422,55 +425,61 @@
 			}
 		});                        
 	});
-                               
-	//답글링크를 눌렀을때 에디터 창을 뿌려주는 이벤트, 삭제링크를 눌렀을때 해당 댓글을 삭제하는 이벤트
-	$(document).on("click","table#commentTable a", function(){//동적으로 버튼이 생긴 경우 처리 방식
-                                   
-	if($(this).attr("name")=="pDel"){
-	if (confirm("정말 삭제하시겠습니까?") == true){    //확인
-                                           
-	var delComment = $(this).parent().parent();
-	var nextTr = delComment.next();
-	var delTr;
+     
+	function deleteComment(bt)
+	{
+		if($(bt).attr("name")=="pDel"){
+			if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+		                                           
+			var delComment = $(bt).parent().parent();
+			var nextTr = delComment.next();
+			var delTr;
+
+			var contentId=bt.getAttribute('id');
+		
+			$.ajax({
+				url: "/wtg/deleteCom.nhn?num=${dto.num}&content="+contentId,
+			});
+			
+			//댓글(depth1)의 댓글(depth2_1)이 있는지 검사하여 삭제
+			while(nextTr.attr("name")=="commentCode"){
+				nextTr = nextTr.next();
+				delTr = nextTr.prev();//삭제하고 넘기면 삭제되서 없기 때문에 다음값을 가져오기 어려워 다시 앞으로 돌려서 찾은 다음 삭제
+				delTr.remove();
+			}
+		    delComment.remove();
+		    }else{   //취소
+				return;
+			}
+			}else{
+			//자기 부모의 tr을 알아낸다.
+			var parentElement = $(bt).parent().parent();
+			//댓글달기 창을 없앤다.
+			$("#commentEditor").remove();
+			//부모의 하단에 댓글달기 창을 삽입
+			var commentEditor = '<tr id="commentEditor">'+
+		                        '<td style="width:1%"> </td>'+
+		                        '<td>'+
+		                        '<span class="form-inline" role="form">'+
+		                        '<p>'+
+		                        '<div class="form-group">'+
+		                        '<input type="text" id="commentChildName" name="commentChildName" class="form-control col-lg-2" data-rule-required="true" placeholder="이름" maxlength="10">'+
+		                        '</div>'+
+		                        '<div class="form-group">'+
+		                        ' <input type="password" id="commentChildPassword" name="commentChildPassword" class="form-control col-lg-2" data-rule-required="true" placeholder="패스워드" maxlength="10">'+
+		                        '</div>'+
+		                        '<div class="form-group">'+
+		                        '<button type="button" id="commentChildSubmit" class="btn btn-default">확인</button>'+
+		                        '</div>'+
+		                        '</p>'+
+		                        '<textarea id="commentChildText" name="commentChildText" class="form-control" style="width:98%" rows="4"></textarea>'+
+		                        '</span>'+
+		                        '</td>'+
+		                        '</tr>';
+		   		parentElement.after(commentEditor); 
+				}
+	}
 	
-	//댓글(depth1)의 댓글(depth2_1)이 있는지 검사하여 삭제
-	while(nextTr.attr("name")=="commentCode"){
-		nextTr = nextTr.next();
-		delTr = nextTr.prev();//삭제하고 넘기면 삭제되서 없기 때문에 다음값을 가져오기 어려워 다시 앞으로 돌려서 찾은 다음 삭제
-		delTr.remove();
-	}
-    delComment.remove();
-    }else{   //취소
-		return;
-	}
-	}else{
-	//자기 부모의 tr을 알아낸다.
-	var parentElement = $(this).parent().parent();
-	//댓글달기 창을 없앤다.
-	$("#commentEditor").remove();
-	//부모의 하단에 댓글달기 창을 삽입
-	var commentEditor = '<tr id="commentEditor">'+
-                        '<td style="width:1%"> </td>'+
-                        '<td>'+
-                        '<span class="form-inline" role="form">'+
-                        '<p>'+
-                        '<div class="form-group">'+
-                        '<input type="text" id="commentChildName" name="commentChildName" class="form-control col-lg-2" data-rule-required="true" placeholder="이름" maxlength="10">'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                        ' <input type="password" id="commentChildPassword" name="commentChildPassword" class="form-control col-lg-2" data-rule-required="true" placeholder="패스워드" maxlength="10">'+
-                        '</div>'+
-                        '<div class="form-group">'+
-                        '<button type="button" id="commentChildSubmit" class="btn btn-default">확인</button>'+
-                        '</div>'+
-                        '</p>'+
-                        '<textarea id="commentChildText" name="commentChildText" class="form-control" style="width:98%" rows="4"></textarea>'+
-                        '</span>'+
-                        '</td>'+
-                        '</tr>';
-   		parentElement.after(commentEditor); 
-		}
-	});
 	
 		$( "#list" ).click(function( event ) {
 			location.href='/community/notice';
@@ -484,10 +493,8 @@
 		$( "#write" ).click(function( event ) {
 			location.href='/community/notice/edit';
 		});
-	});
-	
-	
-	
+
+
   </script>
 </body>
 </html>

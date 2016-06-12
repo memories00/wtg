@@ -43,7 +43,8 @@ public class recommendMap {
 	public String  gAndh(HttpServletRequest request,int cnt,int num){	
 		HttpSession session=request.getSession();
 		gAndHDto ghDto=new gAndHDto();
-		session.setAttribute("memId","test");
+		//session.setAttribute("memId","test");
+		System.out.println(num);
 		String sessionId=(String)session.getAttribute("memId");
 		ghDto.setNum(num);
 		ghDto.setId(sessionId);
@@ -56,12 +57,14 @@ public class recommendMap {
 			int statusCnt=(Integer)sqlMap.queryForObject("map.getStatus",ghDto);
 			if(statusCnt==0 && cnt==1)
 			{
+				System.out.println("좋았다가 싫어요");
 				sqlMap.update("map.downGood",num);
 				sqlMap.update("map.updateHate",num);
 				request.setAttribute("statusCnt",new Integer(0));
 			}
 			if(statusCnt==1 && cnt==0)
 			{
+				System.out.println("싫었다가 좋아요");
 				sqlMap.update("map.downHate",num);
 				sqlMap.update("map.updateGood",num);
 				request.setAttribute("statusCnt",new Integer(1));

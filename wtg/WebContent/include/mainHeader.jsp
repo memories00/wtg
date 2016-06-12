@@ -105,7 +105,7 @@ function move()
 						</c:when>
 						<c:otherwise>
 							&nbsp;<br>
-							<a href="http://127.0.0.1:8000/wtg/login.nhn">
+							<a href="/wtg/login.nhn">
 								<img src="/wtg/img/loginBtn.jpg" width="100"/>
 							</a>
 						</c:otherwise>
@@ -123,7 +123,7 @@ function move()
     					<span class="icon-bar"></span>
     					<span class="icon-bar"></span>
     				</button>
-    				<a href="/wtg/main.nhn" class="navbar-brand page-scroll">I SEOUL GA U</a>
+    				<a href="/wtg/main.nhn" class="navbar-brand page-scroll"><img src="/wtg/img/logo.png" style="width:600px;height:50px;"/></a>
     			</div> <!-- navabr-header -->
 
     			<div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1" role="navigation">

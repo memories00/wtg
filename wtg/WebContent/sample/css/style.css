@@ -1158,21 +1158,22 @@ h5{
     width: 100%;
     overflow:hidden;
     z-index:2;
-    padding:80px 0px 80px 0px;
+    padding:30px 0px 30px 0px;
     color: #fff;
 }
 
 .facts-wrap{
-    width: 220px;
+    width: 900px;
+    height:35px;
     margin: 0px auto;
     text-align: left;
 }
 
 .facts-wrap h6{
-    font-weight:700;
+    font-weight:400;
     text-transform:uppercase;
     letter-spacing:2px;
-    font-size: 20px; 
+    font-size: 10px; 
     line-height:18px;
 }
 .facts-wrap-num{

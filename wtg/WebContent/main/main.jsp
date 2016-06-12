@@ -52,26 +52,22 @@
 <script src="/wtg/js/vticker.min.js"></script>
 <script>
 $(document).ready(function(){
-	var modalLayer = ${"#modalLayer"};
-	var modalLink = ${"#modalLink"};
-	var modalCont = ${"#modalContent"};
-	var marginLeft=modalCont.outerWidth()/2;
-	var marginTop=modalCont.outerHeight()/2;
-	
-	modalLink.click(function(){
-		modalLayer.fadeIn("slow");
-		modalCont.css({"margin-top":-marginTop,"margin-left":-marginLeft});
-		
-		$(this).blur();
-		$(".modalCotent>a").focus();
-		return false;
-	});
-	
-	$(".modalContent>button").click(function(){
-		modalLayer.fadeOut("slow");
-		modalLink.focus();
-	});
-});
+ 
+	   $('.roll2').vTicker();
+	   $('#pause').click(function(){
+		$this=$(this);
+		if($this.text()=='Pause'){
+			$('.roll2').vTicker('pause',true);
+			$this.text('Unpause');
+		}
+		else{
+			$('.roll2').vTicker('pause',false);
+			$this.text('Pause');
+			}
+	  });
+	   
+	   
+	 });
 
 
 $(function() {
@@ -84,6 +80,11 @@ $(function() {
 	});
 </script>
 	<script>
+	function move(name)
+	{
+		alert("왔어");
+		window.location="courseView?num="+name;
+	}
 		function locationHref(a) {
 			var ty = a.getAttribute("id");
 			location.href="/wtg/themeList.nhn?cate="+ty;
@@ -131,7 +132,7 @@ function test_Search()
 						</c:when>
 						<c:otherwise>
 							&nbsp;<br>
-							<a href="http://127.0.0.1:8000/wtg/login.nhn">
+							<a href="http://192.168.50.69:8000/wtg/login.nhn">
 								<img src="/wtg/img/loginBtn.jpg" width="100"/>
 							</a>
 						</c:otherwise>
@@ -154,14 +155,14 @@ function test_Search()
     	
     	<div class="container">
     		<div class="row">
-    			<div class="navbar-header ">
+    			<div class="navbar-header " >
     				<button class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse">
     					<span class="sr-only"></span>
     					<span class="icon-bar"></span>
     					<span class="icon-bar"></span>
     					<span class="icon-bar"></span>
     				</button>
-    				<a href="main.nhn" class="navbar-brand page-scroll">I SEOUL GA U</a>
+    				<a href="main.nhn" class="navbar-brand page-scroll"><img src="http://192.168.50.69:8000/wtg/img/logo.png" style="width:550px;height:100px;"></a>
     			</div> <!-- navabr-header -->
 
     			<div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1" role="navigation">
@@ -197,15 +198,14 @@ function test_Search()
 			<div class="carousel-inner">
 			<c:forEach var="list" items="${list}" end="0">
 			    <div class="item active">
-			    	<img class="img-responsive" src="adminImg/160516010536c.jpg" alt="slider" style="height:700px; width:100%;">
+			    	<img class="img-responsive" src="http://192.168.50.69:8000/wtg/img/${list.m_image}" alt="slider" style="height:700px; width:100%;">
 			    </div><!--/ Carousel item end -->
 			</c:forEach>
 				<c:forEach var="list" items="${list}" end="4" varStatus="i">
 					<c:if test="${i.count>=2}">
-					<div class="item">
-					${list.num}
+					<div class="item" onclick="move(${list.num})">
 						<a href="courseView.nhn?num=${list.num}">
-							<img class="img-responsive" src="adminImg/160516010536c.jpg" alt="slider" style="height:700px; width:100%;">
+							<img class="img-responsive" src="http://192.168.50.69:8000/wtg/img/${list.m_image}" alt="slider" style="height:700px; width:100%;">
 						</a>
 					</div>
 					</c:if>
@@ -291,7 +291,7 @@ function test_Search()
 														    <div class="caption">
 														    	<div class="caption-content">
 															    	<span>
-																		<a data-rel="prettyPhoto" onclick="window.open('http://127.0.0.1:8000/wtg/img/${list2.m_image}','사진확인','width:100,height:100');return false;">
+																		<a data-rel="prettyPhoto" onclick="window.open('http://192.168.50.69:8000/wtg/img/${list2.m_image}','사진확인','width:100,height:100');return false;">
 																		    <i class="fa fa-search"></i>              
 																		</a>
 															        	<a href="courseView.nhn?num=${list2.num}" class=""><i class="fa fa-link"></i></a>
@@ -300,7 +300,7 @@ function test_Search()
 															        <p>${list2.subject}</p>
 														    	</div>
 														    </div>
-														    <img src="http://127.0.0.1:8000/wtg/img/${list2.m_image}" alt="portfolio" style="height:360px;">
+														    <img src="http://192.168.50.69:8000/wtg/img/${list2.m_image}" alt="portfolio" style="height:360px;">
 														</div>
 													</div>
 												</c:forEach>
@@ -315,7 +315,7 @@ function test_Search()
 														    <div class="caption">
 														    	<div class="caption-content">
 															    	<span>
-															    		<a data-rel="prettyPhoto"  onclick="window.open('http://127.0.0.1:8000/wtg/img/${list2.m_image}','사진확인','width:100,height:100');return false;">
+															    		<a data-rel="prettyPhoto"  onclick="window.open('http://192.168.50.69:8000/wtg/img/${list2.m_image}','사진확인','width:100,height:100');return false;">
 																		    <i class="fa fa-search"></i>              
 																		</a>
 															        	<a href="courseView.nhn?num=${list2.num}" class=""><i class="fa fa-link"></i></a>
@@ -324,7 +324,7 @@ function test_Search()
 															        <p>${list2.subject}</p>
 														    	</div>
 														    </div>
-														    <img src="http://127.0.0.1:8000/wtg/img/${list2.m_image}" alt="portfolio" style="height:360px;">
+														    <img src="http://192.168.50.69:8000/wtg/img/${list2.m_image}" alt="portfolio" style="height:360px;">
 														</div>
 													</div>
 												</c:forEach>
@@ -373,12 +373,11 @@ function test_Search()
         <div class="container">
              <div class="facts">
                     <div class="facts-wrap">
-                        	<h6>Reply</h6>
-	                        <div class="facts-wrap-num">
+                            <div class="facts-wrap-num">
 								<div class="roll2">
 									<ul>
 										<c:forEach var="comment" items="${comment}">
-										 	<li><a href="/wtg/themeView.nhn?no=${comment.board_num}&currentPage=1">${comment.content}</a>
+										 	<li><a href="/wtg/courseView.nhn?num=${comment.board_num}">${comment.content}</a></li>
 										</c:forEach>
 									</ul>
 								</div>

@@ -160,7 +160,23 @@ public class theme {
 		request.setAttribute("info", info);
 		return "/search/sample.jsp";
 	}
+	@RequestMapping("/deleteCom.nhn")
+	public void deleteCom(HttpServletRequest request,int num,String content)
+	{
+		HashMap m_map = new HashMap();
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("memId");
+		
+		m_map.put("num", num);
+		m_map.put("id", id);
+		m_map.put("content", content);
+		
+		sqlMapClientTemplate.delete("theme.deleteComment",m_map);
+	
+	}
 
+	
+	
 	@RequestMapping("/selectBest.nhn")
 	public String best()
 	{

@@ -201,8 +201,11 @@
   </insert>
   
   <select id="memCommentAll" resultClass="memComment" parameterClass="int">
-    select * from comment_$num$ order by reg asc
+    select * from comment_$num$ order by reg desc
   </select>
+  <delete id="deleteComment" parameterClass="java.util.Map">
+  	delete from comment_$num$ where id=#id# and content=#content#  
+  </delete>
   
   
 </sqlMap>
