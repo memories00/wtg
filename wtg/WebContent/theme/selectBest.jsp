@@ -4,8 +4,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/wtg/lib/inputCss.css"/>
 
 <style>
-.wrap {position: absolute; width: 250px; height: 25px; overflow: hidden; background: #ffffff;}
-	.wrap .icon {width: 20px; height: 20px; backbround: #F0F8FF;}
+.wrap {position: absolute; width: 500px; height: 40px; overflow: hidden;}
 		
 .category, .category *{margin:0;padding:0;color:#000;}   
 .category {position:absolute;overflow:hidden;top:10px;left:10px;width:150px;height:50px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
@@ -24,7 +23,7 @@
 		    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
 		    .info .close:hover {cursor: pointer;}
 		    .info .body {position: relative;overflow: hidden;}
-		    .info .desc {position: relative;margin: 9px 0 0 90px;height: 75px;}
+		    .info .desc {position: relative;margin: 9px 20 0 20px;height: 75px;}
 			    .desc .address {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 		    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
 		    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
@@ -66,12 +65,19 @@ var map = new daum.maps.Map(container, options);			//지도 생성
 var titleList = [];											//리스트 배열  
 var points = [];
 var bounds = new daum.maps.LatLngBounds();					//지도범위 재설정을 위한 좌표객체 생성
-var iconCafe = 'CE7';
 var ps = new daum.maps.services.Places(map); 				//장소검색 객체 생성
 var iconMarkers = [];
 var markerPosition;
 var cnt=0;
-
+var foodImageSrc = 'http://127.0.0.1:8000/wtg/img/mk_food.png'; // 경유지마커이미지의 주소입니다    
+var cafeImageSrc = 'http://127.0.0.1:8000/wtg/img/mk_cafe.png'; // 경유지마커이미지의 주소입니다    
+var cvsImageSrc = 'http://127.0.0.1:8000/wtg/img/mk_cvs.png'; // 경유지마커이미지의 주소입니다    
+var innimageSrc = 'http://127.0.0.1:8000/wtg/img/mk_inn.png'; // 경유지마커이미지의 주소입니다    
+var parmacyImageSrc = 'http://127.0.0.1:8000/wtg/img/mk_parmacy.png'; // 경유지마커이미지의 주소입니다    
+var psimageSize = new daum.maps.Size(45, 60); 				// 마커이미지의 크기입니다 
+var psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+var psmarkerImage;
+var cate;
 //다중 셀렉트박스 생성
 function multiSelect(srcE, targetId){						
     var val = srcE.options[srcE.selectedIndex].value;
@@ -139,24 +145,38 @@ function searchOK(list) {
 				rank = val[3];
 			cnt++;	
 			var xy = new daum.maps.LatLng(x,y);
-			addMarker(xy,cnt);
+			addBlueMarker(xy,cnt);
 			bounds.extend(xy);
 		}
 }
 
 
 //좌표에 해당하는 마커를 생성하고 띄움
-function addMarker(xy, cnt) {
+function addBlueMarker(xy, cnt) {
+	alert("1");
 	var marker = new daum.maps.Marker({			//마커생성
 		position: xy,
 		clickable: true
 	});
-	var icon = '<div class="wrap">' +
-			'		<div class="icon" id="CE7" onclick="cateSearch(this)" title="'+xy.getLat()+"/"+xy.getLng()+'">'+ iconCafe +
-			'		</div>' +
-			'	</div>';	
+	var iconPack = '<div class="wrap">' +
+			'			<div class="icon" id="FD6" onclick="cateSearch(this)" title="'+xy.getLat()+"/"+xy.getLng()+'">'+
+			'				<img src="/wtg/img/mk_food.png" style=width:30; height:30>' +
+			'			</div>' +
+			'			<div class="icon" id="CE7" onclick="cateSearch(this)" title="'+xy.getLat()+"/"+xy.getLng()+'">'+
+			'				<img src="/wtg/img/mk_cafe.png" style=width:30; height:30>' +
+			'			</div>' +
+			'			<div class="icon" id="CS2" onclick="cateSearch(this)" title="'+xy.getLat()+"/"+xy.getLng()+'">'+
+			'				<img src="/wtg/img/mk_cvs.png" style=width:30; height:30>' +
+			'			</div>' +
+			'			<div class="icon" id="AD5" onclick="cateSearch(this)" title="'+xy.getLat()+"/"+xy.getLng()+'">'+
+			'				<img src="/wtg/img/mk_inn.png" style=width:30; height:30>' +
+			'			</div>' +
+			'			<div class="icon" id="PM9" onclick="cateSearch(this)" title="'+xy.getLat()+"/"+xy.getLng()+'">'+
+			'				<img src="/wtg/img/mk_parmacy.png" style=width:30; height:30>' +
+			'			</div>' +
+			'		</div>';	
 	var iconOverlay = new daum.maps.CustomOverlay({			//마커에 띄울 카테고리 아이콘 오버레이생성
-		content: icon,
+		content: iconPack,
  		position: marker.getPosition(),
   		clickable: true
 	});	
@@ -171,12 +191,11 @@ function addMarker(xy, cnt) {
 }
 	
 function cateSearch(id) {
-	//var cate = id.getAttribute('id');
-	var cate='CS2';
+	cate = id.getAttribute('id');
 	var xy = id.getAttribute('title');
 
 	syPosition=new daum.maps.LatLng(xy.split('/')[0],xy.split('/')[1]);
-	alert("클릭이벤트"+syPosition);
+	//alert("클릭이벤트"+syPosition);
 	ps.categorySearch({
 		code : cate,
 		callback : searchCB,
@@ -184,6 +203,7 @@ function cateSearch(id) {
 		radius : 1000,
 		sort : 1
 	})
+psmarkerImage = new daum.maps.MarkerImage(foodImageSrc, psimageSize, psimageOption);
 }
 
 function searchCB(status, data, pagination) {
@@ -195,10 +215,12 @@ function searchCB(status, data, pagination) {
 			alert("에러!에러!");	        
 	    }
 	}
+	//////////////////////정보에 카테고리 써주기///////////////////////////
+	var dataOverlay=new Array();
 	
-	function add(point,place)
+	
+	function add(cnt,point,place)
 	{
-		alert(place.title);
 		var content = '<div class="cowrap">' + 		//장소정보 오버레이에 표시할 컨텐츠 입니다
         '    <div class="info">' + 
         '        <div class="title">' + place.title+ 
@@ -212,44 +234,34 @@ function searchCB(status, data, pagination) {
         '        </div>' + 
         '    </div>' +    
         '</div>';  
-        //alert("c"+content);
-       var dataOverlay = new daum.maps.CustomOverlay({					//장소정보 오버레이를 생성합니다.
+       dataOverlay[cnt] = new daum.maps.CustomOverlay({					//장소정보 오버레이를 생성합니다.
 			content: content,
 			position: point,
 	 		clickable: true
 		});
-       alert("2");
-		var psimageSrc = 'http://127.0.0.1:8000/wtg/map/img/green_b.png', // 경유지마커이미지의 주소입니다    
-	 	    psimageSize = new daum.maps.Size(50, 50), // 마커이미지의 크기입니다
-	 	    psimageOption = {offset: new daum.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-		var psmarkerImage = new daum.maps.MarkerImage(psimageSrc, psimageSize, psimageOption);
 	 	    
 		var iconMarker = new daum.maps.Marker({
 			position : point,
 			clickable: true,
 			image:psmarkerImage
 		});
-		 alert("3");
 		iconMarker.setMap(map);
 		  daum.maps.event.addListener(iconMarker, 'click', function(mouseEvent) 
 	       { 
-			  alert(iconMarker.getPosition());
-			  dataOverlay.setMap(map);
+			  dataOverlay[cnt].setMap(map);
 
-	       });	
-		  alert("4");
-				
+	       });				
 	}
 	
 function showIconMarker(places) {
+	alert(cate);
 	for (var i=0; i<places.length; i++)
 	{
 		 var distance=distanceSum(places[i]);
-		// alert("거리"+distance);
 		if(distance<=1000)
 		{
 			var xy = new daum.maps.LatLng(places[i].latitude, places[i].longitude);	
-	        add(xy,places[i]);
+	        add(i,xy,places[i]);
 			
 	
 		}
@@ -262,15 +274,12 @@ function distanceSum(place)
 	// 마커를 생성하고 지도에 표시합니다
 		var distance;
 		var dis=new  daum.maps.LatLng(place.latitude, place.longitude);
-//		alert("좌표:"+dis);
-		
+
 		clickLine = new daum.maps.Polyline({
-		 map: map, // 선을 표시할 지도입니다 
+		 map: map, // 선을 표시할 지도입니다  
 		 path: [markerPosition], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
 		 strokeWeight: 0, // 선의 두께입니다 
-		 strokeColor: 'red', // 선의 색깔입니다
 		 strokeOpacity: 0, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-		 strokeStyle: 'solid' // 선의 스타일입니다
 		});
 		
 		var path = clickLine.getPath();	
@@ -285,8 +294,10 @@ function distanceSum(place)
 //오버레이를 닫습니다
 function closeOverlay(a) {		
 	alert("클로즈");
-	var check=a.getAttribute('id');		
-	overInfo[check].setMap(null);
+	var check=a.getAttribute('id');	
+	alert(check);
+	alert(dataOverlay[check].getPosition());
+	dataOverlay[check].setMap(null);
 }
 
 //마커를 중심으로 지도 범위를 재설정함
