@@ -6,6 +6,7 @@
   <typeAlias alias="report" type="theme.ReportDTO" />
   <typeAlias alias="comment" type="theme.CommentDTO" />
   <typeAlias alias="memComment" type="theme.MemCommentDTO" />
+  <typeAlias alias="reportlist" type="main.bean.SearchDTO" />
 
   <!--  -->
   <resultMap class="report" id="r">
@@ -137,11 +138,11 @@
                         )
   </insert>	
   
- <select id="selectReport" resultClass="report">
+ <select id="selectReport" resultClass="reportlist">
    select * from report order by no desc  
  </select>
  
- <select id="selectView" resultMap="r" parameterClass="int">
+ <select id="selectView" resultClass="reportlist" parameterClass="int">
    select * from report where num=#num#
  </select>
  

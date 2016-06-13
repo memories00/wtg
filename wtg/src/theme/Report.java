@@ -12,6 +12,7 @@ import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import main.bean.SearchDTO;
 import main.bean.SlideDTO;
 
 
@@ -38,8 +39,7 @@ public class Report {
 	}
 	
 	@RequestMapping("/reportList.nhn")
-	public String reportList(HttpSession session,HttpServletRequest request){
-		String id= (String)session.getAttribute("memId");
+	public String reportList(HttpServletRequest request){
 	    int currentPage =1;	
 	    int totalCount; 		
 		int blockCount = 10;	
@@ -75,16 +75,16 @@ public class Report {
 	}
 	
 	@RequestMapping("/reportView.nhn")
-	public String reportView(HttpServletRequest request,ReportDTO dto){
-		dto = (ReportDTO)sqlMapClientTemplate.queryForObject("theme.selectView",dto.getNum());
+	public String reportView(HttpServletRequest request,SearchDTO dto){
+		dto = (SearchDTO)sqlMapClientTemplate.queryForObject("theme.selectView",dto.getNum());
 		request.setAttribute("dto", dto);
 		return "/theme/reportView.jsp";
 	}
 	
 	@RequestMapping("/reportDel.nhn")
-	public String reportDel(HttpServletRequest request,ThemeDTO dto,ReportDTO rto){
+	public String reportDel(HttpServletRequest request,SearchDTO dto){
 		sqlMapClientTemplate.update("theme.updateReadHit",dto.getNo());
-		dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNo());
+		dto = (SearchDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNo());
 		request.setAttribute("dto", dto);
 		request.setAttribute("rto", rto);
 		return "/theme/reportDel.jsp";

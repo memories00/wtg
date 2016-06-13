@@ -1,5 +1,7 @@
 package main.bean;
 
+import java.sql.Timestamp;
+
 public class SearchDTO {
 
 	
@@ -25,9 +27,11 @@ public class SearchDTO {
 	private String content;
 	private String m_image;
 	private String s_image;
-	private String regdate;
+	private Timestamp regdate;
 	private String subject;
 	private String hashtag;
+	private String no;
+	private String process;
 	
 	private int readhit;
 	public String getSearch() {
@@ -156,10 +160,11 @@ public class SearchDTO {
 	public void setS_image(String s_image) {
 		this.s_image = s_image;
 	}
-	public String getRegdate() {
+
+	public Timestamp getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
 	public String getSubject() {
@@ -179,6 +184,18 @@ public class SearchDTO {
 	}
 	public void setReadhit(int readhit) {
 		this.readhit = readhit;
+	}
+	public String getNo() {
+		return no;
+	}
+	public void setNo(String no) {
+		this.no = no;
+	}
+	public String getProcess() {
+		return process;
+	}
+	public void setProcess(String process) {
+		this.process = process;
 	}
 	
 	

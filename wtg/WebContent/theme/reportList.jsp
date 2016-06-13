@@ -7,7 +7,7 @@
 <title>신고접수</title>
 </head>
 <link rel="stylesheet" type="text/css" href="/wtg/lib/font.css">
-<jsp:include page="/include/baseHeader.jsp" flush="false"/>
+<jsp:include page="/include/adminHeader.jsp" flush="false"/>
 <body>
   <table align="center" width="700" border="0px" cellspacing="0" cellpadding="0">
     <tr>
@@ -56,20 +56,5 @@
       <td colspan="5">${pagingHtml}</td>
     </tr>
   </table>
-      <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
-    <br /><br /><br />
 </body>
 </html>
