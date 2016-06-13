@@ -86,7 +86,7 @@ public class Report {
 		sqlMapClientTemplate.update("theme.updateReadHit",dto.getNo());
 		dto = (SearchDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNo());
 		request.setAttribute("dto", dto);
-		request.setAttribute("rto", rto);
+		
 		return "/theme/reportDel.jsp";
 	}
 	
