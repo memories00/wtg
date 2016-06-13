@@ -107,6 +107,7 @@ public class Report {
 		return "redirect:reportList.nhn";
 	}
 	@RequestMapping("/reportcheck.nhn")
+	
 	public String reportcheck(HttpServletRequest request,ReportDTO dto){
 		int num=dto.getNum();
 		System.out.println(dto.getNum());
