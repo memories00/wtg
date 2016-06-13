@@ -83,8 +83,10 @@ public class Report {
 	
 	@RequestMapping("/reportDel.nhn")
 	public String reportDel(HttpServletRequest request,SearchDTO dto){
-		sqlMapClientTemplate.update("theme.updateReadHit",dto.getNo());
-		dto = (SearchDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNo());
+		System.out.println(dto.getNo());
+		String num=dto.getNo();
+		System.out.println(num);
+		dto = (SearchDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", num);
 		request.setAttribute("dto", dto);
 		
 		return "/theme/reportDel.jsp";
@@ -93,13 +95,12 @@ public class Report {
 	@RequestMapping("/reportDelete.nhn")
 	public String delete(HttpServletRequest request,ThemeDTO dto, ReportDTO rto){
 
-        String path =request.getServletContext().getRealPath("")+"\\save\\";
-		dto = (ThemeDTO)sqlMapClientTemplate.queryForObject("theme.selectOne", dto.getNo());
+        String path =request.getServletContext().getRealPath("")+"\\img\\";
 		File file = new File(path+dto.getFile_savname());
 		file.delete();
 		int no=dto.getNo();
-		int num=rto.getNum();
-		sqlMapClientTemplate.update("theme.proTwo",num );
+		System.out.println(dto.getNo());
+		sqlMapClientTemplate.update("theme.proTwo",no );
 		sqlMapClientTemplate.delete("theme.deletetheme",no);
 		
 
@@ -119,7 +120,7 @@ public class Report {
 	@RequestMapping("/reportcom.nhn")
 	public String reportcom(HttpServletRequest request,ReportDTO dto){
 		System.out.println(dto.getNo());
-		int num=dto.getNum();
+		int num=dto.getNo();
 		dto = (ReportDTO)sqlMapClientTemplate.queryForObject("theme.selectView",num);
 		request.setAttribute("dto", dto);
 		sqlMapClientTemplate.update("theme.proThree",num);

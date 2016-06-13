@@ -33,7 +33,7 @@
 	select * from courseinfo where category=#category#
   </select>
   
-  <select id="selectOne" resultClass="themeN" parameterClass="int">
+  <select id="selectOne" resultClass="reportlist" parameterClass="String">
     select * from courseinfo where num =#num#
   </select>
   
@@ -52,7 +52,7 @@
   
   <!-- update -->
   <update id="updateReadHit" parameterClass="int">
-    update theme set readhit = readhit + 1 where no = #no# 
+    update courseinfo set readhit = readhit + 1 where no = #no# 
   </update>
 
   
@@ -147,15 +147,15 @@
  </select>
  
  <update id="proOne" parameterClass="int">
-   update report set process= 1 where no=#no#
+   update report set process= 1 where no=#num#
  </update> 
  
   <update id="proTwo" parameterClass="int">
-   update report set process= 2 where num=#num#
+   update report set process= 2 where no=#num#
  </update>
  
   <update id="proThree" parameterClass="int">
-   update report set process= 3 where num=#num#
+   update report set process= 3 where no=#num#
  </update>
  
   <!-- comment sql -->
@@ -207,6 +207,8 @@
   <delete id="deleteComment" parameterClass="java.util.Map">
   	delete from comment_$num$ where id=#id# and content=#content#
   </delete>
-  
+  <delete id="deletetheme" parameterClass="int">
+  	delete from courseinfo where num=#no#
+  </delete>
   
 </sqlMap>

@@ -29,12 +29,9 @@
       <td align="center" height="50">${list.id }</td>
       <td align="center" height="50"><fmt:formatDate value="${list.regdate}" pattern="MM.dd"/></td>
   
-  <c:if test="${list.process==0}">
+  <c:if test="${list.process==null}">
       <td align="center" height="50">미 확 인</td>
   </c:if> 
-  <c:if test="${list.process==1}">
-      <td align="center" height="50">확 인 중</td>
-  </c:if>
   <c:if test="${list.process==2}">
       <td align="center" height="50">삭제 완료</td>
   </c:if>
