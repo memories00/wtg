@@ -24,7 +24,7 @@
 	.box4{width:50%; height:320px;float:left;margin:20px 0 0 20px;background:rgba(255, 217, 236, 0.3)}
 	.box5{margin:0px 0 0 0;width:170px; height:170px;float:left;border:1px;}
 	.imgbox{ width:150px; height:150px;}
-	.box-m{float:left; width:100%;height:50%;}
+	.box-m{float:left; width:100%;height:50%; margin-top: 100px;}
 	.box-m2{float:left;display:block; width:100%;height:50%}
 	.body {margin: 10px}
 .where {
@@ -200,7 +200,7 @@
 					<div class="als-viewport">						 
 					  	<c:forEach var="s_image" items="${imageList}" varStatus="i">
 					  			
-					  	 	<li class="als-item" style="background-color:blue;margin:0 0 0 30px; width:30%; height:250px;" >
+					  	 	<li class="als-item" style="margin:0 0 0 30px; width:30%; height:250px;" >
 						  	<img src="http://127.0.0.1:8000/wtg/img/${s_image}"style="width:100%;height:100%" />
 						  	</li>
                       </c:forEach>

@@ -61,7 +61,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="footer-desc text-center">
-						<div class="logo wow fadeInDown">Team name</div>
+						<div class="logo wow fadeInDown">I 서울가 U</div>
 					</div>
 				</div>
 			</div><!-- row end -->

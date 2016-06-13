@@ -76,7 +76,7 @@
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=06fa7b42a2af7b8c46c9ca9a71d40206&libraries=services"></script>
 		<script>
-		var container = document.getElementById('map'); //div id=map자리에 지도를생성			
+		var container = document.getElementById('map'); //div id=map자리에 지도를생성	
 		var options = { 
 										center: new daum.maps.LatLng(37.515504, 126.907628), 
 										level: 6

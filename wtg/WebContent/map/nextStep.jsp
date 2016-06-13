@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>코스등록하기</title>
+<link rel="stylesheet" href="lib/als_demo.css">
+<link rel="stylesheet" href="lib/CSSreset.min.css">
 <link rel="stylesheet" href="sample/css/map.css">
 <link rel="stylesheet" href="sample/css/style.css">
  </head>
@@ -37,7 +39,7 @@
 						style=" height: 100px; display: none; border: 1px solid black;"></textarea>
 				</div>
 				<div class="tag">tag: <input type="text" id="tag" style="width:80%; margin:10px; 0 0 0"> </div>
-				<input type="button" id="save_button" value="내용전송" style="float:right;margin:5px 0 0 0 "/>	
+				<input type="button" id="save_button" value="등록하기" style="float:right;margin:5px 0 0 0 "/>	
 
 				<!-- 실제 값이 담겨져서 넘어갈 textarea 태그 -->
 
@@ -82,59 +84,60 @@
 <div class="col-sm-5">
 			<div class="panel-body ">
 			<div id="imgslide">
-
+			<section id="content">
 					<div id="lista1" class="als-container" >
 
 					<span class="als-prev" ><img src="/wtg/adminImg/thin_left_arrow_333.png" alt="prev" title="previous" /></span>
 					<div class="als-viewport">
 					  <ul class="als-wrapper">
 						
-						  <div class="als-item"style="width:23%; height:90%; margin:10px 10px 0 0;" >
+						  <li class="als-item">
 						  	<div class="imgbox" id="img1" >
 						  	</div>
 							<div class="filebox bs3-success" id="ex1">
                           		<label for="ex_file1" style="margin:10px 0 0 5px ">업로드</label> 
                          	 	<input type="file" id="ex_file1" onchange="test();" > 
                         	</div>	
-                          </div>
+                          </li>
                           	
-							 <div class="als-item"style="width:23%; height:90%; margin:10px 10px 0 0;" >
+							 <li class="als-item">
 						  	<div class="imgbox" id="img2">
 						  	</div>
 							<div class="filebox bs3-success" id="ex2">
                           		<label for="ex_file2" style="margin:10px 0 0 5px ">업로드</label> 
                          	 	<input type="file" id="ex_file2" onchange="test();" > 
                         	</div>	
-                          </div>
+                          </li>
                           
-							<div class="als-item"style="width:23%; height:90%; margin:10px 10px 0 0;" >
+							<li class="als-item">
 						  	<div class="imgbox" id="img3">
 						  	</div>
 							<div class="filebox bs3-success" id="ex3">
                           		<label for="ex_file3" style="margin:10px 0 0 5px ">업로드</label> 
                          	 	<input type="file" id="ex_file3" onchange="test();" > 
                         	</div>	
-                          </div>
+                          </li>
                           
-                           <div class="als-item"style="width:23%; height:90%; margin:10px 10px 0 0;" >
+                           <li class="als-item">
 						  	<div class="imgbox" id="img4" >
 						  	</div>
 							<div class="filebox bs3-success" id="ex4">
                           		<label for="ex_file4" style="margin:10px 0 0 5px ">업로드</label> 
                          	 	<input type="file" id="ex_file4" onchange="test();" > 
                         	</div>	
-                          </div>
+                          </li>
 	
 					  </ul>
 					</div>
 					<span class="als-next"><img src="/wtg/adminImg/thin_right_arrow_333.png" alt="next" title="next" /></span>
 					
 				  </div>
+				  </section>
 			</div>
 		</div>
 	</div>
 <div class="col-sm-1">
-	<div class="imgbox" id="m_img"style="margin:5px 10px 5px 10px ">
+	<div class="imgbox" id="m_img"style="margin:5px 10px 5px 10px;border:1px solid ">
 			</div>
 		<div class="filebox bs3-success"  id="mx">
         	<label for="m_file" style="margin:5px 0 0 35px ">업로드</label> 
@@ -144,15 +147,8 @@
 </div>
 </div><!-- 2단 -->
 
-
-  
-  
   </div>
-   
 
-	
-  
-  
   <form name="form1" method="post" action="plase.nhn">
 </form>
 <link rel="stylesheet" href="/wtg/daumeditor/css/editor.css" type="text/css" charset="EUC-KR"/>

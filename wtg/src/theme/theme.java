@@ -1,6 +1,8 @@
 package theme;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URLDecoder;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
@@ -24,10 +26,12 @@ public class theme {
 	@Autowired
 	private SqlMapClientTemplate sqlMapClientTemplate;
 	
-	@RequestMapping("/themeList.nhn")
-	public String themeList(HttpSession session, HttpServletRequest request){
+	@RequestMapping("/themeList.nhn") 
+	public String themeList(HttpSession session, HttpServletRequest request,String cate) throws IOException{
 		String a =request.getParameter("a");
-		String category = request.getParameter("cate");
+		request.setCharacterEncoding("EUC-KR");
+		String category = URLDecoder.decode(request.getParameter("cate"),"utf-8");
+		//System.out.println(category);
 		int currentPage = 1;
 		int totalCount;
 		int blockCount =5;
@@ -132,10 +136,6 @@ public class theme {
 		m_map.put("nickname", nickname);
 		m_map.put("content", text);
 		m_map.put("reg", reg);
-		
-		System.out.println(num);
-		System.out.println(id);
-		System.out.println(text);
 		
 		sqlMapClientTemplate.insert("theme.insertAllComment", a_dto);
 		

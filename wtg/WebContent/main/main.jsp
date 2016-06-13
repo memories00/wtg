@@ -87,7 +87,8 @@ $(function() {
 	}
 		function locationHref(a) {
 			var ty = a.getAttribute("id");
-			location.href="/wtg/themeList.nhn?cate="+ty;
+			var enStr=encodeURI(encodeURIComponent(ty));
+			location.href="/wtg/themeList.nhn?cate="+enStr;
 		}
 		function goHome()
 		{
@@ -132,7 +133,7 @@ function test_Search()
 						</c:when>
 						<c:otherwise>
 							&nbsp;<br>
-							<a href="http://192.168.50.69:8000/wtg/login.nhn">
+							<a href="/wtg/login.nhn">
 								<img src="/wtg/img/loginBtn.jpg" width="100"/>
 							</a>
 						</c:otherwise>
@@ -183,7 +184,7 @@ function test_Search()
 
 	<!-- main slider start -->
 	<section id="slider" class="slider">
-		<div class="overlay"></div>
+		
 		<div id="main-slide" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators visible-lg visible-md">

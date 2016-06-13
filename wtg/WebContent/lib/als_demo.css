@@ -74,13 +74,14 @@ a, a:link, a:focus, a:visited {
  **************************/
 
 #lista1 {
-	margin: 5px auto 5px auto;
+	width:600px;
+	margin: auto auto auto auto;
 }
 
 #lista1 .als-item {
 	margin: 0px 5px;
-	height: 300px;
-	width: 200px;
+	height: 200px;
+	width: 100px;
 	border:1px solid black;
 }
 
@@ -94,7 +95,7 @@ a, a:link, a:focus, a:visited {
 
 #lista1 .als-prev, #lista1 .als-next {
 	top: 150px;
-	width: 15px;
+	width: 100px;
 	height: 22px;
 }
 

@@ -196,8 +196,14 @@ public class mapDB
 	public ModelAndView imageInsert(HttpServletRequest request, String filePath,String fileName ) throws Exception{//
 	 
 	String path= request.getRealPath("img");
+	System.out.println("¾ßÈ£");
+	System.out.println(path);
 	 try {
-		   FileInputStream fis = new FileInputStream(filePath);
+		 String fpath = mapDB.class.getResource("").getPath();
+
+		 
+
+		   FileInputStream fis = new FileInputStream(fpath+filePath);
 		   FileOutputStream fos = new FileOutputStream(path+"\\"+fileName);
 		   
 		   int data = 0;

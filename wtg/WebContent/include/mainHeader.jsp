@@ -65,7 +65,8 @@ $(function() {
 	<script>
 		function locationHref(a) {
 			var ty = a.getAttribute("id");
-			location.href="/wtg/themeList.nhn?cate="+ty;
+			var enStr=encodeURI(encodeURIComponent(ty));
+			location.href="/wtg/themeList.nhn?cate="+enStr;
 		}
 		function goHome()
 		{
@@ -123,7 +124,7 @@ function move()
     					<span class="icon-bar"></span>
     					<span class="icon-bar"></span>
     				</button>
-    				<a href="/wtg/main.nhn" class="navbar-brand page-scroll"><img src="/wtg/img/logo.png" style="width:600px;height:50px;"/></a>
+    				<a href="/wtg/main.nhn" class="navbar-brand page-scroll"><img src="/wtg/img/pageLogo.png" style="width:400px;height:50px;"/></a>
     			</div> <!-- navabr-header -->
 
     			<div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1" role="navigation">
