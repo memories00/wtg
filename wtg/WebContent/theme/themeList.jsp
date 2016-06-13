@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=utf-8" language="java" %>
+<%@ page contentType="text/html;charset=euc-kr" language="java" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -45,15 +46,15 @@
 </div>
 <div style="width:100%; height:80px;">
 <div id=firstLine style="background-color:silver; width:100%; height:30px; display:table-cell; vertical-align:middle">
-	<div style="float:left"><a href="main.nhn">í™ˆ</a> </div>
-	<div style="float:left">> í…Œë§ˆë³„ ì½”ìŠ¤ > </div>
+	<div style="float:left"><a href="main.nhn">È¨</a> </div>
+	<div style="float:left">> Å×¸¶º° ÄÚ½º > </div>
 	<div style="float:left">${category}</div>
 </div>
 
 <div id="alignbutton" style="background-color:white; float:right; margin-right: 30px">
-	<input type="button" value="ìµœì‹ ìˆœ" onClick="javascript:location.href='themeList.nhn?cate=${category}'">
-    <input id="readBtn" type="button" value="ì¡°íšŒìˆœ" onClick="javascript:location.href='themeList.nhn?cate=${category}&a=1'">
-    <input id="goodBtn" type="button" value="ì¶”ì²œìˆœ" onClick="javascript:location.href='themeList.nhn?cate=${category}&a=2'">
+	<input type="button" value="ÃÖ½Å¼ø" onClick="javascript:location.href='themeList.nhn?cate=${category}'">
+    <input id="readBtn" type="button" value="Á¶È¸¼ø" onClick="javascript:location.href='themeList.nhn?cate=${category}&a=1'">
+    <input id="goodBtn" type="button" value="ÃßÃµ¼ø" onClick="javascript:location.href='themeList.nhn?cate=${category}&a=2'">
 </div>
 </div>
 
@@ -65,12 +66,12 @@
 	      		<img src="/wtg/img/${list.m_image}" style="width:250px; heigth:250px"/>
 	      	</div>
 	       	<div style="margin-left: 28%; margin-top:20px; padding-top:30px; text-align: left; width: 50%;">
-		       	<div style="font-size:30px; font-family:ë‹ì›€; font-weight:900;">
-		       		ì œëª© ${list.subject}
+		       	<div style="font-size:30px; font-family:µ¸¿ò; font-weight:900;">
+		       		Á¦¸ñ ${list.subject}
 		       	</div>
 	       		<div>
-	       			ë‚´ìš©
-	       			<!-- í‘œì‹œë˜ëŠ” ë‚´ìš© ê¸€ììˆ˜ë¥¼ ì œí•œí•œë‹¤ -->
+	       			³»¿ë
+	       			<!-- Ç¥½ÃµÇ´Â ³»¿ë ±ÛÀÚ¼ö¸¦ Á¦ÇÑÇÑ´Ù -->
 		    		<c:choose> 
 			   			<c:when test="${fn:length(list.content) > 40}">
 				          	<c:out value="${fn:substring(list.content,0,39)}"/>....
@@ -81,13 +82,13 @@
 					</c:choose>
 	       		</div>
 	       		<div >
-	       			íƒœê·¸&nbsp;:&nbsp;${list.hashtag}
+	       			ÅÂ±×&nbsp;:&nbsp;${list.hashtag}
 	       		</div>
 	       		<div>
 	       		&nbsp;&nbsp;
 	       		</div>
 	        	<div>
-	       			ì¡°íšŒìˆ˜ ${list.readhit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ë“±ë¡ì¼ <fmt:formatDate value="${list.regdate}" type="date"/>
+	       			Á¶È¸¼ö ${list.readhit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;µî·ÏÀÏ ${list.regdate}
 	       		</div>
 	       	</div>
 	    </a> 

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=utf-8" language="java" %>
+<%@ page contentType="text/html;charset=euc-kr" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -82,7 +82,7 @@ $(function() {
 	<script>
 	function move(name)
 	{
-		alert("ì™”ì–´");
+		alert("¿Ô¾î");
 		window.location="courseView?num="+name;
 	}
 		function locationHref(a) {
@@ -126,7 +126,7 @@ function test_Search()
     			<div style="float:right; width:120px; height:50px; color:white;">
 			    	<c:choose>
 						<c:when test="${sessionScope.memId ne null}">
-							${sessionScope.memName} ë‹˜
+							${sessionScope.memName} ´Ô
 							<a id="logout-btn" onclick="window.location='logout.nhn'">
 								<img src="img/logoutBtn.jpg" width="100"/>
 							</a>
@@ -142,14 +142,14 @@ function test_Search()
     			
 			    <div style="float:left; width:172px; height:55px; color:white; overflow: hidden" >
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					ì§€ì—­:${state_ko}
+					Áö¿ª:${state_ko}
 					&nbsp;&nbsp;
 					<div id="example">
 					<ul style="color:white;">
-						<li>í˜„ì¬ì˜¨ë„:${temp}<jsp:include page="weather.jsp" flush="false"/></li>
-						<li>ìµœê³ ì˜¨ë„:${max_temp}<jsp:include page="weather.jsp" flush="false"/></li>
-						<li>ìµœì €ì˜¨ë„:${min_temp}<jsp:include page="weather.jsp" flush="false"/></li>
-						<li>ë¯¸ì„¸ë¨¼ì§€ë†ë„:${pm10}</li>
+						<li>ÇöÀç¿Âµµ:${temp}<jsp:include page="weather.jsp" flush="false"/></li>
+						<li>ÃÖ°í¿Âµµ:${max_temp}<jsp:include page="weather.jsp" flush="false"/></li>
+						<li>ÃÖÀú¿Âµµ:${min_temp}<jsp:include page="weather.jsp" flush="false"/></li>
+						<li>¹Ì¼¼¸ÕÁö³óµµ:${pm10}</li>
 					</ul>
 					</div>
 				</div>
@@ -168,13 +168,13 @@ function test_Search()
 
     			<div class="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1" role="navigation">
     				<ul class="nav navbar-nav navbar-right">
-						<li id="all" onClick="locationHref(this);" style="cursor:hand;"><a>ì „ì²´ë³´ê¸°</a></li>
-						<li id="ê´€ê´‘ëª…ì†Œ" onClick="locationHref(this);" style="cursor:hand;"><a>ê´€ê´‘ëª…ì†Œ</a></li>
-						<li id="ë°ì´íŠ¸" onClick="locationHref(this);" style="cursor:hand;"><a>ë°ì´íŠ¸</a></li>
-						<li id="ìŠ¤í¬ì¸ " onClick="locationHref(this);" style="cursor:hand;"><a>ìŠ¤í¬ì¸ </a></li>
-						<li id="ì‡¼í•‘" onClick="locationHref(this);" style="cursor:hand;"><a>ì‡¼í•‘</a></li>
-						<li id="ì¶”ì²œì½”ìŠ¤" onClick="locationHref(this);" style="cursor:hand;"><a>ì¶”ì²œì½”ìŠ¤</a></li>
-						<li id="ì¥ì†Œë³„ê²€ìƒ‰" onClick="locationHref(this);" style="cursor:hand;"><a>ì¥ì†Œë³„ê²€ìƒ‰</a></li>
+						<li id="all" onClick="locationHref(this);" style="cursor:hand;"><a>ÀüÃ¼º¸±â</a></li>
+						<li id="°ü±¤¸í¼Ò" onClick="locationHref(this);" style="cursor:hand;"><a>°ü±¤¸í¼Ò</a></li>
+						<li id="µ¥ÀÌÆ®" onClick="locationHref(this);" style="cursor:hand;"><a>µ¥ÀÌÆ®</a></li>
+						<li id="½ºÆ÷Ã÷" onClick="locationHref(this);" style="cursor:hand;"><a>½ºÆ÷Ã÷</a></li>
+						<li id="¼îÇÎ" onClick="locationHref(this);" style="cursor:hand;"><a>¼îÇÎ</a></li>
+						<li id="ÃßÃµÄÚ½º" onClick="locationHref(this);" style="cursor:hand;"><a>ÃßÃµÄÚ½º</a></li>
+						<li id="Àå¼Òº°°Ë»ö" onClick="locationHref(this);" style="cursor:hand;"><a>Àå¼Òº°°Ë»ö</a></li>
     				</ul>
     			</div>
     		</div> <!-- row end -->
@@ -238,7 +238,7 @@ function test_Search()
 						<div class="searchBox">
 							<form action="searchaction.nhn">
 								<input type="text" name="search" style="width:80%;">&nbsp;
-								<input type="submit" value="ê²€ìƒ‰">
+								<input type="submit" value="°Ë»ö">
 							</form>
 						</div>
 					</div>
@@ -277,8 +277,8 @@ function test_Search()
 																	
 														        	<a href="courseInput.nhn" class=""><i class="fa fa-link"></i></a>
 														        </span>
-														        <h3>ë“±ë¡ëœ ì½”ìŠ¤ê°€ ì—†ìŠµë‹ˆë‹¤.</h3>
-														        <p>ì½”ìŠ¤ë¥¼ ë“±ë¡í•´ì£¼ì„¸ìš”!111111</p>
+														        <h3>µî·ÏµÈ ÄÚ½º°¡ ¾ø½À´Ï´Ù.</h3>
+														        <p>ÄÚ½º¸¦ µî·ÏÇØÁÖ¼¼¿ä!111111</p>
 													    	</div>
 													    </div>
 													    <img src="categoryimg/bt.JPG" alt="portfolio" style="height:360px;">
@@ -292,7 +292,7 @@ function test_Search()
 														    <div class="caption">
 														    	<div class="caption-content">
 															    	<span>
-																		<a data-rel="prettyPhoto" onclick="window.open('http://192.168.50.69:8000/wtg/img/${list2.m_image}','ì‚¬ì§„í™•ì¸','width:100,height:100');return false;">
+																		<a data-rel="prettyPhoto" onclick="window.open('http://192.168.50.69:8000/wtg/img/${list2.m_image}','»çÁøÈ®ÀÎ','width:100,height:100');return false;">
 																		    <i class="fa fa-search"></i>              
 																		</a>
 															        	<a href="courseView.nhn?num=${list2.num}" class=""><i class="fa fa-link"></i></a>
@@ -316,7 +316,7 @@ function test_Search()
 														    <div class="caption">
 														    	<div class="caption-content">
 															    	<span>
-															    		<a data-rel="prettyPhoto"  onclick="window.open('http://192.168.50.69:8000/wtg/img/${list2.m_image}','ì‚¬ì§„í™•ì¸','width:100,height:100');return false;">
+															    		<a data-rel="prettyPhoto"  onclick="window.open('http://192.168.50.69:8000/wtg/img/${list2.m_image}','»çÁøÈ®ÀÎ','width:100,height:100');return false;">
 																		    <i class="fa fa-search"></i>              
 																		</a>
 															        	<a href="courseView.nhn?num=${list2.num}" class=""><i class="fa fa-link"></i></a>
@@ -343,8 +343,8 @@ function test_Search()
 														    	<span>				
 														        	<a href="login.nhn" class=""><i class="fa fa-link"></i></a>
 														        </span>
-														        <h3>ë“±ë¡ëœ ì½”ìŠ¤ê°€ ì—†ìŠµë‹ˆë‹¤.</h3>
-														        <p>ì½”ìŠ¤ë¥¼ ë“±ë¡í•´ì£¼ì„¸ìš”!</p>
+														        <h3>µî·ÏµÈ ÄÚ½º°¡ ¾ø½À´Ï´Ù.</h3>
+														        <p>ÄÚ½º¸¦ µî·ÏÇØÁÖ¼¼¿ä!</p>
 													    	</div>
 													    </div>
 													    <img src="categoryimg/bt.JPG" alt="portfolio" style="height:360px;">
@@ -418,7 +418,7 @@ function test_Search()
 	</footer>
 	<c:if test="${sessionScope.memId eq '168456368'}">
 		<div id="admin" style="position:fixed; float:right; bottom:0px; width:200px; height:30px; background-color:gray; color:white; text-align:center;">
-			<a href="admin.nhn">ê´€ë¦¬ì í˜ì´ì§€ë¡œ ì´ë™</a>
+			<a href="admin.nhn">°ü¸®ÀÚ ÆäÀÌÁö·Î ÀÌµ¿</a>
 		</div>
 	</c:if>
 	<!-- footer end -->

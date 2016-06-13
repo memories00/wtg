@@ -45,7 +45,6 @@ function mem_Board()
 			</c:forEach>
 			</table>
 			<input type="button" value="È¸¿øÅ»Åð" onClick="mem_Delete()">
-			<input type="button" value="°Ô½Ã±ÛÈ®ÀÎ" onClick="mem_Board()">
 		</form>
 	</div>
 </div>

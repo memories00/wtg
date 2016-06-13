@@ -26,23 +26,7 @@ $(function(){
 			});
 });
 </script>
-<script>
-function user_Oneday()
-{
-	document.user.action="/wtg/oneday.nhn"
-	document.user.submit();
-}
-function user_Month()
-{
-	document.user.action="/wtg/month.nhn"
-	document.user.submit();
-}
-function user_Allday()
-{
-	document.user.action="/wtg/allday.nhn"
-	document.user.submit();
-}
-</script>
+
 <link class="include" rel="stylesheet" type="text/css" href="/wtg/lib/jquery.jqplot.min.css" />
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="/wtg/js/jquery.jqplot.min.js"></script>
@@ -50,11 +34,7 @@ function user_Allday()
 </head>
 <body>
 <div id="wrapper">
-<!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é Å¾ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
-<div id="header">
-	<jsp:include page="/include/adminHeader.jsp" flush="false"/>
-</div>
-<!--¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è Å¾ ¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è-->
+
 
 <div id="contents">
 	<div id="section">
@@ -129,11 +109,7 @@ function user_Allday()
 	</div>
 </div>
 
-<!--¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é ¹ÙÅÒ ¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é¡é-->
-<div id="footer">
-	<jsp:include page="/include/adminFooter.jsp" flush="false"/>
-</div>
-<!--¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è ¹ÙÅÒ ¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è¡è-->
+
 </div>
 </body>
 </html>
